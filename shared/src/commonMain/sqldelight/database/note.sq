@@ -1,0 +1,19 @@
+CREATE TABLE notesEntity(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    colorHex INTEGER NOT NULL,
+    created_at INTEGER NOT NULL
+);
+
+getAllNotes:
+SELECT * FROM notesEntity ORDER BY created_at DESC;
+
+getNoteById:
+SELECT * FROM notesEntity WHERE id = :id;
+
+insertNote:
+INSERT INTO notesEntity(title, content,colorHex ,created_at) VALUES(:title, :content,:colorHex ,:created_at);
+
+deleteNoteById:
+DELETE FROM notesEntity WHERE id = :id;
