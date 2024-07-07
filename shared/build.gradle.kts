@@ -31,9 +31,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:runtime:1.5.4")
-                implementation("com.squareup.sqldelight:coroutines-extensions:1.5.4")
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+                implementation(libs.sqldelight.runtime)
+                implementation(libs.sqldelight.coroutines)
+                implementation(libs.kotlinx.datetime)
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
@@ -48,7 +48,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:android-driver:1.5.4")
+                implementation(libs.sqldelight.android.driver)
             }
         }
         val iosX64Main by getting
@@ -61,7 +61,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
-                implementation("com.squareup.sqldelight:native-driver:1.5.4")
+                implementation(libs.sqldelight.native.driver)
             }
         }
     }
