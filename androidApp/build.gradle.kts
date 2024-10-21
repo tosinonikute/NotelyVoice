@@ -55,4 +55,7 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.navigation.compose)
+
+    // TODO: remove this imports
+    implementation(libs.kotlinx.datetime)
 }

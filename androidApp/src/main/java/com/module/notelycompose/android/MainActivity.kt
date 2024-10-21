@@ -19,6 +19,7 @@ import androidx.navigation.navArgument
 import com.module.notelycompose.android.presentation.AndroidNoteDetailViewModel
 import com.module.notelycompose.android.presentation.AndroidNoteListViewModel
 import com.module.notelycompose.android.presentation.core.Routes
+import com.module.notelycompose.android.theme.MyApplicationTheme
 import com.module.notelycompose.notes.domain.Note
 import com.module.notelycompose.notes.presentation.detail.NoteDetailScreenEvent
 import com.module.notelycompose.notes.presentation.detail.ui.NoteDetailScreen
