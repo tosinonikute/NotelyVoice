@@ -1,19 +1,21 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
-    id("org.jetbrains.compose")
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.composeCompiler)
 }
 
 android {
     namespace = "com.module.notelycompose.android"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         applicationId = "com.module.notelycompose.android"
         minSdk = 24
-        //noinspection EditedTargetSdkVersion
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
@@ -38,17 +40,21 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = JvmTarget.JVM_17.target
     }
 }
 
 dependencies {
     implementation(project(":shared"))
-    implementation(libs.compose.ui)
+
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.compose.foundation)
-    implementation(libs.compose.material)
+    implementation(compose.ui)
+    implementation(compose.runtime)
+    implementation(compose.foundation)
+    implementation(compose.material)
+    implementation(compose.material3)
+
     implementation(libs.activity.compose)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
@@ -58,4 +64,10 @@ dependencies {
 
     // TODO: remove this imports
     implementation(libs.kotlinx.datetime)
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }

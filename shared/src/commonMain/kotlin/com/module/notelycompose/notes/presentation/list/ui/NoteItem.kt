@@ -27,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.module.notelycompose.notes.domain.Note
+import androidx.compose.material3.ripple
 
 @Composable
 fun NoteItem(
@@ -57,7 +58,7 @@ fun NoteItem(
                 contentDescription = "Delete note",
                 modifier = Modifier
                     .clickable(interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberRipple(bounded = false)) {
+                        indication = ripple(bounded = false)) {
                         onDeleteClick(note.id)
                     }
             )

@@ -1,19 +1,23 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
-    id("org.jetbrains.compose")
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinxSerialization)
     id("com.squareup.sqldelight")
 }
 
-@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
+@OptIn(ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    targetHierarchy.default()
+    applyDefaultHierarchyTemplate()
 
-    android {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
+    androidTarget {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
         }
     }
 
@@ -37,6 +41,8 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
+                implementation(compose.material3)
+
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
             }
@@ -51,9 +57,24 @@ kotlin {
                 implementation(libs.sqldelight.android.driver)
             }
         }
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
+        val iosX64Main by getting {
+            dependencies {
+                compileOnly(libs.jetbrains.atomicfu)
+                api(libs.jetbrains.atomicfu)
+            }
+        }
+        val iosArm64Main by getting {
+            dependencies {
+                compileOnly(libs.jetbrains.atomicfu)
+                api(libs.jetbrains.atomicfu)
+            }
+        }
+        val iosSimulatorArm64Main by getting {
+            dependencies {
+                compileOnly(libs.jetbrains.atomicfu)
+                api(libs.jetbrains.atomicfu)
+            }
+        }
         val iosMain by getting {
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
@@ -65,6 +86,12 @@ kotlin {
             }
         }
     }
+
+    targets.all {
+        compilations.all {
+            kotlinOptions.freeCompilerArgs += "-Xexpect-actual-classes"
+        }
+    }
 }
 sqldelight {
     database("NoteDatabase") {
@@ -74,8 +101,16 @@ sqldelight {
 }
 android {
     namespace = "com.module.notelycompose"
-    compileSdk = 33
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }
+}
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+dependencies {
+    implementation(libs.activity.ktx)
 }
