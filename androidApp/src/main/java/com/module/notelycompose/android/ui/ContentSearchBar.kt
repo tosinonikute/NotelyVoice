@@ -1,6 +1,7 @@
 package com.module.notelycompose.android.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,6 +11,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
@@ -29,6 +31,8 @@ import com.module.notelycompose.android.R
 import com.module.notelycompose.android.theme.LocalCustomColors
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
 
 @Composable
 fun ContentSearchBar() {
@@ -47,43 +51,38 @@ fun ContentSearchBar() {
             value = value,
             onValueChange = {
                 value = it
+                isLabelVisible = !isFocused && value.isEmpty()
             },
             modifier = Modifier
                 .weight(1f)
                 .padding(end = 16.dp)
                 .onFocusChanged { focusState ->
                     isFocused = focusState.isFocused
-                    if (focusState.isFocused) {
-                        isLabelVisible = false
-                    } else if (value.isEmpty()) {
-                        isLabelVisible = true
-                    }
+                    isLabelVisible = !isFocused && value.isEmpty()
                 },
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                cursorColor = Color.White,
+                textColor = Color.White,
+                focusedBorderColor = Color.White, // Color when focused
+                unfocusedBorderColor = Color.White, // Color when not focused
+                disabledBorderColor = Color.White // Color when disabled
+            ),
             label = {
                 if (isLabelVisible) {
-                    Text(text = "Search notes...")
+                    Text(
+                        text = "Search notes...",
+                        color = Color.White
+                    )
                 }
             },
             leadingIcon = {
                 Icon(
-                    Icons.Default.Search,
-                    contentDescription = "Search"
+                    imageVector = Icons.Default.Search,
+                    contentDescription = "Search",
+                    tint = Color.White
                 )
             },
             shape = RoundedCornerShape(16.dp)
         )
-        IconButton(
-            modifier = Modifier
-                .clip(RoundedCornerShape(16.dp))
-                .background(LocalCustomColors.current.sortAscendingIconColor)
-                //.padding(4.dp)
-            ,
-            onClick = { /* TODO */ }) {
-            Icon(
-                painter = painterResource(id = R.drawable.sort_descending),
-                contentDescription = "More options",
-                tint = Color.Black
-            )
-        }
     }
 }

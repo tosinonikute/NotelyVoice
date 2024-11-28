@@ -6,7 +6,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.module.notelycompose.android.ui.detail.DetailActivity"
+            android:name="com.module.notelycompose.android.ui.ContentActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -14,7 +14,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.module.notelycompose.android.ui.ContentActivity" />
+<!--        <activity-->
+<!--            android:name="com.module.notelycompose.android.ui.ContentActivity" />-->
+
+<!--        <activity-->
+<!--            android:name="com.module.notelycompose.android.ui.detail.DetailActivity" />-->
+
     </application>
 </manifest>

@@ -37,6 +37,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.module.notelycompose.android.R
+import com.module.notelycompose.android.theme.LocalCustomColors
 import com.module.notelycompose.notes.domain.Note
 
 @Composable
@@ -51,28 +52,11 @@ fun ContentNoteItem(
         modifier = modifier
             .fillMaxWidth()
             //.padding(vertical = 8.dp)
-            .background(Color.LightGray) // Add background to the Row
+            .background(LocalCustomColors.current.noteListBackgroundColor) // Add background to the Row
             .padding(12.dp), // Add padding to the Row
             //.clip(RoundedCornerShape(16.dp)), // Apply rounded corners
         verticalAlignment = Alignment.Top
     ) {
-        Box(
-            modifier = Modifier
-                .padding(top = 4.dp)
-                .clip(RoundedCornerShape(6.dp))
-                .size(32.dp) // Set the size of the box
-                .background(Color.Gray) // Add a light gray background
-                // Add padding inside the box
-                .fillMaxHeight()
-                .padding(4.dp)
-
-        ) {
-            Icon(
-                painter = icon,
-                contentDescription = "Note icon",
-                tint = Color.Black // Set icon tint to black
-            )
-        }
         Spacer(modifier = Modifier.width(16.dp))
         Column(
             modifier = Modifier.weight(1f)

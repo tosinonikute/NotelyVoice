@@ -1,6 +1,7 @@
 package com.module.notelycompose.android.ui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +19,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.module.notelycompose.android.R
+import com.module.notelycompose.android.theme.LocalCustomColors
 import com.module.notelycompose.notes.domain.Note
 import com.module.notelycompose.notes.presentation.list.ui.NoteItem
 
@@ -36,21 +38,22 @@ fun ContentNoteList(
         )
     ) {
         itemsIndexed(items = noteList) { index, note ->
-            ContentNoteItem(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 12.dp)
-                    .animateItemPlacement()
-                    .clip(RoundedCornerShape(16.dp)),
-                note = note,
-                icon = iconList[index],
-                onNoteClick = {
-                    onNoteClicked(note.id)
-                },
-                onDeleteClick = {
-                    onNoteDeleteClicked(note.id)
-                }
-            )
+//            ContentNoteItem(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(top = 12.dp)
+//                    .animateItemPlacement()
+//                    .clip(RoundedCornerShape(16.dp)),
+//                note = note,
+//                icon = iconList[index],
+//                onNoteClick = {
+//                    onNoteClicked(note.id)
+//                },
+//                onDeleteClick = {
+//                    onNoteDeleteClicked(note.id)
+//                }
+//            )
+            ContentNoteCard()
         }
         item {
             Spacer(modifier = Modifier.height(16.dp))

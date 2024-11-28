@@ -25,6 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.module.notelycompose.android.R
+import com.module.notelycompose.android.theme.LocalCustomColors
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -32,11 +33,11 @@ fun ContentBottomAppBar() {
     Scaffold(
         bottomBar = {
             BottomAppBar(
-
                 contentColor = Color.Black,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(68.dp)
+                    .height(68.dp),
+                backgroundColor = LocalCustomColors.current.bottomBarBackgroundColor
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -44,15 +45,15 @@ fun ContentBottomAppBar() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     BottomAppBarItem(
-                        iconRes = R.drawable.ic_file,
+                        iconRes = R.drawable.ic_home,
                         label = "Home"
                     )
                     BottomAppBarItem(
-                        iconRes = R.drawable.ic_file,
+                        iconRes = R.drawable.ic_settings,
                         label = "Settings"
                     )
                     BottomAppBarItem(
-                        iconRes = R.drawable.ic_file,
+                        iconRes = R.drawable.ic_profile,
                         label = "Profile"
                     )
                 }
@@ -75,7 +76,7 @@ fun BottomAppBarItem(
     iconRes: Int,
     label: String,
     modifier: Modifier = Modifier,
-    tint: Color = Color.Black
+    tint: Color = LocalCustomColors.current.bottomBarIconColor
 ) {
     Column(
         modifier = modifier

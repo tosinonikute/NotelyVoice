@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,7 +14,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
@@ -28,9 +31,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
@@ -39,8 +40,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.module.notelycompose.android.R
+import com.module.notelycompose.android.theme.LocalCustomColors
 import com.module.notelycompose.android.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -76,11 +80,26 @@ fun NoteDetailScreen() {
                         Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Back")
                     }
                 },
+                backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
+                contentColor = LocalCustomColors.current.bodyContentColor
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /* Add Note */ }) {
-                Icon(imageVector = Icons.Filled.Add, contentDescription = "Add")
+            FloatingActionButton(
+                modifier = Modifier
+                    .border(
+                        width = 1.dp,
+                        color = LocalCustomColors.current.floatActionButtonBorderColor,
+                        shape = CircleShape
+                    ),
+                backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
+                onClick = { /* Add Note */ }
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_recorder),
+                    contentDescription = "Add",
+                    tint = LocalCustomColors.current.bodyContentColor
+                )
             }
         },
         floatingActionButtonPosition = FabPosition.End,
@@ -93,6 +112,7 @@ fun NoteDetailScreen() {
                     .fillMaxSize()
                     .padding(paddingValues)
                     .verticalScroll(rememberScrollState())
+                    .background(LocalCustomColors.current.bodyBackgroundColor)
             ) {
                 Column(
                     modifier = Modifier
@@ -102,33 +122,63 @@ fun NoteDetailScreen() {
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
+                        text = "28 November 2024 at 9:12",
+                        modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp),
+                        fontSize = 12.sp,
+                        color = LocalCustomColors.current.bodyContentColor
+                    )
+                    Text(
                         text = "Milan",
-                        modifier = Modifier.padding(horizontal = 16.dp)
+                        modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 12.dp),
+                        color = LocalCustomColors.current.bodyContentColor
                     )
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+                        /* TODO: Sound wave animation and ui required here */
                         IconButton(onClick = { /* Play audio */ }) {
-                            Icon(imageVector = Icons.Filled.PlayArrow, contentDescription = "Play")
+                            Icon(
+                                imageVector = Icons.Filled.PlayArrow,
+                                contentDescription = "Play",
+                                tint = LocalCustomColors.current.bodyContentColor
+                            )
                         }
-                        Text("46 sec")
+                        Text(
+                            modifier = Modifier.padding(start = 0.dp, end = 16.dp),
+                            text = "46 sec",
+                            color = LocalCustomColors.current.bodyContentColor
+                        )
                     }
                     Text(
                         text = "The most beautiful places to visit:",
+                        modifier = Modifier.padding(horizontal = 16.dp),
+                        fontSize = 20.sp,
+                        fontWeight = Bold,
+                        color = LocalCustomColors.current.bodyContentColor
+                    )
+                    ListItem(
+                        text = {
+                            Text(
+                                text = "The Milan Cathedral. It is the third largest cathedral in the world. I need to buy tickets online or booking a guided tour of the cathedral to save a lot of time!!",
+                                color = LocalCustomColors.current.bodyContentColor
+                            ) },
                         modifier = Modifier.padding(horizontal = 16.dp)
                     )
                     ListItem(
-                        text = { Text("The Milan Cathedral. It is the third largest cathedral in the world. I need to buy tickets online or booking a guided tour of the cathedral to save a lot of time!!") },
+                        text = {
+                            Text(
+                                text = "Galleria Vittorio Emanuele II. Just outside the cathedral, on the Piazza del Duomo. There I can find the most famous fashion designers stores including Vuitton and Prada to do a little shopping",
+                                color = LocalCustomColors.current.bodyContentColor
+                            ) },
                         modifier = Modifier.padding(horizontal = 16.dp)
                     )
                     ListItem(
-                        text = { Text("Galleria Vittorio Emanuele II. Just outside the cathedral, on the Piazza del Duomo. There I can find the most famous fashion designers stores including Vuitton and Prada to do a little shopping") },
-                        modifier = Modifier.padding(horizontal = 16.dp)
-                    )
-                    ListItem(
-                        text = { Text("Santa Maria delle Grazie church The painting of the Last Supper by Leonardo da Vinci. Remember to book this visit in advance because can only visit by appointment and in small groups of twenty people for 15 minutes!!") },
+                        text = { Text(
+                            text = "Santa Maria delle Grazie church The painting of the Last Supper by Leonardo da Vinci. Remember to book this visit in advance because can only visit by appointment and in small groups of twenty people for 15 minutes!!",
+                            color = LocalCustomColors.current.bodyContentColor
+                        ) },
                         modifier = Modifier.padding(horizontal = 16.dp)
                     )
 
@@ -148,6 +198,7 @@ fun BottomNavigationBar() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .background(LocalCustomColors.current.bodyBackgroundColor)
             .padding(8.dp)
             .padding(start = 8.dp, end = 48.dp),
         horizontalArrangement = Arrangement.SpaceAround,
@@ -156,31 +207,36 @@ fun BottomNavigationBar() {
         IconButton(onClick = { /* Share */ }) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_detail_share),
-                contentDescription = "Share"
+                contentDescription = "Share",
+                tint = LocalCustomColors.current.bodyContentColor
             )
         }
         IconButton(onClick = { /* Delete */ }) {
             Icon(
                 imageVector = Icons.Filled.Delete,
-                contentDescription = "Type"
+                contentDescription = "Type",
+                tint = LocalCustomColors.current.bodyContentColor
             )
         }
         IconButton(onClick = { /* Type */ }) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_detail_type),
-                contentDescription = "Type"
+                contentDescription = "Type",
+                tint = LocalCustomColors.current.bodyContentColor
             )
         }
         IconButton(onClick = { /* Undo */ }) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_detail_undo),
-                contentDescription = "Undo"
+                contentDescription = "Undo",
+                tint = LocalCustomColors.current.bodyContentColor
             )
         }
         IconButton(onClick = { /* Redo */ }) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_detail_redo),
-                contentDescription = "Redo"
+                contentDescription = "Redo",
+                tint = LocalCustomColors.current.bodyContentColor
             )
         }
     }

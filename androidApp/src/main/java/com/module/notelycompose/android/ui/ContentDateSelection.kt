@@ -3,6 +3,7 @@ package com.module.notelycompose.android.ui
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,7 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
+import com.module.notelycompose.android.theme.LocalCustomColors
 
 @Composable
 fun ContentDateSelection(
@@ -29,18 +33,19 @@ fun ContentDateSelection(
     tabSelected: String,
     onTabSelected: (String) -> Unit
 ) {
+    val focusManager = LocalFocusManager.current
     ScrollableTabRow(
         edgePadding = 0.dp,
         backgroundColor = Color.Transparent,
         selectedTabIndex = titles.indexOf(tabSelected),
-        contentColor = Color.Black,
+        contentColor = LocalCustomColors.current.dateContentColorViewColor,
         indicator = { tabPositions: List<TabPosition> ->
             Box(
                 modifier = Modifier
                     .tabIndicatorOffset(tabPositions[titles.indexOf(tabSelected)])
                     .fillMaxSize()
                     .padding(horizontal = 4.dp)
-                    .border(BorderStroke(2.dp, Color.Black), RoundedCornerShape(16.dp))
+                    .border(BorderStroke(2.dp, LocalCustomColors.current.dateContentIconColor), RoundedCornerShape(16.dp))
             )
         },
         divider = { }
@@ -55,10 +60,12 @@ fun ContentDateSelection(
             Tab(
                 modifier = Modifier
                     .padding(horizontal = 4.dp)
-                    .clip(RoundedCornerShape(16.dp)),
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(LocalCustomColors.current.backgroundViewColor),
                 selected = selected,
                 onClick = {
                     onTabSelected(titles[index])
+                    focusManager.clearFocus()
                 }
             ) {
                 Row(
@@ -68,11 +75,12 @@ fun ContentDateSelection(
                     Icon(
                         painter = icon,
                         contentDescription = "More options",
-                        tint = Color.Black
+                        tint = LocalCustomColors.current.dateContentIconColor
                     )
                     Text(
                         modifier = textModifier,
                         text = title,
+                        color = LocalCustomColors.current.dateContentIconColor
                     )
                 }
             }

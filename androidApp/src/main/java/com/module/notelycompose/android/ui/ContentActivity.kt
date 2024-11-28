@@ -5,6 +5,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.BottomAppBar
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
@@ -30,12 +34,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.module.notelycompose.android.R
+import com.module.notelycompose.android.theme.LocalCustomColors
 import com.module.notelycompose.android.theme.MyApplicationTheme
 import com.module.notelycompose.core.DateTimeUtil
 import com.module.notelycompose.notes.domain.Note
@@ -57,8 +64,8 @@ class ContentActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    // NoteAppUi()
-                    ContentBottomAppBar()
+                    NoteAppUi()
+                    // ContentBottomAppBar()
                 }
             }
         }
@@ -74,6 +81,8 @@ fun NoteAppUi() {
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NoteScreen() {
+    val focusManager = LocalFocusManager.current
+
     val note = Note(
         id = 1,
         title = "Graduation Cap SVG Vector",
@@ -91,7 +100,7 @@ fun NoteScreen() {
                 onClick = {
 
                 },
-                backgroundColor = Color.Black
+                backgroundColor = LocalCustomColors.current.backgroundViewColor
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -111,6 +120,12 @@ fun NoteScreen() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
+                .background(LocalCustomColors.current.bodyBackgroundColor)
+                .pointerInput(Unit) {
+                    detectTapGestures(onTap = {
+                        focusManager.clearFocus()
+                    })
+                }
         ) {
             ContentSearchBar()
             ContentDateTabBar()

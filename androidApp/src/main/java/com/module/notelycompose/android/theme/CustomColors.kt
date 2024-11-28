@@ -5,5 +5,15 @@ import androidx.compose.runtime.Immutable
 
 @Immutable
 data class CustomColors(
-    val sortAscendingIconColor: Color
+    val sortAscendingIconColor: Color,
+    val backgroundViewColor: Color,
+    val dateContentColorViewColor: Color,
+    val dateContentIconColor: Color,
+    val bottomBarBackgroundColor: Color,
+    val bottomBarIconColor: Color,
+    val noteListBackgroundColor: Color,
+    val bodyBackgroundColor: Color,
+    val contentTopColor: Color,
+    val bodyContentColor: Color,
+    val floatActionButtonBorderColor: Color
 )
