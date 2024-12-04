@@ -22,7 +22,7 @@ fun ContentDateTabBar() {
         painterResource(id = R.drawable.ic_file),
         painterResource(id = R.drawable.ic_folder),
         painterResource(id = R.drawable.ic_star),
-        painterResource(id = R.drawable.ic_heart)
+        painterResource(id = R.drawable.ic_recorder_small)
     )
 
     Row(

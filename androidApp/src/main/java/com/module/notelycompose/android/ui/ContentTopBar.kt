@@ -57,7 +57,7 @@ fun ContentTopBar(
                 ) {
                     Icon(
                         imageVector = Icons.Filled.Menu,
-                        tint = Color.White,
+                        tint = LocalCustomColors.current.topButtonIconColor,
                         modifier = Modifier.size(24.dp).align(Alignment.Center),
                         contentDescription = ""
                     )

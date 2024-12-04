@@ -19,6 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.module.notelycompose.android.R
+import com.module.notelycompose.android.theme.LocalCustomColors
 
 @Composable
 fun ContentNoteCard() {
@@ -52,6 +53,7 @@ fun ContentNoteCard() {
                 ) {
                     Text(
                         text = "02/05",
+                        color = LocalCustomColors.current.noteTextColor,
                         fontSize = 16.sp,
                         modifier = Modifier.padding(bottom = 12.dp)
                     )
@@ -64,7 +66,11 @@ fun ContentNoteCard() {
                         IconButton(
                             onClick = { /* TODO: Edit action */ }
                         ) {
-                            Icon(Icons.Filled.Edit, contentDescription = "Edit")
+                            Icon(
+                                imageVector = Icons.Filled.Edit,
+                                tint = LocalCustomColors.current.noteIconColor,
+                                contentDescription = "Edit"
+                            )
                         }
                     }
                 }
@@ -72,11 +78,13 @@ fun ContentNoteCard() {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "technical drawing fundamentals",
+                    color = LocalCustomColors.current.noteTextColor,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     text = "class notes",
+                    color = LocalCustomColors.current.noteTextColor,
                     fontSize = 16.sp,
                     modifier = Modifier.padding(top = 24.dp, bottom = 8.dp)
                 )
@@ -92,6 +100,7 @@ fun ContentNoteCard() {
                         ) {
                             Text(
                                 text = "2 notes",
+                                color = LocalCustomColors.current.noteTextColor,
                                 fontSize = 14.sp,
                                 modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
                             )
@@ -103,6 +112,7 @@ fun ContentNoteCard() {
                         ) {
                             Text(
                                 text = "250 words",
+                                color = LocalCustomColors.current.noteTextColor,
                                 fontSize = 14.sp,
                                 modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
                             )
@@ -117,6 +127,7 @@ fun ContentNoteCard() {
                         IconButton(onClick = { /* TODO: Edit action */ }) {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_arrow_up_right),
+                                tint = LocalCustomColors.current.noteIconColor,
                                 contentDescription = "Edit"
                             )
                         }

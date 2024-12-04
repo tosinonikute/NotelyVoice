@@ -61,17 +61,17 @@ fun ContentSearchBar() {
                     isLabelVisible = !isFocused && value.isEmpty()
                 },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                cursorColor = Color.White,
-                textColor = Color.White,
-                focusedBorderColor = Color.White, // Color when focused
-                unfocusedBorderColor = Color.White, // Color when not focused
-                disabledBorderColor = Color.White // Color when disabled
+                cursorColor = LocalCustomColors.current.searchOutlinedTextFieldColor,
+                textColor = LocalCustomColors.current.searchOutlinedTextFieldColor,
+                focusedBorderColor = LocalCustomColors.current.searchOutlinedTextFieldColor,
+                unfocusedBorderColor = LocalCustomColors.current.searchOutlinedTextFieldColor,
+                disabledBorderColor = LocalCustomColors.current.searchOutlinedTextFieldColor,
             ),
             label = {
                 if (isLabelVisible) {
                     Text(
                         text = "Search notes...",
-                        color = Color.White
+                        color = LocalCustomColors.current.searchOutlinedTextFieldColor
                     )
                 }
             },

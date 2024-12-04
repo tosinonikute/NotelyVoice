@@ -110,7 +110,7 @@ fun NoteScreen() {
                         modifier = Modifier.padding(4.dp),
                         imageVector = Icons.Default.Add,
                         contentDescription = "Add Note",
-                        tint = Color.White
+                        tint = LocalCustomColors.current.floatActionButtonIconColor
                     )
                 }
             }
