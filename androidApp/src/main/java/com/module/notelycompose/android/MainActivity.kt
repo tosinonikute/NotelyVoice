@@ -119,14 +119,6 @@ fun NoteListScreen(
 }
 
 @Composable
-fun GreetingView(text: String) {
+fun HelloWorldViewForUiTest(text: String) {
     Text(text = text)
-}
-
-@Preview
-@Composable
-fun DefaultPreview() {
-    MyApplicationTheme {
-        GreetingView("Hello, Android!")
-    }
 }

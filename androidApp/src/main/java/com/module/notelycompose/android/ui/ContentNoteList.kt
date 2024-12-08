@@ -27,7 +27,6 @@ import com.module.notelycompose.notes.presentation.list.ui.NoteItem
 @Composable
 fun ContentNoteList(
     noteList: List<Note>,
-    iconList: List<Painter>,
     onNoteClicked: (Int) -> Unit,
     onNoteDeleteClicked: (Int) -> Unit
 ) {

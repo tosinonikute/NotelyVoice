@@ -131,7 +131,6 @@ fun NoteScreen() {
             ContentDateTabBar()
             ContentNoteList(
                 noteList = listOf(note, note, note, note, note, note, note, note),
-                iconList = listOf(getRandomIcon(), getRandomIcon(), getRandomIcon(), getRandomIcon(), getRandomIcon(), getRandomIcon(), getRandomIcon(), getRandomIcon()),
                 onNoteClicked = {
                 },
                 onNoteDeleteClicked = {
@@ -141,14 +140,3 @@ fun NoteScreen() {
         }
     }
 }
-
-@Composable
-private fun getRandomIcon(): Painter = listOf(
-    painterResource(id = R.drawable.ic_list_ballon),
-    painterResource(id = R.drawable.ic_list_disk),
-    painterResource(id = R.drawable.ic_list_football),
-    painterResource(id = R.drawable.ic_list_graduation),
-    painterResource(id = R.drawable.ic_list_bald_bomb),
-    painterResource(id = R.drawable.ic_list_bald_leaf),
-    painterResource(id = R.drawable.ic_list_bald_heart)
-).random()

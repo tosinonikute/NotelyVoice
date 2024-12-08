@@ -1,5 +1,6 @@
 [versions]
 agp = "8.6.1"
+composeVectorizeCore = "1.0.2"
 hilt = "2.49"
 hiltCompiler = "2.48.1"
 hiltCompose = "1.2.0"
@@ -15,6 +16,7 @@ activityKtx = "1.9.3"
 
 [libraries]
 # Non-UI dependencies
+compose-vectorize-core = { module = "dev.sergiobelda.compose.vectorize:compose-vectorize-core", version.ref = "composeVectorizeCore" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltCompiler" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltCompose" }

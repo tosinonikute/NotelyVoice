@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinxSerialization)
+    id("dev.sergiobelda.compose.vectorize") version "1.0.2"
     id("com.squareup.sqldelight")
 }
 
@@ -45,6 +46,7 @@ kotlin {
 
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                implementation(libs.compose.vectorize.core)
             }
         }
         val commonTest by getting {

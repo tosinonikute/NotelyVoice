@@ -5,9 +5,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
 import com.module.notelycompose.notes.domain.Note
 import com.module.notelycompose.notes.presentation.detail.NoteDetailScreenEvent
-import com.module.notelycompose.notes.presentation.detail.ui.NoteDetailScreen
+//import com.module.notelycompose.notes.presentation.detail.ui.NoteDetailScreen
+import com.module.notelycompose.notes.presentation.detail.userinterface.NoteDetailScreen
 import com.module.notelycompose.notes.presentation.list.NoteListEvent
-import com.module.notelycompose.notes.presentation.list.ui.SharedNoteListScreen
+//import com.module.notelycompose.notes.presentation.list.ui.SharedNoteListScreen
+import com.module.notelycompose.notes.presentation.list.userinterface.SharedNoteListScreen2
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 @OptIn(DelicateCoroutinesApi::class)
@@ -24,7 +26,7 @@ fun NoteListController(
         )
     }
     val state = viewmodel.state.collectAsState()
-    SharedNoteListScreen(
+    SharedNoteListScreen2(
         state.value, onFloatingActionButtonClicked, onNoteClicked
     ) { id ->
         viewmodel.onEvent(NoteListEvent.OnNoteDeleted(id))

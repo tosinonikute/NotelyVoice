@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.Composable
@@ -58,23 +59,16 @@ fun ContentNoteCard() {
                         modifier = Modifier.padding(bottom = 12.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp)) // Optional; use if necessary for spacing
-                    Card(
-                        modifier = Modifier.padding(bottom = 8.dp),
-                        shape = RoundedCornerShape(32.dp),
-                        backgroundColor = Color(0xFFFA8767)
+                    IconButton(
+                        onClick = { /* TODO: Close action */ }
                     ) {
-                        IconButton(
-                            onClick = { /* TODO: Edit action */ }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Filled.Edit,
-                                tint = LocalCustomColors.current.noteIconColor,
-                                contentDescription = "Edit"
-                            )
-                        }
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            tint = LocalCustomColors.current.noteIconColor,
+                            contentDescription = "Edit"
+                        )
                     }
                 }
-
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "technical drawing fundamentals",
