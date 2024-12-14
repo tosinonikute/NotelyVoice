@@ -77,10 +77,12 @@ fun NoteAppRoot2() {
             val noteId = backStackEntry.arguments?.getString("noteId") ?: "0"
             val viewmodel = hiltViewModel<AndroidNoteDetailViewModel>()
             val note: Note? = viewmodel.getNoteById(noteId)
+            val newNoteDateString = noteId.let { viewmodel.getNewNoteContentDate(noteId) }
 
             NoteDetailScreen(
                 title = note?.title,
                 content = note?.content,
+                newNoteDateString = newNoteDateString,
                 onSaveClick = { title, content, isUpdate ->
                     if (isUpdate) {
                         viewmodel.onEvent(NoteDetailScreenEvent.DeleteNote(noteId))

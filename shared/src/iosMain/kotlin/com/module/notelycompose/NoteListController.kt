@@ -53,10 +53,12 @@ fun NoteDetailController(
         val note: Note? = remember {
             if (noteId != null) viewModel.getNoteById(noteId) else null
         }
+        val newNoteDateString = noteId?.let { viewModel.getNewNoteContentDate(noteId) } ?: ""
 
         NoteDetailScreen(
             title = note?.title,
-            content = note?.content
+            content = note?.content,
+            newNoteDateString = newNoteDateString
         ) { title, content, isUpdate ->
             if (isUpdate) {
                 val note = viewModel.getNoteById(note!!.id.toString())

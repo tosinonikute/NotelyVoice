@@ -26,4 +26,7 @@ class IOSNoteDetailViewModel(
     fun onEvent(event: NoteDetailScreenEvent) {
         viewModel.onEvent(event)
     }
+
+    // TODO: use NoteDetailScreenUiState to set the state
+    fun getNewNoteContentDate(id: String) = viewModel.getNewNoteContentDate(id)
 }

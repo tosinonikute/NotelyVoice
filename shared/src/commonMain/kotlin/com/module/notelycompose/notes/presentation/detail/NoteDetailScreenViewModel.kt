@@ -10,6 +10,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 class NoteDetailScreenViewModel(
     private val getNoteByIdUseCase: GetNoteById,
@@ -56,5 +60,17 @@ class NoteDetailScreenViewModel(
                 }
             }
         }
+    }
+
+    // TODO: use NoteDetailScreenUiState to set the state
+    fun getNewNoteContentDate(id: String): String {
+        val note = getNoteById(id)
+        val localDate = note?.createdAt ?: Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+        val day = localDate.dayOfMonth
+        val month = localDate.month.name.lowercase().replaceFirstChar { it.uppercase() }
+        val year = localDate.year
+        val hour = localDate.hour
+        val minute = localDate.minute.toString().padStart(2, '0')
+        return "$day $month $year at $hour:$minute"
     }
 }

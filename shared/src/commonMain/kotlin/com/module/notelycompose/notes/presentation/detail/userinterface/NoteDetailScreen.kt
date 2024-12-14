@@ -57,6 +57,7 @@ import com.module.notelycompose.resources.vectors.Images
 fun NoteDetailScreen(
     title: String? = null,
     content: String? = null,
+    newNoteDateString: String,
     onSaveClick: (String, String, Boolean) -> Unit
 ) {
     Scaffold(
@@ -112,7 +113,7 @@ fun NoteDetailScreen(
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
-                        text = "28 November 2024 at 9:12",
+                        text = newNoteDateString,
                         modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp),
                         fontSize = 12.sp,
                         color = LocalCustomColors.current.bodyContentColor
