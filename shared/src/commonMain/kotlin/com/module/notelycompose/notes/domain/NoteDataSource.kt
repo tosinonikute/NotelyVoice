@@ -9,7 +9,14 @@ interface NoteDataSource {
         content: String
     )
 
+    suspend fun updateNote(
+        id: Int,
+        title: String,
+        content: String
+    )
+
     fun getNotes(): CommonFlow<List<Note>>
     fun getNoteById(id: Int): Note?
+    fun getLastNote(): Note?
     suspend fun deleteNoteById(id: Int)
 }

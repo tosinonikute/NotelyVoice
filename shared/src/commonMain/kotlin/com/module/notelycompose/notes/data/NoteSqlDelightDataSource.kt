@@ -26,6 +26,20 @@ class NoteSqlDelightDataSource(
         )
     }
 
+    override suspend fun updateNote(
+        id: Int,
+        title: String,
+        content: String,
+    ) {
+        queries.updateNote(
+            id = id.toLong(),
+            title = title,
+            content = content,
+            colorHex = Note.generateRandomColor(),
+            created_at = DateTimeUtil.toEpochMilli(DateTimeUtil.now())
+        )
+    }
+
     override fun getNotes(): CommonFlow<List<Note>> {
         return queries
             .getAllNotes()
@@ -39,6 +53,12 @@ class NoteSqlDelightDataSource(
     override fun getNoteById(id: Int): Note? {
         return queries
             .getNoteById(id.toLong())
+            .executeAsOneOrNull()?.toNote()
+    }
+
+    override fun getLastNote(): Note? {
+        return queries
+            .getLastNote()
             .executeAsOneOrNull()?.toNote()
     }
 

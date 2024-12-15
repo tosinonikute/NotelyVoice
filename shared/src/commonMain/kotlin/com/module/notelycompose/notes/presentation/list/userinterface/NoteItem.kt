@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.module.notelycompose.notes.domain.Note
@@ -46,7 +47,11 @@ fun NoteItem(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "${note.createdAt.dayOfMonth}/${note.createdAt.month}",
+                        text = "${note.createdAt.dayOfMonth} ${note.createdAt.month.toString()
+                            .lowercase()
+                            .replaceFirstChar { 
+                                if (it.isLowerCase()) it.titlecase() else it.toString() 
+                            } } at ${note.createdAt.hour}:${note.createdAt.minute}",
                         color = LocalCustomColors.current.noteTextColor,
                         fontSize = 16.sp,
                         modifier = Modifier.padding(bottom = 12.dp)
@@ -69,13 +74,17 @@ fun NoteItem(
                     text = note.title,
                     color = LocalCustomColors.current.noteTextColor,
                     fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
                 )
                 Text(
                     text = note.content,
                     color = LocalCustomColors.current.noteTextColor,
                     fontSize = 16.sp,
-                    modifier = Modifier.padding(top = 24.dp, bottom = 8.dp)
+                    modifier = Modifier.padding(top = 24.dp, bottom = 8.dp),
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Row(

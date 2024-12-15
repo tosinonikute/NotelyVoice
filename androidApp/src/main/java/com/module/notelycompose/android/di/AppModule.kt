@@ -6,9 +6,11 @@ import com.module.notelycompose.database.NoteDatabase
 import com.module.notelycompose.notes.data.NoteSqlDelightDataSource
 import com.module.notelycompose.notes.domain.DeleteNoteById
 import com.module.notelycompose.notes.domain.GetAllNotesUseCase
+import com.module.notelycompose.notes.domain.GetLastNote
 import com.module.notelycompose.notes.domain.GetNoteById
 import com.module.notelycompose.notes.domain.InsertNoteUseCase
 import com.module.notelycompose.notes.domain.NoteDataSource
+import com.module.notelycompose.notes.domain.UpdateNoteUseCase
 import com.squareup.sqldelight.db.SqlDriver
 import dagger.Module
 import dagger.Provides
@@ -62,5 +64,21 @@ object AppModule {
         dataSource: NoteDataSource
     ): GetNoteById {
         return GetNoteById(dataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetLastNoteUseCase(
+        dataSource: NoteDataSource
+    ): GetLastNote {
+        return GetLastNote(dataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUpdateNoteUseCase(
+        dataSource: NoteDataSource
+    ): UpdateNoteUseCase {
+        return UpdateNoteUseCase(dataSource)
     }
 }

@@ -23,7 +23,7 @@ import com.module.notelycompose.notes.presentation.list.NoteListUiState
 import com.module.notelycompose.notes.presentation.theme.LocalCustomColors
 
 @Composable
-fun SharedNoteListScreen2(
+fun SharedNoteListScreen(
     noteListUiState: NoteListUiState,
     onFloatingActionButtonClicked: () -> Unit,
     onNoteClicked: (Int) -> Unit,

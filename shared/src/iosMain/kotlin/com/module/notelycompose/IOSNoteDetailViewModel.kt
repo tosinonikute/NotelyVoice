@@ -1,22 +1,29 @@
 package com.module.notelycompose
 
 import com.module.notelycompose.notes.domain.DeleteNoteById
+import com.module.notelycompose.notes.domain.GetAllNotesUseCase
+import com.module.notelycompose.notes.domain.GetLastNote
 import com.module.notelycompose.notes.domain.GetNoteById
 import com.module.notelycompose.notes.domain.InsertNoteUseCase
+import com.module.notelycompose.notes.domain.UpdateNoteUseCase
 import com.module.notelycompose.notes.presentation.detail.NoteDetailScreenEvent
 import com.module.notelycompose.notes.presentation.detail.NoteDetailScreenViewModel
 
 class IOSNoteDetailViewModel(
     private val getNoteByIdUseCase: GetNoteById,
     private val insertNoteUseCase: InsertNoteUseCase,
-    private val deleteNoteUseCase: DeleteNoteById
+    private val deleteNoteUseCase: DeleteNoteById,
+    private val updateNoteUseCase: UpdateNoteUseCase,
+    private val getLastNoteUseCase: GetLastNote
 ) {
 
     private val viewModel by lazy {
         NoteDetailScreenViewModel(
             getNoteByIdUseCase = getNoteByIdUseCase,
             insertNoteUseCase = insertNoteUseCase,
-            deleteNoteUseCase = deleteNoteUseCase
+            deleteNoteUseCase = deleteNoteUseCase,
+            updateNoteUseCase = updateNoteUseCase,
+            getLastNoteUseCase = getLastNoteUseCase
         )
     }
     val state = viewModel.state
@@ -25,6 +32,14 @@ class IOSNoteDetailViewModel(
 
     fun onEvent(event: NoteDetailScreenEvent) {
         viewModel.onEvent(event)
+    }
+
+    fun onCreateOrUpdateEvent(
+        title: String,
+        content: String,
+        isUpdate: Boolean
+    ) {
+        viewModel.onCreateOrUpdateEvent(title, content, isUpdate)
     }
 
     // TODO: use NoteDetailScreenUiState to set the state

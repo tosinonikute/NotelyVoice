@@ -17,3 +17,16 @@ INSERT INTO notesEntity(title, content,colorHex ,created_at) VALUES(:title, :con
 
 deleteNoteById:
 DELETE FROM notesEntity WHERE id = :id;
+
+updateNote:
+UPDATE notesEntity
+SET title = :title,
+    content = :content,
+    colorHex = :colorHex,
+    created_at = :created_at
+WHERE id = :id;
+
+getLastNote:
+SELECT * FROM notesEntity
+ORDER BY id DESC
+LIMIT 1;

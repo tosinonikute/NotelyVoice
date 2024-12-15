@@ -9,32 +9,39 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.ListItem
+import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.module.notelycompose.core.StringUtil.sanitiseText
 import com.module.notelycompose.getPlatform
 import com.module.notelycompose.notes.presentation.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcDetailAlignCenter
@@ -45,7 +52,6 @@ import com.module.notelycompose.resources.vectors.IcDetailItalic
 import com.module.notelycompose.resources.vectors.IcDetailList
 import com.module.notelycompose.resources.vectors.IcDetailRedo
 import com.module.notelycompose.resources.vectors.IcDetailShare
-import com.module.notelycompose.resources.vectors.IcDetailTextColor
 import com.module.notelycompose.resources.vectors.IcDetailType
 import com.module.notelycompose.resources.vectors.IcDetailUnderline
 import com.module.notelycompose.resources.vectors.IcDetailUndo
@@ -58,15 +64,19 @@ fun NoteDetailScreen(
     title: String? = null,
     content: String? = null,
     newNoteDateString: String,
-    onSaveClick: (String, String, Boolean) -> Unit
+    onSaveClick: (String, String, Boolean) -> Unit,
+    onNavigateBack: () -> Unit
 ) {
+    var contentState by remember { mutableStateOf(TextFieldValue(content ?: "")) }
+    val isUpdateScreen = remember { mutableStateOf(title != null) }
+
     Scaffold(
         topBar = {
             if (getPlatform().isAndroid) {
                 TopAppBar(
                     title = { Text("My Note") },
                     navigationIcon = {
-                        IconButton(onClick = { /* Navigate back */ }) {
+                        IconButton(onClick = { onNavigateBack() }) {
                             Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Back")
                         }
                     },
@@ -118,6 +128,7 @@ fun NoteDetailScreen(
                         fontSize = 12.sp,
                         color = LocalCustomColors.current.bodyContentColor
                     )
+                    // TODO: implement voice recording
 //                    Text(
 //                        text = "Milan",
 //                        modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 12.dp),
@@ -142,35 +153,24 @@ fun NoteDetailScreen(
 //                            color = LocalCustomColors.current.bodyContentColor
 //                        )
 //                    }
-                    Text(
-                        text = "The most beautiful places to visit:",
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        fontSize = 20.sp,
-                        fontWeight = Bold,
-                        color = LocalCustomColors.current.bodyContentColor
-                    )
-                    ListItem(
-                        text = {
-                            Text(
-                                text = "The Milan Cathedral. It is the third largest cathedral in the world. I need to buy tickets online or booking a guided tour of the cathedral to save a lot of time!!",
-                                color = LocalCustomColors.current.bodyContentColor
-                            ) },
-                        modifier = Modifier.padding(horizontal = 16.dp)
-                    )
-                    ListItem(
-                        text = {
-                            Text(
-                                text = "Galleria Vittorio Emanuele II. Just outside the cathedral, on the Piazza del Duomo. There I can find the most famous fashion designers stores including Vuitton and Prada to do a little shopping",
-                                color = LocalCustomColors.current.bodyContentColor
-                            ) },
-                        modifier = Modifier.padding(horizontal = 16.dp)
-                    )
-                    ListItem(
-                        text = { Text(
-                            text = "Santa Maria delle Grazie church The painting of the Last Supper by Leonardo da Vinci. Remember to book this visit in advance because can only visit by appointment and in small groups of twenty people for 15 minutes!!",
-                            color = LocalCustomColors.current.bodyContentColor
-                        ) },
-                        modifier = Modifier.padding(horizontal = 16.dp)
+                    BasicTextField(
+                        value = contentState,
+                        onValueChange = { newValue ->
+                            val shouldUpdateContent = if(isUpdateScreen.value) {
+                                isUpdateScreen.value
+                            } else {
+                                !isUpdateScreen.value && contentState.text.isNotBlank()
+                            }
+                            contentState = newValue
+                            val titleTyped = newValue.text
+                            onSaveClick(titleTyped, newValue.text, shouldUpdateContent)
+                        },
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 16.dp),
+                        textStyle = LocalTextStyle.current.copy(color = LocalCustomColors.current.bodyContentColor),
+                        keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
+                        cursorBrush = SolidColor(LocalCustomColors.current.bodyContentColor)
                     )
 
                     Box(modifier = Modifier.fillMaxSize()) {

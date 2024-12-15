@@ -4,12 +4,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
 import com.module.notelycompose.notes.domain.Note
-import com.module.notelycompose.notes.presentation.detail.NoteDetailScreenEvent
-//import com.module.notelycompose.notes.presentation.detail.ui.NoteDetailScreen
 import com.module.notelycompose.notes.presentation.detail.userinterface.NoteDetailScreen
 import com.module.notelycompose.notes.presentation.list.NoteListEvent
-//import com.module.notelycompose.notes.presentation.list.ui.SharedNoteListScreen
-import com.module.notelycompose.notes.presentation.list.userinterface.SharedNoteListScreen2
+import com.module.notelycompose.notes.presentation.list.userinterface.SharedNoteListScreen
 import com.module.notelycompose.notes.presentation.theme.MyApplicationTheme
 import kotlinx.coroutines.DelicateCoroutinesApi
 
@@ -28,7 +25,7 @@ fun NoteListController(
             )
         }
         val state = viewmodel.state.collectAsState()
-        SharedNoteListScreen2(
+        SharedNoteListScreen(
             state.value, onFloatingActionButtonClicked, onNoteClicked
         ) { id ->
             viewmodel.onEvent(NoteListEvent.OnNoteDeleted(id))
@@ -46,7 +43,9 @@ fun NoteDetailController(
             IOSNoteDetailViewModel(
                 getNoteByIdUseCase = appModule.getNoteById,
                 deleteNoteUseCase = appModule.deleteNoteById,
-                insertNoteUseCase = appModule.insertNote
+                insertNoteUseCase = appModule.insertNote,
+                updateNoteUseCase = appModule.updateNote,
+                getLastNoteUseCase = appModule.getLastNoteUseCase
             )
         }
 
@@ -58,16 +57,16 @@ fun NoteDetailController(
         NoteDetailScreen(
             title = note?.title,
             content = note?.content,
-            newNoteDateString = newNoteDateString
-        ) { title, content, isUpdate ->
-            if (isUpdate) {
-                val note = viewModel.getNoteById(note!!.id.toString())
-                viewModel.onEvent(NoteDetailScreenEvent.DeleteNote(note!!.id.toString()))
-                viewModel.onEvent(NoteDetailScreenEvent.NoteSaved(title, content))
-            } else {
-                viewModel.onEvent(NoteDetailScreenEvent.NoteSaved(title, content))
-            }
-            onSaveClicked()
-        }
+            newNoteDateString = newNoteDateString,
+            onSaveClick = { title, content, isUpdate ->
+                viewModel.onCreateOrUpdateEvent(
+                    title = title,
+                    content = content,
+                    isUpdate = isUpdate
+                )
+                onSaveClicked()
+            },
+            onNavigateBack = {},
+        )
     }
 }

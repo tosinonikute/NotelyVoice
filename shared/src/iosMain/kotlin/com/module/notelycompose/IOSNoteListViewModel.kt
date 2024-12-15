@@ -9,7 +9,7 @@ import com.module.notelycompose.notes.presentation.list.NoteListViewModel
 class IOSNoteListViewModel (
     private val getAllNotesUseCase: GetAllNotesUseCase,
     private val deleteNoteById: DeleteNoteById,
-    private val insertNoteUseCase: InsertNoteUseCase,
+    private val insertNoteUseCase: InsertNoteUseCase
 ) {
 
     private val viewModel by lazy {

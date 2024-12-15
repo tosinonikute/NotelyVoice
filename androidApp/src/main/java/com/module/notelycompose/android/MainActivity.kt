@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -19,12 +18,11 @@ import androidx.navigation.navArgument
 import com.module.notelycompose.android.presentation.AndroidNoteDetailViewModel
 import com.module.notelycompose.android.presentation.AndroidNoteListViewModel
 import com.module.notelycompose.android.presentation.core.Routes
-import com.module.notelycompose.android.theme.MyApplicationTheme
 import com.module.notelycompose.notes.domain.Note
-import com.module.notelycompose.notes.presentation.detail.NoteDetailScreenEvent
-import com.module.notelycompose.notes.presentation.detail.ui.NoteDetailScreen
+import com.module.notelycompose.notes.presentation.detail.userinterface.NoteDetailScreen
 import com.module.notelycompose.notes.presentation.list.NoteListEvent
-import com.module.notelycompose.notes.presentation.list.ui.SharedNoteListScreen
+import com.module.notelycompose.notes.presentation.list.userinterface.SharedNoteListScreen
+import com.module.notelycompose.notes.presentation.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,7 +51,7 @@ fun NoteAppRoot() {
     ) {
         composable(route = Routes.LIST) {
             val viewmodel = hiltViewModel<AndroidNoteListViewModel>()
-            NoteListScreen(
+            NoteListScreen2(
                 viewmodel = viewmodel,
                 onFloatingActionButtonClicked = {
                     navController.navigate(Routes.DETAIL + "/0")
@@ -76,28 +74,29 @@ fun NoteAppRoot() {
             val noteId = backStackEntry.arguments?.getString("noteId") ?: "0"
             val viewmodel = hiltViewModel<AndroidNoteDetailViewModel>()
             val note: Note? = viewmodel.getNoteById(noteId)
+            val newNoteDateString = noteId.let { viewmodel.getNewNoteContentDate(noteId) }
 
             NoteDetailScreen(
                 title = note?.title,
                 content = note?.content,
+                newNoteDateString = newNoteDateString,
                 onSaveClick = { title, content, isUpdate ->
-                    if (isUpdate) {
-                        viewmodel.onEvent(NoteDetailScreenEvent.DeleteNote(noteId))
-                    }
-                    viewmodel.onEvent(
-                        NoteDetailScreenEvent.NoteSaved(
-                            title, content
-                        )
+                    viewmodel.onCreateOrUpdateEvent(
+                        title = title,
+                        content = content,
+                        isUpdate = isUpdate
                     )
-                    navController.navigate(Routes.LIST)
-                }
+                },
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
             )
         }
     }
 }
 
 @Composable
-fun NoteListScreen(
+fun NoteListScreen2(
     viewmodel: AndroidNoteListViewModel,
     onFloatingActionButtonClicked: () -> Unit,
     onNoteClicked: (Int) -> Unit
@@ -119,6 +118,6 @@ fun NoteListScreen(
 }
 
 @Composable
-fun HelloWorldViewForUiTest(text: String) {
+fun HelloWorldViewForUiTest2(text: String) {
     Text(text = text)
 }

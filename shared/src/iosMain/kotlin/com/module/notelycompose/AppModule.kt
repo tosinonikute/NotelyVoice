@@ -5,9 +5,11 @@ import com.module.notelycompose.database.NoteDatabase
 import com.module.notelycompose.notes.data.NoteSqlDelightDataSource
 import com.module.notelycompose.notes.domain.DeleteNoteById
 import com.module.notelycompose.notes.domain.GetAllNotesUseCase
+import com.module.notelycompose.notes.domain.GetLastNote
 import com.module.notelycompose.notes.domain.GetNoteById
 import com.module.notelycompose.notes.domain.InsertNoteUseCase
 import com.module.notelycompose.notes.domain.NoteDataSource
+import com.module.notelycompose.notes.domain.UpdateNoteUseCase
 
 class AppModule {
     val noteDataSource: NoteDataSource by lazy {
@@ -28,5 +30,13 @@ class AppModule {
 
     val insertNote: InsertNoteUseCase by lazy {
         InsertNoteUseCase(noteDataSource)
+    }
+
+    val updateNote: UpdateNoteUseCase by lazy {
+        UpdateNoteUseCase(noteDataSource)
+    }
+
+    val getLastNoteUseCase: GetLastNote by lazy {
+        GetLastNote(noteDataSource)
     }
 }
