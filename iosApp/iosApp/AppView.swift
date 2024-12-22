@@ -52,6 +52,7 @@ struct SecondView: View {
                 onNoteSaved()
             }, noteId: String(selectedNoteId)
         )
+        .navigationBarHidden(true) // set to false to show native back button
     }
 }
 

@@ -19,7 +19,9 @@ val DarkCustomColors = CustomColors(
     searchOutlinedTextFieldColor = Color.White,
     topButtonIconColor = Color.White,
     noteTextColor = Color.Black,
-    noteIconColor = Color.Black
+    noteIconColor = Color.Black,
+    iOSBackButtonColor = Color(0xFF3074F6),
+    transparentColor = Color.Transparent
 )
 
 val LightCustomColors = CustomColors(
@@ -38,7 +40,9 @@ val LightCustomColors = CustomColors(
     searchOutlinedTextFieldColor = Color.Black,
     topButtonIconColor = Color.Black,
     noteTextColor = Color.White,
-    noteIconColor = Color.White
+    noteIconColor = Color.White,
+    iOSBackButtonColor = Color(0xFF3074F6),
+    transparentColor = Color.Transparent
 )
 
 // Create a CompositionLocal to hold the custom colors

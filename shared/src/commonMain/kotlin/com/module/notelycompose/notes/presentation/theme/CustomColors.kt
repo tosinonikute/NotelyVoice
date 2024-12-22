@@ -20,5 +20,7 @@ data class CustomColors(
     val searchOutlinedTextFieldColor: Color,
     val topButtonIconColor: Color,
     val noteTextColor: Color,
-    val noteIconColor: Color
+    val noteIconColor: Color,
+    val iOSBackButtonColor: Color,
+    val transparentColor: Color
 )
