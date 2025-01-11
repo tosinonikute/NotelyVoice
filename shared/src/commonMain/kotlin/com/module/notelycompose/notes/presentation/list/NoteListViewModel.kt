@@ -13,6 +13,9 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
+const val DEFAULT_TITLE = "New Note"
+const val DEFAULT_CONTENT = "No additional text"
+
 class NoteListViewModel(
     private val getAllNotesUseCase: GetAllNotesUseCase,
     private val deleteNoteById: DeleteNoteById,
@@ -26,7 +29,12 @@ class NoteListViewModel(
         getAllNotesUseCase.execute()
     ) { state, notes ->
         state.copy(
-            notes = notes
+            notes = notes.map { note ->
+                note.copy(
+                    title = if (note.title.trim().isEmpty()) DEFAULT_TITLE else note.title,
+                    content = if (note.content.trim().isEmpty()) DEFAULT_CONTENT else note.content
+                )
+            }
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), NoteListUiState())
         .toCommonStateFlow()

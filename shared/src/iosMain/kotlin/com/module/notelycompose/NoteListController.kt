@@ -26,16 +26,20 @@ fun NoteListController(
         }
         val state = viewmodel.state.collectAsState()
         SharedNoteListScreen(
-            state.value, onFloatingActionButtonClicked, onNoteClicked
-        ) { id ->
-            viewmodel.onEvent(NoteListEvent.OnNoteDeleted(id))
-        }
+            noteListUiState = state.value,
+            onFloatingActionButtonClicked = onFloatingActionButtonClicked,
+            onNoteClicked = onNoteClicked,
+            onNoteDeleteClicked = { id ->
+                viewmodel.onEvent(NoteListEvent.OnNoteDeleted(id))
+            }
+        )
     }
 }
 
 fun NoteDetailController(
     noteId: String? = null,
-    onSaveClicked: () -> Unit
+    onSaveClicked: () -> Unit,
+    onNavigateBack: () -> Unit
 ) = ComposeUIViewController {
     MyApplicationTheme {
         val appModule = AppModule()
@@ -66,7 +70,9 @@ fun NoteDetailController(
                 )
                 onSaveClicked()
             },
-            onNavigateBack = {},
+            onNavigateBack = {
+                onNavigateBack()
+            },
         )
     }
 }

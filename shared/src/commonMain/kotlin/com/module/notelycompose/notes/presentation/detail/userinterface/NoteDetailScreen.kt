@@ -192,7 +192,7 @@ fun NoteDetailScreen(
                             val shouldUpdateContent = if(isUpdateScreen.value) {
                                 isUpdateScreen.value
                             } else {
-                                !isUpdateScreen.value && contentState.text.isNotBlank()
+                                !isUpdateScreen.value && contentState.text.isNotEmpty()
                             }
                             contentState = newValue
                             val titleTyped = newValue.text

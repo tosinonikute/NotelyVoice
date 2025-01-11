@@ -5,4 +5,5 @@ sealed class NoteDetailScreenEvent {
     data class DeleteNote(val id: String) : NoteDetailScreenEvent()
     data class NoteSaved(val title: String, val content: String) : NoteDetailScreenEvent()
     data class UpdateNote(val id: Int, val title: String, val content: String) : NoteDetailScreenEvent()
+    data class ClearNoteOnEmptyContent(val id: String) : NoteDetailScreenEvent()
 }

@@ -6,6 +6,7 @@ import com.module.notelycompose.notes.domain.GetLastNote
 import com.module.notelycompose.notes.domain.GetNoteById
 import com.module.notelycompose.notes.domain.InsertNoteUseCase
 import com.module.notelycompose.notes.domain.UpdateNoteUseCase
+import com.module.notelycompose.notes.presentation.list.NoteListEvent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -60,6 +61,10 @@ class NoteDetailScreenViewModel(
         isUpdate: Boolean
     ) {
         when {
+            content.isEmpty() && isUpdate -> {
+                val lastNoteId = getLastNote()?.id ?: 0
+                onEvent(NoteDetailScreenEvent.ClearNoteOnEmptyContent(lastNoteId.toString()))
+            }
             isUpdate -> {
                 val lastNoteId = getLastNote()?.id ?: 0
                 onEvent(NoteDetailScreenEvent.UpdateNote(lastNoteId, title, content))
@@ -80,6 +85,7 @@ class NoteDetailScreenViewModel(
                 getNoteById(event.id)
             }
             is NoteDetailScreenEvent.DeleteNote -> {
+                // TODO: use Int for DeleteNote
                 viewModelScope.launch {
                     deleteNoteUseCase.execute(event.id.toInt())
                 }
@@ -87,6 +93,11 @@ class NoteDetailScreenViewModel(
             is NoteDetailScreenEvent.UpdateNote -> {
                 viewModelScope.launch {
                     updateNoteUseCase.execute(event.id, event.title, event.content)
+                }
+            }
+            is NoteDetailScreenEvent.ClearNoteOnEmptyContent -> {
+                viewModelScope.launch {
+                    deleteNoteUseCase.execute(event.id.toInt())
                 }
             }
         }

@@ -6,8 +6,9 @@
 import SwiftUI
 
 struct AppView: View {
+    private static let defaultNoteId = -1
     @State private var navigateToSecondView = false
-    @State private var selectedNoteIdState = -1
+    @State private var selectedNoteIdState = defaultNoteId
     @State private var refreshKey = UUID()
     
     var body: some View {
@@ -16,11 +17,11 @@ struct AppView: View {
                 NoteListScreenView(
                     onFloatingButtonClicked: {
                         navigateToSecondView = true
+                        selectedNoteIdState = AppView.defaultNoteId
                     },
                     onNoteClicked: { it in
                         selectedNoteIdState = it
                         navigateToSecondView = true
-                    
                     },
                     refreshKey: refreshKey
                 )
@@ -48,9 +49,13 @@ struct SecondView: View {
     var body: some View {
         NoteDetailScreenController(
             onNoteSaveClicked: {
+                
+            },
+            noteId: String(selectedNoteId),
+            onNavigateBack: {
                 navigateToSecondView = false
                 onNoteSaved()
-            }, noteId: String(selectedNoteId)
+            }
         )
         .navigationBarHidden(true) // set to false to show native back button
     }

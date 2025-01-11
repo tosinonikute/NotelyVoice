@@ -122,7 +122,7 @@ fun NoteItem(
                         shape = RoundedCornerShape(32.dp),
                         backgroundColor = Color(0xFFD18B60)
                     ) {
-                        IconButton(onClick = { /* TODO: Edit action */ }) {
+                        IconButton(onClick = { onNoteClick(note.id) }) {
                             Icon(
                                 imageVector = Images.Icons.IcArrowUpRight,
                                 tint = LocalCustomColors.current.noteIconColor,
