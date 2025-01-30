@@ -115,4 +115,5 @@ java {
 }
 dependencies {
     implementation(libs.activity.ktx)
+    implementation(libs.animation.android)
 }

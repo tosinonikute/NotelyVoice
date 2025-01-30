@@ -62,6 +62,9 @@ import com.module.notelycompose.resources.vectors.IcDetailShare
 import com.module.notelycompose.resources.vectors.IcDetailType
 import com.module.notelycompose.resources.vectors.IcDetailUnderline
 import com.module.notelycompose.resources.vectors.IcDetailUndo
+import com.module.notelycompose.resources.vectors.IcHeart
+import com.module.notelycompose.resources.vectors.IcKeyboardHide
+import com.module.notelycompose.resources.vectors.IcLetterAa
 import com.module.notelycompose.resources.vectors.IcRecorder
 import com.module.notelycompose.resources.vectors.Images
 
@@ -205,129 +208,9 @@ fun NoteDetailScreen(
                         keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
                         cursorBrush = SolidColor(LocalCustomColors.current.bodyContentColor)
                     )
-
-                    Box(modifier = Modifier.fillMaxSize()) {
-                        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-                            EditingToolbar()
-                        }
-                    }
                 }
             }
         }
     )
 }
 
-@Composable
-fun BottomNavigationBar() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(LocalCustomColors.current.bodyBackgroundColor)
-            .padding(8.dp)
-            .padding(start = 8.dp, end = 48.dp),
-        horizontalArrangement = Arrangement.SpaceAround,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        IconButton(onClick = { /* Share */ }) {
-            Icon(
-                imageVector = Images.Icons.IcDetailShare,
-                contentDescription = "Share",
-                tint = LocalCustomColors.current.bodyContentColor
-            )
-        }
-        IconButton(onClick = { /* Delete */ }) {
-            Icon(
-                imageVector = Icons.Filled.Delete,
-                contentDescription = "Type",
-                tint = LocalCustomColors.current.bodyContentColor
-            )
-        }
-        IconButton(onClick = { /* Type */ }) {
-            Icon(
-                imageVector = Images.Icons.IcDetailType,
-                contentDescription = "Type",
-                tint = LocalCustomColors.current.bodyContentColor
-            )
-        }
-        IconButton(onClick = { /* Undo */ }) {
-            Icon(
-                imageVector = Images.Icons.IcDetailUndo,
-                contentDescription = "Undo",
-                tint = LocalCustomColors.current.bodyContentColor
-            )
-        }
-        IconButton(onClick = { /* Redo */ }) {
-            Icon(
-                imageVector = Images.Icons.IcDetailRedo,
-                contentDescription = "Redo",
-                tint = LocalCustomColors.current.bodyContentColor
-            )
-        }
-    }
-}
-
-@Composable
-fun EditingToolbar() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-            .background(
-                color = Color.Blue,
-                shape = RoundedCornerShape(16.dp) // Adjust the radius as needed
-            )
-            .clip(RoundedCornerShape(16.dp)), // Ensures the content respects the rounded corners
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        IconButton(onClick = { /* Handle B click */ }) {
-            Icon(
-                imageVector = Images.Icons.IcDetailBold,
-                contentDescription = "Bold",
-                tint = Color.LightGray
-            )
-        }
-        IconButton(onClick = { /* Handle I click */ }) {
-            Icon(
-                imageVector = Images.Icons.IcDetailItalic,
-                contentDescription = "Italic",
-                tint = Color.LightGray
-            )
-        }
-        IconButton(onClick = { /* Handle U click */ }) {
-            Icon(
-                imageVector = Images.Icons.IcDetailUnderline,
-                contentDescription = "Underline",
-                tint = Color.LightGray
-            )
-        }
-        IconButton(onClick = { /* Handle List click */ }) {
-            Icon(
-                imageVector = Images.Icons.IcDetailList,
-                contentDescription = "List",
-                tint = Color.LightGray
-            )
-        }
-        IconButton(onClick = { /* Handle Align Center click */ }) {
-            Icon(
-                imageVector = Images.Icons.IcDetailAlignLeft,
-                contentDescription = "Align Center",
-                tint = Color.LightGray
-            )
-        }
-        IconButton(onClick = { /* Handle Align Right click */ }) {
-            Icon(
-                imageVector = Images.Icons.IcDetailAlignCenter,
-                contentDescription = "Align Right",
-                tint = Color.LightGray
-            )
-        }
-        IconButton(onClick = { /* Handle Align Right click */ }) {
-            Icon(
-                imageVector = Images.Icons.IcDetailAlignRight,
-                contentDescription = "Align Right",
-                tint = Color.LightGray
-            )
-        }
-    }
-}

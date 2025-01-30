@@ -22,5 +22,7 @@ data class CustomColors(
     val noteTextColor: Color,
     val noteIconColor: Color,
     val iOSBackButtonColor: Color,
-    val transparentColor: Color
+    val transparentColor: Color,
+    val bottomFormattingContainerColor: Color,
+    val bottomFormattingContentColor: Color
 )

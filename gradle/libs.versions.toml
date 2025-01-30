@@ -13,6 +13,7 @@ compose-multiplatform = "1.7.0"
 kotlin = "2.0.21"
 compose-material3 = "1.3.1"
 activityKtx = "1.9.3"
+animationAndroid = "1.7.6"
 
 [libraries]
 # Non-UI dependencies
@@ -41,6 +42,7 @@ sqldelight-gradle-plugin = { group = "com.squareup.sqldelight", name = "gradle-p
 hilt-android-gradle-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hiltCompiler" }
 atomicfu-gradle-plugin = { group = "org.jetbrains.kotlinx", name = "atomicfu-gradle-plugin", version.ref = "atomicfu" }
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
+animation-android = { group = "androidx.compose.animation", name = "animation-android", version.ref = "animationAndroid" }
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }

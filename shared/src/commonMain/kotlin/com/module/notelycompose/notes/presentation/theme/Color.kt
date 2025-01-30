@@ -21,7 +21,9 @@ val DarkCustomColors = CustomColors(
     noteTextColor = Color.Black,
     noteIconColor = Color.Black,
     iOSBackButtonColor = Color(0xFF3074F6),
-    transparentColor = Color.Transparent
+    transparentColor = Color.Transparent,
+    bottomFormattingContainerColor = Color(0xFFF2F2F2),
+    bottomFormattingContentColor = Color.Black
 )
 
 val LightCustomColors = CustomColors(
@@ -42,7 +44,9 @@ val LightCustomColors = CustomColors(
     noteTextColor = Color.White,
     noteIconColor = Color.White,
     iOSBackButtonColor = Color(0xFF3074F6),
-    transparentColor = Color.Transparent
+    transparentColor = Color.Transparent,
+    bottomFormattingContainerColor = Color(0xFFF2F2F2),
+    bottomFormattingContentColor = Color.Black
 )
 
 // Create a CompositionLocal to hold the custom colors
