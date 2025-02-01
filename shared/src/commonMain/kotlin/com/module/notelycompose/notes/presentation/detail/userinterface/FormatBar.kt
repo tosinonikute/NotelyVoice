@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -17,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.module.notelycompose.notes.presentation.theme.LocalCustomColors
@@ -24,9 +24,13 @@ import com.module.notelycompose.notes.presentation.theme.LocalCustomColors
 @Composable
 fun FormatBar(
     modifier: Modifier = Modifier,
-    selectedFormat: TextFormat = TextFormat.Body,
-    onFormatSelected: (TextFormat) -> Unit,
-    onClose: () -> Unit
+    selectedFormat: FormatOptionTextFormat = FormatOptionTextFormat.Body,
+    onFormatSelected: (FormatOptionTextFormat) -> Unit,
+    onClose: () -> Unit,
+    onToggleBold: () -> Unit,
+    onToggleItalic: () -> Unit,
+    onToggleUnderline: () -> Unit,
+    onSetAlignment: (alignment: TextAlign) -> Unit
 ) {
     Surface(
         modifier = modifier.fillMaxWidth(),
@@ -66,7 +70,7 @@ fun FormatBar(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextFormat.values().forEach { format ->
+                FormatOptionTextFormat.values().forEach { format ->
                     FormatOption(
                         format = format,
                         isSelected = format == selectedFormat,
@@ -83,7 +87,14 @@ fun FormatBar(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                EditingToolbar()
+                EditingToolbar(
+                    onToggleBold = { onToggleBold() },
+                    onToggleItalic = { onToggleItalic() },
+                    onToggleUnderline = { onToggleUnderline() },
+                    onSetAlignment = { alignment ->
+                        onSetAlignment(alignment)
+                    }
+                )
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -93,7 +104,7 @@ fun FormatBar(
 
 @Composable
 private fun FormatOption(
-    format: TextFormat,
+    format: FormatOptionTextFormat,
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
@@ -112,16 +123,16 @@ private fun FormatOption(
                 interactionSource = remember { MutableInteractionSource() }
             ),
         fontSize = when (format) {
-            TextFormat.Title -> 20.sp
-            TextFormat.Heading -> 18.sp
-            TextFormat.Subheading -> 16.sp
-            TextFormat.Body -> 14.sp
+            FormatOptionTextFormat.Title -> 20.sp
+            FormatOptionTextFormat.Heading -> 18.sp
+            FormatOptionTextFormat.Subheading -> 16.sp
+            FormatOptionTextFormat.Body -> 14.sp
         },
         fontWeight = when (format) {
-            TextFormat.Title -> FontWeight.Bold
-            TextFormat.Heading -> FontWeight.SemiBold
-            TextFormat.Subheading -> FontWeight.Medium
-            TextFormat.Body -> FontWeight.Normal
+            FormatOptionTextFormat.Title -> FontWeight.Bold
+            FormatOptionTextFormat.Heading -> FontWeight.SemiBold
+            FormatOptionTextFormat.Subheading -> FontWeight.Medium
+            FormatOptionTextFormat.Body -> FontWeight.Normal
         },
         color = if (isSelected) {
             Color.White
@@ -131,7 +142,7 @@ private fun FormatOption(
     )
 }
 
-enum class TextFormat(val title: String) {
+enum class FormatOptionTextFormat(val title: String) {
     Title("Title"),
     Heading("Heading"),
     Subheading("Subheading"),

@@ -17,9 +17,13 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.module.notelycompose.android.presentation.AndroidNoteDetailViewModel
 import com.module.notelycompose.android.presentation.AndroidNoteListViewModel
+import com.module.notelycompose.android.presentation.TextEditorViewModel
 import com.module.notelycompose.android.presentation.core.Routes
+import com.module.notelycompose.android.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.domain.Note
+import com.module.notelycompose.notes.presentation.detail.userinterface.EditorUiState
 import com.module.notelycompose.notes.presentation.detail.userinterface.NoteDetailScreen
+import com.module.notelycompose.notes.presentation.detail.userinterface.TextUiFormat
 import com.module.notelycompose.notes.presentation.list.NoteListEvent
 import com.module.notelycompose.notes.presentation.list.userinterface.SharedNoteListScreen
 import com.module.notelycompose.notes.presentation.theme.MyApplicationTheme
@@ -72,16 +76,20 @@ fun NoteAppRoot() {
             )
         ) { backStackEntry ->
             val noteId = backStackEntry.arguments?.getString("noteId") ?: "0"
-            val viewmodel = hiltViewModel<AndroidNoteDetailViewModel>()
-            val note: Note? = viewmodel.getNoteById(noteId)
-            val newNoteDateString = noteId.let { viewmodel.getNewNoteContentDate(noteId) }
+            val viewModel = hiltViewModel<AndroidNoteDetailViewModel>()
+            val note: Note? = viewModel.getNoteById(noteId)
+            val newNoteDateString = noteId.let { viewModel.getNewNoteContentDate(noteId) }
+
+            val editorViewModel = hiltViewModel<TextEditorViewModel>()
+            val editorPresentationState by editorViewModel.editorPresentationState.collectAsState()
+            val editorState = editorViewModel.onGetUiState(editorPresentationState)
 
             NoteDetailScreen(
                 title = note?.title,
                 content = note?.content,
                 newNoteDateString = newNoteDateString,
                 onSaveClick = { title, content, isUpdate ->
-                    viewmodel.onCreateOrUpdateEvent(
+                    viewModel.onCreateOrUpdateEvent(
                         title = title,
                         content = content,
                         isUpdate = isUpdate
@@ -90,6 +98,20 @@ fun NoteAppRoot() {
                 onNavigateBack = {
                     navController.popBackStack()
                 },
+                editorState = editorState,
+                onUpdateContent = { newContent ->
+                    editorViewModel.onUpdateContent(newContent)
+                },
+                onToggleBulletList = { editorViewModel.onToggleBulletList() },
+                onToggleBold = { editorViewModel.onToggleBold() },
+                onToggleItalic = { editorViewModel.onToggleItalic() },
+                onToggleUnderline = { editorViewModel.onToggleUnderline() },
+                onSetAlignment = { alignment ->
+                    editorViewModel.onSetAlignment(alignment)
+                },
+                onSelectTextSizeFormat = { textSize ->
+                    editorViewModel.setTextSize(textSize)
+                }
             )
         }
     }
