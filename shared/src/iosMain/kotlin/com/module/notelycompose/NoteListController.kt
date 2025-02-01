@@ -1,6 +1,7 @@
 package com.module.notelycompose
 
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
 import com.module.notelycompose.notes.domain.Note
@@ -52,6 +53,11 @@ fun NoteDetailController(
                 getLastNoteUseCase = appModule.getLastNoteUseCase
             )
         }
+        val editorViewModel = remember {
+            IOSTextEditorViewModel()
+        }
+        val editorPresentationState by editorViewModel.state.collectAsState()
+        val editorState = editorViewModel.onGetUiState(editorPresentationState)
 
         val note: Note? = remember {
             if (noteId != null) viewModel.getNoteById(noteId) else null
@@ -73,6 +79,20 @@ fun NoteDetailController(
             onNavigateBack = {
                 onNavigateBack()
             },
+            editorState = editorState,
+            onUpdateContent = { newContent ->
+                editorViewModel.onUpdateContent(newContent)
+            },
+            onToggleBulletList = { editorViewModel.onToggleBulletList() },
+            onToggleBold = { editorViewModel.onToggleBold() },
+            onToggleItalic = { editorViewModel.onToggleItalic() },
+            onToggleUnderline = { editorViewModel.onToggleUnderline() },
+            onSetAlignment = { alignment ->
+                editorViewModel.onSetAlignment(alignment)
+            },
+            onSelectTextSizeFormat = { textSize ->
+                editorViewModel.setTextSize(textSize)
+            }
         )
     }
 }

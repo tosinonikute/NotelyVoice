@@ -17,13 +17,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.module.notelycompose.android.presentation.AndroidNoteDetailViewModel
 import com.module.notelycompose.android.presentation.AndroidNoteListViewModel
-import com.module.notelycompose.android.presentation.TextEditorViewModel
+import com.module.notelycompose.android.presentation.AndroidTextEditorViewModel
+import com.module.notelycompose.notes.presentation.detail.TextEditorViewModel
 import com.module.notelycompose.android.presentation.core.Routes
-import com.module.notelycompose.android.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.domain.Note
-import com.module.notelycompose.notes.presentation.detail.userinterface.EditorUiState
 import com.module.notelycompose.notes.presentation.detail.userinterface.NoteDetailScreen
-import com.module.notelycompose.notes.presentation.detail.userinterface.TextUiFormat
 import com.module.notelycompose.notes.presentation.list.NoteListEvent
 import com.module.notelycompose.notes.presentation.list.userinterface.SharedNoteListScreen
 import com.module.notelycompose.notes.presentation.theme.MyApplicationTheme
@@ -80,8 +78,8 @@ fun NoteAppRoot() {
             val note: Note? = viewModel.getNoteById(noteId)
             val newNoteDateString = noteId.let { viewModel.getNewNoteContentDate(noteId) }
 
-            val editorViewModel = hiltViewModel<TextEditorViewModel>()
-            val editorPresentationState by editorViewModel.editorPresentationState.collectAsState()
+            val editorViewModel = hiltViewModel<AndroidTextEditorViewModel>()
+            val editorPresentationState by editorViewModel.state.collectAsState()
             val editorState = editorViewModel.onGetUiState(editorPresentationState)
 
             NoteDetailScreen(

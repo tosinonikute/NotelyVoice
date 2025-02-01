@@ -1,14 +1,13 @@
-package com.module.notelycompose.android.presentation.mapper
+package com.module.notelycompose.notes.presentation.mapper
 
-import com.module.notelycompose.android.presentation.EditorPresentationState
-import com.module.notelycompose.android.presentation.TextFormatPresentationOption
-import com.module.notelycompose.android.presentation.TextPresentationFormat
+import com.module.notelycompose.notes.presentation.detail.EditorPresentationState
+import com.module.notelycompose.notes.presentation.detail.TextFormatPresentationOption
+import com.module.notelycompose.notes.presentation.detail.TextPresentationFormat
 import com.module.notelycompose.notes.presentation.detail.userinterface.EditorUiState
 import com.module.notelycompose.notes.presentation.detail.userinterface.TextFormatUiOption
 import com.module.notelycompose.notes.presentation.detail.userinterface.TextUiFormat
-import javax.inject.Inject
 
-class EditorPresentationToUiStateMapper @Inject constructor() {
+class EditorPresentationToUiStateMapper {
     fun mapToUiState(presentationState: EditorPresentationState): EditorUiState {
         return EditorUiState(
             content = presentationState.content,

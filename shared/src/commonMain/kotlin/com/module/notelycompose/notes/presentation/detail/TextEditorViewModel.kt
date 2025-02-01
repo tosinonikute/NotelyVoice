@@ -1,17 +1,13 @@
-package com.module.notelycompose.android.presentation
+package com.module.notelycompose.notes.presentation.detail
 
-
-import dagger.hilt.android.lifecycle.HiltViewModel
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
-import androidx.lifecycle.ViewModel
-import com.module.notelycompose.android.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.presentation.detail.userinterface.EditorUiState
+import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-import javax.inject.Inject
 
 private const val TEXT_SIZE_TITLE = 24f
 private const val TEXT_SIZE_HEADING = 20f
@@ -45,10 +41,9 @@ object TextPresentationFormats {
     val NoSelection = TextFormatPresentationOption(0f)
 }
 
-@HiltViewModel
-class TextEditorViewModel @Inject constructor(
+class TextEditorViewModel (
     private val mapper: EditorPresentationToUiStateMapper
-) : ViewModel() {
+) {
 
     private val _editorPresentationState = MutableStateFlow(EditorPresentationState())
     val editorPresentationState: StateFlow<EditorPresentationState> = _editorPresentationState
