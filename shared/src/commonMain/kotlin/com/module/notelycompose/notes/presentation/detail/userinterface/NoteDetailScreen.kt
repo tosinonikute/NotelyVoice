@@ -37,6 +37,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.SpanStyle
@@ -80,6 +82,7 @@ fun NoteDetailScreen(
     var contentState by remember { mutableStateOf(TextFieldValue(content ?: "")) }
     val isUpdateScreen = remember { mutableStateOf(title != null) }
     var showFormatBar by remember { mutableStateOf(false) }
+    val focusRequester = remember { FocusRequester() }
     val formatKey = editorState.formats.hashCode()
 
     Scaffold(
@@ -161,7 +164,8 @@ fun NoteDetailScreen(
                 onSelectTextSizeFormat = { textSize ->
                     onSelectTextSizeFormat(textSize)
                 },
-                selectionSize = editorState.selectionSize
+                selectionSize = editorState.selectionSize,
+                textFieldFocusRequester = focusRequester
             )
         },
         content = { paddingValues ->
@@ -214,6 +218,7 @@ fun NoteDetailScreen(
                             onValueChange = { onUpdateContent(it) },
                             modifier = Modifier
                                 .fillMaxSize()
+                                .focusRequester(focusRequester)
                                 .padding(horizontal = 16.dp),
                             textStyle = TextStyle(
                                 color = LocalCustomColors.current.bodyContentColor,

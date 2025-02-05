@@ -5,31 +5,35 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.module.notelycompose.notes.presentation.theme.LocalCustomColors
+import com.module.notelycompose.notes.presentation.extensions.showKeyboard
 import com.module.notelycompose.resources.vectors.IcDetailList
 import com.module.notelycompose.resources.vectors.IcHeart
 import com.module.notelycompose.resources.vectors.IcKeyboardHide
 import com.module.notelycompose.resources.vectors.IcLetterAa
 import com.module.notelycompose.resources.vectors.Images
 
+private const val ZERO_DENSITY = 0
 @Composable
 fun BottomNavigationBar(
     onToggleBold: () -> Unit,
@@ -41,11 +45,13 @@ fun BottomNavigationBar(
     onShowTextFormatBar: (show: Boolean) -> Unit,
     onDeleteNote: () -> Unit,
     onSelectTextSizeFormat: (textSize: Float) -> Unit,
-    selectionSize: TextFormatUiOption
+    selectionSize: TextFormatUiOption,
+    textFieldFocusRequester: FocusRequester
 ) {
     var selectedFormat by remember { mutableStateOf(FormatOptionTextFormat.Body) }
     var showDeleteDialog by remember { mutableStateOf(false) }
     val keyboardController = LocalSoftwareKeyboardController.current
+    val imeVisible = WindowInsets.ime.getBottom(LocalDensity.current) > ZERO_DENSITY
 
     when(selectionSize) {
         TextUiFormats.Title -> selectedFormat = FormatOptionTextFormat.Title
@@ -128,7 +134,9 @@ fun BottomNavigationBar(
                     tint = LocalCustomColors.current.bodyContentColor
                 )
             }
-            IconButton(onClick = { keyboardController?.hide() }) {
+            IconButton(onClick = {
+                textFieldFocusRequester.showKeyboard(imeVisible, keyboardController)
+            }) {
                 Icon(
                     imageVector = Images.Icons.IcKeyboardHide,
                     contentDescription = "Hide Keyboard",
@@ -138,3 +146,4 @@ fun BottomNavigationBar(
         }
     }
 }
+

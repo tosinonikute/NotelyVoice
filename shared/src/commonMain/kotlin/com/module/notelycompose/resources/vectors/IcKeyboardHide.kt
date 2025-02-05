@@ -14,8 +14,8 @@ public val Images.Icons.IcKeyboardHide: ImageVector
         }
         _icKeyboardHide = imageVector(
         	name = "IcKeyboardHide",
-        	width = 32f,
-        	height = 32f,
+        	width = 28f,
+        	height = 28f,
         	viewportWidth = 24.0f,
         	viewportHeight = 24.0f,
         	autoMirror = false
