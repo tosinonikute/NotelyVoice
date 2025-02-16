@@ -20,14 +20,15 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import com.module.notelycompose.notes.presentation.list.NoteListUiState
+import com.module.notelycompose.notes.presentation.list.model.NoteUiModel
 import com.module.notelycompose.notes.presentation.theme.LocalCustomColors
 
 @Composable
 fun SharedNoteListScreen(
-    noteListUiState: NoteListUiState,
+    notes: List<NoteUiModel>,
     onFloatingActionButtonClicked: () -> Unit,
-    onNoteClicked: (Int) -> Unit,
-    onNoteDeleteClicked: (Int) -> Unit
+    onNoteClicked: (Long) -> Unit,
+    onNoteDeleteClicked: (Long) -> Unit
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -72,7 +73,7 @@ fun SharedNoteListScreen(
             SearchBar()
             DateTabBar()
             NoteList(
-                noteList = noteListUiState.notes,
+                noteList = notes,
                 onNoteClicked = { id ->
                     onNoteClicked(id)
                 },

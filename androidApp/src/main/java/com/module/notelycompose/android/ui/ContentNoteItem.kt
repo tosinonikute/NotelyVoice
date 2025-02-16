@@ -18,7 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.module.notelycompose.android.theme.LocalCustomColors
-import com.module.notelycompose.notes.domain.Note
+import com.module.notelycompose.notes.domain.model.Note
 
 @Composable
 fun ContentNoteItem(

@@ -4,66 +4,85 @@ import com.module.notelycompose.core.CommonFlow
 import com.module.notelycompose.core.DateTimeUtil
 import com.module.notelycompose.core.toCommonFlow
 import com.module.notelycompose.database.NoteDatabase
-import com.module.notelycompose.notes.domain.Note
+import com.module.notelycompose.notes.data.model.NoteDataModel
+import com.module.notelycompose.notes.data.model.TextAlignDataModel
+import com.module.notelycompose.notes.data.model.TextFormatDataModel
+import com.module.notelycompose.notes.domain.model.Note
 import com.module.notelycompose.notes.domain.NoteDataSource
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.map
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 class NoteSqlDelightDataSource(
-    db: NoteDatabase
+    private val database: NoteDatabase
 ) : NoteDataSource {
-    private val queries = db.noteQueries
+    private val queries = database.noteQueries
+    private val json = Json {
+        prettyPrint = true
+        ignoreUnknownKeys = true
+    }
     override suspend fun insertNote(
         title: String,
         content: String,
+        formatting: List<TextFormatDataModel>,
+        textAlign: TextAlignDataModel
     ) {
         queries.insertNote(
             title = title,
             content = content,
             colorHex = Note.generateRandomColor(),
+            formatting = json.encodeToString(formatting),
+            text_align = textAlign.toString(),
             created_at = DateTimeUtil.toEpochMilli(DateTimeUtil.now())
         )
     }
 
     override suspend fun updateNote(
-        id: Int,
+        id: Long,
         title: String,
         content: String,
+        formatting: List<TextFormatDataModel>,
+        textAlign: TextAlignDataModel
     ) {
         queries.updateNote(
-            id = id.toLong(),
+            id = id,
             title = title,
             content = content,
             colorHex = Note.generateRandomColor(),
+            formatting = json.encodeToString(formatting),
+            text_align = textAlign.toString(),
             created_at = DateTimeUtil.toEpochMilli(DateTimeUtil.now())
         )
     }
 
-    override fun getNotes(): CommonFlow<List<Note>> {
+    override fun getNotes(): CommonFlow<List<NoteDataModel>> {
         return queries
             .getAllNotes()
             .asFlow()
             .mapToList()
-            .map { note ->
-                note.map { it.toNote() }
+            .map { notes ->
+                notes.map { note ->
+                    note.toNoteDataModel(json)
+                }
             }.toCommonFlow()
     }
 
-    override fun getNoteById(id: Int): Note? {
+    override fun getNoteById(id: Long): NoteDataModel? {
         return queries
-            .getNoteById(id.toLong())
-            .executeAsOneOrNull()?.toNote()
+            .getNoteById(id)
+            .executeAsOneOrNull()?.toNoteDataModel(json)
     }
 
-    override fun getLastNote(): Note? {
+    override fun getLastNote(): NoteDataModel? {
         return queries
             .getLastNote()
-            .executeAsOneOrNull()?.toNote()
+            .executeAsOneOrNull()?.toNoteDataModel(json)
     }
 
-    override suspend fun deleteNoteById(id: Int) {
+    override suspend fun deleteNoteById(id: Long) {
         queries
-            .deleteNoteById(id.toLong())
+            .deleteNoteById(id)
     }
 }

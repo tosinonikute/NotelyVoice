@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.domain
+package com.module.notelycompose.notes.presentation.list.model
 
 import com.module.notelycompose.core.BabyBlueHex
 import com.module.notelycompose.core.LightGreenHex
@@ -10,8 +10,9 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
-data class Note(
-    val id: Int,
+// TODo re-modify the Ui model
+data class NoteUiModel(
+    val id: Long,
     val title: String,
     val content: String,
     val colorHex: Long,

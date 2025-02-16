@@ -15,12 +15,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.module.notelycompose.android.presentation.AndroidNoteDetailViewModel
 import com.module.notelycompose.android.presentation.AndroidNoteListViewModel
 import com.module.notelycompose.android.presentation.AndroidTextEditorViewModel
-import com.module.notelycompose.notes.presentation.detail.TextEditorViewModel
 import com.module.notelycompose.android.presentation.core.Routes
-import com.module.notelycompose.notes.domain.Note
 import com.module.notelycompose.notes.presentation.detail.userinterface.NoteDetailScreen
 import com.module.notelycompose.notes.presentation.list.NoteListEvent
 import com.module.notelycompose.notes.presentation.list.userinterface.SharedNoteListScreen
@@ -53,7 +50,7 @@ fun NoteAppRoot() {
     ) {
         composable(route = Routes.LIST) {
             val viewmodel = hiltViewModel<AndroidNoteListViewModel>()
-            NoteListScreen2(
+            NoteListScreen(
                 viewmodel = viewmodel,
                 onFloatingActionButtonClicked = {
                     navController.navigate(Routes.DETAIL + "/0")
@@ -74,31 +71,22 @@ fun NoteAppRoot() {
             )
         ) { backStackEntry ->
             val noteId = backStackEntry.arguments?.getString("noteId") ?: "0"
-            val viewModel = hiltViewModel<AndroidNoteDetailViewModel>()
-            val note: Note? = viewModel.getNoteById(noteId)
-            val newNoteDateString = noteId.let { viewModel.getNewNoteContentDate(noteId) }
 
             val editorViewModel = hiltViewModel<AndroidTextEditorViewModel>()
+            editorViewModel.onGetNoteById(noteId)
             val editorPresentationState by editorViewModel.state.collectAsState()
             val editorState = editorViewModel.onGetUiState(editorPresentationState)
+            val newNoteDateString = noteId.let { editorViewModel.getNewNoteContentDate(noteId) }
+            val isExistingNote = noteId.toLong() > 0L
 
             NoteDetailScreen(
-                title = note?.title,
-                content = note?.content,
                 newNoteDateString = newNoteDateString,
-                onSaveClick = { title, content, isUpdate ->
-                    viewModel.onCreateOrUpdateEvent(
-                        title = title,
-                        content = content,
-                        isUpdate = isUpdate
-                    )
-                },
                 onNavigateBack = {
                     navController.popBackStack()
                 },
                 editorState = editorState,
                 onUpdateContent = { newContent ->
-                    editorViewModel.onUpdateContent(newContent)
+                    editorViewModel.onUpdateContent(isExistingNote, newContent)
                 },
                 onToggleBulletList = { editorViewModel.onToggleBulletList() },
                 onToggleBold = { editorViewModel.onToggleBold() },
@@ -116,15 +104,15 @@ fun NoteAppRoot() {
 }
 
 @Composable
-fun NoteListScreen2(
+fun NoteListScreen(
     viewmodel: AndroidNoteListViewModel,
     onFloatingActionButtonClicked: () -> Unit,
-    onNoteClicked: (Int) -> Unit
+    onNoteClicked: (Long) -> Unit
 ) {
     val state by viewmodel.state.collectAsState()
 
     SharedNoteListScreen(
-        noteListUiState = state,
+        notes = state.notes,
         onFloatingActionButtonClicked = {
             onFloatingActionButtonClicked()
         },

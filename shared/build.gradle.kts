@@ -47,6 +47,7 @@ kotlin {
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
                 implementation(libs.compose.vectorize.core)
+                implementation(libs.kotlinx.serialization.json)
             }
         }
         val commonTest by getting {

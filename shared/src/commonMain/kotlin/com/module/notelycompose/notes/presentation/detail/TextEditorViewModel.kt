@@ -3,11 +3,26 @@ package com.module.notelycompose.notes.presentation.detail
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
+import com.module.notelycompose.notes.domain.DeleteNoteById
+import com.module.notelycompose.notes.domain.GetLastNote
+import com.module.notelycompose.notes.domain.GetNoteById
+import com.module.notelycompose.notes.domain.InsertNoteUseCase
+import com.module.notelycompose.notes.domain.UpdateNoteUseCase
 import com.module.notelycompose.notes.presentation.detail.userinterface.EditorUiState
 import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
+import com.module.notelycompose.notes.presentation.mapper.TextAlignPresentationMapper
+import com.module.notelycompose.notes.presentation.mapper.TextFormatPresentationMapper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 private const val TEXT_SIZE_TITLE = 24f
 private const val TEXT_SIZE_HEADING = 20f
@@ -42,17 +57,176 @@ object TextPresentationFormats {
 }
 
 class TextEditorViewModel (
-    private val mapper: EditorPresentationToUiStateMapper
+    private val getNoteByIdUseCase: GetNoteById,
+    private val insertNoteUseCase: InsertNoteUseCase,
+    private val deleteNoteUseCase: DeleteNoteById,
+    private val updateNoteUseCase: UpdateNoteUseCase,
+    private val getLastNoteUseCase: GetLastNote,
+    private val editorPresentationToUiStateMapper: EditorPresentationToUiStateMapper,
+    private val textFormatPresentationMapper: TextFormatPresentationMapper,
+    private val textAlignPresentationMapper: TextAlignPresentationMapper,
+    coroutineScope: CoroutineScope? = null
 ) {
 
     private val _editorPresentationState = MutableStateFlow(EditorPresentationState())
     val editorPresentationState: StateFlow<EditorPresentationState> = _editorPresentationState
+    private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
+    private var isEditingStarted = false
+    private var _lastNoteId = MutableStateFlow<Long?>(null)
+    private val _noteIdTrigger = MutableStateFlow<Long?>(null)
 
-    fun onGetUiState(presentationState: EditorPresentationState): EditorUiState {
-        return mapper.mapToUiState(presentationState)
+    init {
+        viewModelScope.launch {
+            _noteIdTrigger
+                .filterNotNull()
+                .take(1)
+                .collect { id ->
+                    val note = getNoteByIdUseCase.execute(id)
+                    note?.let { retrievedNote ->
+                        loadNote(
+                            content = retrievedNote.content,
+                            formats = retrievedNote.formatting.map {
+                                textFormatPresentationMapper.mapToPresentationModel(it) },
+                            textAlign = textAlignPresentationMapper.mapToComposeTextAlign(
+                                retrievedNote.textAlign)
+                        )
+                        _lastNoteId.value = id
+                    }
+                }
+        }
     }
 
-    fun onUpdateContent(newContent: TextFieldValue) {
+    fun onGetNoteById(id: String) {
+        _noteIdTrigger.value = id.toLong()
+    }
+
+    private fun getNoteById(id: String) = getNoteByIdUseCase.execute(id.toLong())
+
+    private fun getLastNote() = getLastNoteUseCase.execute()
+
+    fun onUpdateContent(
+        isExistingNote: Boolean,
+        newContent: TextFieldValue
+    ) {
+        updateContent(newContent)
+        createOrUpdateEvent(
+            title = newContent.text,
+            content = newContent.text,
+            isEditingStarted = isEditingStarted,
+            isExistingNote = isExistingNote,
+            formatting = _editorPresentationState.value.formats,
+            textAlign = _editorPresentationState.value.textAlign
+        )
+        isEditingStarted = true
+    }
+
+    private fun loadNote(
+        content: String,
+        formats: List<TextPresentationFormat>,
+        textAlign: TextAlign
+    ) {
+        _editorPresentationState.update {
+            it.copy(
+                content = TextFieldValue(content),
+                formats = formats,
+                textAlign = textAlign
+            )
+        }
+    }
+
+    fun onGetUiState(presentationState: EditorPresentationState): EditorUiState {
+        return editorPresentationToUiStateMapper.mapToUiState(presentationState)
+    }
+
+    private fun insertNote(
+        title: String,
+        content: String,
+        formatting: List<TextPresentationFormat>,
+        textAlign: TextAlign
+    ) {
+        viewModelScope.launch {
+            insertNoteUseCase.execute(
+                title = title,
+                content = content,
+                formatting = formatting.map { textFormatPresentationMapper.mapToDomainModel(it) },
+                textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign)
+            )
+        }
+    }
+
+    private fun updateNote(
+        noteId: Long,
+        title: String,
+        content: String,
+        formatting: List<TextPresentationFormat>,
+        textAlign: TextAlign
+    ) {
+        viewModelScope.launch {
+            updateNoteUseCase.execute(
+                id = noteId,
+                title = title,
+                content = content,
+                formatting = formatting.map { textFormatPresentationMapper.mapToDomainModel(it) },
+                textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign)
+            )
+        }
+    }
+
+    private fun deleteNote(id: Long) {
+        viewModelScope.launch {
+            deleteNoteUseCase.execute(id)
+        }
+    }
+
+    // TODO: use state to set this
+    fun getNewNoteContentDate(id: String): String {
+        val note = getNoteById(id)
+        val localDate = note?.createdAt ?: Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+        val day = localDate.dayOfMonth
+        val month = localDate.month.name.lowercase().replaceFirstChar { it.uppercase() }
+        val year = localDate.year
+        val hour = localDate.hour
+        val minute = localDate.minute.toString().padStart(2, '0')
+        return "$day $month $year at $hour:$minute"
+    }
+
+    private fun createOrUpdateEvent(
+        title: String,
+        content: String,
+        isEditingStarted: Boolean,
+        isExistingNote: Boolean,
+        formatting: List<TextPresentationFormat>,
+        textAlign: TextAlign
+    ) {
+        when {
+            content.isEmpty() && isEditingStarted -> {
+                val lastNoteId = getLastNote()?.id ?: 0L
+                deleteNote(lastNoteId)
+            }
+            isEditingStarted || isExistingNote -> {
+                val lastNoteId = getLastNote()?.id ?: 0L
+                updateNote(
+                    noteId = lastNoteId,
+                    title = title,
+                    content = content,
+                    formatting = formatting,
+                    textAlign = textAlign
+                )
+            }
+            else -> {
+                insertNote(
+                    title = title,
+                    content = content,
+                    formatting = formatting,
+                    textAlign = textAlign
+                )
+            }
+        }
+    }
+
+    // Text Format Code
+
+    private fun updateContent(newContent: TextFieldValue) {
         try {
             val oldText = _editorPresentationState.value.content.text
             val newText = newContent.text

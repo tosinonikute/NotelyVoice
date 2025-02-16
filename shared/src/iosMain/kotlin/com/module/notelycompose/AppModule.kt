@@ -10,6 +10,12 @@ import com.module.notelycompose.notes.domain.GetNoteById
 import com.module.notelycompose.notes.domain.InsertNoteUseCase
 import com.module.notelycompose.notes.domain.NoteDataSource
 import com.module.notelycompose.notes.domain.UpdateNoteUseCase
+import com.module.notelycompose.notes.domain.mapper.NoteDomainMapper
+import com.module.notelycompose.notes.domain.mapper.TextFormatMapper
+import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
+import com.module.notelycompose.notes.presentation.mapper.NoteUiMapper
+import com.module.notelycompose.notes.presentation.mapper.TextAlignPresentationMapper
+import com.module.notelycompose.notes.presentation.mapper.TextFormatPresentationMapper
 
 class AppModule {
     val noteDataSource: NoteDataSource by lazy {
@@ -17,7 +23,7 @@ class AppModule {
     }
 
     val getAllNotesUseCase: GetAllNotesUseCase by lazy {
-        GetAllNotesUseCase(noteDataSource)
+        GetAllNotesUseCase(noteDataSource, noteDomainMapper)
     }
 
     val deleteNoteById: DeleteNoteById by lazy {
@@ -25,18 +31,38 @@ class AppModule {
     }
 
     val getNoteById: GetNoteById by lazy {
-        GetNoteById(noteDataSource)
+        GetNoteById(noteDataSource, noteDomainMapper)
     }
 
     val insertNote: InsertNoteUseCase by lazy {
-        InsertNoteUseCase(noteDataSource)
+        InsertNoteUseCase(noteDataSource, textFormatMapper, noteDomainMapper)
     }
 
     val updateNote: UpdateNoteUseCase by lazy {
-        UpdateNoteUseCase(noteDataSource)
+        UpdateNoteUseCase(noteDataSource, textFormatMapper, noteDomainMapper)
     }
 
     val getLastNoteUseCase: GetLastNote by lazy {
-        GetLastNote(noteDataSource)
+        GetLastNote(noteDataSource, noteDomainMapper)
     }
+
+    val noteDomainMapper: NoteDomainMapper by lazy {
+        NoteDomainMapper(textFormatMapper)
+    }
+
+    val textFormatMapper: TextFormatMapper by lazy { TextFormatMapper() }
+
+    val editorPresentationToUiStateMapper: EditorPresentationToUiStateMapper by lazy {
+        EditorPresentationToUiStateMapper()
+    }
+
+    val textFormatPresentationMapper: TextFormatPresentationMapper by lazy {
+        TextFormatPresentationMapper()
+    }
+
+    val textAlignPresentationMapper: TextAlignPresentationMapper by lazy {
+        TextAlignPresentationMapper()
+    }
+
+    val noteUiMapper: NoteUiMapper by lazy { NoteUiMapper() }
 }

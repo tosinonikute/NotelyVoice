@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -62,13 +63,9 @@ import com.module.notelycompose.resources.vectors.IcChevronLeft
 import com.module.notelycompose.resources.vectors.IcRecorder
 import com.module.notelycompose.resources.vectors.Images
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun NoteDetailScreen(
-    title: String? = null,
-    content: String? = null,
     newNoteDateString: String,
-    onSaveClick: (String, String, Boolean) -> Unit,
     onNavigateBack: () -> Unit,
     editorState: EditorUiState,
     onUpdateContent: (newContent: TextFieldValue) -> Unit,
@@ -79,8 +76,6 @@ fun NoteDetailScreen(
     onToggleBulletList: () -> Unit,
     onSelectTextSizeFormat: (textSize: Float) -> Unit
 ) {
-    var contentState by remember { mutableStateOf(TextFieldValue(content ?: "")) }
-    val isUpdateScreen = remember { mutableStateOf(title != null) }
     var showFormatBar by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
     val formatKey = editorState.formats.hashCode()
@@ -169,12 +164,15 @@ fun NoteDetailScreen(
             )
         },
         content = { paddingValues ->
-            Box (
+            Column (
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .verticalScroll(rememberScrollState())
+                    .verticalScroll(
+                        rememberScrollState()
+                    )
                     .background(LocalCustomColors.current.bodyBackgroundColor)
+                    .imePadding()
             ) {
                 Column(
                     modifier = Modifier
@@ -218,6 +216,7 @@ fun NoteDetailScreen(
                             onValueChange = { onUpdateContent(it) },
                             modifier = Modifier
                                 .fillMaxSize()
+                                .padding(paddingValues)
                                 .focusRequester(focusRequester)
                                 .padding(horizontal = 16.dp),
                             textStyle = TextStyle(

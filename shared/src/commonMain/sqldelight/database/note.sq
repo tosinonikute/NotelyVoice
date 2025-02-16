@@ -3,6 +3,8 @@ CREATE TABLE notesEntity(
     title TEXT NOT NULL,
     content TEXT NOT NULL,
     colorHex INTEGER NOT NULL,
+    formatting TEXT NOT NULL,
+    text_align TEXT NOT NULL DEFAULT 'Start',
     created_at INTEGER NOT NULL
 );
 
@@ -13,7 +15,8 @@ getNoteById:
 SELECT * FROM notesEntity WHERE id = :id;
 
 insertNote:
-INSERT INTO notesEntity(title, content,colorHex ,created_at) VALUES(:title, :content,:colorHex ,:created_at);
+INSERT INTO notesEntity(title, content, colorHex, formatting, text_align, created_at)
+VALUES(:title, :content, :colorHex, :formatting, :text_align, :created_at);
 
 deleteNoteById:
 DELETE FROM notesEntity WHERE id = :id;
@@ -23,6 +26,8 @@ UPDATE notesEntity
 SET title = :title,
     content = :content,
     colorHex = :colorHex,
+    formatting = :formatting,
+    text_align = :text_align,
     created_at = :created_at
 WHERE id = :id;
 

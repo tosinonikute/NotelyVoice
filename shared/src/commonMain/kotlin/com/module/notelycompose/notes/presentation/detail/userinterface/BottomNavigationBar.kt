@@ -83,7 +83,9 @@ fun BottomNavigationBar(
                         onSelectTextSizeFormat(textSize)
                     }
                 },
-                onClose = { onShowTextFormatBar(false) },
+                onClose = {
+                    onShowTextFormatBar(false)
+                          },
                 onToggleBold = { onToggleBold() },
                 onToggleItalic = { onToggleItalic() },
                 onToggleUnderline = { onToggleUnderline() },

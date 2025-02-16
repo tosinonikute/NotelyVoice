@@ -10,14 +10,15 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.module.notelycompose.notes.domain.Note
+import com.module.notelycompose.notes.domain.model.Note
+import com.module.notelycompose.notes.presentation.list.model.NoteUiModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun NoteList(
-    noteList: List<Note>,
-    onNoteClicked: (Int) -> Unit,
-    onNoteDeleteClicked: (Int) -> Unit
+    noteList: List<NoteUiModel>,
+    onNoteClicked: (Long) -> Unit,
+    onNoteDeleteClicked: (Long) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier.padding(

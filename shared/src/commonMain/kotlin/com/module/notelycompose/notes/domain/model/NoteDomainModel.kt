@@ -1,0 +1,13 @@
+package com.module.notelycompose.notes.domain.model
+
+import kotlinx.datetime.LocalDateTime
+
+data class NoteDomainModel(
+    val id: Long,
+    val title: String,
+    val content: String,
+    val colorHex: Long,
+    val formatting: List<TextFormatDomainModel>,
+    val textAlign: TextAlignDomainModel,
+    val createdAt: LocalDateTime
+)

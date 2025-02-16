@@ -5,6 +5,7 @@ import com.module.notelycompose.notes.domain.DeleteNoteById
 import com.module.notelycompose.notes.domain.GetAllNotesUseCase
 import com.module.notelycompose.notes.domain.InsertNoteUseCase
 import com.module.notelycompose.notes.domain.UpdateNoteUseCase
+import com.module.notelycompose.notes.presentation.mapper.NoteUiMapper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,6 +21,7 @@ class NoteListViewModel(
     private val getAllNotesUseCase: GetAllNotesUseCase,
     private val deleteNoteById: DeleteNoteById,
     private val insertNoteUseCase: InsertNoteUseCase,
+    private val noteUiMapper: NoteUiMapper,
     coroutineScope: CoroutineScope? = null
 ) {
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
@@ -30,7 +32,8 @@ class NoteListViewModel(
     ) { state, notes ->
         state.copy(
             notes = notes.map { note ->
-                note.copy(
+                val retrievedNote = noteUiMapper.mapToUiModel(note)
+                retrievedNote.copy(
                     title = if (note.title.trim().isEmpty()) DEFAULT_TITLE else note.title,
                     content = if (note.content.trim().isEmpty()) DEFAULT_CONTENT else note.content
                 )
@@ -46,11 +49,7 @@ class NoteListViewModel(
                     deleteNoteById.execute(event.id)
                 }
             }
-            is NoteListEvent.InsertNote -> {
-                viewModelScope.launch {
-                    insertNoteUseCase.execute(event.title, event.content)
-                }
-            }
+            else -> Unit
         }
     }
 }

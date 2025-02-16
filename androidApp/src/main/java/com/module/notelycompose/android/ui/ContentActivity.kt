@@ -28,7 +28,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import com.module.notelycompose.android.theme.LocalCustomColors
 import com.module.notelycompose.android.theme.MyApplicationTheme
-import com.module.notelycompose.notes.domain.Note
+import com.module.notelycompose.notes.domain.model.Note
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
