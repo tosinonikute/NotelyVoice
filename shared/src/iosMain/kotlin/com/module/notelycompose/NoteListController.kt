@@ -60,7 +60,6 @@ fun NoteDetailController(
         val editorPresentationState by editorViewModel.state.collectAsState()
         val editorState = editorViewModel.onGetUiState(editorPresentationState)
         val newNoteDateString = noteId?.let { editorViewModel.getNewNoteContentDate(noteId) } ?: ""
-        val isExistingNote = noteId?.toLong()?.let { it > 0 } ?: false
 
         NoteDetailScreen(
             newNoteDateString = newNoteDateString,
@@ -69,7 +68,7 @@ fun NoteDetailController(
             },
             editorState = editorState,
             onUpdateContent = { newContent ->
-                editorViewModel.onUpdateContent(isExistingNote, newContent)
+                editorViewModel.onUpdateContent(newContent)
                 onSaveClicked()
             },
             onToggleBulletList = { editorViewModel.onToggleBulletList() },

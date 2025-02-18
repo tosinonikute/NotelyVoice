@@ -73,11 +73,10 @@ fun NoteAppRoot() {
             val noteId = backStackEntry.arguments?.getString("noteId") ?: "0"
 
             val editorViewModel = hiltViewModel<AndroidTextEditorViewModel>()
-            editorViewModel.onGetNoteById(noteId)
+            if(noteId.toLong() > 0L) editorViewModel.onGetNoteById(noteId)
             val editorPresentationState by editorViewModel.state.collectAsState()
             val editorState = editorViewModel.onGetUiState(editorPresentationState)
             val newNoteDateString = noteId.let { editorViewModel.getNewNoteContentDate(noteId) }
-            val isExistingNote = noteId.toLong() > 0L
 
             NoteDetailScreen(
                 newNoteDateString = newNoteDateString,
@@ -86,7 +85,7 @@ fun NoteAppRoot() {
                 },
                 editorState = editorState,
                 onUpdateContent = { newContent ->
-                    editorViewModel.onUpdateContent(isExistingNote, newContent)
+                    editorViewModel.onUpdateContent(newContent)
                 },
                 onToggleBulletList = { editorViewModel.onToggleBulletList() },
                 onToggleBold = { editorViewModel.onToggleBold() },

@@ -48,10 +48,9 @@ class IOSTextEditorViewModel(
     }
 
     fun onUpdateContent(
-        isExistingNote: Boolean,
         newContent: TextFieldValue
     ) {
-        return viewModel.onUpdateContent(isExistingNote, newContent)
+        return viewModel.onUpdateContent(newContent)
     }
 
     fun onToggleBold() {

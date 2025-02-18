@@ -28,6 +28,7 @@ private const val TEXT_SIZE_TITLE = 24f
 private const val TEXT_SIZE_HEADING = 20f
 private const val TEXT_SIZE_SUBHEADING = 16f
 private const val TEXT_SIZE_BODY = 14f
+private const val ID_NOT_SET = 0L
 
 data class TextPresentationFormat(
     val range: IntRange,
@@ -72,7 +73,7 @@ class TextEditorViewModel (
     val editorPresentationState: StateFlow<EditorPresentationState> = _editorPresentationState
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
     private var isEditingStarted = false
-    private var _lastNoteId = MutableStateFlow<Long?>(null)
+    private var _currentNoteId = MutableStateFlow<Long?>(ID_NOT_SET)
     private val _noteIdTrigger = MutableStateFlow<Long?>(null)
 
     init {
@@ -90,7 +91,7 @@ class TextEditorViewModel (
                             textAlign = textAlignPresentationMapper.mapToComposeTextAlign(
                                 retrievedNote.textAlign)
                         )
-                        _lastNoteId.value = id
+                        _currentNoteId.value = id
                     }
                 }
         }
@@ -104,16 +105,12 @@ class TextEditorViewModel (
 
     private fun getLastNote() = getLastNoteUseCase.execute()
 
-    fun onUpdateContent(
-        isExistingNote: Boolean,
-        newContent: TextFieldValue
-    ) {
+    fun onUpdateContent(newContent: TextFieldValue) {
         updateContent(newContent)
         createOrUpdateEvent(
             title = newContent.text,
             content = newContent.text,
             isEditingStarted = isEditingStarted,
-            isExistingNote = isExistingNote,
             formatting = _editorPresentationState.value.formats,
             textAlign = _editorPresentationState.value.textAlign
         )
@@ -194,19 +191,18 @@ class TextEditorViewModel (
         title: String,
         content: String,
         isEditingStarted: Boolean,
-        isExistingNote: Boolean,
         formatting: List<TextPresentationFormat>,
         textAlign: TextAlign
     ) {
+        val currentNoteId = _currentNoteId.value
         when {
             content.isEmpty() && isEditingStarted -> {
                 val lastNoteId = getLastNote()?.id ?: 0L
                 deleteNote(lastNoteId)
             }
-            isEditingStarted || isExistingNote -> {
-                val lastNoteId = getLastNote()?.id ?: 0L
+            currentNoteId != null && _currentNoteId.value != ID_NOT_SET -> {
                 updateNote(
-                    noteId = lastNoteId,
+                    noteId = currentNoteId,
                     title = title,
                     content = content,
                     formatting = formatting,
@@ -219,7 +215,9 @@ class TextEditorViewModel (
                     content = content,
                     formatting = formatting,
                     textAlign = textAlign
-                )
+                ).also {
+                    _currentNoteId.value = getLastNote()?.id ?: 0L
+                }
             }
         }
     }
@@ -425,6 +423,18 @@ class TextEditorViewModel (
 
     fun onSetAlignment(alignment: TextAlign) {
         _editorPresentationState.update { it.copy(textAlign = alignment) }
+        val content = _editorPresentationState.value.content
+        val formats = _editorPresentationState.value.formats
+        val textAlign = _editorPresentationState.value.textAlign
+        if(content.text.isNotEmpty()) {
+            createOrUpdateEvent(
+                title = content.text,
+                content = content.text,
+                isEditingStarted = true,
+                formatting = formats,
+                textAlign = textAlign
+            )
+        }
     }
 
     fun onToggleBulletList() {
