@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,7 +18,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
@@ -32,7 +30,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -40,7 +37,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -78,7 +74,6 @@ fun NoteDetailScreen(
 ) {
     var showFormatBar by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
-    val formatKey = editorState.formats.hashCode()
 
     Scaffold(
         topBar = {
@@ -210,27 +205,27 @@ fun NoteDetailScreen(
                         )
                     }
 
-                    key(formatKey) {
-                        BasicTextField(
-                            value = editorState.content,
-                            onValueChange = { onUpdateContent(it) },
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(paddingValues)
-                                .focusRequester(focusRequester)
-                                .padding(horizontal = 16.dp),
-                            textStyle = TextStyle(
-                                color = LocalCustomColors.current.bodyContentColor,
-                                textAlign = editorState.textAlign
-                            ),
-                            cursorBrush = SolidColor(LocalCustomColors.current.bodyContentColor),
-                            readOnly = showFormatBar,
-                            keyboardOptions = KeyboardOptions(
-                                capitalization = KeyboardCapitalization.Sentences
-                            ),
-                            visualTransformation = transformation
-                        )
-                    }
+                    BasicTextField(
+                        value = editorState.content,
+                        onValueChange = { onUpdateContent(it) },
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .height(600.dp)
+                            .focusRequester(focusRequester)
+                            .padding(paddingValues)
+                            .padding(horizontal = 16.dp),
+                        textStyle = TextStyle(
+                            color = LocalCustomColors.current.bodyContentColor,
+                            textAlign = editorState.textAlign
+                        ),
+                        cursorBrush = SolidColor(LocalCustomColors.current.bodyContentColor),
+                        readOnly = showFormatBar,
+                        keyboardOptions = KeyboardOptions(
+                            capitalization = KeyboardCapitalization.Sentences
+                        ),
+                        visualTransformation = transformation
+                    )
+
                 }
             }
         }
