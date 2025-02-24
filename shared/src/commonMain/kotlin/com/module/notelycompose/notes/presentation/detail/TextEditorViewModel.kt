@@ -9,6 +9,7 @@ import com.module.notelycompose.notes.domain.GetNoteById
 import com.module.notelycompose.notes.domain.InsertNoteUseCase
 import com.module.notelycompose.notes.domain.UpdateNoteUseCase
 import com.module.notelycompose.notes.presentation.detail.userinterface.EditorUiState
+import com.module.notelycompose.notes.presentation.helpers.TextFormatHelper.updateFormats
 import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.presentation.mapper.TextAlignPresentationMapper
 import com.module.notelycompose.notes.presentation.mapper.TextFormatPresentationMapper
@@ -222,21 +223,14 @@ class TextEditorViewModel (
         }
     }
 
-    // Text Format Code
-
     private fun updateContent(newContent: TextFieldValue) {
         try {
             val oldText = _editorPresentationState.value.content.text
             val newText = newContent.text
             val selection = newContent.selection
 
-            // Update formats when text changes
-            val updatedFormats = updateFormats(
-                _editorPresentationState.value.formats,
-                oldText,
-                newText,
-                selection.start
-            )
+            val updatedFormats = _editorPresentationState.value.formats
+                .updateFormats(oldText, newText, selection.start)
 
             // Handle Enter key press and bullet points
             if (newText.length > oldText.length && selection.start > 0 &&
@@ -320,31 +314,6 @@ class TextEditorViewModel (
         }
 
         return null
-    }
-
-    private fun updateFormats(
-        formats: List<TextPresentationFormat>,
-        oldText: String,
-        newText: String,
-        changePosition: Int
-    ): List<TextPresentationFormat> {
-        val lengthDiff = newText.length - oldText.length
-        return formats.mapNotNull { format ->
-            when {
-                changePosition <= format.range.first -> {
-                    val newStart = (format.range.first + lengthDiff).coerceAtLeast(0)
-                    val newEnd = (format.range.last + lengthDiff).coerceAtLeast(newStart)
-                    if (newStart < newEnd) {
-                        format.copy(range = newStart..newEnd)
-                    } else null
-                }
-                changePosition < format.range.last -> {
-                    val newEnd = (format.range.last + lengthDiff).coerceAtLeast(format.range.first)
-                    format.copy(range = format.range.first..newEnd)
-                }
-                else -> format
-            }
-        }
     }
 
     fun onToggleBold() {
@@ -525,9 +494,6 @@ class TextEditorViewModel (
             return
         }
     }
-
-    private fun IntRange.contains(index: Int): Boolean =
-        index in first..last
 
     private fun IntRange.overlaps(other: IntRange): Boolean =
         first <= other.last && other.first <= last
