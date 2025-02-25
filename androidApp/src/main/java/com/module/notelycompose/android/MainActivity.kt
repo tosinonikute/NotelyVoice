@@ -18,9 +18,8 @@ import androidx.navigation.navArgument
 import com.module.notelycompose.android.presentation.AndroidNoteListViewModel
 import com.module.notelycompose.android.presentation.AndroidTextEditorViewModel
 import com.module.notelycompose.android.presentation.core.Routes
+import com.module.notelycompose.android.presentation.ui.NoteListScreen
 import com.module.notelycompose.notes.presentation.detail.userinterface.NoteDetailScreen
-import com.module.notelycompose.notes.presentation.list.NoteListEvent
-import com.module.notelycompose.notes.presentation.list.userinterface.SharedNoteListScreen
 import com.module.notelycompose.notes.presentation.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -100,31 +99,4 @@ fun NoteAppRoot() {
             )
         }
     }
-}
-
-@Composable
-fun NoteListScreen(
-    viewmodel: AndroidNoteListViewModel,
-    onFloatingActionButtonClicked: () -> Unit,
-    onNoteClicked: (Long) -> Unit
-) {
-    val state by viewmodel.state.collectAsState()
-
-    SharedNoteListScreen(
-        notes = state.notes,
-        onFloatingActionButtonClicked = {
-            onFloatingActionButtonClicked()
-        },
-        onNoteClicked = {
-            onNoteClicked(it)
-        },
-        onNoteDeleteClicked = {
-            viewmodel.onEvent(NoteListEvent.OnNoteDeleted(it))
-        }
-    )
-}
-
-@Composable
-fun HelloWorldViewForUiTest2(text: String) {
-    Text(text = text)
 }
