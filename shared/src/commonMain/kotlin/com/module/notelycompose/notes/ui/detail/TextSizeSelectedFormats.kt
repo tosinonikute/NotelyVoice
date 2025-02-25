@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.presentation.detail.userinterface
+package com.module.notelycompose.notes.ui.detail
 
 fun textSizeSelectedFormats(
     formatOption: FormatOptionTextFormat,

@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.presentation.theme
+package com.module.notelycompose.notes.ui.theme
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.runtime.compositionLocalOf

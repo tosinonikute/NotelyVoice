@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.presentation.detail.userinterface
+package com.module.notelycompose.notes.ui.detail
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -25,8 +25,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.module.notelycompose.notes.presentation.theme.LocalCustomColors
-import com.module.notelycompose.notes.presentation.extensions.showKeyboard
+import com.module.notelycompose.notes.ui.theme.LocalCustomColors
+import com.module.notelycompose.notes.ui.extensions.showKeyboard
 import com.module.notelycompose.resources.vectors.IcDetailList
 import com.module.notelycompose.resources.vectors.IcHeart
 import com.module.notelycompose.resources.vectors.IcKeyboardHide

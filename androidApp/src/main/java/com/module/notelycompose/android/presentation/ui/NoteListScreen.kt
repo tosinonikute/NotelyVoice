@@ -5,7 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.module.notelycompose.android.presentation.AndroidNoteListViewModel
 import com.module.notelycompose.notes.presentation.list.NoteListEvent
-import com.module.notelycompose.notes.presentation.list.userinterface.SharedNoteListScreen
+import com.module.notelycompose.notes.ui.list.SharedNoteListScreen
 
 @Composable
 fun NoteListScreen(

@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.presentation.list.userinterface
+package com.module.notelycompose.notes.ui.list
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth

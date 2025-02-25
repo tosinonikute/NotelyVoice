@@ -1,6 +1,6 @@
-package com.module.notelycompose.notes.presentation.list.userinterface
+package com.module.notelycompose.notes.ui.list
 
-import com.module.notelycompose.notes.presentation.theme.LocalCustomColors
+import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -19,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp

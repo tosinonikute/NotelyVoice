@@ -11,7 +11,7 @@ import com.module.notelycompose.notes.domain.InsertNoteUseCase
 import com.module.notelycompose.notes.domain.UpdateNoteUseCase
 import com.module.notelycompose.notes.presentation.detail.EditorPresentationState
 import com.module.notelycompose.notes.presentation.detail.TextEditorViewModel
-import com.module.notelycompose.notes.presentation.detail.userinterface.EditorUiState
+import com.module.notelycompose.notes.ui.detail.EditorUiState
 import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.presentation.mapper.TextAlignPresentationMapper
 import com.module.notelycompose.notes.presentation.mapper.TextFormatPresentationMapper

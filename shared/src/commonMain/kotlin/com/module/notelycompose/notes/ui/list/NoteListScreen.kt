@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.presentation.list.userinterface
+package com.module.notelycompose.notes.ui.list
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -19,9 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
-import com.module.notelycompose.notes.presentation.list.NoteListUiState
 import com.module.notelycompose.notes.presentation.list.model.NoteUiModel
-import com.module.notelycompose.notes.presentation.theme.LocalCustomColors
+import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 
 @Composable
 fun SharedNoteListScreen(

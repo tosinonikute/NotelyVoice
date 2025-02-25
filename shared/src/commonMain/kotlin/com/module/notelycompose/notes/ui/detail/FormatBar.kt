@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.presentation.detail.userinterface
+package com.module.notelycompose.notes.ui.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.module.notelycompose.notes.presentation.theme.LocalCustomColors
+import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 
 @Composable
 fun FormatBar(

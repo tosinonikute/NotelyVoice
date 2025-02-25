@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.presentation.detail.userinterface
+package com.module.notelycompose.notes.ui.detail
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text

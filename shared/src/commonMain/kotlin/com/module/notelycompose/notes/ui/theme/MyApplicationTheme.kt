@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.presentation.theme
+package com.module.notelycompose.notes.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape

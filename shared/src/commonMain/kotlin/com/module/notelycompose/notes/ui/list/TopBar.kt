@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.presentation.list.userinterface
+package com.module.notelycompose.notes.ui.list
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -20,7 +20,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.module.notelycompose.notes.presentation.theme.LocalCustomColors
+import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 
 @Composable
 fun TopBar(

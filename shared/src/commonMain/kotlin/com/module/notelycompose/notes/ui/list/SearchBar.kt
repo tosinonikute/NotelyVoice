@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.presentation.list.userinterface
+package com.module.notelycompose.notes.ui.list
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -21,7 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.focus.onFocusChanged
-import com.module.notelycompose.notes.presentation.theme.LocalCustomColors
+import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 
 @Composable
 fun SearchBar() {

@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.presentation.list.userinterface
+package com.module.notelycompose.notes.ui.list
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Spacer
@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.module.notelycompose.notes.domain.model.Note
 import com.module.notelycompose.notes.presentation.list.model.NoteUiModel
 
 @OptIn(ExperimentalFoundationApi::class)

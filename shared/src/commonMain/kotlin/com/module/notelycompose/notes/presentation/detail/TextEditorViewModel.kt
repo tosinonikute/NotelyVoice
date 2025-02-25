@@ -8,7 +8,7 @@ import com.module.notelycompose.notes.domain.GetLastNote
 import com.module.notelycompose.notes.domain.GetNoteById
 import com.module.notelycompose.notes.domain.InsertNoteUseCase
 import com.module.notelycompose.notes.domain.UpdateNoteUseCase
-import com.module.notelycompose.notes.presentation.detail.userinterface.EditorUiState
+import com.module.notelycompose.notes.ui.detail.EditorUiState
 import com.module.notelycompose.notes.presentation.helpers.TextFormatHelper.updateFormats
 import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.presentation.mapper.TextAlignPresentationMapper

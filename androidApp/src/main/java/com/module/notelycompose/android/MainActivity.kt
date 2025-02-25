@@ -19,8 +19,8 @@ import com.module.notelycompose.android.presentation.AndroidNoteListViewModel
 import com.module.notelycompose.android.presentation.AndroidTextEditorViewModel
 import com.module.notelycompose.android.presentation.core.Routes
 import com.module.notelycompose.android.presentation.ui.NoteListScreen
-import com.module.notelycompose.notes.presentation.detail.userinterface.NoteDetailScreen
-import com.module.notelycompose.notes.presentation.theme.MyApplicationTheme
+import com.module.notelycompose.notes.ui.detail.NoteDetailScreen
+import com.module.notelycompose.notes.ui.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
