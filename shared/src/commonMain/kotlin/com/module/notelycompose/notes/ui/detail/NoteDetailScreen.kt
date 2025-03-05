@@ -43,6 +43,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.module.notelycompose.notes.ui.detail.record.RecordUiComponent
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcRecorder
 import com.module.notelycompose.resources.vectors.Images
@@ -62,6 +63,7 @@ fun NoteDetailScreen(
 ) {
     var showFormatBar by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
+    var showRecordDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -78,7 +80,9 @@ fun NoteDetailScreen(
                         shape = CircleShape
                     ),
                 backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
-                onClick = { /* Add Note */ }
+                onClick = {
+                    showRecordDialog = true
+                }
             ) {
                 Icon(
                     imageVector = Images.Icons.IcRecorder,
@@ -173,6 +177,7 @@ fun NoteDetailScreen(
                         ),
                         cursorBrush = SolidColor(LocalCustomColors.current.bodyContentColor),
                         readOnly = showFormatBar,
+                        enabled = showRecordDialog.not(),
                         keyboardOptions = KeyboardOptions(
                             capitalization = KeyboardCapitalization.Sentences
                         ),
@@ -183,5 +188,19 @@ fun NoteDetailScreen(
             }
         }
     )
+
+    // Component outside the scaffold to maintain full screen
+    if (showRecordDialog) {
+        RecordUiComponent(
+            onDismiss = {
+                showRecordDialog = false
+            },
+            onRecordingComplete = {
+                showRecordDialog = false
+                // Do something with recording
+            },
+            counterTimeString = "00:00"
+        )
+    }
 }
 
