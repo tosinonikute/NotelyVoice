@@ -29,97 +29,102 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.module.notelycompose.audio.presentation.AudioPlayerUiState
+import com.module.notelycompose.audio.PlatformAudioPlayer
 import com.module.notelycompose.resources.vectors.IcPause
 import com.module.notelycompose.resources.vectors.Images
+import kotlinx.coroutines.delay
 
 @Composable
-fun PlatformAudioPlayerUi(
-    filePath: String,
-    uiState: AudioPlayerUiState,
-    onLoadAudio: (filePath: String) -> Unit,
-    onClear: () -> Unit,
-    onSeekTo: (position: Int) -> Unit,
-    onTogglePlayPause: () -> Unit
-) {
-    // Load audio when the composable is first created
-    LaunchedEffect(filePath) {
-        onLoadAudio(filePath)
-    }
+fun PlatformAudioPlayerUi2(filePath: String) {
+    var isPlaying by remember { mutableStateOf(false) }
+    var currentPosition by remember { mutableStateOf(0f) }
+    var duration by remember { mutableStateOf(0) }
+    val audioPlayer = remember { PlatformAudioPlayer() }
 
-    // Dispose of ViewModel resources when the composable leaves composition
-    DisposableEffect(uiState) {
-        onDispose {
-            onClear()
+    LaunchedEffect(filePath) {
+        try {
+            duration = audioPlayer.prepare(filePath)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
-    // For slider interaction
-    var sliderPosition by remember { mutableStateOf<Float?>(null) }
+    LaunchedEffect(isPlaying) {
+        while (isPlaying) {
+            currentPosition = audioPlayer.getCurrentPosition().toFloat()
+            delay(100)
+        }
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            if (audioPlayer.isPlaying()) {
+                audioPlayer.stop()
+            }
+            audioPlayer.release()
+        }
+    }
 
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
             .background(Color.White)
-            .padding(8.dp)
+            .padding(16.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Play/Pause button
             IconButton(
-                onClick = { onTogglePlayPause() },
-                modifier = Modifier.size(28.dp),
-                enabled = uiState.isLoaded
+                onClick = {
+                    if (isPlaying) {
+                        audioPlayer.pause()
+                        isPlaying = false
+                    } else {
+                        audioPlayer.play()
+                        isPlaying = true
+                    }
+                },
+                modifier = Modifier.size(48.dp)
             ) {
                 Icon(
-                    imageVector = if (uiState.isPlaying) Images.Icons.IcPause else Icons.Filled.PlayArrow,
-                    contentDescription = if (uiState.isPlaying) "Pause" else "Play",
-                    modifier = Modifier.size(28.dp),
-                    tint = if (uiState.isLoaded) Color.DarkGray else Color.LightGray
+                    imageVector = if (isPlaying) Images.Icons.IcPause else Icons.Filled.PlayArrow,
+                    contentDescription = if (isPlaying) "Pause" else "Play",
+                    modifier = Modifier.size(36.dp),
+                    tint = Color.DarkGray
                 )
             }
 
-            // Current time
             Text(
-                text = uiState.currentPosition.formatTimeToMMSS(),
+                text = currentPosition.toInt().formatTimeToMMSS(),
                 color = Color.DarkGray,
-                fontSize = 14.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.padding(horizontal = 8.dp)
             )
 
-            // Progress slider
             Slider(
-                value = sliderPosition?.toFloat() ?: uiState.currentPosition.toFloat(),
+                value = currentPosition,
                 onValueChange = { newValue ->
-                    sliderPosition = newValue
+                    currentPosition = newValue
+                    audioPlayer.seekTo(newValue.toInt())
                 },
-                onValueChangeFinished = {
-                    sliderPosition?.let {
-                        onSeekTo(it.toInt())
-                        sliderPosition = null
-                    }
-                },
-                valueRange = 0f..uiState.duration.toFloat().coerceAtLeast(1f),
+                valueRange = 0f..duration.toFloat(),
                 modifier = Modifier
                     .weight(1f)
-                    .height(12.dp),
+                    .height(24.dp),
                 colors = SliderDefaults.colors(
                     thumbColor = Color(0xFF4CAF50),
                     activeTrackColor = Color(0xFF4CAF50),
                     inactiveTrackColor = Color.LightGray
-                ),
-                enabled = uiState.isLoaded
+                )
             )
 
-            // Total duration
             Text(
-                text = uiState.duration.formatTimeToMMSS(),
+                text = duration.formatTimeToMMSS(),
                 color = Color.DarkGray,
-                fontSize = 14.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.padding(horizontal = 8.dp)
             )

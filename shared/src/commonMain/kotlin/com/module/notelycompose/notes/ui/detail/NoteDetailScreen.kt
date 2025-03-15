@@ -43,6 +43,9 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.module.notelycompose.audio.presentation.AudioPlayerUiState
+import com.module.notelycompose.audio.ui.PlatformAudioPlayerUi
+import com.module.notelycompose.audio.ui.PlatformAudioPlayerUi2
 import com.module.notelycompose.notes.ui.detail.record.RecordUiComponent
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcRecorder
@@ -138,6 +141,14 @@ fun NoteDetailScreen(
                         modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp),
                         fontSize = 12.sp,
                         color = LocalCustomColors.current.bodyContentColor
+                    )
+                    PlatformAudioPlayerUi(
+                        filePath = "",
+                        uiState = AudioPlayerUiState(),
+                        onLoadAudio = {},
+                        onClear = {},
+                        onSeekTo = {},
+                        onTogglePlayPause = {}
                     )
 
                     val transformation = VisualTransformation { text ->
