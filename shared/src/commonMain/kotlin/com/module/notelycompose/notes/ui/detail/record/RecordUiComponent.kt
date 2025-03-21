@@ -92,9 +92,7 @@ fun RecordUiComponent(
                 onStopRecording = {
                     screenState = ScreenState.Success
                 },
-                onNavigateBack = {
-
-                }
+                onNavigateBack = onDismiss
             )
             ScreenState.Success -> {
                 RecordingSuccessScreen()
@@ -340,19 +338,21 @@ fun recordingUiComponentBackButton(
     } else {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.clickable {
-                onNavigateBack()
-            }
+            modifier = Modifier
+                .padding(16.dp)
+                .clickable { onNavigateBack() }
         ) {
             Icon(
                 imageVector = Images.Icons.IcChevronLeft,
                 contentDescription = "Back",
-                modifier = Modifier.size(28.dp)
+                modifier = Modifier.size(28.dp),
+                tint = LocalCustomColors.current.bodyContentColor
             )
             Spacer(modifier = Modifier.width(8.dp))
             androidx.compose.material.Text(
                 text = "Back",
                 style = androidx.compose.material.MaterialTheme.typography.body1,
+                color = LocalCustomColors.current.bodyContentColor
             )
         }
     }

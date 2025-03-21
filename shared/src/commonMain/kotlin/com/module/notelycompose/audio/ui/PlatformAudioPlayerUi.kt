@@ -60,6 +60,7 @@ fun PlatformAudioPlayerUi(
     Box(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(Color.White)
             .padding(8.dp)

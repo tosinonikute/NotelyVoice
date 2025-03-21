@@ -198,10 +198,9 @@ class TextEditorViewModel (
         val currentNoteId = _currentNoteId.value
         when {
             content.isEmpty() && isEditingStarted -> {
-                val lastNoteId = getLastNote()?.id ?: 0L
-                deleteNote(lastNoteId)
+                getLastNote()?.let { lastNote ->  deleteNote(lastNote.id) }
             }
-            currentNoteId != null && _currentNoteId.value != ID_NOT_SET -> {
+            currentNoteId != null && currentNoteId != ID_NOT_SET -> {
                 updateNote(
                     noteId = currentNoteId,
                     title = title,
