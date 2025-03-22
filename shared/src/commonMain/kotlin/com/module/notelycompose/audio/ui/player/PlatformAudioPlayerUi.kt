@@ -1,4 +1,4 @@
-package com.module.notelycompose.audio.ui
+package com.module.notelycompose.audio.ui.player
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.module.notelycompose.audio.presentation.AudioPlayerUiState
+import com.module.notelycompose.audio.ui.formatTimeToMMSS
 import com.module.notelycompose.audio.ui.uicomponents.Thumb
 import com.module.notelycompose.audio.ui.uicomponents.Track
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors

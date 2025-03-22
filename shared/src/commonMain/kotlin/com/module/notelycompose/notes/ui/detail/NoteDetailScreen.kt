@@ -44,9 +44,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.module.notelycompose.audio.presentation.AudioPlayerUiState
-import com.module.notelycompose.audio.ui.PlatformAudioPlayerUi
-import com.module.notelycompose.audio.ui.PlatformAudioPlayerUi2
-import com.module.notelycompose.notes.ui.detail.record.RecordUiComponent
+import com.module.notelycompose.audio.ui.player.PlatformAudioPlayerUi
+import com.module.notelycompose.audio.ui.recorder.RecordUiComponent
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcRecorder
 import com.module.notelycompose.resources.vectors.Images

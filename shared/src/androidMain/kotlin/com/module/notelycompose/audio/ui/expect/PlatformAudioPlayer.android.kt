@@ -1,4 +1,4 @@
-package com.module.notelycompose.audio
+package com.module.notelycompose.audio.ui.expect
 
 actual class PlatformAudioPlayer {
     private var mediaPlayer: android.media.MediaPlayer? = null

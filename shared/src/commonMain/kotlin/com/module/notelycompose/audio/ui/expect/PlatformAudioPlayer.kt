@@ -1,4 +1,4 @@
-package com.module.notelycompose.audio
+package com.module.notelycompose.audio.ui.expect
 
 expect class PlatformAudioPlayer() {
     suspend fun prepare(filePath: String): Int

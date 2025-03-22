@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.ui.detail.record
+package com.module.notelycompose.audio.ui.recorder
 
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing

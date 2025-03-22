@@ -1,6 +1,6 @@
 package com.module.notelycompose.audio.presentation
 
-import com.module.notelycompose.audio.PlatformAudioPlayer
+import com.module.notelycompose.audio.ui.expect.PlatformAudioPlayer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
