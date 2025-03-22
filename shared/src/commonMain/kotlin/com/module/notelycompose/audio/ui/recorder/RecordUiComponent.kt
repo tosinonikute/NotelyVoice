@@ -68,7 +68,9 @@ enum class ScreenState {
 fun RecordUiComponent(
     onDismiss: () -> Unit,
     onRecordingComplete: (String) -> Unit,
-    counterTimeString: String
+    recordCounterString: String,
+    onStartRecord: () -> Unit,
+    onStopRecord: () -> Unit
 ) {
     var screenState by remember { mutableStateOf(ScreenState.Initial) }
 
@@ -84,12 +86,14 @@ fun RecordUiComponent(
             ScreenState.Initial -> RecordingInitialScreen(
                 onNavigateBack = onDismiss,
                 onTapToRecord = {
+                    onStartRecord()
                     screenState = ScreenState.Recording
                 }
             )
             ScreenState.Recording -> RecordingInProgressScreen(
-                counterTimeString = counterTimeString,
+                counterTimeString = recordCounterString,
                 onStopRecording = {
+                    onStopRecord()
                     screenState = ScreenState.Success
                 },
                 onNavigateBack = onDismiss

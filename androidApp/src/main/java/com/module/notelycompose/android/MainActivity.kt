@@ -3,6 +3,7 @@ package com.module.notelycompose.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -15,6 +16,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.module.notelycompose.android.di.AudioRecorderModule
+import com.module.notelycompose.android.presentation.AndroidAudioRecorderViewModel
 import com.module.notelycompose.android.presentation.AndroidNoteListViewModel
 import com.module.notelycompose.android.presentation.AndroidTextEditorViewModel
 import com.module.notelycompose.android.presentation.core.Routes
@@ -22,11 +25,17 @@ import com.module.notelycompose.android.presentation.ui.NoteListScreen
 import com.module.notelycompose.notes.ui.detail.NoteDetailScreen
 import com.module.notelycompose.notes.ui.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var permissionLauncherHolder: AudioRecorderModule.PermissionLauncherHolder
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initializeAudioRecorder()
         setContent {
             MyApplicationTheme {
                 Surface(
@@ -37,6 +46,18 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun initializeAudioRecorder() {
+        val permissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { }
+        permissionLauncherHolder.permissionLauncher = permissionLauncher
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        permissionLauncherHolder.permissionLauncher = null
     }
 }
 
@@ -71,6 +92,10 @@ fun NoteAppRoot() {
         ) { backStackEntry ->
             val noteId = backStackEntry.arguments?.getString("noteId") ?: "0"
 
+            val audioRecorderViewModel = hiltViewModel<AndroidAudioRecorderViewModel>()
+            val audioRecorderPresentationState by audioRecorderViewModel.state.collectAsState()
+            val audioRecorderState = audioRecorderViewModel.onGetUiState(audioRecorderPresentationState)
+
             val editorViewModel = hiltViewModel<AndroidTextEditorViewModel>()
             if(noteId.toLong() > 0L) editorViewModel.onGetNoteById(noteId)
             val editorPresentationState by editorViewModel.state.collectAsState()
@@ -95,7 +120,12 @@ fun NoteAppRoot() {
                 },
                 onSelectTextSizeFormat = { textSize ->
                     editorViewModel.setTextSize(textSize)
-                }
+                },
+
+                onStartRecord = { audioRecorderViewModel.onStartRecording() },
+                onStopRecord = { audioRecorderViewModel.onStopRecording() },
+                onRequestAudioPermission = { audioRecorderViewModel.onRequestAudioPermission() },
+                recordCounterString = audioRecorderState.recordCounterString
             )
         }
     }

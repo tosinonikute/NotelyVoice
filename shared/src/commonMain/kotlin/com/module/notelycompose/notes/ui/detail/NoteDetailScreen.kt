@@ -61,7 +61,12 @@ fun NoteDetailScreen(
     onToggleUnderline: () -> Unit,
     onSetAlignment: (alignment: TextAlign) -> Unit,
     onToggleBulletList: () -> Unit,
-    onSelectTextSizeFormat: (textSize: Float) -> Unit
+    onSelectTextSizeFormat: (textSize: Float) -> Unit,
+
+    onStartRecord: () -> Unit,
+    onStopRecord: () -> Unit,
+    onRequestAudioPermission: () -> Unit,
+    recordCounterString: String
 ) {
     var showFormatBar by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
@@ -201,6 +206,7 @@ fun NoteDetailScreen(
 
     // Component outside the scaffold to maintain full screen
     if (showRecordDialog) {
+        onRequestAudioPermission()
         RecordUiComponent(
             onDismiss = {
                 showRecordDialog = false
@@ -209,7 +215,9 @@ fun NoteDetailScreen(
                 showRecordDialog = false
                 // Do something with recording
             },
-            counterTimeString = "00:00"
+            recordCounterString = recordCounterString,
+            onStartRecord = onStartRecord,
+            onStopRecord = onStopRecord
         )
     }
 }
