@@ -23,7 +23,9 @@ val DarkCustomColors = CustomColors(
     iOSBackButtonColor = Color(0xFF3074F6),
     transparentColor = Color.Transparent,
     bottomFormattingContainerColor = Color(0xFFF2F2F2),
-    bottomFormattingContentColor = Color.Black
+    bottomFormattingContentColor = Color.Black,
+    activeThumbTrackColor = Color(0xFF666666),
+    playerBoxBackgroundColor = Color(0xFFF2F2F2)
 )
 
 val LightCustomColors = CustomColors(
@@ -46,7 +48,9 @@ val LightCustomColors = CustomColors(
     iOSBackButtonColor = Color(0xFF3074F6),
     transparentColor = Color.Transparent,
     bottomFormattingContainerColor = Color(0xFFF2F2F2),
-    bottomFormattingContentColor = Color.Black
+    bottomFormattingContentColor = Color.Black,
+    activeThumbTrackColor = Color(0xFF666666),
+    playerBoxBackgroundColor = Color(0xFFEEEEEE)
 )
 
 // Create a CompositionLocal to hold the custom colors

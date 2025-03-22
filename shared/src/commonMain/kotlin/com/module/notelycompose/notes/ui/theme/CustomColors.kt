@@ -24,5 +24,7 @@ data class CustomColors(
     val iOSBackButtonColor: Color,
     val transparentColor: Color,
     val bottomFormattingContainerColor: Color,
-    val bottomFormattingContentColor: Color
+    val bottomFormattingContentColor: Color,
+    val activeThumbTrackColor: Color,
+    val playerBoxBackgroundColor: Color
 )
