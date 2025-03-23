@@ -87,7 +87,6 @@ class AudioRecorderViewModel(
             val recordingPath = audioRecorder.getRecordingFilePath()
             stopCounter()
 
-            // Handle the recording (e.g., attach to note, transcribe, etc.)
             _audioRecorderPresentationState.update { current ->
                 current.copy(recordingPath = recordingPath)
             }

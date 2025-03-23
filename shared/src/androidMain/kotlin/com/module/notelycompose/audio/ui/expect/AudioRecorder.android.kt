@@ -10,6 +10,11 @@ import androidx.core.content.ContextCompat
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.io.File
 import kotlin.coroutines.resume
+import kotlin.random.Random
+
+private const val DEFAULT = "recording.mp3"
+private const val RECORDING_PREFIX = "recording_"
+private const val RECORDING_EXTENSION = ".mp3"
 
 actual class AudioRecorder(
     private val context: Context,
@@ -18,9 +23,13 @@ actual class AudioRecorder(
     private var recorder: MediaRecorder? = null
     private var isCurrentlyRecording = false
     private var permissionContinuation: ((Boolean) -> Unit)? = null
+    private var currentRecordingPath: String? = null
 
     actual fun startRecording() {
-        val file = File(context.cacheDir, "recording.mp3")
+        val randomNumber = Random.nextInt(100000, 999999)
+        val fileName = "$RECORDING_PREFIX$randomNumber$RECORDING_EXTENSION"
+        val file = File(context.cacheDir, fileName)
+        currentRecordingPath = file.absolutePath
 
         recorder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             MediaRecorder(context)
@@ -91,6 +100,6 @@ actual class AudioRecorder(
     }
 
     actual fun getRecordingFilePath(): String {
-        return File(context.cacheDir, "recording.mp3").absolutePath
+        return currentRecordingPath ?: File(context.cacheDir, DEFAULT).absolutePath
     }
 }
