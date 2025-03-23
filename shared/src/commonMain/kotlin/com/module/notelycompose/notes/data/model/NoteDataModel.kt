@@ -17,6 +17,7 @@ data class NoteDataModel(
     val colorHex: Long,
     val formatting: List<TextFormatDataModel>,
     val textAlign: TextAlignDataModel,
+    val recordingPath: String,
     val createdAt: LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 ) {
     companion object {

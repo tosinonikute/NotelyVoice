@@ -16,6 +16,7 @@ class NoteDomainMapper(
             colorHex = dataModel.colorHex,
             formatting = dataModel.formatting.map { textFormatMapper.mapToDomainModel(it) },
             textAlign = mapTextAlignToDomainModel(dataModel.textAlign),
+            recordingPath = dataModel.recordingPath,
             createdAt = dataModel.createdAt
         )
     }
@@ -28,6 +29,7 @@ class NoteDomainMapper(
             colorHex = domainModel.colorHex,
             formatting = domainModel.formatting.map { textFormatMapper.mapToDataModel(it) },
             textAlign = mapTextAlignToDataModel(domainModel.textAlign),
+            recordingPath = domainModel.recordingPath,
             createdAt = domainModel.createdAt
         )
     }

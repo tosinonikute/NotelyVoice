@@ -12,7 +12,8 @@ data class EditorUiState(
     val content: TextFieldValue = TextFieldValue(""),
     val formats: List<TextUiFormat> = emptyList(),
     val textAlign: TextAlign = TextAlign.Left,
-    val selectionSize: TextFormatUiOption = TextUiFormats.Body
+    val selectionSize: TextFormatUiOption = TextUiFormats.Body,
+    val recordingPath: String
 )
 
 data class TextUiFormat(

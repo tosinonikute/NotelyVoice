@@ -13,7 +13,8 @@ class EditorPresentationToUiStateMapper {
             content = presentationState.content,
             formats = presentationState.formats.map { mapToTextFormat(it) },
             textAlign = presentationState.textAlign,
-            selectionSize = mapToTextFormatUiOption(presentationState.selectionSize)
+            selectionSize = mapToTextFormatUiOption(presentationState.selectionSize),
+            recordingPath = presentationState.recordingPath
         )
     }
 

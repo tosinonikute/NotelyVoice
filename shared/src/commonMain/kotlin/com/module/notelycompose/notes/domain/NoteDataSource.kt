@@ -12,7 +12,8 @@ interface NoteDataSource {
         title: String,
         content: String,
         formatting: List<TextFormatDataModel>,
-        textAlign: TextAlignDataModel
+        textAlign: TextAlignDataModel,
+        recordingPath: String
     )
 
     suspend fun updateNote(
@@ -20,7 +21,8 @@ interface NoteDataSource {
         title: String,
         content: String,
         formatting: List<TextFormatDataModel>,
-        textAlign: TextAlignDataModel
+        textAlign: TextAlignDataModel,
+        recordingPath: String
     )
 
     fun getNotes(): CommonFlow<List<NoteDataModel>>

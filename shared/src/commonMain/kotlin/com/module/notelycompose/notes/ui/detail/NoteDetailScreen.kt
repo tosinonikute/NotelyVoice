@@ -66,7 +66,8 @@ fun NoteDetailScreen(
     onStartRecord: () -> Unit,
     onStopRecord: () -> Unit,
     onRequestAudioPermission: () -> Unit,
-    recordCounterString: String
+    onAfterRecord: () -> Unit,
+    recordCounterString: String,
 ) {
     var showFormatBar by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
@@ -146,14 +147,17 @@ fun NoteDetailScreen(
                         fontSize = 12.sp,
                         color = LocalCustomColors.current.bodyContentColor
                     )
-                    PlatformAudioPlayerUi(
-                        filePath = "",
-                        uiState = AudioPlayerUiState(),
-                        onLoadAudio = {},
-                        onClear = {},
-                        onSeekTo = {},
-                        onTogglePlayPause = {}
-                    )
+
+                    if(editorState.recordingPath.isNotEmpty()) {
+                        PlatformAudioPlayerUi(
+                            filePath = "",
+                            uiState = AudioPlayerUiState(),
+                            onLoadAudio = {},
+                            onClear = {},
+                            onSeekTo = {},
+                            onTogglePlayPause = {}
+                        )
+                    }
 
                     val transformation = VisualTransformation { text ->
                         TransformedText(
@@ -211,8 +215,9 @@ fun NoteDetailScreen(
             onDismiss = {
                 showRecordDialog = false
             },
-            onRecordingComplete = {
+            onAfterRecord = {
                 showRecordDialog = false
+                onAfterRecord()
                 // Do something with recording
             },
             recordCounterString = recordCounterString,

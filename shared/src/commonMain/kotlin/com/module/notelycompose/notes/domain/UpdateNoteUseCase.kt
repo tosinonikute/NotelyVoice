@@ -15,14 +15,16 @@ class UpdateNoteUseCase(
         title: String,
         content: String,
         formatting: List<TextFormatDomainModel>,
-        textAlign: TextAlignDomainModel
+        textAlign: TextAlignDomainModel,
+        recordingPath: String
     ) {
         noteDataSource.updateNote(
             id = id,
             title = title,
             content = content,
             formatting = formatting.map { textFormatMapper.mapToDataModel(it) },
-            textAlign = noteDomainMapper.mapTextAlignToDataModel(textAlign)
+            textAlign = noteDomainMapper.mapTextAlignToDataModel(textAlign),
+            recordingPath = recordingPath
         )
     }
 }

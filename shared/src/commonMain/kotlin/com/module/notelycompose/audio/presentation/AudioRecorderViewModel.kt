@@ -1,5 +1,6 @@
 package com.module.notelycompose.audio.presentation
 
+import androidx.compose.ui.text.TextRange
 import com.module.notelycompose.audio.presentation.mappers.AudioRecorderPresentationToUiStateMapper
 import com.module.notelycompose.audio.ui.expect.AudioRecorder
 import com.module.notelycompose.audio.ui.recorder.AudioRecorderUiState
@@ -9,6 +10,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
 
@@ -18,7 +20,8 @@ private const val LEADING_ZERO_THRESHOLD = 10
 private const val INITIAL_SECOND = 0
 
 data class AudioRecorderPresentationState(
-    val recordCounterString: String = RECORD_COUNTER_START
+    val recordCounterString: String = RECORD_COUNTER_START,
+    val recordingPath: String = ""
 )
 
 class AudioRecorderViewModel(
@@ -73,9 +76,9 @@ class AudioRecorderViewModel(
         val secondsStr = if (seconds < LEADING_ZERO_THRESHOLD) "0$seconds" else "$seconds"
         val counterString = "$minutesStr:$secondsStr"
 
-        _audioRecorderPresentationState.value = _audioRecorderPresentationState.value.copy(
-            recordCounterString = counterString
-        )
+        _audioRecorderPresentationState.update { current ->
+            current.copy(recordCounterString = counterString)
+        }
     }
 
     fun onStopRecording() {
@@ -85,6 +88,9 @@ class AudioRecorderViewModel(
             stopCounter()
 
             // Handle the recording (e.g., attach to note, transcribe, etc.)
+            _audioRecorderPresentationState.update { current ->
+                current.copy(recordingPath = recordingPath)
+            }
         }
     }
 

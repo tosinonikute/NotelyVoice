@@ -27,7 +27,8 @@ class NoteSqlDelightDataSource(
         title: String,
         content: String,
         formatting: List<TextFormatDataModel>,
-        textAlign: TextAlignDataModel
+        textAlign: TextAlignDataModel,
+        recordingPath: String
     ) {
         queries.insertNote(
             title = title,
@@ -35,6 +36,7 @@ class NoteSqlDelightDataSource(
             colorHex = Note.generateRandomColor(),
             formatting = json.encodeToString(formatting),
             text_align = textAlign.toString(),
+            recording_path = recordingPath,
             created_at = DateTimeUtil.toEpochMilli(DateTimeUtil.now())
         )
     }
@@ -44,7 +46,8 @@ class NoteSqlDelightDataSource(
         title: String,
         content: String,
         formatting: List<TextFormatDataModel>,
-        textAlign: TextAlignDataModel
+        textAlign: TextAlignDataModel,
+        recordingPath: String
     ) {
         queries.updateNote(
             id = id,
@@ -53,6 +56,7 @@ class NoteSqlDelightDataSource(
             colorHex = Note.generateRandomColor(),
             formatting = json.encodeToString(formatting),
             text_align = textAlign.toString(),
+            recording_path = recordingPath,
             created_at = DateTimeUtil.toEpochMilli(DateTimeUtil.now())
         )
     }

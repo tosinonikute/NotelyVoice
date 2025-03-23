@@ -9,5 +9,6 @@ data class NoteDomainModel(
     val colorHex: Long,
     val formatting: List<TextFormatDomainModel>,
     val textAlign: TextAlignDomainModel,
+    val recordingPath: String,
     val createdAt: LocalDateTime
 )

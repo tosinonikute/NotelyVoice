@@ -67,10 +67,10 @@ enum class ScreenState {
 @Composable
 fun RecordUiComponent(
     onDismiss: () -> Unit,
-    onRecordingComplete: (String) -> Unit,
     recordCounterString: String,
     onStartRecord: () -> Unit,
-    onStopRecord: () -> Unit
+    onStopRecord: () -> Unit,
+    onAfterRecord: () -> Unit
 ) {
     var screenState by remember { mutableStateOf(ScreenState.Initial) }
 
@@ -102,7 +102,7 @@ fun RecordUiComponent(
                 RecordingSuccessScreen()
                 LaunchedEffect(Unit) {
                     delay(2000)
-                    onRecordingComplete("")
+                    onAfterRecord()
                     onDismiss()
                 }
             }

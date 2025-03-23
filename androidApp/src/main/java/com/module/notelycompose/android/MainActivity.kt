@@ -125,7 +125,8 @@ fun NoteAppRoot() {
                 onStartRecord = { audioRecorderViewModel.onStartRecording() },
                 onStopRecord = { audioRecorderViewModel.onStopRecording() },
                 onRequestAudioPermission = { audioRecorderViewModel.onRequestAudioPermission() },
-                recordCounterString = audioRecorderState.recordCounterString
+                recordCounterString = audioRecorderState.recordCounterString,
+                onAfterRecord = { editorViewModel.onUpdateRecordingPath(audioRecorderState.recordingPath) }
             )
         }
     }

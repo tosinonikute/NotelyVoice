@@ -86,7 +86,8 @@ class NoteDetailScreenViewModel(
                     title = event.title,
                     content = event.content,
                     formatting = event.formatting,
-                    textAlign = event.textAlign
+                    textAlign = event.textAlign,
+                    recordingPath = ""
                 )
             }
             is NoteDetailScreenEvent.DeleteNote -> {
@@ -111,14 +112,16 @@ class NoteDetailScreenViewModel(
         title: String,
         content: String,
         formatting: List<TextPresentationFormat>,
-        textAlign: TextAlign
+        textAlign: TextAlign,
+        recordingPath: String
     ) {
         viewModelScope.launch {
             insertNoteUseCase.execute(
                 title = title,
                 content = content,
                 formatting = formatting.map { textFormatPresentationMapper.mapToDomainModel(it) },
-                textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign)
+                textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign),
+                recordingPath = recordingPath
             )
         }
     }
@@ -136,7 +139,8 @@ class NoteDetailScreenViewModel(
                 title = title,
                 content = content,
                 formatting = formatting.map { textFormatPresentationMapper.mapToDomainModel(it) },
-                textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign)
+                textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign),
+                recordingPath = ""
             )
         }
     }

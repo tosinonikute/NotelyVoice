@@ -37,6 +37,7 @@ fun NotesEntity.toNoteDataModel(json :Json): NoteDataModel {
         } catch (e: Exception) {
             TextAlignDataModel.Start
         },
+        recordingPath = recording_path,
         createdAt = Instant.fromEpochMilliseconds(created_at)
             .toLocalDateTime(TimeZone.currentSystemDefault())
     )

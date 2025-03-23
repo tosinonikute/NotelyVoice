@@ -43,7 +43,8 @@ data class EditorPresentationState(
     val content: TextFieldValue = TextFieldValue(""),
     val formats: List<TextPresentationFormat> = emptyList(),
     val textAlign: TextAlign = TextAlign.Left,
-    val selectionSize: TextFormatPresentationOption = TextPresentationFormats.NoSelection
+    val selectionSize: TextFormatPresentationOption = TextPresentationFormats.NoSelection,
+    val recordingPath: String = ""
 )
 
 data class TextFormatPresentationOption(
@@ -90,7 +91,8 @@ class TextEditorViewModel (
                             formats = retrievedNote.formatting.map {
                                 textFormatPresentationMapper.mapToPresentationModel(it) },
                             textAlign = textAlignPresentationMapper.mapToComposeTextAlign(
-                                retrievedNote.textAlign)
+                                retrievedNote.textAlign),
+                            recordingPath = retrievedNote.recordingPath
                         )
                         _currentNoteId.value = id
                     }
@@ -113,21 +115,33 @@ class TextEditorViewModel (
             content = newContent.text,
             isEditingStarted = isEditingStarted,
             formatting = _editorPresentationState.value.formats,
-            textAlign = _editorPresentationState.value.textAlign
+            textAlign = _editorPresentationState.value.textAlign,
+            recordingPath = _editorPresentationState.value.recordingPath
         )
         isEditingStarted = true
+    }
+
+    fun onUpdateRecordingPath(recordingPath: String) {
+        _editorPresentationState.update {
+            it.copy(
+                recordingPath = recordingPath
+            )
+        }
+        onUpdateContent(newContent = _editorPresentationState.value.content)
     }
 
     private fun loadNote(
         content: String,
         formats: List<TextPresentationFormat>,
-        textAlign: TextAlign
+        textAlign: TextAlign,
+        recordingPath: String
     ) {
         _editorPresentationState.update {
             it.copy(
                 content = TextFieldValue(content),
                 formats = formats,
-                textAlign = textAlign
+                textAlign = textAlign,
+                recordingPath = recordingPath
             )
         }
     }
@@ -140,14 +154,16 @@ class TextEditorViewModel (
         title: String,
         content: String,
         formatting: List<TextPresentationFormat>,
-        textAlign: TextAlign
+        textAlign: TextAlign,
+        recordingPath: String
     ) {
         viewModelScope.launch {
             insertNoteUseCase.execute(
                 title = title,
                 content = content,
                 formatting = formatting.map { textFormatPresentationMapper.mapToDomainModel(it) },
-                textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign)
+                textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign),
+                recordingPath = recordingPath
             )
         }
     }
@@ -157,7 +173,8 @@ class TextEditorViewModel (
         title: String,
         content: String,
         formatting: List<TextPresentationFormat>,
-        textAlign: TextAlign
+        textAlign: TextAlign,
+        recordingPath: String
     ) {
         viewModelScope.launch {
             updateNoteUseCase.execute(
@@ -165,7 +182,8 @@ class TextEditorViewModel (
                 title = title,
                 content = content,
                 formatting = formatting.map { textFormatPresentationMapper.mapToDomainModel(it) },
-                textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign)
+                textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign),
+                recordingPath = recordingPath
             )
         }
     }
@@ -193,7 +211,8 @@ class TextEditorViewModel (
         content: String,
         isEditingStarted: Boolean,
         formatting: List<TextPresentationFormat>,
-        textAlign: TextAlign
+        textAlign: TextAlign,
+        recordingPath: String
     ) {
         val currentNoteId = _currentNoteId.value
         when {
@@ -206,7 +225,8 @@ class TextEditorViewModel (
                     title = title,
                     content = content,
                     formatting = formatting,
-                    textAlign = textAlign
+                    textAlign = textAlign,
+                    recordingPath = recordingPath
                 )
             }
             else -> {
@@ -214,7 +234,8 @@ class TextEditorViewModel (
                     title = title,
                     content = content,
                     formatting = formatting,
-                    textAlign = textAlign
+                    textAlign = textAlign,
+                    recordingPath = recordingPath
                 ).also {
                     _currentNoteId.value = getLastNote()?.id ?: 0L
                 }
@@ -394,13 +415,15 @@ class TextEditorViewModel (
         val content = _editorPresentationState.value.content
         val formats = _editorPresentationState.value.formats
         val textAlign = _editorPresentationState.value.textAlign
+        val recordingPath = _editorPresentationState.value.recordingPath
         if(content.text.isNotEmpty()) {
             createOrUpdateEvent(
                 title = content.text,
                 content = content.text,
                 isEditingStarted = true,
                 formatting = formats,
-                textAlign = textAlign
+                textAlign = textAlign,
+                recordingPath = recordingPath
             )
         }
     }
