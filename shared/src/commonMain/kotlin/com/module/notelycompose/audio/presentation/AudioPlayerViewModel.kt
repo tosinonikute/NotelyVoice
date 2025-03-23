@@ -81,12 +81,14 @@ class AudioPlayerViewModel(
         progressUpdateJob = viewModelScope.launch {
             while (_uiState.value.isPlaying) {
                 val currentPosition = audioPlayer.getCurrentPosition()
+                val duration = _uiState.value.duration
+
                 _uiState.update { it.copy(currentPosition = currentPosition) }
 
-                // Check if we've reached the end
-                if (currentPosition >= _uiState.value.duration && _uiState.value.duration > 0) {
-                    _uiState.update { it.copy(isPlaying = false, currentPosition = 0) }
+                if (duration > 0 && currentPosition >= (duration - 300)) {
+                    audioPlayer.pause()
                     audioPlayer.seekTo(0)
+                    _uiState.update { it.copy(isPlaying = false, currentPosition = 0) }
                     onStopProgressUpdates()
                     break
                 }
