@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- This file configures backup rules for Android 6.0 (API 23) through Android 11 (API 30) -->
+    <!-- Empty with no include tags means nothing will be backed up -->
+    <!-- Alternatively, you can explicitly exclude everything: -->
+    <exclude domain="root" path="."/>
+</full-backup-content>
