@@ -148,7 +148,7 @@ fun NoteDetailScreen(
                         color = LocalCustomColors.current.bodyContentColor
                     )
 
-                    if(editorState.recordingPath.isNotEmpty()) {
+                    if(editorState.recording.isRecordingExist) {
                         PlatformAudioPlayerUi(
                             filePath = "",
                             uiState = AudioPlayerUiState(),

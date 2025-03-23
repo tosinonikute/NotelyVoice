@@ -44,7 +44,7 @@ data class EditorPresentationState(
     val formats: List<TextPresentationFormat> = emptyList(),
     val textAlign: TextAlign = TextAlign.Left,
     val selectionSize: TextFormatPresentationOption = TextPresentationFormats.NoSelection,
-    val recordingPath: String = ""
+    val recording: RecordingPathPresentationModel = RecordingPathPresentationModel()
 )
 
 data class TextFormatPresentationOption(
@@ -58,6 +58,11 @@ object TextPresentationFormats {
     val Body = TextFormatPresentationOption(TEXT_SIZE_BODY)
     val NoSelection = TextFormatPresentationOption(0f)
 }
+
+data class RecordingPathPresentationModel(
+    val recordingPath: String = "",
+    val isRecordingExist: Boolean = false
+)
 
 class TextEditorViewModel (
     private val getNoteByIdUseCase: GetNoteById,
@@ -116,7 +121,7 @@ class TextEditorViewModel (
             isEditingStarted = isEditingStarted,
             formatting = _editorPresentationState.value.formats,
             textAlign = _editorPresentationState.value.textAlign,
-            recordingPath = _editorPresentationState.value.recordingPath
+            recordingPath = _editorPresentationState.value.recording.recordingPath
         )
         isEditingStarted = true
     }
@@ -124,11 +129,16 @@ class TextEditorViewModel (
     fun onUpdateRecordingPath(recordingPath: String) {
         _editorPresentationState.update {
             it.copy(
-                recordingPath = recordingPath
+                recording = recordingPath(recordingPath)
             )
         }
         onUpdateContent(newContent = _editorPresentationState.value.content)
     }
+
+    private fun recordingPath(recordingPath: String) = RecordingPathPresentationModel(
+        recordingPath = recordingPath,
+        isRecordingExist = recordingPath.isNotEmpty()
+    )
 
     private fun loadNote(
         content: String,
@@ -141,7 +151,7 @@ class TextEditorViewModel (
                 content = TextFieldValue(content),
                 formats = formats,
                 textAlign = textAlign,
-                recordingPath = recordingPath
+                recording = recordingPath(recordingPath)
             )
         }
     }
@@ -415,7 +425,7 @@ class TextEditorViewModel (
         val content = _editorPresentationState.value.content
         val formats = _editorPresentationState.value.formats
         val textAlign = _editorPresentationState.value.textAlign
-        val recordingPath = _editorPresentationState.value.recordingPath
+        val recordingPath = _editorPresentationState.value.recording.recordingPath
         if(content.text.isNotEmpty()) {
             createOrUpdateEvent(
                 title = content.text,

@@ -13,7 +13,7 @@ data class EditorUiState(
     val formats: List<TextUiFormat> = emptyList(),
     val textAlign: TextAlign = TextAlign.Left,
     val selectionSize: TextFormatUiOption = TextUiFormats.Body,
-    val recordingPath: String
+    val recording: RecordingPathUiModel
 )
 
 data class TextUiFormat(
@@ -35,3 +35,8 @@ object TextUiFormats {
     val Body = TextFormatUiOption(TEXT_SIZE_BODY)
     val NoSelection = TextFormatUiOption(0f)
 }
+
+data class RecordingPathUiModel(
+    val recordingPath: String,
+    val isRecordingExist: Boolean
+)
