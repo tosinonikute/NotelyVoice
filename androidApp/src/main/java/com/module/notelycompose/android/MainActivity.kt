@@ -17,6 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.module.notelycompose.android.di.AudioRecorderModule
+import com.module.notelycompose.android.presentation.AndroidAudioPlayerViewModel
 import com.module.notelycompose.android.presentation.AndroidAudioRecorderViewModel
 import com.module.notelycompose.android.presentation.AndroidNoteListViewModel
 import com.module.notelycompose.android.presentation.AndroidTextEditorViewModel
@@ -92,6 +93,10 @@ fun NoteAppRoot() {
         ) { backStackEntry ->
             val noteId = backStackEntry.arguments?.getString("noteId") ?: "0"
 
+            val audioPlayerViewModel = hiltViewModel<AndroidAudioPlayerViewModel>()
+            val audioPlayerPresentationState by audioPlayerViewModel.state.collectAsState()
+            val audioPlayerState = audioPlayerViewModel.onGetUiState(audioPlayerPresentationState)
+
             val audioRecorderViewModel = hiltViewModel<AndroidAudioRecorderViewModel>()
             val audioRecorderPresentationState by audioRecorderViewModel.state.collectAsState()
             val audioRecorderState = audioRecorderViewModel.onGetUiState(audioRecorderPresentationState)
@@ -126,7 +131,13 @@ fun NoteAppRoot() {
                 onStopRecord = { audioRecorderViewModel.onStopRecording() },
                 onRequestAudioPermission = { audioRecorderViewModel.onRequestAudioPermission() },
                 recordCounterString = audioRecorderState.recordCounterString,
-                onAfterRecord = { editorViewModel.onUpdateRecordingPath(audioRecorderState.recordingPath) }
+                onAfterRecord = { editorViewModel.onUpdateRecordingPath(audioRecorderState.recordingPath) },
+
+                onLoadAudio = { filePath -> audioPlayerViewModel.onLoadAudio(filePath) },
+                onClear = { audioPlayerViewModel.onCleared() },
+                onSeekTo = { position -> audioPlayerViewModel.onSeekTo(position) },
+                onTogglePlayPause = { audioPlayerViewModel.onTogglePlayPause() },
+                audioPlayerUiState = audioPlayerState
             )
         }
     }

@@ -1,7 +1,6 @@
 package com.module.notelycompose.audio.presentation
 
-import androidx.compose.ui.text.TextRange
-import com.module.notelycompose.audio.presentation.mappers.AudioRecorderPresentationToUiStateMapper
+import com.module.notelycompose.audio.presentation.mappers.AudioRecorderPresentationToUiMapper
 import com.module.notelycompose.audio.ui.expect.AudioRecorder
 import com.module.notelycompose.audio.ui.recorder.AudioRecorderUiState
 import kotlinx.coroutines.CoroutineScope
@@ -26,7 +25,7 @@ data class AudioRecorderPresentationState(
 
 class AudioRecorderViewModel(
     private val audioRecorder: AudioRecorder,
-    private val mapper: AudioRecorderPresentationToUiStateMapper,
+    private val mapper: AudioRecorderPresentationToUiMapper,
     coroutineScope: CoroutineScope? = null
 ) {
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)

@@ -43,8 +43,8 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.module.notelycompose.audio.presentation.AudioPlayerUiState
 import com.module.notelycompose.audio.ui.player.PlatformAudioPlayerUi
+import com.module.notelycompose.audio.ui.player.model.AudioPlayerUiState
 import com.module.notelycompose.audio.ui.recorder.RecordUiComponent
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcRecorder
@@ -68,6 +68,12 @@ fun NoteDetailScreen(
     onRequestAudioPermission: () -> Unit,
     onAfterRecord: () -> Unit,
     recordCounterString: String,
+
+    onLoadAudio: (filePath: String) -> Unit,
+    onClear: () -> Unit,
+    onSeekTo: (position: Int) -> Unit,
+    onTogglePlayPause: () -> Unit,
+    audioPlayerUiState: AudioPlayerUiState
 ) {
     var showFormatBar by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
@@ -150,12 +156,16 @@ fun NoteDetailScreen(
 
                     if(editorState.recording.isRecordingExist) {
                         PlatformAudioPlayerUi(
-                            filePath = "",
-                            uiState = AudioPlayerUiState(),
-                            onLoadAudio = {},
-                            onClear = {},
-                            onSeekTo = {},
-                            onTogglePlayPause = {}
+                            filePath = editorState.recording.recordingPath,
+                            uiState = audioPlayerUiState,
+                            onLoadAudio = { audio ->
+                                onLoadAudio(audio)
+                            },
+                            onClear = onClear,
+                            onSeekTo = { position ->
+                                onSeekTo(position)
+                            },
+                            onTogglePlayPause = onTogglePlayPause
                         )
                     }
 

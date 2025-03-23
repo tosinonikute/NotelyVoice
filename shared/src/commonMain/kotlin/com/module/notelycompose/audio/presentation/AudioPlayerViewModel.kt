@@ -1,10 +1,11 @@
 package com.module.notelycompose.audio.presentation
 
+import com.module.notelycompose.audio.presentation.mappers.AudioPlayerPresentationToUiMapper
 import com.module.notelycompose.audio.ui.expect.PlatformAudioPlayer
+import com.module.notelycompose.audio.ui.player.model.AudioPlayerUiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,19 +17,25 @@ import kotlinx.coroutines.launch
 /**
  * Platform-independent ViewModel for audio playback functionality
  */
-class AudioPlayerViewModel {
-    // Create a coroutine scope with SupervisorJob to prevent child failures from canceling the parent
-    private val viewModelScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
-    private val audioPlayer = PlatformAudioPlayer()
+class AudioPlayerViewModel(
+    private val audioPlayer: PlatformAudioPlayer,
+    private val mapper: AudioPlayerPresentationToUiMapper,
+    coroutineScope: CoroutineScope? = null
+) {
+    private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
     private var progressUpdateJob: Job? = null
 
-    private val _uiState = MutableStateFlow(AudioPlayerUiState())
-    val uiState: StateFlow<AudioPlayerUiState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(AudioPlayerPresentationState())
+    val uiState: StateFlow<AudioPlayerPresentationState> = _uiState.asStateFlow()
 
-    fun loadAudio(filePath: String) {
+    fun onGetUiState(presentationState: AudioPlayerPresentationState): AudioPlayerUiState {
+        return mapper.mapToUiState(presentationState)
+    }
+
+    fun onLoadAudio(filePath: String) {
         viewModelScope.launch(Dispatchers.Default) {
             try {
-                val duration = audioPlayer.prepare(filePath)
+                val duration = audioPlayer.prepare("/data/user/0/com.module.notelycompose.android/cache/recording_160434.mp3")
                 _uiState.update { it.copy(
                     isLoaded = true,
                     duration = duration,
@@ -43,32 +50,32 @@ class AudioPlayerViewModel {
         }
     }
 
-    fun togglePlayPause() {
+    fun onTogglePlayPause() {
         if (_uiState.value.isPlaying) {
-            pause()
+            onPause()
         } else {
-            play()
+            onPlay()
         }
     }
 
-    fun play() {
+    private fun onPlay() {
         audioPlayer.play()
         _uiState.update { it.copy(isPlaying = true) }
-        startProgressUpdates()
+        onStartProgressUpdates()
     }
 
-    fun pause() {
+    private fun onPause() {
         audioPlayer.pause()
         _uiState.update { it.copy(isPlaying = false) }
-        stopProgressUpdates()
+        onStopProgressUpdates()
     }
 
-    fun seekTo(position: Int) {
+    fun onSeekTo(position: Int) {
         audioPlayer.seekTo(position)
         _uiState.update { it.copy(currentPosition = position) }
     }
 
-    private fun startProgressUpdates() {
+    private fun onStartProgressUpdates() {
         progressUpdateJob?.cancel()
         progressUpdateJob = viewModelScope.launch {
             while (_uiState.value.isPlaying) {
@@ -79,7 +86,7 @@ class AudioPlayerViewModel {
                 if (currentPosition >= _uiState.value.duration && _uiState.value.duration > 0) {
                     _uiState.update { it.copy(isPlaying = false, currentPosition = 0) }
                     audioPlayer.seekTo(0)
-                    stopProgressUpdates()
+                    onStopProgressUpdates()
                     break
                 }
 
@@ -88,7 +95,7 @@ class AudioPlayerViewModel {
         }
     }
 
-    private fun stopProgressUpdates() {
+    private fun onStopProgressUpdates() {
         progressUpdateJob?.cancel()
         progressUpdateJob = null
     }
@@ -97,8 +104,8 @@ class AudioPlayerViewModel {
      * Call this method when the ViewModel is no longer needed
      * to clean up resources and cancel ongoing jobs
      */
-    fun clear() {
-        stopProgressUpdates()
+    fun onClear() {
+        onStopProgressUpdates()
         audioPlayer.release()
         viewModelScope.cancel()
     }
@@ -107,7 +114,7 @@ class AudioPlayerViewModel {
 /**
  * Data class representing the UI state of the audio player
  */
-data class AudioPlayerUiState(
+data class AudioPlayerPresentationState(
     val isLoaded: Boolean = false,
     val isPlaying: Boolean = false,
     val currentPosition: Int = 0,
