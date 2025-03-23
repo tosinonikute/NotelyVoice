@@ -5,12 +5,17 @@ actual class PlatformAudioPlayer {
 
     actual suspend fun prepare(filePath: String): Int {
         mediaPlayer?.release()
-        val player = android.media.MediaPlayer().apply {
-            setDataSource(filePath)
-            prepare()
+        try {
+            val player = android.media.MediaPlayer().apply {
+                setDataSource(filePath)
+                prepare()
+            }
+            mediaPlayer = player
+            return player.duration
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return 0
         }
-        mediaPlayer = player
-        return player.duration
     }
 
     actual fun play() {

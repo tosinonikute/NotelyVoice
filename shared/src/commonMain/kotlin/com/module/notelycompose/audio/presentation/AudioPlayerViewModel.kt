@@ -35,12 +35,13 @@ class AudioPlayerViewModel(
     fun onLoadAudio(filePath: String) {
         viewModelScope.launch(Dispatchers.Default) {
             try {
-                val duration = audioPlayer.prepare("/data/user/0/com.module.notelycompose.android/cache/recording_160434.mp3")
+                val duration = audioPlayer.prepare(filePath)
                 _uiState.update { it.copy(
                     isLoaded = true,
                     duration = duration,
                     isPlaying = false,
-                    currentPosition = 0
+                    currentPosition = 0,
+                    filePath = filePath
                 ) }
             } catch (e: Exception) {
                 _uiState.update { it.copy(
@@ -119,5 +120,6 @@ data class AudioPlayerPresentationState(
     val isPlaying: Boolean = false,
     val currentPosition: Int = 0,
     val duration: Int = 0,
-    val errorMessage: String? = null
+    val errorMessage: String? = null,
+    val filePath: String = ""
 )
