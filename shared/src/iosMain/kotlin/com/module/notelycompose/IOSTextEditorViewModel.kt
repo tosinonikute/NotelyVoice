@@ -81,4 +81,8 @@ class IOSTextEditorViewModel(
     fun getNewNoteContentDate(id: String): String {
         return viewModel.getNewNoteContentDate(id)
     }
+
+    fun onUpdateRecordingPath(recordingPath: String) {
+        return viewModel.onUpdateRecordingPath(recordingPath)
+    }
 }

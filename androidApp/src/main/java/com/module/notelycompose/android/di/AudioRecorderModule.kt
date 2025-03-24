@@ -2,6 +2,7 @@ package com.module.notelycompose.android.di
 
 import android.content.Context
 import androidx.activity.result.ActivityResultLauncher
+import com.module.notelycompose.audio.presentation.mappers.AudioRecorderPresentationToUiMapper
 import com.module.notelycompose.audio.ui.expect.AudioRecorder
 import dagger.Module
 import dagger.Provides
@@ -51,5 +52,11 @@ object AudioRecorderModule {
     @Provides
     fun provideAudioRecorder(factory: AudioRecorderFactory): AudioRecorder {
         return factory.create()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAudioRecorderPresentationToUiStateMapper(): AudioRecorderPresentationToUiMapper {
+        return AudioRecorderPresentationToUiMapper()
     }
 }

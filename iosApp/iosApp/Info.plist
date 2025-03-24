@@ -22,6 +22,8 @@
 	<true/>
     <key>CADisableMinimumFrameDurationOnPhone</key>
     <true/>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app requires microphone access to record audio.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

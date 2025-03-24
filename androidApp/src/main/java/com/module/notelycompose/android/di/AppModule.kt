@@ -1,8 +1,6 @@
 package com.module.notelycompose.android.di
 
 import android.app.Application
-import com.module.notelycompose.audio.presentation.mappers.AudioPlayerPresentationToUiMapper
-import com.module.notelycompose.audio.presentation.mappers.AudioRecorderPresentationToUiMapper
 import com.module.notelycompose.core.DatabaseDriverFactory
 import com.module.notelycompose.database.NoteDatabase
 import com.module.notelycompose.notes.data.NoteSqlDelightDataSource
@@ -141,17 +139,5 @@ object AppModule {
     @Singleton
     fun provideTextAlignPresentationMapper(): TextAlignPresentationMapper {
         return TextAlignPresentationMapper()
-    }
-
-    @Provides
-    @Singleton
-    fun provideAudioRecorderPresentationToUiStateMapper(): AudioRecorderPresentationToUiMapper {
-        return AudioRecorderPresentationToUiMapper()
-    }
-
-    @Provides
-    @Singleton
-    fun provideAudioPlayerPresentationToUiMapper(): AudioPlayerPresentationToUiMapper {
-        return AudioPlayerPresentationToUiMapper()
     }
 }
