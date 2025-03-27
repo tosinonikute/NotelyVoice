@@ -7,8 +7,10 @@ import platform.AVFAudio.AVAudioQualityHigh
 import platform.AVFAudio.AVAudioRecorder
 import platform.AVFAudio.AVAudioSession
 import platform.AVFAudio.AVAudioSessionCategoryPlayAndRecord
+import platform.AVFAudio.AVAudioSessionCategoryRecord
 import platform.AVFAudio.AVAudioSessionRecordPermissionGranted
 import platform.AVFAudio.AVEncoderAudioQualityKey
+import platform.AVFAudio.AVEncoderBitRateKey
 import platform.AVFAudio.AVFormatIDKey
 import platform.AVFAudio.AVNumberOfChannelsKey
 import platform.AVFAudio.AVSampleRateKey
@@ -16,85 +18,78 @@ import platform.AVFAudio.setActive
 import platform.CoreAudioTypes.kAudioFormatMPEG4AAC
 import kotlin.coroutines.resume
 import kotlin.random.Random
+import platform.AVFoundation.*
+import platform.darwin.*
 
-private const val DEFAULT = "recording.mp3"
 private const val RECORDING_PREFIX = "recording_"
-private const val RECORDING_EXTENSION = ".mp3"
+private const val RECORDING_EXTENSION = ".m4a"
 
 actual class AudioRecorder {
+
     private var audioRecorder: AVAudioRecorder? = null
-    private var isCurrentlyRecording = false
-    private var currentRecordingPath: String? = null
-    private val audioSession = AVAudioSession.sharedInstance()
+    private var recordingSession: AVAudioSession = AVAudioSession.sharedInstance()
+    private lateinit var recordingURL: NSURL
 
     @OptIn(ExperimentalForeignApi::class)
     actual fun startRecording() {
+        if (!hasRecordingPermission()) {
+            println("Recording permission not granted")
+            return
+        }
+
         val randomNumber = Random.nextInt(100000, 999999)
         val fileName = "$RECORDING_PREFIX$randomNumber$RECORDING_EXTENSION"
 
-        // Get cache directory path in iOS
-        val fileManager = NSFileManager.defaultManager
-        val cachesDirectory = fileManager.URLsForDirectory(
-            NSCachesDirectory,
+        val documentsDirectory = NSFileManager.defaultManager.URLsForDirectory(
+            NSDocumentDirectory,
             NSUserDomainMask
-        ).firstOrNull() as NSURL?
+        ).first() as NSURL
 
-        val fileURL = cachesDirectory?.URLByAppendingPathComponent(fileName)
-        currentRecordingPath = fileURL?.path
+        this.recordingURL = documentsDirectory.URLByAppendingPathComponent(fileName)!!
 
-        // Configure audio session for recording
-        try {
-            audioSession.setCategory(
-                AVAudioSessionCategoryPlayAndRecord,
-                null
-            )
-            audioSession.setActive(true, null)
-
-            // Create settings dictionary for AAC format
-            val settings = mutableMapOf<Any?, Any>()
-            settings[AVFormatIDKey] = kAudioFormatMPEG4AAC
-            settings[AVSampleRateKey] = 44100.0
-            settings[AVNumberOfChannelsKey] = 1
-            settings[AVEncoderAudioQualityKey] = AVAudioQualityHigh
-
-            // Initialize and start recorder
-            fileURL?.let {
-                audioRecorder = AVAudioRecorder(
-                    uRL = it,
-                    settings = settings,
-                    error = null
+        recordingSession.requestRecordPermission { granted: Boolean ->
+            if (granted) {
+                val settings = mapOf<Any?, Any?>(
+                    AVFormatIDKey to kAudioFormatMPEG4AAC,
+                    AVSampleRateKey to 44100.0,
+                    AVNumberOfChannelsKey to 1,
+                    AVEncoderBitRateKey to 32000
                 )
-                audioRecorder?.prepareToRecord()
-                audioRecorder?.record()
-                isCurrentlyRecording = true
+                val url = NSURL.fileURLWithPath(this.recordingURL.path.orEmpty())
+                memScoped {
+                    try {
+                        val error: ObjCObjectVar<NSError?> = alloc()
+                        audioRecorder = AVAudioRecorder(url, settings, error.ptr)
+                        if(audioRecorder?.prepareToRecord() == true) {
+                            audioRecorder?.record()
+                        }
+                    } catch (e: Exception) {
+                        println(e.toString())
+                        e.printStackTrace()
+                    }
+                }
+            } else {
+                println("Recording permission not granted")
             }
-        } catch (e: Throwable) {
-            println("Recording error: ${e.message}")
         }
+        recordingSession.setCategory(AVAudioSessionCategoryRecord, null )
+        recordingSession.setActive(true, null)
     }
 
-    @OptIn(ExperimentalForeignApi::class)
     actual fun stopRecording() {
-        audioRecorder?.stop()
-        audioRecorder = null
-        isCurrentlyRecording = false
-
-        try {
-            audioSession.setActive(false, null)
-        } catch (e: Throwable) {
-            println("Could not deactivate audio session: ${e.message}")
+        if (audioRecorder?.isRecording() == true) {
+            audioRecorder?.stop()
+            audioRecorder = null
         }
     }
 
     actual fun isRecording(): Boolean {
-        return isCurrentlyRecording
+        return audioRecorder?.isRecording() ?: false
     }
 
     actual fun hasRecordingPermission(): Boolean {
-        return when (audioSession.recordPermission) {
-            AVAudioSessionRecordPermissionGranted -> true
-            else -> false
-        }
+        val status = recordingSession.recordPermission()
+        return status == AVAudioSessionRecordPermissionGranted
     }
 
     actual suspend fun requestRecordingPermission() {
@@ -103,24 +98,13 @@ actual class AudioRecorder {
         }
 
         return suspendCancellableCoroutine { continuation ->
-            audioSession.requestRecordPermission { granted ->
+            recordingSession.requestRecordPermission { granted ->
                 continuation.resume(Unit)
             }
         }
     }
 
     actual fun getRecordingFilePath(): String {
-        if (currentRecordingPath != null) {
-            return currentRecordingPath!!
-        }
-
-        // Return default path if no recording has been made
-        val fileManager = NSFileManager.defaultManager
-        val cachesDirectory = fileManager.URLsForDirectory(
-            NSCachesDirectory,
-            NSUserDomainMask
-        ).firstOrNull() as NSURL?
-
-        return cachesDirectory?.URLByAppendingPathComponent(DEFAULT)?.path ?: DEFAULT
+        return recordingURL.path.orEmpty()
     }
 }
