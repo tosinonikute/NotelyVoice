@@ -24,6 +24,8 @@
     <true/>
     <key>NSMicrophoneUsageDescription</key>
     <string>This app requires microphone access to record audio.</string>
+    <key>NSAppleMusicUsageDescription</key>
+    <string>This app requires access to play audio files.</string>
     <key>UIFileSharingEnabled</key>
     <true/>
     <key>LSSupportsOpeningDocumentsInPlace</key>
