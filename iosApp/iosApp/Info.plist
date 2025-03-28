@@ -24,6 +24,10 @@
     <true/>
     <key>NSMicrophoneUsageDescription</key>
     <string>This app requires microphone access to record audio.</string>
+    <key>UIFileSharingEnabled</key>
+    <true/>
+    <key>LSSupportsOpeningDocumentsInPlace</key>
+    <true/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
