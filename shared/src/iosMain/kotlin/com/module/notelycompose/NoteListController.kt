@@ -3,6 +3,7 @@ package com.module.notelycompose
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.uikit.OnFocusBehavior
 import androidx.compose.ui.window.ComposeUIViewController
 import com.module.notelycompose.notes.ui.detail.NoteDetailScreen
 import com.module.notelycompose.notes.presentation.list.NoteListEvent
@@ -41,7 +42,11 @@ fun NoteDetailController(
     noteId: String? = null,
     onSaveClicked: () -> Unit,
     onNavigateBack: () -> Unit
-) = ComposeUIViewController {
+) = ComposeUIViewController(
+    configure = {
+        onFocusBehavior = OnFocusBehavior.DoNothing
+    }
+) {
     MyApplicationTheme {
 
         val audioPlayerModule = AudioPlayerModule()
