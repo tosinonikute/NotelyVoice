@@ -37,3 +37,8 @@ getLastNote:
 SELECT * FROM notesEntity
 ORDER BY id DESC
 LIMIT 1;
+
+getLastNoteId:
+SELECT id FROM notesEntity
+ORDER BY id DESC
+LIMIT 1;

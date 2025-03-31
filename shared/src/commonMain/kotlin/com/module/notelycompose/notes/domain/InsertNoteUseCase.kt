@@ -16,13 +16,11 @@ class InsertNoteUseCase(
         formatting: List<TextFormatDomainModel>,
         textAlign: TextAlignDomainModel,
         recordingPath: String
-    ) {
-        noteDataSource.insertNote(
+    ) = noteDataSource.insertNote(
             title = title,
             content = content,
             formatting = formatting.map { textFormatMapper.mapToDataModel(it) },
             textAlign = noteDomainMapper.mapTextAlignToDataModel(textAlign),
             recordingPath = recordingPath
-        )
-    }
+    )
 }

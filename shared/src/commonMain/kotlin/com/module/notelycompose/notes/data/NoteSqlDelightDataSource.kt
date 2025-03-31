@@ -29,7 +29,7 @@ class NoteSqlDelightDataSource(
         formatting: List<TextFormatDataModel>,
         textAlign: TextAlignDataModel,
         recordingPath: String
-    ) {
+    ): Long? {
         queries.insertNote(
             title = title,
             content = content,
@@ -39,6 +39,7 @@ class NoteSqlDelightDataSource(
             recording_path = recordingPath,
             created_at = DateTimeUtil.toEpochMilli(DateTimeUtil.now())
         )
+        return getLastNoteId()
     }
 
     override suspend fun updateNote(
@@ -83,6 +84,12 @@ class NoteSqlDelightDataSource(
         return queries
             .getLastNote()
             .executeAsOneOrNull()?.toNoteDataModel(json)
+    }
+
+    override fun getLastNoteId(): Long? {
+        return queries
+            .getLastNoteId()
+            .executeAsOneOrNull()
     }
 
     override suspend fun deleteNoteById(id: Long) {

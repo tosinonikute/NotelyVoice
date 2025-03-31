@@ -14,7 +14,7 @@ interface NoteDataSource {
         formatting: List<TextFormatDataModel>,
         textAlign: TextAlignDataModel,
         recordingPath: String
-    )
+    ): Long?
 
     suspend fun updateNote(
         id: Long,
@@ -28,5 +28,6 @@ interface NoteDataSource {
     fun getNotes(): CommonFlow<List<NoteDataModel>>
     fun getNoteById(id: Long): NoteDataModel?
     fun getLastNote(): NoteDataModel?
+    fun getLastNoteId(): Long?
     suspend fun deleteNoteById(id: Long)
 }

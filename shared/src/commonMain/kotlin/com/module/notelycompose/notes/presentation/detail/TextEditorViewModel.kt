@@ -168,7 +168,7 @@ class TextEditorViewModel (
         recordingPath: String
     ) {
         viewModelScope.launch {
-            insertNoteUseCase.execute(
+            _currentNoteId.value = insertNoteUseCase.execute(
                 title = title,
                 content = content,
                 formatting = formatting.map { textFormatPresentationMapper.mapToDomainModel(it) },
@@ -246,9 +246,7 @@ class TextEditorViewModel (
                     formatting = formatting,
                     textAlign = textAlign,
                     recordingPath = recordingPath
-                ).also {
-                    _currentNoteId.value = getLastNote()?.id ?: 0L
-                }
+                )
             }
         }
     }
