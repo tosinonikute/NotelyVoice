@@ -40,6 +40,11 @@ import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.style.LayoutGuide
 import com.module.notelycompose.resources.vectors.IcPause
 import com.module.notelycompose.resources.vectors.Images
+import notelycompose.shared.generated.resources.Res
+import notelycompose.shared.generated.resources.player_ui_initial_time
+import notelycompose.shared.generated.resources.player_ui_pause
+import notelycompose.shared.generated.resources.player_ui_play
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun PlatformAudioPlayerUi(
@@ -77,7 +82,11 @@ fun PlatformAudioPlayerUi(
                 ) {
                     Icon(
                         imageVector = if (uiState.isPlaying) Images.Icons.IcPause else Icons.Filled.PlayArrow,
-                        contentDescription = if (uiState.isPlaying) "Pause" else "Play",
+                        contentDescription = if (uiState.isPlaying) {
+                            stringResource(Res.string.player_ui_pause)
+                        } else {
+                            stringResource(Res.string.player_ui_play)
+                        },
                         modifier = Modifier.size(28.dp),
                         tint = if (uiState.isLoaded) Color.DarkGray else Color.LightGray
                     )
@@ -108,7 +117,11 @@ fun PlatformAudioPlayerUi(
 
             Box(modifier = Modifier.weight(LayoutGuide.PlatformAudio.durationContainerWeight)) {
                 Text(
-                    text = if (uiState.duration > 0) uiState.duration.formatTimeToMMSS() else "00:00",
+                    text = if (uiState.duration > 0) {
+                        uiState.duration.formatTimeToMMSS()
+                    } else {
+                        stringResource(Res.string.player_ui_initial_time)
+                    },
                     color = Color.DarkGray,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,

@@ -21,6 +21,9 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import com.module.notelycompose.notes.presentation.list.model.NoteUiModel
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
+import notelycompose.shared.generated.resources.Res
+import notelycompose.shared.generated.resources.note_list_add_note
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun SharedNoteListScreen(
@@ -51,7 +54,7 @@ fun SharedNoteListScreen(
                     Icon(
                         modifier = Modifier.padding(4.dp),
                         imageVector = Icons.Default.Add,
-                        contentDescription = "Add Note",
+                        contentDescription = stringResource(Res.string.note_list_add_note),
                         tint = LocalCustomColors.current.floatActionButtonIconColor
                     )
                 }

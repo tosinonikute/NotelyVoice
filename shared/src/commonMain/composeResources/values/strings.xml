@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notely</string>
+
+    <!-- TopBar -->
+    <string name="top_bar_back">Back</string>
+    <string name="top_bar_notes">Notes</string>
+    <string name="top_bar_menu">Menu</string>
+
+    <!-- Delete Dialog -->
+    <string name="confirmation">Confirm</string>
+    <string name="confirmation_text">Do you want to delete the Note?</string>
+    <string name="confirmation_delete">Delete</string>
+    <string name="confirmation_cancel">Cancel</string>
+
+    <!-- BottomNavigationBar -->
+    <string name="bottom_navigation_letter">Letter Aa</string>
+    <string name="bottom_navigation_starred">Starred</string>
+    <string name="bottom_navigation_bullet_list">Bullet list</string>
+    <string name="bottom_navigation_delete">Delete Note</string>
+    <string name="bottom_navigation_hide_keyboard">Hide Keyboard</string>
+
+    <!-- Editing Toolbar -->
+    <string name="editing_bold">Bold</string>
+    <string name="editing_italic">Italic</string>
+    <string name="editing_underline">Underline</string>
+    <string name="editing_align_left">Align Left</string>
+    <string name="editing_align_center">Align Center</string>
+    <string name="editing_align_right">Align Right</string>
+
+    <!-- Format Bar -->
+    <string name="format_bar_text">Format</string>
+    <string name="format_bar_close">Close</string>
+    <string name="format_bar_title">Title</string>
+    <string name="format_bar_heading">Heading</string>
+    <string name="format_bar_subheading">Subheading</string>
+    <string name="format_bar_body">Body</string>
+
+    <!-- Note Detail -->
+    <string name="note_detail_recorder">Recorder</string>
+
+    <!-- Date Selection -->
+    <string name="note_detail_more_options">More options</string>
+
+    <!-- Date Tab Bar -->
+    <string name="date_tab_bar_all">All</string>
+    <string name="date_tab_bar_starred">Starred</string>
+    <string name="date_tab_bar_voices">Voices</string>
+    <string name="date_tab_bar_recent">Recent</string>
+
+    <!-- Note Item -->
+    <string name="note_item_delete">Delete Note</string>
+    <string name="note_item_edit">Edit</string>
+
+    <!-- Note List -->
+    <string name="note_list_add_note">Add Note</string>
+
+    <!-- Search Bar -->
+    <string name="search_bar_search_text">Search notes...</string>
+    <string name="search_bar_search_description">Search</string>
+
+    <!-- Recording UI -->
+    <string name="recording_ui_microphone">Microphone</string>
+    <string name="recording_ui_tap_start_record">Tap to start recording</string>
+    <string name="recording_ui_tap_stop_record">Tap to stop recording</string>
+    <string name="recording_ui_loading">loading</string>
+    <string name="recording_ui_loading_rotation">loading rotation</string>
+    <string name="recording_ui_checkmark">checkmark</string>
+
+    <!-- Player UI -->
+    <string name="player_ui_initial_time">00:00</string>
+    <string name="player_ui_pause">Pause</string>
+    <string name="player_ui_play">Play</string>
+
+</resources>

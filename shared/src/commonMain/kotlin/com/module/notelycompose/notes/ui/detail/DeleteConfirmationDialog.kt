@@ -4,6 +4,12 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import notelycompose.shared.generated.resources.Res
+import notelycompose.shared.generated.resources.confirmation
+import notelycompose.shared.generated.resources.confirmation_text
+import notelycompose.shared.generated.resources.confirmation_delete
+import notelycompose.shared.generated.resources.confirmation_cancel
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun DeleteConfirmationDialog(
@@ -14,8 +20,8 @@ fun DeleteConfirmationDialog(
     if (showDialog) {
         AlertDialog(
             onDismissRequest = onDismiss,
-            title = { Text("Delete Note") },
-            text = { Text("Do you want to delete the Note?") },
+            title = { Text(stringResource(Res.string.confirmation)) },
+            text = { Text(stringResource(Res.string.confirmation_text)) },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -23,14 +29,14 @@ fun DeleteConfirmationDialog(
                         onConfirm()
                     }
                 ) {
-                    Text("Delete")
+                    Text(stringResource(Res.string.confirmation_delete))
                 }
             },
             dismissButton = {
                 TextButton(
                     onClick = onDismiss
                 ) {
-                    Text("Cancel")
+                    Text(stringResource(Res.string.confirmation_cancel))
                 }
             }
         )

@@ -22,6 +22,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.focus.onFocusChanged
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
+import notelycompose.shared.generated.resources.Res
+import notelycompose.shared.generated.resources.search_bar_search_description
+import notelycompose.shared.generated.resources.search_bar_search_text
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun SearchBar() {
@@ -59,7 +63,7 @@ fun SearchBar() {
             label = {
                 if (isLabelVisible) {
                     Text(
-                        text = "Search notes...",
+                        text = stringResource(Res.string.search_bar_search_text),
                         color = LocalCustomColors.current.searchOutlinedTextFieldColor
                     )
                 }
@@ -67,7 +71,7 @@ fun SearchBar() {
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = "Search",
+                    contentDescription = stringResource(Res.string.search_bar_search_description),
                     tint = Color.White
                 )
             },

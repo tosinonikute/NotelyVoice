@@ -49,6 +49,9 @@ import com.module.notelycompose.audio.ui.recorder.RecordUiComponent
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcRecorder
 import com.module.notelycompose.resources.vectors.Images
+import notelycompose.shared.generated.resources.Res
+import notelycompose.shared.generated.resources.note_detail_recorder
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun NoteDetailScreen(
@@ -100,7 +103,7 @@ fun NoteDetailScreen(
             ) {
                 Icon(
                     imageVector = Images.Icons.IcRecorder,
-                    contentDescription = "Add",
+                    contentDescription = stringResource(Res.string.note_detail_recorder),
                     tint = LocalCustomColors.current.bodyContentColor
                 )
             }

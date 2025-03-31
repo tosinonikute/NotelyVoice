@@ -20,6 +20,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
+import notelycompose.shared.generated.resources.Res
+import notelycompose.shared.generated.resources.format_bar_text
+import notelycompose.shared.generated.resources.format_bar_close
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun FormatBar(
@@ -49,7 +53,7 @@ fun FormatBar(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Format",
+                    text = stringResource(Res.string.format_bar_text),
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Medium,
                     color = LocalCustomColors.current.bottomFormattingContentColor
@@ -57,7 +61,7 @@ fun FormatBar(
                 IconButton(onClick = onClose) {
                     Icon(
                         imageVector = Icons.Rounded.Close,
-                        contentDescription = "Close",
+                        contentDescription = stringResource(Res.string.format_bar_close),
                         tint = LocalCustomColors.current.bottomFormattingContentColor
                     )
                 }

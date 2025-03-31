@@ -21,6 +21,9 @@ import com.module.notelycompose.getPlatform
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcChevronLeft
 import com.module.notelycompose.resources.vectors.Images
+import notelycompose.shared.generated.resources.Res
+import notelycompose.shared.generated.resources.top_bar_back
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun DetailNoteTopBar(
@@ -48,7 +51,10 @@ private fun AndroidNoteTopBar(
         title = { Text(title) },
         navigationIcon = {
             IconButton(onClick = { onNavigateBack() }) {
-                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Back")
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = stringResource(Res.string.top_bar_back)
+                )
             }
         },
         backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
@@ -70,12 +76,12 @@ private fun IOSNoteTopBar(
             ) {
                 Icon(
                     imageVector = Images.Icons.IcChevronLeft,
-                    contentDescription = "Back",
+                    contentDescription = stringResource(Res.string.top_bar_back),
                     modifier = Modifier.size(28.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Back",
+                    text = stringResource(Res.string.top_bar_back),
                     style = MaterialTheme.typography.body1,
                 )
             }

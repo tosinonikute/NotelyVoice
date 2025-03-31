@@ -57,6 +57,15 @@ import com.module.notelycompose.resources.vectors.IcChevronLeft
 import com.module.notelycompose.resources.vectors.IcRecorder
 import com.module.notelycompose.resources.vectors.Images
 import kotlinx.coroutines.delay
+import notelycompose.shared.generated.resources.Res
+import notelycompose.shared.generated.resources.recording_ui_microphone
+import notelycompose.shared.generated.resources.recording_ui_tap_start_record
+import notelycompose.shared.generated.resources.recording_ui_tap_stop_record
+import notelycompose.shared.generated.resources.recording_ui_loading
+import notelycompose.shared.generated.resources.recording_ui_loading_rotation
+import notelycompose.shared.generated.resources.recording_ui_checkmark
+import notelycompose.shared.generated.resources.top_bar_back
+import org.jetbrains.compose.resources.stringResource
 
 enum class ScreenState {
     Initial,
@@ -144,14 +153,14 @@ fun RecordingInitialScreen(
             ) {
                 androidx.compose.material3.Icon(
                     imageVector = Images.Icons.IcRecorder,
-                    contentDescription = "Microphone",
+                    contentDescription = stringResource(Res.string.recording_ui_microphone),
                     tint = LocalCustomColors.current.bodyBackgroundColor,
                     modifier = Modifier.size(32.dp)
                 )
             }
 
             Text(
-                text = "Tap to start recording",
+                text = stringResource(Res.string.recording_ui_tap_start_record),
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Normal,
                 color = LocalCustomColors.current.bodyContentColor,
@@ -226,7 +235,7 @@ fun RecordingInProgressScreen(
                 }
 
                 Text(
-                    text = "Tap to stop recording",
+                    text = stringResource(Res.string.recording_ui_tap_stop_record),
                     color = LocalCustomColors.current.bodyContentColor,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal,
@@ -240,7 +249,9 @@ fun RecordingInProgressScreen(
 @Composable
 fun LoadingAnimation() {
     val drawArcColor = LocalCustomColors.current.bodyContentColor
-    val infiniteTransition = rememberInfiniteTransition(label = "loading")
+    val infiniteTransition = rememberInfiniteTransition(
+        label = stringResource(Res.string.recording_ui_loading)
+    )
     val rotation by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 360f,
@@ -248,7 +259,7 @@ fun LoadingAnimation() {
             animation = tween(2000, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
         ),
-        label = "loading rotation"
+        label = stringResource(Res.string.recording_ui_loading_rotation)
     )
 
     Canvas(modifier = Modifier.size(200.dp)) {
@@ -278,7 +289,7 @@ fun RecordingSuccessScreen() {
                 durationMillis = 1000,
                 easing = FastOutSlowInEasing
             ),
-            label = "checkmark"
+            label = stringResource(Res.string.recording_ui_checkmark)
         )
 
         LaunchedEffect(Unit) {
@@ -335,7 +346,7 @@ fun recordingUiComponentBackButton(
         ) {
             androidx.compose.material3.Icon(
                 imageVector = Icons.Default.ArrowBack,
-                contentDescription = "Back",
+                contentDescription = stringResource(Res.string.top_bar_back),
                 tint = LocalCustomColors.current.bodyContentColor
             )
         }
@@ -348,13 +359,13 @@ fun recordingUiComponentBackButton(
         ) {
             Icon(
                 imageVector = Images.Icons.IcChevronLeft,
-                contentDescription = "Back",
+                contentDescription = stringResource(Res.string.top_bar_back),
                 modifier = Modifier.size(28.dp),
                 tint = LocalCustomColors.current.bodyContentColor
             )
             Spacer(modifier = Modifier.width(8.dp))
             androidx.compose.material.Text(
-                text = "Back",
+                text = stringResource(Res.string.top_bar_back),
                 style = androidx.compose.material.MaterialTheme.typography.body1,
                 color = LocalCustomColors.current.bodyContentColor
             )

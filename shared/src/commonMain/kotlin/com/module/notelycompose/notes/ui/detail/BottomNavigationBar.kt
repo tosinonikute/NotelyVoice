@@ -28,10 +28,17 @@ import androidx.compose.ui.unit.dp
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.notes.ui.extensions.showKeyboard
 import com.module.notelycompose.resources.vectors.IcDetailList
-import com.module.notelycompose.resources.vectors.IcHeart
 import com.module.notelycompose.resources.vectors.IcKeyboardHide
 import com.module.notelycompose.resources.vectors.IcLetterAa
+import com.module.notelycompose.resources.vectors.IcStar
 import com.module.notelycompose.resources.vectors.Images
+import notelycompose.shared.generated.resources.Res
+import notelycompose.shared.generated.resources.bottom_navigation_letter
+import notelycompose.shared.generated.resources.bottom_navigation_bullet_list
+import notelycompose.shared.generated.resources.bottom_navigation_delete
+import notelycompose.shared.generated.resources.bottom_navigation_hide_keyboard
+import notelycompose.shared.generated.resources.bottom_navigation_starred
+import org.jetbrains.compose.resources.stringResource
 
 private const val ZERO_DENSITY = 0
 @Composable
@@ -111,28 +118,28 @@ fun BottomNavigationBar(
             }) {
                 Icon(
                     imageVector = Images.Icons.IcLetterAa,
-                    contentDescription = "Letter",
+                    contentDescription = stringResource(Res.string.bottom_navigation_letter),
                     tint = LocalCustomColors.current.bodyContentColor
                 )
             }
             IconButton(onClick = { onToggleBulletList() }) {
                 Icon(
                     imageVector = Images.Icons.IcDetailList,
-                    contentDescription = "Type",
+                    contentDescription = stringResource(Res.string.bottom_navigation_bullet_list),
                     tint = LocalCustomColors.current.bodyContentColor
                 )
             }
             IconButton(onClick = { /* Type */ }) {
                 Icon(
-                    imageVector = Images.Icons.IcHeart,
-                    contentDescription = "Type",
+                    imageVector = Images.Icons.IcStar,
+                    contentDescription = stringResource(Res.string.bottom_navigation_starred),
                     tint = LocalCustomColors.current.bodyContentColor
                 )
             }
             IconButton(onClick = { showDeleteDialog = true }) {
                 Icon(
                     imageVector = Icons.Filled.Delete,
-                    contentDescription = "Delete Note",
+                    contentDescription = stringResource(Res.string.bottom_navigation_delete),
                     tint = LocalCustomColors.current.bodyContentColor
                 )
             }
@@ -141,7 +148,7 @@ fun BottomNavigationBar(
             }) {
                 Icon(
                     imageVector = Images.Icons.IcKeyboardHide,
-                    contentDescription = "Hide Keyboard",
+                    contentDescription = stringResource(Res.string.bottom_navigation_hide_keyboard),
                     tint = LocalCustomColors.current.bodyContentColor
                 )
             }

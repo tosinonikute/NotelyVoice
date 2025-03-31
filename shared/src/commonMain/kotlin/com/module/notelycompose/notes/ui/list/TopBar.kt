@@ -21,10 +21,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
+import notelycompose.shared.generated.resources.Res
+import notelycompose.shared.generated.resources.top_bar_notes
+import notelycompose.shared.generated.resources.top_bar_menu
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun TopBar(
-    title: String = "Notes",
+    title: String = stringResource(Res.string.top_bar_notes),
     isLeftIconVisible: Boolean = true
 ) {
     val focusManager = LocalFocusManager.current
@@ -55,7 +59,7 @@ fun TopBar(
                         imageVector = Icons.Filled.Menu,
                         tint = LocalCustomColors.current.topButtonIconColor,
                         modifier = Modifier.size(24.dp).align(Alignment.Center),
-                        contentDescription = "menu"
+                        contentDescription = stringResource(Res.string.top_bar_menu)
                     )
                 }
             }

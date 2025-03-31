@@ -18,6 +18,10 @@ import com.module.notelycompose.notes.presentation.list.model.NoteUiModel
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcArrowUpRight
 import com.module.notelycompose.resources.vectors.Images
+import notelycompose.shared.generated.resources.Res
+import notelycompose.shared.generated.resources.note_item_delete
+import notelycompose.shared.generated.resources.note_item_edit
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun NoteItem(
@@ -65,7 +69,7 @@ fun NoteItem(
                         Icon(
                             imageVector = Icons.Default.Close,
                             tint = LocalCustomColors.current.noteIconColor,
-                            contentDescription = "Delete note"
+                            contentDescription = stringResource(Res.string.note_item_delete)
                         )
                     }
                 }
@@ -126,7 +130,7 @@ fun NoteItem(
                             Icon(
                                 imageVector = Images.Icons.IcArrowUpRight,
                                 tint = LocalCustomColors.current.noteIconColor,
-                                contentDescription = "Edit"
+                                contentDescription = stringResource(Res.string.note_item_edit)
                             )
                         }
                     }
