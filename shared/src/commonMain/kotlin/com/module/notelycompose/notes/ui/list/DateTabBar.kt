@@ -32,9 +32,9 @@ fun DateTabBar() {
 
     val icons = listOf(
         Images.Icons.IcFile,
-        Images.Icons.IcFolder,
         Images.Icons.IcStar,
-        Images.Icons.IcRecorderSmall
+        Images.Icons.IcRecorderSmall,
+        Images.Icons.IcFolder
     )
 
     Row(
