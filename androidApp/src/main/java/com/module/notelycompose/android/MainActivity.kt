@@ -126,6 +126,10 @@ fun NoteAppRoot() {
                 onSelectTextSizeFormat = { textSize ->
                     editorViewModel.setTextSize(textSize)
                 },
+                onDeleteNote = {
+                    editorViewModel.onDeleteNote()
+                    navController.popBackStack()
+                },
 
                 onStartRecord = { audioRecorderViewModel.onStartRecording() },
                 onStopRecord = { audioRecorderViewModel.onStopRecording() },

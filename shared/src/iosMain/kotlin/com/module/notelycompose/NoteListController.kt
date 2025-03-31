@@ -107,6 +107,10 @@ fun NoteDetailController(
             onSelectTextSizeFormat = { textSize ->
                 editorViewModel.setTextSize(textSize)
             },
+            onDeleteNote = {
+                editorViewModel.onDeleteNote()
+                onNavigateBack()
+            },
 
             onStartRecord = { audioRecorderViewModel.onStartRecording() },
             onStopRecord = { audioRecorderViewModel.onStopRecording() },

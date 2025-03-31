@@ -65,6 +65,7 @@ fun NoteDetailScreen(
     onSetAlignment: (alignment: TextAlign) -> Unit,
     onToggleBulletList: () -> Unit,
     onSelectTextSizeFormat: (textSize: Float) -> Unit,
+    onDeleteNote: () -> Unit,
 
     onStartRecord: () -> Unit,
     onStopRecord: () -> Unit,
@@ -122,9 +123,7 @@ fun NoteDetailScreen(
                 onShowTextFormatBar = { show ->
                     showFormatBar = show
                 },
-                onDeleteNote = {
-
-                },
+                onDeleteNote = { onDeleteNote() },
                 onSelectTextSizeFormat = { textSize ->
                     onSelectTextSizeFormat(textSize)
                 },

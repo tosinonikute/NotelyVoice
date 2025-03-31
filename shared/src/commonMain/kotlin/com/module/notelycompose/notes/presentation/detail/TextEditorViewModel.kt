@@ -198,6 +198,12 @@ class TextEditorViewModel (
         }
     }
 
+    fun onDeleteNote() {
+        _currentNoteId.value?.let { noteId ->
+            deleteNote(id = noteId)
+        }
+    }
+
     private fun deleteNote(id: Long) {
         viewModelScope.launch {
             deleteNoteUseCase.execute(id)
