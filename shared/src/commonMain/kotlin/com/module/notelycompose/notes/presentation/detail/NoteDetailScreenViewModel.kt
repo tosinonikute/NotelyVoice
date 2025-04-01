@@ -85,6 +85,7 @@ class NoteDetailScreenViewModel(
                 insertNote(
                     title = event.title,
                     content = event.content,
+                    starred = true,
                     formatting = event.formatting,
                     textAlign = event.textAlign,
                     recordingPath = ""
@@ -98,6 +99,7 @@ class NoteDetailScreenViewModel(
                     noteId = event.id,
                     title = event.title,
                     content = event.content,
+                    starred = true,
                     formatting = event.formatting,
                     textAlign = event.textAlign
                 )
@@ -111,6 +113,7 @@ class NoteDetailScreenViewModel(
     private fun insertNote(
         title: String,
         content: String,
+        starred: Boolean,
         formatting: List<TextPresentationFormat>,
         textAlign: TextAlign,
         recordingPath: String
@@ -119,6 +122,7 @@ class NoteDetailScreenViewModel(
             insertNoteUseCase.execute(
                 title = title,
                 content = content,
+                starred = starred,
                 formatting = formatting.map { textFormatPresentationMapper.mapToDomainModel(it) },
                 textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign),
                 recordingPath = recordingPath
@@ -130,6 +134,7 @@ class NoteDetailScreenViewModel(
         noteId: Long,
         title: String,
         content: String,
+        starred: Boolean,
         formatting: List<TextPresentationFormat>,
         textAlign: TextAlign
     ) {
@@ -138,6 +143,7 @@ class NoteDetailScreenViewModel(
                 id = noteId,
                 title = title,
                 content = content,
+                starred = starred,
                 formatting = formatting.map { textFormatPresentationMapper.mapToDomainModel(it) },
                 textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign),
                 recordingPath = ""

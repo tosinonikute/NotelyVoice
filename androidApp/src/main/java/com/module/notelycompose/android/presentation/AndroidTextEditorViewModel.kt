@@ -95,4 +95,8 @@ class AndroidTextEditorViewModel @Inject constructor(
     fun onDeleteNote() {
         return viewModel.onDeleteNote()
     }
+
+    fun onToggleStar() {
+        viewModel.onToggleStar()
+    }
 }

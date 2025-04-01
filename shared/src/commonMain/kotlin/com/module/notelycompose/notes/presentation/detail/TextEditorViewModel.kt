@@ -44,7 +44,8 @@ data class EditorPresentationState(
     val formats: List<TextPresentationFormat> = emptyList(),
     val textAlign: TextAlign = TextAlign.Left,
     val selectionSize: TextFormatPresentationOption = TextPresentationFormats.NoSelection,
-    val recording: RecordingPathPresentationModel = RecordingPathPresentationModel()
+    val recording: RecordingPathPresentationModel = RecordingPathPresentationModel(),
+    val starred: Boolean = false
 )
 
 data class TextFormatPresentationOption(
@@ -97,7 +98,8 @@ class TextEditorViewModel (
                                 textFormatPresentationMapper.mapToPresentationModel(it) },
                             textAlign = textAlignPresentationMapper.mapToComposeTextAlign(
                                 retrievedNote.textAlign),
-                            recordingPath = retrievedNote.recordingPath
+                            recordingPath = retrievedNote.recordingPath,
+                            starred = retrievedNote.starred
                         )
                         _currentNoteId.value = id
                     }
@@ -118,6 +120,7 @@ class TextEditorViewModel (
         createOrUpdateEvent(
             title = newContent.text,
             content = newContent.text,
+            starred = _editorPresentationState.value.starred,
             isEditingStarted = isEditingStarted,
             formatting = _editorPresentationState.value.formats,
             textAlign = _editorPresentationState.value.textAlign,
@@ -144,14 +147,16 @@ class TextEditorViewModel (
         content: String,
         formats: List<TextPresentationFormat>,
         textAlign: TextAlign,
-        recordingPath: String
+        recordingPath: String,
+        starred: Boolean
     ) {
         _editorPresentationState.update {
             it.copy(
                 content = TextFieldValue(content),
                 formats = formats,
                 textAlign = textAlign,
-                recording = recordingPath(recordingPath)
+                recording = recordingPath(recordingPath),
+                starred = starred
             )
         }
     }
@@ -163,6 +168,7 @@ class TextEditorViewModel (
     private fun insertNote(
         title: String,
         content: String,
+        starred: Boolean,
         formatting: List<TextPresentationFormat>,
         textAlign: TextAlign,
         recordingPath: String
@@ -171,6 +177,7 @@ class TextEditorViewModel (
             _currentNoteId.value = insertNoteUseCase.execute(
                 title = title,
                 content = content,
+                starred = starred,
                 formatting = formatting.map { textFormatPresentationMapper.mapToDomainModel(it) },
                 textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign),
                 recordingPath = recordingPath
@@ -182,6 +189,7 @@ class TextEditorViewModel (
         noteId: Long,
         title: String,
         content: String,
+        starred: Boolean,
         formatting: List<TextPresentationFormat>,
         textAlign: TextAlign,
         recordingPath: String
@@ -191,6 +199,7 @@ class TextEditorViewModel (
                 id = noteId,
                 title = title,
                 content = content,
+                starred = starred,
                 formatting = formatting.map { textFormatPresentationMapper.mapToDomainModel(it) },
                 textAlign = textAlignPresentationMapper.mapToDomainModel(textAlign),
                 recordingPath = recordingPath
@@ -210,6 +219,16 @@ class TextEditorViewModel (
         }
     }
 
+    fun onToggleStar() {
+        val starred = _editorPresentationState.value.starred
+        _editorPresentationState.update {
+            it.copy(
+                starred = !starred
+            )
+        }
+        onUpdateContent(newContent = _editorPresentationState.value.content)
+    }
+
     // TODO: use state to set this
     fun getNewNoteContentDate(id: String): String {
         val note = getNoteById(id)
@@ -225,6 +244,7 @@ class TextEditorViewModel (
     private fun createOrUpdateEvent(
         title: String,
         content: String,
+        starred: Boolean,
         isEditingStarted: Boolean,
         formatting: List<TextPresentationFormat>,
         textAlign: TextAlign,
@@ -240,6 +260,7 @@ class TextEditorViewModel (
                     noteId = currentNoteId,
                     title = title,
                     content = content,
+                    starred = starred,
                     formatting = formatting,
                     textAlign = textAlign,
                     recordingPath = recordingPath
@@ -249,6 +270,7 @@ class TextEditorViewModel (
                 insertNote(
                     title = title,
                     content = content,
+                    starred = starred,
                     formatting = formatting,
                     textAlign = textAlign,
                     recordingPath = recordingPath
@@ -429,11 +451,13 @@ class TextEditorViewModel (
         val content = _editorPresentationState.value.content
         val formats = _editorPresentationState.value.formats
         val textAlign = _editorPresentationState.value.textAlign
+        val starred = _editorPresentationState.value.starred
         val recordingPath = _editorPresentationState.value.recording.recordingPath
         if(content.text.isNotEmpty()) {
             createOrUpdateEvent(
                 title = content.text,
                 content = content.text,
+                starred = starred,
                 isEditingStarted = true,
                 formatting = formats,
                 textAlign = textAlign,

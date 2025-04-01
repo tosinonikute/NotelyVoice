@@ -2,7 +2,7 @@ CREATE TABLE notesEntity(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     content TEXT NOT NULL,
-    colorHex INTEGER NOT NULL,
+    starred INTEGER NOT NULL,
     formatting TEXT NOT NULL,
     text_align TEXT NOT NULL DEFAULT 'Start',
     recording_path TEXT NOT NULL,
@@ -16,8 +16,8 @@ getNoteById:
 SELECT * FROM notesEntity WHERE id = :id;
 
 insertNote:
-INSERT INTO notesEntity(title, content, colorHex, formatting, text_align, recording_path, created_at)
-VALUES(:title, :content, :colorHex, :formatting, :text_align, :recording_path, :created_at);
+INSERT INTO notesEntity(title, content, starred, formatting, text_align, recording_path, created_at)
+VALUES(:title, :content, :starred, :formatting, :text_align, :recording_path, :created_at);
 
 deleteNoteById:
 DELETE FROM notesEntity WHERE id = :id;
@@ -26,7 +26,7 @@ updateNote:
 UPDATE notesEntity
 SET title = :title,
     content = :content,
-    colorHex = :colorHex,
+    starred = :starred,
     formatting = :formatting,
     text_align = :text_align,
     recording_path = :recording_path,

@@ -11,6 +11,7 @@ interface NoteDataSource {
     suspend fun insertNote(
         title: String,
         content: String,
+        starred: Boolean,
         formatting: List<TextFormatDataModel>,
         textAlign: TextAlignDataModel,
         recordingPath: String
@@ -20,6 +21,7 @@ interface NoteDataSource {
         id: Long,
         title: String,
         content: String,
+        starred: Boolean,
         formatting: List<TextFormatDataModel>,
         textAlign: TextAlignDataModel,
         recordingPath: String

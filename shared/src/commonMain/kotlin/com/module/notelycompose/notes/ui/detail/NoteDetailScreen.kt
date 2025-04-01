@@ -77,7 +77,9 @@ fun NoteDetailScreen(
     onClear: () -> Unit,
     onSeekTo: (position: Int) -> Unit,
     onTogglePlayPause: () -> Unit,
-    audioPlayerUiState: AudioPlayerUiState
+    audioPlayerUiState: AudioPlayerUiState,
+
+    onStarNote: () -> Unit
 ) {
     var showFormatBar by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
@@ -128,7 +130,9 @@ fun NoteDetailScreen(
                     onSelectTextSizeFormat(textSize)
                 },
                 selectionSize = editorState.selectionSize,
-                textFieldFocusRequester = focusRequester
+                textFieldFocusRequester = focusRequester,
+                isStarred = editorState.isStarred,
+                onStarNote = { onStarNote() }
             )
         },
         content = { paddingValues ->

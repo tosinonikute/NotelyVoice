@@ -7,7 +7,6 @@ import com.module.notelycompose.database.NoteDatabase
 import com.module.notelycompose.notes.data.model.NoteDataModel
 import com.module.notelycompose.notes.data.model.TextAlignDataModel
 import com.module.notelycompose.notes.data.model.TextFormatDataModel
-import com.module.notelycompose.notes.domain.model.Note
 import com.module.notelycompose.notes.domain.NoteDataSource
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
@@ -26,6 +25,7 @@ class NoteSqlDelightDataSource(
     override suspend fun insertNote(
         title: String,
         content: String,
+        starred: Boolean,
         formatting: List<TextFormatDataModel>,
         textAlign: TextAlignDataModel,
         recordingPath: String
@@ -33,7 +33,7 @@ class NoteSqlDelightDataSource(
         queries.insertNote(
             title = title,
             content = content,
-            colorHex = Note.generateRandomColor(),
+            starred = starred.starredToDigit(),
             formatting = json.encodeToString(formatting),
             text_align = textAlign.toString(),
             recording_path = recordingPath,
@@ -46,6 +46,7 @@ class NoteSqlDelightDataSource(
         id: Long,
         title: String,
         content: String,
+        starred: Boolean,
         formatting: List<TextFormatDataModel>,
         textAlign: TextAlignDataModel,
         recordingPath: String
@@ -54,7 +55,7 @@ class NoteSqlDelightDataSource(
             id = id,
             title = title,
             content = content,
-            colorHex = Note.generateRandomColor(),
+            starred = starred.starredToDigit(),
             formatting = json.encodeToString(formatting),
             text_align = textAlign.toString(),
             recording_path = recordingPath,
@@ -95,5 +96,13 @@ class NoteSqlDelightDataSource(
     override suspend fun deleteNoteById(id: Long) {
         queries
             .deleteNoteById(id)
+    }
+}
+
+fun Boolean.starredToDigit(): Long {
+    return if(this) {
+        1
+    } else {
+        0
     }
 }

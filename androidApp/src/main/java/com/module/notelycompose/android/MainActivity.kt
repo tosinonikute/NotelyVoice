@@ -141,7 +141,9 @@ fun NoteAppRoot() {
                 onClear = { audioPlayerViewModel.onCleared() },
                 onSeekTo = { position -> audioPlayerViewModel.onSeekTo(position) },
                 onTogglePlayPause = { audioPlayerViewModel.onTogglePlayPause() },
-                audioPlayerUiState = audioPlayerState
+                audioPlayerUiState = audioPlayerState,
+
+                onStarNote = { editorViewModel.onToggleStar() }
             )
         }
     }

@@ -13,7 +13,8 @@ data class EditorUiState(
     val formats: List<TextUiFormat> = emptyList(),
     val textAlign: TextAlign = TextAlign.Left,
     val selectionSize: TextFormatUiOption = TextUiFormats.Body,
-    val recording: RecordingPathUiModel
+    val recording: RecordingPathUiModel,
+    val isStarred: Boolean
 )
 
 data class TextUiFormat(

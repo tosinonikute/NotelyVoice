@@ -15,7 +15,7 @@ fun NotesEntity.toNote(): Note {
         id = id.toInt(),
         title = title,
         content = content,
-        colorHex = colorHex,
+        starred = starred,
         createdAt = Instant.fromEpochMilliseconds(created_at)
             .toLocalDateTime(TimeZone.currentSystemDefault())
     )
@@ -26,7 +26,7 @@ fun NotesEntity.toNoteDataModel(json :Json): NoteDataModel {
         id = id,
         title = title,
         content = content,
-        colorHex = colorHex,
+        starred = starred.starredToBool(),
         formatting = try {
             json.decodeFromString<List<TextFormatDataModel>>(formatting)
         } catch (e: Exception) {
@@ -41,4 +41,8 @@ fun NotesEntity.toNoteDataModel(json :Json): NoteDataModel {
         createdAt = Instant.fromEpochMilliseconds(created_at)
             .toLocalDateTime(TimeZone.currentSystemDefault())
     )
+}
+
+fun Long.starredToBool(): Boolean {
+    return this == 1L
 }

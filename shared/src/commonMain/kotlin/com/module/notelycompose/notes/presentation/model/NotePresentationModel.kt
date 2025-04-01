@@ -8,7 +8,7 @@ data class NotePresentationModel(
     val id: Long,
     val title: String,
     val content: String,
-    val colorHex: Long,
+    val starred: Long,
     val formatting: List<TextFormatDomainModel>,
     val textAlign: TextAlignDomainModel,
     val createdAt: LocalDateTime

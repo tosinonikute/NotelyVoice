@@ -14,6 +14,7 @@ class UpdateNoteUseCase(
         id: Long,
         title: String,
         content: String,
+        starred: Boolean,
         formatting: List<TextFormatDomainModel>,
         textAlign: TextAlignDomainModel,
         recordingPath: String
@@ -22,6 +23,7 @@ class UpdateNoteUseCase(
             id = id,
             title = title,
             content = content,
+            starred = starred,
             formatting = formatting.map { textFormatMapper.mapToDataModel(it) },
             textAlign = noteDomainMapper.mapTextAlignToDataModel(textAlign),
             recordingPath = recordingPath

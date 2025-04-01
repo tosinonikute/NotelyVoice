@@ -6,7 +6,7 @@ data class NoteDomainModel(
     val id: Long,
     val title: String,
     val content: String,
-    val colorHex: Long,
+    val starred: Boolean,
     val formatting: List<TextFormatDomainModel>,
     val textAlign: TextAlignDomainModel,
     val recordingPath: String,

@@ -31,6 +31,7 @@ import com.module.notelycompose.resources.vectors.IcDetailList
 import com.module.notelycompose.resources.vectors.IcKeyboardHide
 import com.module.notelycompose.resources.vectors.IcLetterAa
 import com.module.notelycompose.resources.vectors.IcStar
+import com.module.notelycompose.resources.vectors.IcStarFilled
 import com.module.notelycompose.resources.vectors.Images
 import notelycompose.shared.generated.resources.Res
 import notelycompose.shared.generated.resources.bottom_navigation_letter
@@ -41,6 +42,7 @@ import notelycompose.shared.generated.resources.bottom_navigation_starred
 import org.jetbrains.compose.resources.stringResource
 
 private const val ZERO_DENSITY = 0
+
 @Composable
 fun BottomNavigationBar(
     onToggleBold: () -> Unit,
@@ -53,7 +55,9 @@ fun BottomNavigationBar(
     onDeleteNote: () -> Unit,
     onSelectTextSizeFormat: (textSize: Float) -> Unit,
     selectionSize: TextFormatUiOption,
-    textFieldFocusRequester: FocusRequester
+    textFieldFocusRequester: FocusRequester,
+    isStarred: Boolean,
+    onStarNote: () -> Unit
 ) {
     var selectedFormat by remember { mutableStateOf(FormatOptionTextFormat.Body) }
     var showDeleteDialog by remember { mutableStateOf(false) }
@@ -129,9 +133,13 @@ fun BottomNavigationBar(
                     tint = LocalCustomColors.current.bodyContentColor
                 )
             }
-            IconButton(onClick = { /* Type */ }) {
+            IconButton(onClick = { onStarNote() }) {
                 Icon(
-                    imageVector = Images.Icons.IcStar,
+                    imageVector = if(isStarred) {
+                        Images.Icons.IcStarFilled
+                    } else {
+                        Images.Icons.IcStar
+                    },
                     contentDescription = stringResource(Res.string.bottom_navigation_starred),
                     tint = LocalCustomColors.current.bodyContentColor
                 )

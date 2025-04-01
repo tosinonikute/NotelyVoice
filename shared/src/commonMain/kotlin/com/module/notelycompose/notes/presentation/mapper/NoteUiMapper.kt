@@ -9,7 +9,7 @@ class NoteUiMapper {
             id = domainModel.id,
             title = domainModel.title,
             content = domainModel.content,
-            colorHex = domainModel.colorHex,
+            starred = domainModel.starred,
             createdAt = domainModel.createdAt
         )
     }

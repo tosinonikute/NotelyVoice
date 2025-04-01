@@ -89,4 +89,8 @@ class IOSTextEditorViewModel(
     fun onDeleteNote() {
         return viewModel.onDeleteNote()
     }
+
+    fun onToggleStar() {
+        viewModel.onToggleStar()
+    }
 }
