@@ -28,6 +28,8 @@ interface NoteDataSource {
     )
 
     fun getNotes(): CommonFlow<List<NoteDataModel>>
+    fun getStarredNotes(): CommonFlow<List<NoteDataModel>>
+    fun getVoiceNotes(): CommonFlow<List<NoteDataModel>>
     fun getNoteById(id: Long): NoteDataModel?
     fun getLastNote(): NoteDataModel?
     fun getLastNoteId(): Long?

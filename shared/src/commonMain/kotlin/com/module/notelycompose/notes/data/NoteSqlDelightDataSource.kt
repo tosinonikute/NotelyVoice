@@ -14,6 +14,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
+private const val STARRED = 1L
+private const val NOT_STARRED = 0L
+
 class NoteSqlDelightDataSource(
     private val database: NoteDatabase
 ) : NoteDataSource {
@@ -75,6 +78,30 @@ class NoteSqlDelightDataSource(
             }.toCommonFlow()
     }
 
+    override fun getStarredNotes(): CommonFlow<List<NoteDataModel>> {
+        return queries
+            .getNotesByStarred(STARRED)
+            .asFlow()
+            .mapToList()
+            .map { notes ->
+                notes.map { note ->
+                    note.toNoteDataModel(json)
+                }
+            }.toCommonFlow()
+    }
+
+    override fun getVoiceNotes(): CommonFlow<List<NoteDataModel>> {
+        return queries
+            .getNotesByRecordingPath()
+            .asFlow()
+            .mapToList()
+            .map { notes ->
+                notes.map { note ->
+                    note.toNoteDataModel(json)
+                }
+            }.toCommonFlow()
+    }
+
     override fun getNoteById(id: Long): NoteDataModel? {
         return queries
             .getNoteById(id)
@@ -101,8 +128,8 @@ class NoteSqlDelightDataSource(
 
 fun Boolean.starredToDigit(): Long {
     return if(this) {
-        1
+        STARRED
     } else {
-        0
+        NOT_STARRED
     }
 }

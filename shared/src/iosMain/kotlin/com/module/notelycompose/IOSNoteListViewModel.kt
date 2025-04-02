@@ -10,7 +10,6 @@ import com.module.notelycompose.notes.presentation.mapper.NoteUiMapper
 class IOSNoteListViewModel (
     private val getAllNotesUseCase: GetAllNotesUseCase,
     private val deleteNoteById: DeleteNoteById,
-    private val insertNoteUseCase: InsertNoteUseCase,
     private val noteUiMapper: NoteUiMapper
 ) {
 
@@ -18,7 +17,6 @@ class IOSNoteListViewModel (
         NoteListViewModel(
             getAllNotesUseCase = getAllNotesUseCase,
             deleteNoteById = deleteNoteById,
-            insertNoteUseCase = insertNoteUseCase,
             noteUiMapper = noteUiMapper,
             coroutineScope = null
         )

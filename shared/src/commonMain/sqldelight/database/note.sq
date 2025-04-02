@@ -42,3 +42,9 @@ getLastNoteId:
 SELECT id FROM notesEntity
 ORDER BY id DESC
 LIMIT 1;
+
+getNotesByStarred:
+SELECT * FROM notesEntity WHERE starred = :starred ORDER BY created_at DESC;
+
+getNotesByRecordingPath:
+SELECT * FROM notesEntity WHERE recording_path != '' ORDER BY created_at DESC;

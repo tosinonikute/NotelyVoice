@@ -15,7 +15,6 @@ import javax.inject.Inject
 class AndroidNoteListViewModel @Inject constructor(
     private val getAllNotesUseCase: GetAllNotesUseCase,
     private val deleteNoteById: DeleteNoteById,
-    private val insertNoteUseCase: InsertNoteUseCase,
     private val noteUiMapper: NoteUiMapper
 ) : ViewModel() {
 
@@ -23,7 +22,6 @@ class AndroidNoteListViewModel @Inject constructor(
         NoteListViewModel(
             getAllNotesUseCase = getAllNotesUseCase,
             deleteNoteById = deleteNoteById,
-            insertNoteUseCase = insertNoteUseCase,
             noteUiMapper = noteUiMapper,
             coroutineScope = viewModelScope
         )

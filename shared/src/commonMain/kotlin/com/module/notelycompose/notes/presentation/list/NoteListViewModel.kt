@@ -3,8 +3,7 @@ package com.module.notelycompose.notes.presentation.list
 import com.module.notelycompose.core.toCommonStateFlow
 import com.module.notelycompose.notes.domain.DeleteNoteById
 import com.module.notelycompose.notes.domain.GetAllNotesUseCase
-import com.module.notelycompose.notes.domain.InsertNoteUseCase
-import com.module.notelycompose.notes.domain.UpdateNoteUseCase
+import com.module.notelycompose.notes.domain.model.NotesFilter
 import com.module.notelycompose.notes.presentation.mapper.NoteUiMapper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,19 +15,21 @@ import kotlinx.coroutines.launch
 
 const val DEFAULT_TITLE = "New Note"
 const val DEFAULT_CONTENT = "No additional text"
+const val STATE_SUBSCRIPTION_TIMEOUT = 5000L
 
 class NoteListViewModel(
     private val getAllNotesUseCase: GetAllNotesUseCase,
     private val deleteNoteById: DeleteNoteById,
-    private val insertNoteUseCase: InsertNoteUseCase,
     private val noteUiMapper: NoteUiMapper,
     coroutineScope: CoroutineScope? = null
 ) {
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
     private val _state = MutableStateFlow(NoteListUiState())
-    val state = combine(
+    val state = createCombinedState(NotesFilter.ALL)
+
+    private fun createCombinedState(filter: NotesFilter) = combine(
         _state,
-        getAllNotesUseCase.execute()
+        getAllNotesUseCase.execute(filter)
     ) { state, notes ->
         state.copy(
             notes = notes.map { note ->
@@ -39,7 +40,7 @@ class NoteListViewModel(
                 )
             }
         )
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), NoteListUiState())
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(STATE_SUBSCRIPTION_TIMEOUT), NoteListUiState())
         .toCommonStateFlow()
 
     fun onEvent(event: NoteListEvent) {
@@ -49,7 +50,12 @@ class NoteListViewModel(
                     deleteNoteById.execute(event.id)
                 }
             }
-            else -> Unit
+            is NoteListEvent.OnStarredNote -> {
+                createCombinedState(NotesFilter.STARRED)
+            }
+            is NoteListEvent.OnVoiceNote -> {
+                createCombinedState(NotesFilter.VOICES)
+            }
         }
     }
 }
