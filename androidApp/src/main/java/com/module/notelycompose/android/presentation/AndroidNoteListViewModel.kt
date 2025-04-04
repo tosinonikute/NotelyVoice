@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.module.notelycompose.notes.domain.DeleteNoteById
 import com.module.notelycompose.notes.domain.GetAllNotesUseCase
-import com.module.notelycompose.notes.domain.InsertNoteUseCase
 import com.module.notelycompose.notes.presentation.list.NoteListEvent
 import com.module.notelycompose.notes.presentation.list.NoteListViewModel
+import com.module.notelycompose.notes.presentation.list.mapper.NotesFilterMapper
 import com.module.notelycompose.notes.presentation.mapper.NoteUiMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -15,7 +15,8 @@ import javax.inject.Inject
 class AndroidNoteListViewModel @Inject constructor(
     private val getAllNotesUseCase: GetAllNotesUseCase,
     private val deleteNoteById: DeleteNoteById,
-    private val noteUiMapper: NoteUiMapper
+    private val noteUiMapper: NoteUiMapper,
+    private val notesFilterMapper: NotesFilterMapper
 ) : ViewModel() {
 
     private val viewModel by lazy {
@@ -23,6 +24,7 @@ class AndroidNoteListViewModel @Inject constructor(
             getAllNotesUseCase = getAllNotesUseCase,
             deleteNoteById = deleteNoteById,
             noteUiMapper = noteUiMapper,
+            notesFilterMapper = notesFilterMapper,
             coroutineScope = viewModelScope
         )
     }

@@ -30,7 +30,8 @@ fun SharedNoteListScreen(
     notes: List<NoteUiModel>,
     onFloatingActionButtonClicked: () -> Unit,
     onNoteClicked: (Long) -> Unit,
-    onNoteDeleteClicked: (Long) -> Unit
+    onNoteDeleteClicked: (Long) -> Unit,
+    onFilterTabItemClicked: (String) -> Unit
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -73,7 +74,11 @@ fun SharedNoteListScreen(
                 }
         ) {
             SearchBar()
-            DateTabBar()
+            FilterTabBar(
+                onFilterTabItemClicked = { title ->
+                    onFilterTabItemClicked(title)
+                }
+            )
             NoteList(
                 noteList = notes,
                 onNoteClicked = { id ->

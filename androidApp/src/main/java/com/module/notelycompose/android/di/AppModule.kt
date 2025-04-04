@@ -13,6 +13,7 @@ import com.module.notelycompose.notes.domain.NoteDataSource
 import com.module.notelycompose.notes.domain.UpdateNoteUseCase
 import com.module.notelycompose.notes.domain.mapper.NoteDomainMapper
 import com.module.notelycompose.notes.domain.mapper.TextFormatMapper
+import com.module.notelycompose.notes.presentation.list.mapper.NotesFilterMapper
 import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.presentation.mapper.NoteUiMapper
 import com.module.notelycompose.notes.presentation.mapper.TextAlignPresentationMapper
@@ -139,5 +140,11 @@ object AppModule {
     @Singleton
     fun provideTextAlignPresentationMapper(): TextAlignPresentationMapper {
         return TextAlignPresentationMapper()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNotesFilterMapper(): NotesFilterMapper {
+        return NotesFilterMapper()
     }
 }

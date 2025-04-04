@@ -25,6 +25,9 @@ fun NoteListScreen(
         },
         onNoteDeleteClicked = {
             viewmodel.onEvent(NoteListEvent.OnNoteDeleted(it))
+        },
+        onFilterTabItemClicked = { filter ->
+            viewmodel.onEvent(NoteListEvent.OnFilterNote(filter))
         }
     )
 }

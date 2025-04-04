@@ -7,3 +7,6 @@ fun Int.formatTimeToMMSS(): String {
 
     return "$minutes:${seconds.toString().padStart(2, '0')}"
 }
+
+fun String.keepFirstCharCaseExt(): String =
+    if (isEmpty()) "" else first() + substring(1).lowercase()

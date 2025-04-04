@@ -27,7 +27,7 @@ import notelycompose.shared.generated.resources.note_detail_more_options
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun DateSelection(
+fun FilterSelection(
     titles: List<String>,
     icons: List<ImageVector>,
     tabSelected: String,

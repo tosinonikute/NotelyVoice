@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.module.notelycompose.audio.ui.keepFirstCharCaseExt
 import com.module.notelycompose.resources.vectors.IcFile
 import com.module.notelycompose.resources.vectors.IcFolder
 import com.module.notelycompose.resources.vectors.IcStar
@@ -21,7 +22,9 @@ import notelycompose.shared.generated.resources.date_tab_bar_recent
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun DateTabBar() {
+fun FilterTabBar(
+    onFilterTabItemClicked: (String) -> Unit
+) {
     val titles = listOf(
         stringResource(Res.string.date_tab_bar_all),
         stringResource(Res.string.date_tab_bar_starred),
@@ -47,12 +50,13 @@ fun DateTabBar() {
                 bottom = 8.dp
             )
     ) {
-        DateSelection(
+        FilterSelection(
             titles = titles,
             icons = icons,
             tabSelected = selectedTitle.value,
             onTabSelected = { title ->
                 selectedTitle.value = title
+                onFilterTabItemClicked(title)
             }
         )
     }
