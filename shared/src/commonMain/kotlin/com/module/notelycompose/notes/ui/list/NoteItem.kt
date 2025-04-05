@@ -51,11 +51,7 @@ fun NoteItem(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "${note.createdAt.dayOfMonth} ${note.createdAt.month.toString()
-                            .lowercase()
-                            .replaceFirstChar { 
-                                if (it.isLowerCase()) it.titlecase() else it.toString() 
-                            } } at ${note.createdAt.hour}:${note.createdAt.minute}",
+                        text = note.createdAt,
                         color = LocalCustomColors.current.noteTextColor,
                         fontSize = 16.sp,
                         modifier = Modifier.padding(bottom = 12.dp)
