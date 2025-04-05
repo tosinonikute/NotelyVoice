@@ -25,7 +25,8 @@ val DarkCustomColors = CustomColors(
     bottomFormattingContainerColor = Color(0xFFF2F2F2),
     bottomFormattingContentColor = Color.Black,
     activeThumbTrackColor = Color(0xFF666666),
-    playerBoxBackgroundColor = Color(0xFFF2F2F2)
+    playerBoxBackgroundColor = Color(0xFFF2F2F2),
+    starredColor = Color.Blue
 )
 
 val LightCustomColors = CustomColors(
@@ -50,7 +51,8 @@ val LightCustomColors = CustomColors(
     bottomFormattingContainerColor = Color(0xFFF2F2F2),
     bottomFormattingContentColor = Color.Black,
     activeThumbTrackColor = Color(0xFF666666),
-    playerBoxBackgroundColor = Color(0xFFEEEEEE)
+    playerBoxBackgroundColor = Color(0xFFEEEEEE),
+    starredColor = Color.Blue
 )
 
 // Create a CompositionLocal to hold the custom colors

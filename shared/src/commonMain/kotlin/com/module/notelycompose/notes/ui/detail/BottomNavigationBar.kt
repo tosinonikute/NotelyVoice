@@ -141,7 +141,7 @@ fun BottomNavigationBar(
                         Images.Icons.IcStar
                     },
                     contentDescription = stringResource(Res.string.bottom_navigation_starred),
-                    tint = LocalCustomColors.current.bodyContentColor
+                    tint = LocalCustomColors.current.starredColor
                 )
             }
             IconButton(onClick = { showDeleteDialog = true }) {

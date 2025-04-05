@@ -12,6 +12,7 @@ import com.module.notelycompose.notes.domain.NoteDataSource
 import com.module.notelycompose.notes.domain.UpdateNoteUseCase
 import com.module.notelycompose.notes.domain.mapper.NoteDomainMapper
 import com.module.notelycompose.notes.domain.mapper.TextFormatMapper
+import com.module.notelycompose.notes.presentation.list.mapper.NotesFilterMapper
 import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.presentation.mapper.NoteUiMapper
 import com.module.notelycompose.notes.presentation.mapper.TextAlignPresentationMapper
@@ -65,4 +66,6 @@ class AppModule {
     }
 
     val noteUiMapper: NoteUiMapper by lazy { NoteUiMapper() }
+
+    val notesFilterMapper: NotesFilterMapper by lazy { NotesFilterMapper() }
 }

@@ -21,9 +21,9 @@ fun NoteListController(
         val viewmodel = remember {
             IOSNoteListViewModel(
                 getAllNotesUseCase = appModule.getAllNotesUseCase,
-                insertNoteUseCase = appModule.insertNote,
                 deleteNoteById = appModule.deleteNoteById,
-                noteUiMapper = appModule.noteUiMapper
+                noteUiMapper = appModule.noteUiMapper,
+                notesFilterMapper = appModule.notesFilterMapper
             )
         }
         val state = viewmodel.state.collectAsState()
@@ -33,6 +33,9 @@ fun NoteListController(
             onNoteClicked = onNoteClicked,
             onNoteDeleteClicked = { id ->
                 viewmodel.onEvent(NoteListEvent.OnNoteDeleted(id))
+            },
+            onFilterTabItemClicked = { filter ->
+                viewmodel.onEvent(NoteListEvent.OnFilterNote(filter))
             }
         )
     }
