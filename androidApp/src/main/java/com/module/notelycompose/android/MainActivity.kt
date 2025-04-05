@@ -28,6 +28,10 @@ import com.module.notelycompose.notes.ui.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+private const val NOTE_ID_PARAM = "noteId"
+private const val DEFAULT_NOTE_ID = "0"
+private const val ROUTE_SEPARATOR = "/"
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
@@ -74,24 +78,24 @@ fun NoteAppRoot() {
             NoteListScreen(
                 viewmodel = viewmodel,
                 onFloatingActionButtonClicked = {
-                    navController.navigate(Routes.DETAIL + "/0")
+                    navController.navigate(Routes.DETAIL + ROUTE_SEPARATOR + DEFAULT_NOTE_ID)
                 },
                 onNoteClicked = {
-                    navController.navigate(Routes.DETAIL + "/$it")
+                    navController.navigate(Routes.DETAIL + ROUTE_SEPARATOR + it)
                 }
             )
         }
 
         composable(
-            route = Routes.DETAIL + "/{noteId}",
+            route = Routes.DETAIL + ROUTE_SEPARATOR + "{$NOTE_ID_PARAM}",
             arguments = listOf(
-                navArgument("noteId") {
+                navArgument(NOTE_ID_PARAM) {
                     type = NavType.StringType
                     defaultValue = ""
                 }
             )
         ) { backStackEntry ->
-            val noteId = backStackEntry.arguments?.getString("noteId") ?: "0"
+            val noteId = backStackEntry.arguments?.getString(NOTE_ID_PARAM) ?: DEFAULT_NOTE_ID
 
             val audioPlayerViewModel = hiltViewModel<AndroidAudioPlayerViewModel>()
             val audioPlayerPresentationState by audioPlayerViewModel.state.collectAsState()
