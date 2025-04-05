@@ -51,6 +51,13 @@
     <!-- Note Item -->
     <string name="note_item_delete">Delete Note</string>
     <string name="note_item_edit">Edit</string>
+    <string name="note_item_voice">Voice</string>
+    <string name="note_item_starred">Starred</string>
+    <string name="note_item_note">Note</string>
+    <plurals name="words">
+        <item quantity="one">%1$d word</item>
+        <item quantity="other">%1$d words</item>
+    </plurals>
 
     <!-- Note List -->
     <string name="note_list_add_note">Add Note</string>

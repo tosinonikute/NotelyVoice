@@ -14,8 +14,10 @@ class NoteUiMapper {
             id = domainModel.id,
             title = domainModel.title,
             content = domainModel.content,
-            starred = domainModel.starred,
-            createdAt = completeTime(domainModel.createdAt)
+            isStarred = domainModel.starred,
+            isVoice = domainModel.recordingPath.isNotEmpty(),
+            createdAt = completeTime(domainModel.createdAt),
+            words = countWords(domainModel.content)
         )
     }
 
@@ -24,12 +26,19 @@ class NoteUiMapper {
             .lowercase()
             .replaceFirstChar { 
                 if (it.isLowerCase()) it.titlecase() else it.toString() }
-        } $TIME_STRING ${createdAt.formatTimeWithLeadingZeros()}"
+        } $TIME_STRING ${formatTimeWithLeadingZeros(createdAt)}"
     }
 
-    private fun LocalDateTime.formatTimeWithLeadingZeros(): String {
-        val formattedHour = this.hour.toString().padStart(PAD_START_LENGTH, PAD_CHARACTER)
-        val formattedMinute = this.minute.toString().padStart(PAD_START_LENGTH, PAD_CHARACTER)
+    private fun formatTimeWithLeadingZeros(localDateTime: LocalDateTime): String {
+        val formattedHour = localDateTime.hour.toString().padStart(PAD_START_LENGTH, PAD_CHARACTER)
+        val formattedMinute = localDateTime.minute.toString().padStart(PAD_START_LENGTH, PAD_CHARACTER)
         return "$formattedHour:$formattedMinute"
+    }
+
+    private fun countWords(str: String): Int {
+        if (str.isBlank()) {
+            return 0
+        }
+        return str.trim().split("\\s+".toRegex()).size
     }
 }
