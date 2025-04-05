@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
@@ -45,7 +46,8 @@ data class EditorPresentationState(
     val textAlign: TextAlign = TextAlign.Left,
     val selectionSize: TextFormatPresentationOption = TextPresentationFormats.NoSelection,
     val recording: RecordingPathPresentationModel = RecordingPathPresentationModel(),
-    val starred: Boolean = false
+    val starred: Boolean = false,
+    val createdAt: String = ""
 )
 
 data class TextFormatPresentationOption(
@@ -99,7 +101,8 @@ class TextEditorViewModel (
                             textAlign = textAlignPresentationMapper.mapToComposeTextAlign(
                                 retrievedNote.textAlign),
                             recordingPath = retrievedNote.recordingPath,
-                            starred = retrievedNote.starred
+                            starred = retrievedNote.starred,
+                            createdAt = getFormattedDate(retrievedNote.createdAt)
                         )
                         _currentNoteId.value = id
                     }
@@ -110,8 +113,6 @@ class TextEditorViewModel (
     fun onGetNoteById(id: String) {
         _noteIdTrigger.value = id.toLong()
     }
-
-    private fun getNoteById(id: String) = getNoteByIdUseCase.execute(id.toLong())
 
     private fun getLastNote() = getLastNoteUseCase.execute()
 
@@ -124,7 +125,7 @@ class TextEditorViewModel (
             isEditingStarted = isEditingStarted,
             formatting = _editorPresentationState.value.formats,
             textAlign = _editorPresentationState.value.textAlign,
-            recordingPath = _editorPresentationState.value.recording.recordingPath
+            recordingPath = _editorPresentationState.value.recording.recordingPath,
         )
         isEditingStarted = true
     }
@@ -148,7 +149,8 @@ class TextEditorViewModel (
         formats: List<TextPresentationFormat>,
         textAlign: TextAlign,
         recordingPath: String,
-        starred: Boolean
+        starred: Boolean,
+        createdAt: String
     ) {
         _editorPresentationState.update {
             it.copy(
@@ -156,7 +158,8 @@ class TextEditorViewModel (
                 formats = formats,
                 textAlign = textAlign,
                 recording = recordingPath(recordingPath),
-                starred = starred
+                starred = starred,
+                createdAt = createdAt
             )
         }
     }
@@ -229,15 +232,14 @@ class TextEditorViewModel (
         onUpdateContent(newContent = _editorPresentationState.value.content)
     }
 
-    // TODO: use state to set this
-    fun getNewNoteContentDate(id: String): String {
-        val note = getNoteById(id)
-        val localDate = note?.createdAt ?: Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
-        val day = localDate.dayOfMonth
-        val month = localDate.month.name.lowercase().replaceFirstChar { it.uppercase() }
-        val year = localDate.year
-        val hour = localDate.hour
-        val minute = localDate.minute.toString().padStart(2, '0')
+    private fun getFormattedDate(
+        createdAt: LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+    ): String {
+        val day = createdAt.dayOfMonth
+        val month = createdAt.month.name.lowercase().replaceFirstChar { it.uppercase() }
+        val year = createdAt.year
+        val hour = createdAt.hour
+        val minute = createdAt.minute.toString().padStart(2, '0')
         return "$day $month $year at $hour:$minute"
     }
 
@@ -308,14 +310,16 @@ class TextEditorViewModel (
                 currentState.copy(
                     content = newContent,
                     formats = updatedFormats,
-                    selectionSize = getSizeLabel(newContent, updatedFormats)
+                    selectionSize = getSizeLabel(newContent, updatedFormats),
+                    createdAt = getFormattedDate()
                 )
             }
         } catch (e: Exception) {
             _editorPresentationState.update {
                 it.copy(
                     content = newContent,
-                    selectionSize = getSizeLabel(newContent, it.formats)
+                    selectionSize = getSizeLabel(newContent, it.formats),
+                    createdAt = getFormattedDate()
                 )
             }
         }

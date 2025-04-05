@@ -83,11 +83,6 @@ class AndroidTextEditorViewModel @Inject constructor(
         return viewModel.onToggleBulletList()
     }
 
-    // TODO: use state to set this
-    fun getNewNoteContentDate(id: String): String {
-        return viewModel.getNewNoteContentDate(id)
-    }
-
     fun onUpdateRecordingPath(recordingPath: String) {
         return viewModel.onUpdateRecordingPath(recordingPath)
     }

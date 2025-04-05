@@ -17,7 +17,8 @@ class EditorPresentationToUiStateMapper {
             textAlign = presentationState.textAlign,
             selectionSize = mapToTextFormatUiOption(presentationState.selectionSize),
             recording = mapToRecordingPathUi(presentationState.recording),
-            isStarred = presentationState.starred
+            isStarred = presentationState.starred,
+            createdAt =  presentationState.createdAt
         )
     }
 

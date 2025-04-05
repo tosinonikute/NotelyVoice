@@ -37,6 +37,9 @@ fun NoteListController(
             },
             onFilterTabItemClicked = { filter ->
                 viewmodel.onEvent(NoteListEvent.OnFilterNote(filter))
+            },
+            onSearchByKeyword = { keyword ->
+                viewmodel.onEvent(NoteListEvent.OnSearchNote(keyword))
             }
         )
     }
@@ -89,10 +92,9 @@ fun NoteDetailController(
         if (noteId != null) editorViewModel.onGetNoteById(noteId)
         val editorPresentationState by editorViewModel.state.collectAsState()
         val editorState = editorViewModel.onGetUiState(editorPresentationState)
-        val newNoteDateString = noteId?.let { editorViewModel.getNewNoteContentDate(noteId) } ?: ""
 
         NoteDetailScreen(
-            newNoteDateString = newNoteDateString,
+            newNoteDateString = editorState.createdAt,
             onNavigateBack = {
                 onNavigateBack()
             },

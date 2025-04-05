@@ -105,10 +105,9 @@ fun NoteAppRoot() {
             if(noteId.toLong() > 0L) editorViewModel.onGetNoteById(noteId)
             val editorPresentationState by editorViewModel.state.collectAsState()
             val editorState = editorViewModel.onGetUiState(editorPresentationState)
-            val newNoteDateString = noteId.let { editorViewModel.getNewNoteContentDate(noteId) }
 
             NoteDetailScreen(
-                newNoteDateString = newNoteDateString,
+                newNoteDateString = editorState.createdAt,
                 onNavigateBack = {
                     navController.popBackStack()
                 },
