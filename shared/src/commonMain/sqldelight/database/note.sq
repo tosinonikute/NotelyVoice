@@ -48,3 +48,8 @@ SELECT * FROM notesEntity WHERE starred = :starred ORDER BY created_at DESC;
 
 getNotesByRecordingPath:
 SELECT * FROM notesEntity WHERE recording_path != '' ORDER BY created_at DESC;
+
+getNotesByContent:
+SELECT * FROM notesEntity
+WHERE content LIKE :query || '%'
+ORDER BY created_at DESC;

@@ -9,6 +9,7 @@ import com.module.notelycompose.notes.domain.GetLastNote
 import com.module.notelycompose.notes.domain.GetNoteById
 import com.module.notelycompose.notes.domain.InsertNoteUseCase
 import com.module.notelycompose.notes.domain.NoteDataSource
+import com.module.notelycompose.notes.domain.SearchNotesUseCase
 import com.module.notelycompose.notes.domain.UpdateNoteUseCase
 import com.module.notelycompose.notes.domain.mapper.NoteDomainMapper
 import com.module.notelycompose.notes.domain.mapper.TextFormatMapper
@@ -25,6 +26,10 @@ class AppModule {
 
     val getAllNotesUseCase: GetAllNotesUseCase by lazy {
         GetAllNotesUseCase(noteDataSource, noteDomainMapper)
+    }
+
+    val searchNotesUseCase: SearchNotesUseCase by lazy {
+        SearchNotesUseCase(noteDataSource, noteDomainMapper)
     }
 
     val deleteNoteById: DeleteNoteById by lazy {

@@ -28,6 +28,9 @@ fun NoteListScreen(
         },
         onFilterTabItemClicked = { filter ->
             viewmodel.onEvent(NoteListEvent.OnFilterNote(filter))
+        },
+        onSearchByKeyword = { keyword ->
+            viewmodel.onEvent(NoteListEvent.OnSearchNote(keyword))
         }
     )
 }

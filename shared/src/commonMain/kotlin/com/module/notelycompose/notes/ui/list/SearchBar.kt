@@ -28,7 +28,9 @@ import notelycompose.shared.generated.resources.search_bar_search_text
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun SearchBar() {
+fun SearchBar(
+    onSearchByKeyword: (String) -> Unit
+) {
     var value by remember { mutableStateOf("") }
     var isFocused by remember { mutableStateOf(false) }
     var isLabelVisible by remember { mutableStateOf(true) }
@@ -45,6 +47,7 @@ fun SearchBar() {
             onValueChange = {
                 value = it
                 isLabelVisible = !isFocused && value.isEmpty()
+                onSearchByKeyword(it)
             },
             modifier = Modifier
                 .weight(1f)

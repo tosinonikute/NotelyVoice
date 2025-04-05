@@ -21,6 +21,7 @@ fun NoteListController(
         val viewmodel = remember {
             IOSNoteListViewModel(
                 getAllNotesUseCase = appModule.getAllNotesUseCase,
+                searchNotesUseCase = appModule.searchNotesUseCase,
                 deleteNoteById = appModule.deleteNoteById,
                 noteUiMapper = appModule.noteUiMapper,
                 notesFilterMapper = appModule.notesFilterMapper

@@ -2,6 +2,8 @@ package com.module.notelycompose.notes.presentation.list
 
 import com.module.notelycompose.notes.domain.DeleteNoteById
 import com.module.notelycompose.notes.domain.GetAllNotesUseCase
+import com.module.notelycompose.notes.domain.SearchNotesUseCase
+import com.module.notelycompose.notes.domain.model.NoteDomainModel
 import com.module.notelycompose.notes.domain.model.NotesFilterDomainModel
 import com.module.notelycompose.notes.domain.model.NotesFilterDomainModel.ALL
 import com.module.notelycompose.notes.presentation.helpers.getFirstNonEmptyLineAfterFirst
@@ -21,6 +23,7 @@ const val CONTENT_LENGTH = 36
 
 class NoteListViewModel(
     private val getAllNotesUseCase: GetAllNotesUseCase,
+    private val searchNotesUseCase: SearchNotesUseCase,
     private val deleteNoteById: DeleteNoteById,
     private val noteUiMapper: NoteUiMapper,
     private val notesFilterMapper: NotesFilterMapper,
@@ -32,36 +35,6 @@ class NoteListViewModel(
 
     init {
         createCombinedState(ALL)
-    }
-
-    private fun createCombinedState(
-        filter: NotesFilterDomainModel
-    ) {
-        viewModelScope.launch {
-            getAllNotesUseCase.execute(filter).collect { notes ->
-                _state.value = _state.value.copy(
-                    notes = notes.map { note ->
-                        val retrievedNote = noteUiMapper.mapToUiModel(note)
-                        retrievedNote.copy(
-                            title = if (note.title.trim().isEmpty()){
-                                DEFAULT_TITLE
-                            } else {
-                                note.title
-                                    .replaceNewLinesWithSpaces()
-                                    .truncateWithEllipsis()
-                            },
-                            content = if (note.content.trim().isEmpty()){
-                                DEFAULT_CONTENT
-                            } else {
-                                note.content
-                                    .getFirstNonEmptyLineAfterFirst()
-                                    .truncateWithEllipsis(CONTENT_LENGTH)
-                            }
-                        )
-                    }
-                )
-            }
-        }
     }
 
     fun onEvent(event: NoteListEvent) {
@@ -77,6 +50,57 @@ class NoteListViewModel(
                 val domainFilter = notesFilterMapper.mapToDomainModel(presentationFilter)
                 createCombinedState(domainFilter)
             }
+            is NoteListEvent.OnSearchNote -> {
+                searchNotesState(event.keyword)
+            }
         }
+    }
+
+    private fun createCombinedState(
+        filter: NotesFilterDomainModel
+    ) {
+        viewModelScope.launch {
+            getAllNotesUseCase.execute(filter).collect { notes ->
+                setNoteState(notes)
+            }
+        }
+    }
+
+    private fun searchNotesState(
+        keyword: String
+    ) {
+        if(keyword.isNotEmpty()) {
+            viewModelScope.launch {
+                searchNotesUseCase.execute(keyword).collect { notes ->
+                    setNoteState(notes)
+                }
+            }
+        } else {
+            createCombinedState(ALL)
+        }
+    }
+
+    private fun setNoteState(notes: List<NoteDomainModel>) {
+        _state.value = _state.value.copy(
+            notes = notes.map { note ->
+                val retrievedNote = noteUiMapper.mapToUiModel(note)
+                retrievedNote.copy(
+                    title = if (note.title.trim().isEmpty()){
+                        DEFAULT_TITLE
+                    } else {
+                        note.title
+                            .replaceNewLinesWithSpaces()
+                            .truncateWithEllipsis()
+                    },
+                    content = if (note.content.trim().isEmpty()){
+                        DEFAULT_CONTENT
+                    } else {
+                        note.content
+                            .getFirstNonEmptyLineAfterFirst()
+                            .truncateWithEllipsis(CONTENT_LENGTH)
+                    }
+                )
+            }
+        )
     }
 }

@@ -31,7 +31,8 @@ fun SharedNoteListScreen(
     onFloatingActionButtonClicked: () -> Unit,
     onNoteClicked: (Long) -> Unit,
     onNoteDeleteClicked: (Long) -> Unit,
-    onFilterTabItemClicked: (String) -> Unit
+    onFilterTabItemClicked: (String) -> Unit,
+    onSearchByKeyword: (String) -> Unit
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -73,7 +74,11 @@ fun SharedNoteListScreen(
                     })
                 }
         ) {
-            SearchBar()
+            SearchBar(
+                onSearchByKeyword = { keyword ->
+                    onSearchByKeyword(keyword)
+                }
+            )
             FilterTabBar(
                 onFilterTabItemClicked = { title ->
                     onFilterTabItemClicked(title)

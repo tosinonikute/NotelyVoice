@@ -102,6 +102,18 @@ class NoteSqlDelightDataSource(
             }.toCommonFlow()
     }
 
+    override fun getNotesByKeyword(keyword: String): CommonFlow<List<NoteDataModel>> {
+        return queries
+            .getNotesByContent(keyword)
+            .asFlow()
+            .mapToList()
+            .map { notes ->
+                notes.map { note ->
+                    note.toNoteDataModel(json)
+                }
+            }.toCommonFlow()
+    }
+
     override fun getNoteById(id: Long): NoteDataModel? {
         return queries
             .getNoteById(id)
