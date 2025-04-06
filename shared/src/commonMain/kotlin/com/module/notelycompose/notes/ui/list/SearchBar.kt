@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -21,6 +23,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.input.ImeAction
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import notelycompose.shared.generated.resources.Res
 import notelycompose.shared.generated.resources.search_bar_search_description
@@ -34,6 +39,8 @@ fun SearchBar(
     var value by remember { mutableStateOf("") }
     var isFocused by remember { mutableStateOf(false) }
     var isLabelVisible by remember { mutableStateOf(true) }
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
 
     Row(
         modifier = Modifier
@@ -78,7 +85,16 @@ fun SearchBar(
                     tint = Color.White
                 )
             },
-            shape = RoundedCornerShape(16.dp)
+            shape = RoundedCornerShape(16.dp),
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    keyboardController?.hide()
+                    isLabelVisible = value.isEmpty()
+                    focusManager.clearFocus()
+                }
+            ),
+            singleLine = true
         )
     }
 }
