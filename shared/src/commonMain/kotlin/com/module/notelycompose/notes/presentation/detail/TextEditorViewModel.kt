@@ -11,6 +11,7 @@ import com.module.notelycompose.notes.domain.model.NoteDomainModel
 import com.module.notelycompose.notes.presentation.detail.model.EditorPresentationState
 import com.module.notelycompose.notes.presentation.detail.model.RecordingPathPresentationModel
 import com.module.notelycompose.notes.presentation.detail.model.TextPresentationFormat
+import com.module.notelycompose.notes.presentation.helpers.TextEditorHelper
 import com.module.notelycompose.notes.ui.detail.EditorUiState
 import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.presentation.mapper.TextAlignPresentationMapper
@@ -39,6 +40,7 @@ class TextEditorViewModel (
     private val editorPresentationToUiStateMapper: EditorPresentationToUiStateMapper,
     private val textFormatPresentationMapper: TextFormatPresentationMapper,
     private val textAlignPresentationMapper: TextAlignPresentationMapper,
+    private val textEditorHelper: TextEditorHelper,
     coroutineScope: CoroutineScope? = null
 ) {
 
@@ -48,9 +50,6 @@ class TextEditorViewModel (
     private var isEditingStarted = false
     private var _currentNoteId = MutableStateFlow<Long?>(ID_NOT_SET)
     private val _noteIdTrigger = MutableStateFlow<Long?>(null)
-
-    // Add TextEditorHelper
-    private val textEditorHelper = TextEditorHelper()
 
     init {
         viewModelScope.launch {

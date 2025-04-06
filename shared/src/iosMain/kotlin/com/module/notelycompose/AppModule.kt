@@ -13,6 +13,7 @@ import com.module.notelycompose.notes.domain.SearchNotesUseCase
 import com.module.notelycompose.notes.domain.UpdateNoteUseCase
 import com.module.notelycompose.notes.domain.mapper.NoteDomainMapper
 import com.module.notelycompose.notes.domain.mapper.TextFormatMapper
+import com.module.notelycompose.notes.presentation.helpers.TextEditorHelper
 import com.module.notelycompose.notes.presentation.list.mapper.NotesFilterMapper
 import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.presentation.mapper.NoteUiMapper
@@ -73,4 +74,6 @@ class AppModule {
     val noteUiMapper: NoteUiMapper by lazy { NoteUiMapper() }
 
     val notesFilterMapper: NotesFilterMapper by lazy { NotesFilterMapper() }
+
+    val textEditorHelper: TextEditorHelper by lazy { TextEditorHelper() }
 }

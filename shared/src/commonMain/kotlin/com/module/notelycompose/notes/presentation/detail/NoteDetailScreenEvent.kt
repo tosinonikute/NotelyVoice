@@ -1,6 +1,7 @@
 package com.module.notelycompose.notes.presentation.detail
 
 import androidx.compose.ui.text.style.TextAlign
+import com.module.notelycompose.notes.presentation.detail.model.TextPresentationFormat
 
 sealed class NoteDetailScreenEvent {
     data class DeleteNote(val id: String) : NoteDetailScreenEvent()

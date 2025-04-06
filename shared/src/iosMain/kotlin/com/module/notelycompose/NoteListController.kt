@@ -86,7 +86,8 @@ fun NoteDetailController(
                 getLastNoteUseCase = appModule.getLastNoteUseCase,
                 editorPresentationToUiStateMapper = appModule.editorPresentationToUiStateMapper,
                 textFormatPresentationMapper = appModule.textFormatPresentationMapper,
-                textAlignPresentationMapper = appModule.textAlignPresentationMapper
+                textAlignPresentationMapper = appModule.textAlignPresentationMapper,
+                textEditorHelper = appModule.textEditorHelper
             )
         }
         if (noteId != null) editorViewModel.onGetNoteById(noteId)

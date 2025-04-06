@@ -7,8 +7,9 @@ import com.module.notelycompose.notes.domain.GetLastNote
 import com.module.notelycompose.notes.domain.GetNoteById
 import com.module.notelycompose.notes.domain.InsertNoteUseCase
 import com.module.notelycompose.notes.domain.UpdateNoteUseCase
-import com.module.notelycompose.notes.presentation.detail.EditorPresentationState
+import com.module.notelycompose.notes.presentation.helpers.TextEditorHelper
 import com.module.notelycompose.notes.presentation.detail.TextEditorViewModel
+import com.module.notelycompose.notes.presentation.detail.model.EditorPresentationState
 import com.module.notelycompose.notes.ui.detail.EditorUiState
 import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.presentation.mapper.TextAlignPresentationMapper
@@ -22,7 +23,8 @@ class IOSTextEditorViewModel(
     private val getLastNoteUseCase: GetLastNote,
     private val editorPresentationToUiStateMapper: EditorPresentationToUiStateMapper,
     private val textFormatPresentationMapper: TextFormatPresentationMapper,
-    private val textAlignPresentationMapper: TextAlignPresentationMapper
+    private val textAlignPresentationMapper: TextAlignPresentationMapper,
+    private val textEditorHelper: TextEditorHelper
 ) {
 
     private val viewModel by lazy {
@@ -34,7 +36,8 @@ class IOSTextEditorViewModel(
             getLastNoteUseCase = getLastNoteUseCase,
             editorPresentationToUiStateMapper = editorPresentationToUiStateMapper,
             textFormatPresentationMapper = textFormatPresentationMapper,
-            textAlignPresentationMapper =  textAlignPresentationMapper
+            textAlignPresentationMapper =  textAlignPresentationMapper,
+            textEditorHelper = textEditorHelper
         )
     }
     val state = viewModel.editorPresentationState

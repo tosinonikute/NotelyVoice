@@ -1,9 +1,9 @@
 package com.module.notelycompose.notes.presentation.mapper
 
-import com.module.notelycompose.notes.presentation.detail.EditorPresentationState
-import com.module.notelycompose.notes.presentation.detail.RecordingPathPresentationModel
-import com.module.notelycompose.notes.presentation.detail.TextFormatPresentationOption
-import com.module.notelycompose.notes.presentation.detail.TextPresentationFormat
+import com.module.notelycompose.notes.presentation.detail.model.EditorPresentationState
+import com.module.notelycompose.notes.presentation.detail.model.RecordingPathPresentationModel
+import com.module.notelycompose.notes.presentation.detail.model.TextFormatPresentationOption
+import com.module.notelycompose.notes.presentation.detail.model.TextPresentationFormat
 import com.module.notelycompose.notes.ui.detail.EditorUiState
 import com.module.notelycompose.notes.ui.detail.RecordingPathUiModel
 import com.module.notelycompose.notes.ui.detail.TextFormatUiOption

@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.presentation.detail
+package com.module.notelycompose.notes.presentation.helpers
 
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue

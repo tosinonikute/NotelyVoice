@@ -9,8 +9,9 @@ import com.module.notelycompose.notes.domain.GetLastNote
 import com.module.notelycompose.notes.domain.GetNoteById
 import com.module.notelycompose.notes.domain.InsertNoteUseCase
 import com.module.notelycompose.notes.domain.UpdateNoteUseCase
-import com.module.notelycompose.notes.presentation.detail.EditorPresentationState
+import com.module.notelycompose.notes.presentation.helpers.TextEditorHelper
 import com.module.notelycompose.notes.presentation.detail.TextEditorViewModel
+import com.module.notelycompose.notes.presentation.detail.model.EditorPresentationState
 import com.module.notelycompose.notes.ui.detail.EditorUiState
 import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.presentation.mapper.TextAlignPresentationMapper
@@ -28,6 +29,7 @@ class AndroidTextEditorViewModel @Inject constructor(
     private val editorPresentationToUiStateMapper: EditorPresentationToUiStateMapper,
     private val textFormatPresentationMapper: TextFormatPresentationMapper,
     private val textAlignPresentationMapper: TextAlignPresentationMapper,
+    private val textEditorHelper: TextEditorHelper
 ) : ViewModel() {
 
     private val viewModel by lazy {
@@ -40,6 +42,7 @@ class AndroidTextEditorViewModel @Inject constructor(
             editorPresentationToUiStateMapper = editorPresentationToUiStateMapper,
             textFormatPresentationMapper = textFormatPresentationMapper,
             textAlignPresentationMapper =  textAlignPresentationMapper,
+            textEditorHelper = textEditorHelper,
             coroutineScope = viewModelScope
         )
     }
