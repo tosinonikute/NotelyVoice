@@ -37,6 +37,8 @@ Notely is built with Clean Architecture principles, separating the app into dist
 - **Domain Layer**: Business logic and use cases
 - **Data Layer**: Repositories and data sources
 
+<img src="assets/layered_architecture_diagram.png" alt="Logo" width="70%">
+
 ## Built With 🛠
 
 - **[Kotlin](https://kotlinlang.org/)** - Official programming language for Android development
@@ -71,7 +73,7 @@ Notely is built with Clean Architecture principles, separating the app into dist
 
 ### License
 
-```xml
+```
 Copyright 2025 Notely, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
