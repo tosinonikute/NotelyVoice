@@ -32,7 +32,7 @@ A modern, cross-platform note-taking application built with Compose Multiplatfor
 
 Notely is built with Clean Architecture principles, separating the app into distinct layers:
 
-- **UI Layer**: Compose UI components and ViewModels
+- **UI Layer**: Compose UI components
 - **Presentation Layer**: Platform Independent ViewModels
 - **Domain Layer**: Business logic and use cases
 - **Data Layer**: Repositories and data sources
