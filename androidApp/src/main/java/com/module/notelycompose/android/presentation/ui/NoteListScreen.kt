@@ -4,7 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.module.notelycompose.android.presentation.AndroidNoteListViewModel
-import com.module.notelycompose.notes.presentation.list.NoteListIntent
+import com.module.notelycompose.notes.presentation.list.NoteListIntent.OnNoteDeleted
+import com.module.notelycompose.notes.presentation.list.NoteListIntent.OnFilterNote
+import com.module.notelycompose.notes.presentation.list.NoteListIntent.OnSearchNote
 import com.module.notelycompose.notes.ui.list.SharedNoteListScreen
 
 @Composable
@@ -25,13 +27,13 @@ fun NoteListScreen(
             onNoteClicked(it)
         },
         onNoteDeleteClicked = {
-            viewmodel.onProcessIntent(NoteListIntent.OnNoteDeleted(it))
+            viewmodel.onProcessIntent(OnNoteDeleted(it))
         },
         onFilterTabItemClicked = { filter ->
-            viewmodel.onProcessIntent(NoteListIntent.OnFilterNote(filter))
+            viewmodel.onProcessIntent(OnFilterNote(filter))
         },
         onSearchByKeyword = { keyword ->
-            viewmodel.onProcessIntent(NoteListIntent.OnSearchNote(keyword))
+            viewmodel.onProcessIntent(OnSearchNote(keyword))
         }
     )
 }
