@@ -18,13 +18,14 @@ fun NoteListController(
                 getAllNotesUseCase = appModule.getAllNotesUseCase,
                 searchNotesUseCase = appModule.searchNotesUseCase,
                 deleteNoteById = appModule.deleteNoteById,
-                noteUiMapper = appModule.noteUiMapper,
+                notePresentationMapper = appModule.notePresentationMapper,
                 notesFilterMapper = appModule.notesFilterMapper
             )
         }
         val state = viewmodel.state.collectAsState()
+        val notes = viewmodel.onGetUiState(state.value)
         SharedNoteListScreen(
-            notes = state.value.notes,
+            notes = notes,
             onFloatingActionButtonClicked = onFloatingActionButtonClicked,
             onNoteClicked = onNoteClicked,
             onNoteDeleteClicked = { id ->

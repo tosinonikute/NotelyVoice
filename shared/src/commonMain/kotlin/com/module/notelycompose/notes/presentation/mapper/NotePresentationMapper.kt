@@ -1,16 +1,17 @@
 package com.module.notelycompose.notes.presentation.mapper
 
 import com.module.notelycompose.notes.domain.model.NoteDomainModel
-import com.module.notelycompose.notes.presentation.list.model.NoteUiModel
+import com.module.notelycompose.notes.presentation.list.model.NotePresentationModel
+import com.module.notelycompose.notes.ui.list.model.NoteUiModel
 import kotlinx.datetime.LocalDateTime
 
 private const val TIME_STRING = "at"
 private const val PAD_START_LENGTH = 2
 private const val PAD_CHARACTER = '0'
 
-class NoteUiMapper {
-    fun mapToUiModel(domainModel: NoteDomainModel): NoteUiModel {
-        return NoteUiModel(
+class NotePresentationMapper {
+    fun mapToPresentationModel(domainModel: NoteDomainModel): NotePresentationModel {
+        return NotePresentationModel(
             id = domainModel.id,
             title = domainModel.title,
             content = domainModel.content,
@@ -40,5 +41,17 @@ class NoteUiMapper {
             return 0
         }
         return str.trim().split("\\s+".toRegex()).size
+    }
+
+    fun mapToUiModel(presentationModel: NotePresentationModel): NoteUiModel {
+        return NoteUiModel(
+            id = presentationModel.id,
+            title = presentationModel.title,
+            content = presentationModel.content,
+            isStarred = presentationModel.isStarred,
+            isVoice = presentationModel.isVoice,
+            createdAt = presentationModel.createdAt,
+            words = presentationModel.words
+        )
     }
 }

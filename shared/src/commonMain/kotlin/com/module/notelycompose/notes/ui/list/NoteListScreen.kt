@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
-import com.module.notelycompose.notes.presentation.list.model.NoteUiModel
+import com.module.notelycompose.notes.ui.list.model.NoteUiModel
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import notelycompose.shared.generated.resources.Res
 import notelycompose.shared.generated.resources.note_list_add_note

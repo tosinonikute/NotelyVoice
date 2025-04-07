@@ -10,7 +10,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.module.notelycompose.notes.presentation.list.model.NoteUiModel
+import com.module.notelycompose.notes.ui.list.model.NoteUiModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

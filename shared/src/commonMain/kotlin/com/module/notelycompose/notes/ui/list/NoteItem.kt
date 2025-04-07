@@ -14,7 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.module.notelycompose.notes.presentation.list.model.NoteUiModel
+import com.module.notelycompose.notes.ui.list.model.NoteUiModel
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcArrowUpRight
 import com.module.notelycompose.resources.vectors.Images

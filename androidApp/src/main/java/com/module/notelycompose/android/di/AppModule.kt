@@ -17,7 +17,7 @@ import com.module.notelycompose.notes.domain.mapper.TextFormatMapper
 import com.module.notelycompose.notes.presentation.helpers.TextEditorHelper
 import com.module.notelycompose.notes.presentation.list.mapper.NotesFilterMapper
 import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
-import com.module.notelycompose.notes.presentation.mapper.NoteUiMapper
+import com.module.notelycompose.notes.presentation.mapper.NotePresentationMapper
 import com.module.notelycompose.notes.presentation.mapper.TextAlignPresentationMapper
 import com.module.notelycompose.notes.presentation.mapper.TextFormatPresentationMapper
 import com.squareup.sqldelight.db.SqlDriver
@@ -131,8 +131,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNoteUiMapper(): NoteUiMapper {
-        return NoteUiMapper()
+    fun provideNotePresentationMapper(): NotePresentationMapper {
+        return NotePresentationMapper()
     }
 
     @Provides
