@@ -32,7 +32,8 @@ fun SharedNoteListScreen(
     onNoteClicked: (Long) -> Unit,
     onNoteDeleteClicked: (Long) -> Unit,
     onFilterTabItemClicked: (String) -> Unit,
-    onSearchByKeyword: (String) -> Unit
+    onSearchByKeyword: (String) -> Unit,
+    selectedTabTitle: String
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -80,6 +81,7 @@ fun SharedNoteListScreen(
                 }
             )
             FilterTabBar(
+                selectedTabTitle = selectedTabTitle,
                 onFilterTabItemClicked = { title ->
                     onFilterTabItemClicked(title)
                 }

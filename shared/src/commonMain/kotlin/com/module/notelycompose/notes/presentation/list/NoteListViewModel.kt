@@ -49,6 +49,7 @@ class NoteListViewModel(
             is NoteListIntent.OnFilterNote -> {
                 val presentationFilter = notesFilterMapper.mapStringToPresentationModel(intent.filter)
                 val domainFilter = notesFilterMapper.mapToDomainModel(presentationFilter)
+                setSelectedTab(intent.filter)
                 createCombinedState(domainFilter)
             }
             is NoteListIntent.OnSearchNote -> {
@@ -107,5 +108,9 @@ class NoteListViewModel(
 
     fun onGetUiState(presentationState: NoteListPresentationState): List<NoteUiModel> {
         return presentationState.notes.map { notePresentationMapper.mapToUiModel(it) }
+    }
+
+    private fun setSelectedTab(tabTitle: String) {
+        _state.value = _state.value.copy(selectedTabTitle = tabTitle)
     }
 }

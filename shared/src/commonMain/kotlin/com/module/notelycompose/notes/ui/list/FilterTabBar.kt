@@ -4,11 +4,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.module.notelycompose.audio.ui.keepFirstCharCaseExt
 import com.module.notelycompose.resources.vectors.IcFile
 import com.module.notelycompose.resources.vectors.IcFolder
 import com.module.notelycompose.resources.vectors.IcStar
@@ -23,7 +20,8 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun FilterTabBar(
-    onFilterTabItemClicked: (String) -> Unit
+    onFilterTabItemClicked: (String) -> Unit,
+    selectedTabTitle: String
 ) {
     val titles = listOf(
         stringResource(Res.string.date_tab_bar_all),
@@ -31,7 +29,9 @@ fun FilterTabBar(
         stringResource(Res.string.date_tab_bar_voices),
         stringResource(Res.string.date_tab_bar_recent)
     )
-    val selectedTitle = remember { mutableStateOf(titles[0]) }
+    val selectedTitle = selectedTabTitle.ifEmpty {
+        titles[0]
+    }
 
     val icons = listOf(
         Images.Icons.IcFile,
@@ -53,9 +53,8 @@ fun FilterTabBar(
         FilterSelection(
             titles = titles,
             icons = icons,
-            tabSelected = selectedTitle.value,
+            tabSelected = selectedTitle,
             onTabSelected = { title ->
-                selectedTitle.value = title
                 onFilterTabItemClicked(title)
             }
         )

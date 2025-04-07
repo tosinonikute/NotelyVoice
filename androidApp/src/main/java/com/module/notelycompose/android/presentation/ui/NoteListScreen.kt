@@ -34,6 +34,7 @@ fun NoteListScreen(
         },
         onSearchByKeyword = { keyword ->
             viewmodel.onProcessIntent(OnSearchNote(keyword))
-        }
+        },
+        selectedTabTitle = state.selectedTabTitle
     )
 }
