@@ -24,7 +24,7 @@ struct NoteDetailScreenController : UIViewControllerRepresentable  {
     }
 
     func makeUIViewController(context: Context) -> some UIViewController {
-         NoteListControllerKt.NoteDetailController(
+        NoteDetailControllerKt.NoteDetailController(
             noteId: noteId,
             onSaveClicked: {
                 onNoteSaveClicked()
