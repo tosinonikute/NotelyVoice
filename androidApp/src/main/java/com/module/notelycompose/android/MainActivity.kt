@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
@@ -96,58 +95,66 @@ fun NoteAppRoot() {
             )
         ) { backStackEntry ->
             val noteId = backStackEntry.arguments?.getString(NOTE_ID_PARAM) ?: DEFAULT_NOTE_ID
-
-            val audioPlayerViewModel = hiltViewModel<AndroidAudioPlayerViewModel>()
-            val audioPlayerPresentationState by audioPlayerViewModel.state.collectAsState()
-            val audioPlayerState = audioPlayerViewModel.onGetUiState(audioPlayerPresentationState)
-
-            val audioRecorderViewModel = hiltViewModel<AndroidAudioRecorderViewModel>()
-            val audioRecorderPresentationState by audioRecorderViewModel.state.collectAsState()
-            val audioRecorderState = audioRecorderViewModel.onGetUiState(audioRecorderPresentationState)
-
-            val editorViewModel = hiltViewModel<AndroidTextEditorViewModel>()
-            if(noteId.toLong() > 0L) editorViewModel.onGetNoteById(noteId)
-            val editorPresentationState by editorViewModel.state.collectAsState()
-            val editorState = editorViewModel.onGetUiState(editorPresentationState)
-
-            NoteDetailScreen(
-                newNoteDateString = editorState.createdAt,
-                onNavigateBack = {
-                    navController.popBackStack()
-                },
-                editorState = editorState,
-                onUpdateContent = { newContent ->
-                    editorViewModel.onUpdateContent(newContent)
-                },
-                onToggleBulletList = { editorViewModel.onToggleBulletList() },
-                onToggleBold = { editorViewModel.onToggleBold() },
-                onToggleItalic = { editorViewModel.onToggleItalic() },
-                onToggleUnderline = { editorViewModel.onToggleUnderline() },
-                onSetAlignment = { alignment ->
-                    editorViewModel.onSetAlignment(alignment)
-                },
-                onSelectTextSizeFormat = { textSize ->
-                    editorViewModel.setTextSize(textSize)
-                },
-                onDeleteNote = {
-                    editorViewModel.onDeleteNote()
-                    navController.popBackStack()
-                },
-
-                onStartRecord = { audioRecorderViewModel.onStartRecording() },
-                onStopRecord = { audioRecorderViewModel.onStopRecording() },
-                onRequestAudioPermission = { audioRecorderViewModel.onRequestAudioPermission() },
-                recordCounterString = audioRecorderState.recordCounterString,
-                onAfterRecord = { editorViewModel.onUpdateRecordingPath(audioRecorderState.recordingPath) },
-
-                onLoadAudio = { filePath -> audioPlayerViewModel.onLoadAudio(filePath) },
-                onClear = { audioPlayerViewModel.onCleared() },
-                onSeekTo = { position -> audioPlayerViewModel.onSeekTo(position) },
-                onTogglePlayPause = { audioPlayerViewModel.onTogglePlayPause() },
-                audioPlayerUiState = audioPlayerState,
-
-                onStarNote = { editorViewModel.onToggleStar() }
+            NoteDetailWrapper(
+                noteId = noteId,
+                onNavigateBack = { navController.popBackStack() }
             )
         }
     }
+}
+
+@Composable
+fun NoteDetailWrapper(
+    noteId: String,
+    onNavigateBack: () -> Unit
+) {
+    val audioPlayerViewModel = hiltViewModel<AndroidAudioPlayerViewModel>()
+    val audioRecorderViewModel = hiltViewModel<AndroidAudioRecorderViewModel>()
+    val editorViewModel = hiltViewModel<AndroidTextEditorViewModel>()
+
+    if(noteId.toLong() > 0L) {
+        editorViewModel.onGetNoteById(noteId)
+    }
+
+    val audioPlayerState = audioPlayerViewModel.state.collectAsState().value
+        .let { audioPlayerViewModel.onGetUiState(it) }
+
+    val audioRecorderState = audioRecorderViewModel.state.collectAsState().value
+        .let { audioRecorderViewModel.onGetUiState(it) }
+
+    val editorState = editorViewModel.state.collectAsState().value
+        .let { editorViewModel.onGetUiState(it) }
+
+    // Render the actual screen with all the parameters
+    NoteDetailScreen(
+        newNoteDateString = editorState.createdAt,
+        onNavigateBack = onNavigateBack,
+        editorState = editorState,
+        onUpdateContent = editorViewModel::onUpdateContent,
+        onToggleBulletList = editorViewModel::onToggleBulletList,
+        onToggleBold = editorViewModel::onToggleBold,
+        onToggleItalic = editorViewModel::onToggleItalic,
+        onToggleUnderline = editorViewModel::onToggleUnderline,
+        onSetAlignment = editorViewModel::onSetAlignment,
+        onSelectTextSizeFormat = editorViewModel::setTextSize,
+        onStarNote = editorViewModel::onToggleStar,
+        onDeleteNote = {
+            editorViewModel.onDeleteNote()
+            onNavigateBack()
+        },
+
+        // Audio recorder functions
+        onStartRecord = audioRecorderViewModel::onStartRecording,
+        onStopRecord = audioRecorderViewModel::onStopRecording,
+        onRequestAudioPermission = audioRecorderViewModel::onRequestAudioPermission,
+        recordCounterString = audioRecorderState.recordCounterString,
+        onAfterRecord = { editorViewModel.onUpdateRecordingPath(audioRecorderState.recordingPath) },
+
+        // Audio player functions
+        onLoadAudio = audioPlayerViewModel::onLoadAudio,
+        onClear = audioPlayerViewModel::onCleared,
+        onSeekTo = audioPlayerViewModel::onSeekTo,
+        onTogglePlayPause = audioPlayerViewModel::onTogglePlayPause,
+        audioPlayerUiState = audioPlayerState
+    )
 }

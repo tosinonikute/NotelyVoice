@@ -65,6 +65,7 @@ fun NoteDetailScreen(
     onSetAlignment: (alignment: TextAlign) -> Unit,
     onToggleBulletList: () -> Unit,
     onSelectTextSizeFormat: (textSize: Float) -> Unit,
+    onStarNote: () -> Unit,
     onDeleteNote: () -> Unit,
 
     onStartRecord: () -> Unit,
@@ -77,9 +78,7 @@ fun NoteDetailScreen(
     onClear: () -> Unit,
     onSeekTo: (position: Int) -> Unit,
     onTogglePlayPause: () -> Unit,
-    audioPlayerUiState: AudioPlayerUiState,
-
-    onStarNote: () -> Unit
+    audioPlayerUiState: AudioPlayerUiState
 ) {
     var showFormatBar by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
