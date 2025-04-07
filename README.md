@@ -69,6 +69,8 @@ Notely is built with Clean Architecture principles, separating the app into dist
 3. Sync the project with Gradle files
 4. Run the app on an emulator or physical device
 
+### License
+
 ```xml
 Copyright 2025 Notely, Inc. All Rights Reserved.
 
