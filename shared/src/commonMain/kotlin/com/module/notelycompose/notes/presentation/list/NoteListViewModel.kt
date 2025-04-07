@@ -38,21 +38,21 @@ class NoteListViewModel(
         createCombinedState(ALL)
     }
 
-    fun onEvent(event: NoteListEvent) {
-        when (event) {
-            is NoteListEvent.OnNoteDeleted -> {
+    fun onProcessIntent(intent: NoteListIntent) {
+        when (intent) {
+            is NoteListIntent.OnNoteDeleted -> {
                 viewModelScope.launch {
-                    deleteNoteById.execute(event.id)
+                    deleteNoteById.execute(intent.id)
                     createCombinedState(ALL)
                 }
             }
-            is NoteListEvent.OnFilterNote -> {
-                val presentationFilter = notesFilterMapper.mapStringToPresentationModel(event.filter)
+            is NoteListIntent.OnFilterNote -> {
+                val presentationFilter = notesFilterMapper.mapStringToPresentationModel(intent.filter)
                 val domainFilter = notesFilterMapper.mapToDomainModel(presentationFilter)
                 createCombinedState(domainFilter)
             }
-            is NoteListEvent.OnSearchNote -> {
-                searchNotesState(event.keyword)
+            is NoteListIntent.OnSearchNote -> {
+                searchNotesState(intent.keyword)
             }
         }
     }

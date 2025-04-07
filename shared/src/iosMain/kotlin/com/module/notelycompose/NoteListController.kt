@@ -3,7 +3,7 @@ package com.module.notelycompose
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
-import com.module.notelycompose.notes.presentation.list.NoteListEvent
+import com.module.notelycompose.notes.presentation.list.NoteListIntent
 import com.module.notelycompose.notes.ui.list.SharedNoteListScreen
 import com.module.notelycompose.notes.ui.theme.MyApplicationTheme
 
@@ -29,13 +29,13 @@ fun NoteListController(
             onFloatingActionButtonClicked = onFloatingActionButtonClicked,
             onNoteClicked = onNoteClicked,
             onNoteDeleteClicked = { id ->
-                viewmodel.onEvent(NoteListEvent.OnNoteDeleted(id))
+                viewmodel.onProcessIntent(NoteListIntent.OnNoteDeleted(id))
             },
             onFilterTabItemClicked = { filter ->
-                viewmodel.onEvent(NoteListEvent.OnFilterNote(filter))
+                viewmodel.onProcessIntent(NoteListIntent.OnFilterNote(filter))
             },
             onSearchByKeyword = { keyword ->
-                viewmodel.onEvent(NoteListEvent.OnSearchNote(keyword))
+                viewmodel.onProcessIntent(NoteListIntent.OnSearchNote(keyword))
             }
         )
     }

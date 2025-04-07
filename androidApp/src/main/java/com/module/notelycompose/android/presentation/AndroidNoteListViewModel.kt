@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.module.notelycompose.notes.domain.DeleteNoteById
 import com.module.notelycompose.notes.domain.GetAllNotesUseCase
 import com.module.notelycompose.notes.domain.SearchNotesUseCase
-import com.module.notelycompose.notes.presentation.list.NoteListEvent
+import com.module.notelycompose.notes.presentation.list.NoteListIntent
 import com.module.notelycompose.notes.presentation.list.NoteListPresentationState
 import com.module.notelycompose.notes.presentation.list.NoteListViewModel
 import com.module.notelycompose.notes.presentation.list.mapper.NotesFilterMapper
@@ -35,8 +35,8 @@ class AndroidNoteListViewModel @Inject constructor(
     }
     val state = viewModel.state
 
-    fun onEvent(event: NoteListEvent) {
-        viewModel.onEvent(event)
+    fun onProcessIntent(intent: NoteListIntent) {
+        viewModel.onProcessIntent(intent)
     }
 
     fun onGetUiState(presentationState: NoteListPresentationState): List<NoteUiModel> {
