@@ -45,18 +45,13 @@ private const val ZERO_DENSITY = 0
 
 @Composable
 fun BottomNavigationBar(
-    onToggleBold: () -> Unit,
-    onToggleItalic: () -> Unit,
-    onToggleUnderline: () -> Unit,
-    onSetAlignment: (alignment: TextAlign) -> Unit,
-    onToggleBulletList: () -> Unit,
+    selectionSize: TextFormatUiOption,
+    isStarred: Boolean,
     showFormatBar: Boolean,
+    textFieldFocusRequester: FocusRequester,
+    onFormatActions: NoteFormatActions,
     onShowTextFormatBar: (show: Boolean) -> Unit,
     onDeleteNote: () -> Unit,
-    onSelectTextSizeFormat: (textSize: Float) -> Unit,
-    selectionSize: TextFormatUiOption,
-    textFieldFocusRequester: FocusRequester,
-    isStarred: Boolean,
     onStarNote: () -> Unit
 ) {
     var selectedFormat by remember { mutableStateOf(FormatOptionTextFormat.Body) }
@@ -91,18 +86,16 @@ fun BottomNavigationBar(
                 onFormatSelected = {
                     selectedFormat = it
                     textSizeSelectedFormats(it) { textSize ->
-                        onSelectTextSizeFormat(textSize)
+                        onFormatActions.onSelectTextSizeFormat(textSize)
                     }
                 },
                 onClose = {
                     onShowTextFormatBar(false)
-                          },
-                onToggleBold = { onToggleBold() },
-                onToggleItalic = { onToggleItalic() },
-                onToggleUnderline = { onToggleUnderline() },
-                onSetAlignment = { alignment ->
-                    onSetAlignment(alignment)
-                }
+                },
+                onToggleBold = onFormatActions.onToggleBold,
+                onToggleItalic = onFormatActions.onToggleItalic,
+                onToggleUnderline = onFormatActions.onToggleUnderline,
+                onSetAlignment = onFormatActions.onSetAlignment
             )
         }
     }
@@ -126,14 +119,14 @@ fun BottomNavigationBar(
                     tint = LocalCustomColors.current.bodyContentColor
                 )
             }
-            IconButton(onClick = { onToggleBulletList() }) {
+            IconButton(onClick = onFormatActions.onToggleBulletList) {
                 Icon(
                     imageVector = Images.Icons.IcDetailList,
                     contentDescription = stringResource(Res.string.bottom_navigation_bullet_list),
                     tint = LocalCustomColors.current.bodyContentColor
                 )
             }
-            IconButton(onClick = { onStarNote() }) {
+            IconButton(onClick = onStarNote) {
                 Icon(
                     imageVector = if(isStarred) {
                         Images.Icons.IcStarFilled
@@ -163,4 +156,3 @@ fun BottomNavigationBar(
         }
     }
 }
-
