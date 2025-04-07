@@ -1,13 +1,12 @@
 package com.module.notelycompose.notes.presentation.helpers
 
 const val DEFAULT_CONTENT = "No additional text"
-const val EMPTY_SPACE = " "
 const val NEW_LINE = "\n"
 const val ELLIPSIS = "..."
 const val DEFAULT_MAX_LENGTH = 20
 
-fun String.replaceNewLinesWithSpaces(): String {
-    return this.replace(NEW_LINE, EMPTY_SPACE)
+fun String.returnFirstLine(): String {
+    return this.split(NEW_LINE).firstOrNull().orEmpty()
 }
 
 fun String.truncateWithEllipsis(maxLength: Int = DEFAULT_MAX_LENGTH): String {

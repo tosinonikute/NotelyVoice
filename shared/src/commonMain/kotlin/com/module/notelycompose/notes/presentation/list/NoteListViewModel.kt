@@ -7,7 +7,7 @@ import com.module.notelycompose.notes.domain.model.NoteDomainModel
 import com.module.notelycompose.notes.domain.model.NotesFilterDomainModel
 import com.module.notelycompose.notes.domain.model.NotesFilterDomainModel.ALL
 import com.module.notelycompose.notes.presentation.helpers.getFirstNonEmptyLineAfterFirst
-import com.module.notelycompose.notes.presentation.helpers.replaceNewLinesWithSpaces
+import com.module.notelycompose.notes.presentation.helpers.returnFirstLine
 import com.module.notelycompose.notes.presentation.helpers.truncateWithEllipsis
 import com.module.notelycompose.notes.presentation.list.mapper.NotesFilterMapper
 import com.module.notelycompose.notes.presentation.mapper.NotePresentationMapper
@@ -90,7 +90,7 @@ class NoteListViewModel(
                         DEFAULT_TITLE
                     } else {
                         note.title
-                            .replaceNewLinesWithSpaces()
+                            .returnFirstLine()
                             .truncateWithEllipsis()
                     },
                     content = if (note.content.trim().isEmpty()){
