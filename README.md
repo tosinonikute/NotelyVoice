@@ -26,17 +26,17 @@ A modern, cross-platform note-taking application built with Compose Multiplatfor
 
 ## Android Dark Theme Screenshots
 
-<img src="assets/screenshot1.jpg" alt="screenshot2" width="250px">
-<img src="assets/screenshot2.jpg" alt="screenshot2" width="250px">
-<img src="assets/screenshot3.jpg" alt="screenshot3" width="250px">
-<img src="assets/screenshot4.jpg" alt="screenshot4" width="250px">
+<img src="assets/screenshot1.jpg" alt="screenshot2" width="250">
+<img src="assets/screenshot2.jpg" alt="screenshot2" width="250">
+<img src="assets/screenshot3.jpg" alt="screenshot3" width="250">
+<img src="assets/screenshot4.jpg" alt="screenshot4" width="250">
 
 ## iOS Light Theme Screenshots
 
-<img src="assets/screenshot5.png" alt="screenshot5" width="250px">
-<img src="assets/screenshot6.png" alt="screenshot6" width="250px">
-<img src="assets/screenshot7.png" alt="screenshot7" width="250px">
-<img src="assets/screenshot8.png" alt="screenshot8" width="250px">
+<img src="assets/screenshot5.png" alt="screenshot5" width="250">
+<img src="assets/screenshot6.png" alt="screenshot6" width="250">
+<img src="assets/screenshot7.png" alt="screenshot7" width="250">
+<img src="assets/screenshot8.png" alt="screenshot8" width="250">
 
 ## Architecture
 
