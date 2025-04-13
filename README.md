@@ -72,7 +72,7 @@ Contributions are welcome! Please follow these steps:
 - Fork the repository.
 - Create a new branch for your feature or bug fix.
 - Submit a pull request with a clear description of your changes.
-- 
+
 ## Getting Started
 
 ### Prerequisites
