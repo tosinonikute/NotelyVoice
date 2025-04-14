@@ -12,6 +12,7 @@ import com.module.notelycompose.notes.presentation.detail.model.EditorPresentati
 import com.module.notelycompose.notes.presentation.detail.model.RecordingPathPresentationModel
 import com.module.notelycompose.notes.presentation.detail.model.TextPresentationFormat
 import com.module.notelycompose.notes.presentation.helpers.TextEditorHelper
+import com.module.notelycompose.notes.presentation.helpers.formattedDate
 import com.module.notelycompose.notes.ui.detail.EditorUiState
 import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.presentation.mapper.TextAlignPresentationMapper
@@ -204,12 +205,7 @@ class TextEditorViewModel (
     private fun getFormattedDate(
         createdAt: LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
     ): String {
-        val day = createdAt.dayOfMonth
-        val month = createdAt.month.name.lowercase().replaceFirstChar { it.uppercase() }
-        val year = createdAt.year
-        val hour = createdAt.hour
-        val minute = createdAt.minute.toString().padStart(2, '0')
-        return "$day $month $year at $hour:$minute"
+        return createdAt.formattedDate()
     }
 
     private fun createOrUpdateEvent(
