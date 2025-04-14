@@ -24,6 +24,18 @@ A modern, cross-platform note-taking application built with Compose Multiplatfor
 
 💻 **Cross-Platform** - Built with Compose Multiplatform for seamless experience across Android & iOS
 
+## Built With 🛠
+
+- **[Kotlin](https://kotlinlang.org/)** - Official programming language for Android development
+- **[Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)** - UI toolkit for building native applications
+- **[Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)** - For asynchronous programming
+- **[Clean Architecture](https://developer.android.com/topic/architecture)** - Ensures scalability and testability.
+- **[ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)** - Stores and manages UI-related data
+- **[Dagger-Hilt](https://dagger.dev/hilt/)** - Dependency injection for Android
+- **[Material 3](https://m3.material.io/)** - Design system for modern UI
+- **Native Compose Navigation** - No third-party navigation libraries
+- **Custom Text Editor** - Built from scratch without external editing libraries
+
 ## Android Dark Theme Screenshots
 
 <img src="assets/screenshot1.jpg" alt="screenshot2" width="250"> <img src="assets/screenshot2.jpg" alt="screenshot2" width="250"> <img src="assets/screenshot3.jpg" alt="screenshot3" width="250">
@@ -47,17 +59,19 @@ Notely is built with Clean Architecture principles, separating the app into dist
 
 <img src="assets/layered_architecture_diagram.png" alt="Logo" width="70%">
 
-## Built With 🛠
+## Project Structure
+`shared/`: Contains shared business logic and UI code.
 
-- **[Kotlin](https://kotlinlang.org/)** - Official programming language for Android development
-- **[Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)** - UI toolkit for building native applications
-- **[Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)** - For asynchronous programming
-- **Clean Architecture** - Separation of concerns with use cases
-- **[ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)** - Stores and manages UI-related data
-- **[Dagger-Hilt](https://dagger.dev/hilt/)** - Dependency injection for Android
-- **[Material 3](https://m3.material.io/)** - Design system for modern UI
-- **Native Compose Navigation** - No third-party navigation libraries
-- **Custom Text Editor** - Built from scratch without external editing libraries
+`androidApp/`: Contains Android-specific code.
+
+`iosApp/`: Contains iOS-specific code.
+
+## Contributing
+Contributions are welcome! Please follow these steps:
+
+- Fork the repository.
+- Create a new branch for your feature or bug fix.
+- Submit a pull request with a clear description of your changes.
 
 ## Getting Started
 
