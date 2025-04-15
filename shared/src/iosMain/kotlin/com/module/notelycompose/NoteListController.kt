@@ -36,7 +36,8 @@ fun NoteListController(
             },
             onSearchByKeyword = { keyword ->
                 viewmodel.onProcessIntent(NoteListIntent.OnSearchNote(keyword))
-            }
+            },
+            selectedTabTitle = state.value.selectedTabTitle
         )
     }
 }
