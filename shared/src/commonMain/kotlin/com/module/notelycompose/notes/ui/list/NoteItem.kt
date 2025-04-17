@@ -25,6 +25,8 @@ import notelycompose.shared.generated.resources.words
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 
+private const val ZERO_WORDS = 0
+
 @Composable
 fun NoteItem(
     modifier: Modifier,
@@ -99,16 +101,18 @@ fun NoteItem(
                             isVoice = note.isVoice
                         )
                         Spacer(modifier = Modifier.width(8.dp))
-                        Card(
-                            shape = RoundedCornerShape(16.dp),
-                            backgroundColor = Color(0xFFD18B60).copy(alpha = 0.5f)
-                        ) {
-                            Text(
-                                text = pluralStringResource(Res.plurals.words, note.words, note.words),
-                                color = LocalCustomColors.current.noteTextColor,
-                                fontSize = 14.sp,
-                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
-                            )
+                        if (note.words > ZERO_WORDS) {
+                            Card(
+                                shape = RoundedCornerShape(16.dp),
+                                backgroundColor = Color(0xFFD18B60).copy(alpha = 0.5f)
+                            ) {
+                                Text(
+                                    text = pluralStringResource(Res.plurals.words, note.words, note.words),
+                                    color = LocalCustomColors.current.noteTextColor,
+                                    fontSize = 14.sp,
+                                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
+                                )
+                            }
                         }
                     }
 

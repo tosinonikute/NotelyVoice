@@ -48,7 +48,6 @@ class TextEditorViewModel (
     private val _editorPresentationState = MutableStateFlow(EditorPresentationState())
     val editorPresentationState: StateFlow<EditorPresentationState> = _editorPresentationState
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
-    private var isEditingStarted = false
     private var _currentNoteId = MutableStateFlow<Long?>(ID_NOT_SET)
     private val _noteIdTrigger = MutableStateFlow<Long?>(null)
 
@@ -92,12 +91,10 @@ class TextEditorViewModel (
             title = newContent.text,
             content = newContent.text,
             starred = _editorPresentationState.value.starred,
-            isEditingStarted = isEditingStarted,
             formatting = _editorPresentationState.value.formats,
             textAlign = _editorPresentationState.value.textAlign,
             recordingPath = _editorPresentationState.value.recording.recordingPath,
         )
-        isEditingStarted = true
     }
 
     fun onUpdateRecordingPath(recordingPath: String) {
@@ -212,16 +209,12 @@ class TextEditorViewModel (
         title: String,
         content: String,
         starred: Boolean,
-        isEditingStarted: Boolean,
         formatting: List<TextPresentationFormat>,
         textAlign: TextAlign,
         recordingPath: String
     ) {
         val currentNoteId = _currentNoteId.value
         when {
-            content.isEmpty() && isEditingStarted -> {
-                getLastNote()?.let { lastNote ->  deleteNote(lastNote.id) }
-            }
             currentNoteId != null && currentNoteId != ID_NOT_SET -> {
                 updateNote(
                     noteId = currentNoteId,
@@ -322,7 +315,6 @@ class TextEditorViewModel (
                 title = content.text,
                 content = content.text,
                 starred = starred,
-                isEditingStarted = true,
                 formatting = formats,
                 textAlign = textAlign,
                 recordingPath = recordingPath
