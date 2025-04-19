@@ -1,6 +1,8 @@
 package com.module.notelycompose.notes.ui.detail
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
@@ -78,10 +81,14 @@ fun BottomNavigationBar(
             .fillMaxWidth()
     ) {
         AnimatedVisibility(
+            modifier = Modifier.align(Alignment.BottomCenter),
             visible = showFormatBar,
-            modifier = Modifier.align(Alignment.BottomCenter)
+            enter = fadeIn(
+                animationSpec = tween(durationMillis = 250)
+            )
         ) {
             FormatBar(
+                modifier = Modifier.width(600.dp),
                 selectedFormat = selectedFormat,
                 onFormatSelected = {
                     selectedFormat = it

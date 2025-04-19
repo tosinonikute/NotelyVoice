@@ -37,8 +37,9 @@ fun FormatBar(
     onSetAlignment: (alignment: TextAlign) -> Unit
 ) {
     Surface(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier,
         shadowElevation = 8.dp,
+        shape = RoundedCornerShape(16.dp),
         color = LocalCustomColors.current.bottomFormattingContainerColor
     ) {
         Column(
@@ -47,8 +48,7 @@ fun FormatBar(
                 .padding(start = 12.dp, end = 12.dp)
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -69,9 +69,8 @@ fun FormatBar(
 
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
                     .horizontalScroll(rememberScrollState()),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 FormatOptionTextFormat.values().forEach { format ->
@@ -86,8 +85,7 @@ fun FormatBar(
             }
 
             Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {

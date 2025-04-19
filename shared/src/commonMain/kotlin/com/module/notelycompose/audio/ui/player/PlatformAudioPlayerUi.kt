@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
@@ -62,7 +63,7 @@ fun PlatformAudioPlayerUi(
 
     Box(
         modifier = Modifier
-            .fillMaxWidth()
+            .width(800.dp)
             .padding(horizontal = 16.dp, vertical = 0.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(LocalCustomColors.current.playerBoxBackgroundColor)
@@ -74,7 +75,7 @@ fun PlatformAudioPlayerUi(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Box(modifier = Modifier.weight(LayoutGuide.PlatformAudio.playContainerWeight)) {
+            Box(modifier = Modifier.padding(horizontal = 4.dp)) {
                 IconButton(
                     onClick = { onTogglePlayPause() },
                     modifier = Modifier.size(28.dp),
@@ -93,7 +94,7 @@ fun PlatformAudioPlayerUi(
                 }
             }
 
-            Box(modifier = Modifier.weight(LayoutGuide.PlatformAudio.playTimeContainerWeight)) {
+            Box(modifier = Modifier.padding(horizontal = 4.dp)) {
                 Text(
                     text = uiState.currentPosition.formatTimeToMMSS(),
                     color = Color.DarkGray,
@@ -103,7 +104,7 @@ fun PlatformAudioPlayerUi(
                 )
             }
 
-            Box(modifier = Modifier.weight(LayoutGuide.PlatformAudio.sliderContainerWeight)) {
+            Box(modifier = Modifier.weight(1f)) {
                 AudioSlider(
                     modifier = Modifier.fillMaxWidth(),
                     filePath = filePath,
@@ -115,7 +116,7 @@ fun PlatformAudioPlayerUi(
                 )
             }
 
-            Box(modifier = Modifier.weight(LayoutGuide.PlatformAudio.durationContainerWeight)) {
+            Box(modifier = Modifier.padding(horizontal = 4.dp)) {
                 Text(
                     text = if (uiState.duration > 0) {
                         uiState.duration.formatTimeToMMSS()
@@ -144,13 +145,12 @@ fun AudioSlider(
     onTogglePlayPause: () -> Unit
 ) {
     var sliderPosition by remember { mutableStateOf<Float?>(null) }
-    var value by remember { mutableFloatStateOf(0f) }
     val interactionSource = remember { MutableInteractionSource() }
 
     Slider(
         value = sliderPosition?.toFloat() ?: uiState.currentPosition.toFloat(),
         onValueChange = {
-            value = it
+            sliderPosition = it
         },
         modifier = modifier,
         thumb = {
