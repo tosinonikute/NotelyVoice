@@ -45,8 +45,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared"))
 
+    implementation(project(":composeApp"))
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.ui.tooling.preview)
     implementation(compose.ui)
@@ -55,12 +55,17 @@ dependencies {
     implementation(compose.material)
     implementation(compose.material3)
 
+    implementation(libs.composeMaterial3) // For Jetpack Compose
+    // OR (if using XML views)
+    implementation(libs.material) // Includes Material 3
+
     implementation(libs.activity.compose)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.navigation.compose)
+    implementation(libs.androidx.core.splashscreen)
 
     // TODO: remove this imports
     implementation(libs.kotlinx.datetime)

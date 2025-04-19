@@ -10,6 +10,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -43,6 +44,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         initializeAudioRecorder()
         setContent {
             MyApplicationTheme {
@@ -142,7 +144,8 @@ fun NoteDetailWrapper(
         onStartRecord = audioRecorderViewModel::onStartRecording,
         onStopRecord = audioRecorderViewModel::onStopRecording,
         onRequestAudioPermission = audioRecorderViewModel::onRequestAudioPermission,
-        onAfterRecord = { editorViewModel.onUpdateRecordingPath(audioRecorderState.recordingPath) },
+        onAfterRecord = {editorViewModel.onUpdateRecordingPath(audioRecorderState.recordingPath) },
+        onDeleteRecord = {editorViewModel.onDeleteRecord()},
         onLoadAudio = audioPlayerViewModel::onLoadAudio,
         onClear = audioPlayerViewModel::onCleared,
         onSeekTo = audioPlayerViewModel::onSeekTo,
