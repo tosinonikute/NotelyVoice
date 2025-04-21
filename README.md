@@ -96,7 +96,7 @@ Contributions are welcome! Please follow these steps:
 ### License
 
 ```
-Copyright 2025 Notely, Inc. All Rights Reserved.
+Copyright 2024 Notely, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
