@@ -18,6 +18,7 @@ fun NoteListScreen(
     val state by viewmodel.state.collectAsState()
     val notes = viewmodel.onGetUiState(state)
 
+
     SharedNoteListScreen(
         notes = notes,
         onFloatingActionButtonClicked = {
