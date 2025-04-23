@@ -23,7 +23,7 @@ class IOSNoteListViewModel (
         NoteListViewModel(
             selectedTabTitle = selectedTabTitle,
             getAllNotesUseCase = getAllNotesUseCase,
-            searchNotesUseCase = searchNotesUseCase,
+
             deleteNoteById = deleteNoteById,
             notePresentationMapper = notePresentationMapper,
             notesFilterMapper = notesFilterMapper,

@@ -22,7 +22,6 @@ import platform.AVFoundation.*
 import platform.darwin.*
 import platform.AVFAudio.*
 
-
 private const val RECORDING_PREFIX = "recording_"
 private const val RECORDING_EXTENSION = ".m4a"
 
@@ -31,6 +30,46 @@ actual class AudioRecorder {
     private var audioRecorder: AVAudioRecorder? = null
     private var recordingSession: AVAudioSession = AVAudioSession.sharedInstance()
     private lateinit var recordingURL: NSURL
+
+
+    /**
+     * Call when entering recording screen
+     */
+    @OptIn(ExperimentalForeignApi::class)
+    actual suspend fun setup() {
+        // 1. Request permissions early
+        requestRecordingPermission()
+
+        // 2. Configure audio session
+        try {
+            recordingSession.setCategory(
+                AVAudioSessionCategoryPlayAndRecord, null)
+            recordingSession.setActive(true, null)
+        } catch (e: Exception) {
+            println("Audio session setup failed: ${e.message}")
+        }
+
+
+    }
+
+    /**
+     * Call when leaving recording screen
+     */
+    @OptIn(ExperimentalForeignApi::class)
+    actual suspend fun teardown() {
+        // 1. Stop any active recording
+        if (isRecording()) {
+            stopRecording()
+        }
+
+        // 2. Deactivate audio session
+        try {
+            recordingSession.setActive(false, null)
+        } catch (e: Exception) {
+            println("Audio session teardown failed: ${e.message}")
+        }
+
+    }
 
     @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
     actual fun startRecording() {
@@ -53,14 +92,6 @@ actual class AudioRecorder {
             return
         }
 
-        try {
-            recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord, null)
-            recordingSession.setActive(true, null)
-        } catch (e: Exception) {
-            println("Failed to configure audio session: ${e.message}")
-            return
-        }
-
         val settings = mapOf<Any?, Any?>(
             AVFormatIDKey to kAudioFormatMPEG4AAC,
             AVSampleRateKey to 44100.0,
@@ -69,41 +100,27 @@ actual class AudioRecorder {
             AVEncoderBitRateKey to 32000
         )
 
-        memScoped {
-            val error: ObjCObjectVar<NSError?> = alloc()
-            val path = recordingURL.path ?: run {
-                println("Invalid recording path")
-                return@memScoped
-            }
-            val url = NSURL.fileURLWithPath(path)
 
-            audioRecorder = AVAudioRecorder(url, settings, error.ptr)
-            if (error.value != null) {
-                println("Error creating audio recorder: ${error.value?.localizedDescription}")
-                return@memScoped
-            }
+        audioRecorder = AVAudioRecorder(recordingURL, settings, null)
 
-            if (audioRecorder?.prepareToRecord() == true) {
-                audioRecorder?.record()
-                println("Recording started successfully")
-            } else {
-                println("Failed to prepare recording")
-            }
+        if (audioRecorder?.prepareToRecord() == true) {
+            audioRecorder?.record()
+            println("Recording started successfully")
+        } else {
+            println("Failed to prepare recording")
+            audioRecorder = null
         }
     }
 
-    @OptIn(ExperimentalForeignApi::class)
+
     actual fun stopRecording() {
         println("Stop Recording")
-        if (audioRecorder?.isRecording() == true) {
-            audioRecorder?.stop()
-            audioRecorder = null
-            try {
-                recordingSession.setActive(false, null)
-            } catch (e: Exception) {
-                println("Failed to deactivate audio session: ${e.message}")
+        audioRecorder?.let { recorder ->
+            if (recorder.isRecording()) {
+                recorder.stop()
             }
         }
+        audioRecorder = null
     }
 
     actual fun isRecording(): Boolean {

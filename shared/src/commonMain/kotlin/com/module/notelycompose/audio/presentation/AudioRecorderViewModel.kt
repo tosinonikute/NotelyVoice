@@ -92,6 +92,14 @@ class AudioRecorderViewModel(
         }
     }
 
+    suspend fun setupRecorder(){
+            audioRecorder.setup()
+    }
+    suspend fun finishRecorder(){
+            audioRecorder.teardown()
+
+    }
+
     private fun stopCounter() {
         counterJob?.cancel()
         counterJob = null

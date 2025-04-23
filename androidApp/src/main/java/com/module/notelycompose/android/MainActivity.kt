@@ -153,7 +153,9 @@ fun NoteDetailWrapper(
         onLoadAudio = audioPlayerViewModel::onLoadAudio,
         onClear = audioPlayerViewModel::onCleared,
         onSeekTo = audioPlayerViewModel::onSeekTo,
-        onTogglePlayPause = audioPlayerViewModel::onTogglePlayPause
+        onTogglePlayPause = audioPlayerViewModel::onTogglePlayPause,
+        setupRecorder = {},
+        finishRecorder = {}
     )
 
     val noteActions = NoteActions(

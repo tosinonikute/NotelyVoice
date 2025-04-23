@@ -78,7 +78,10 @@ fun NoteDetailController(
             onLoadAudio = audioPlayerViewModel::onLoadAudio,
             onClear = audioPlayerViewModel::onCleared,
             onSeekTo = audioPlayerViewModel::onSeekTo,
-            onTogglePlayPause = audioPlayerViewModel::onTogglePlayPause
+            onTogglePlayPause = audioPlayerViewModel::onTogglePlayPause,
+            setupRecorder = audioRecorderViewModel::setupRecorder,
+            finishRecorder = audioRecorderViewModel::finishRecorder
+
         )
 
         val noteActions = NoteActions(
