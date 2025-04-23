@@ -24,7 +24,7 @@ fun NoteList(
     onNoteDeleteClicked: (NoteUiModel) -> Unit
 ) {
     LazyVerticalStaggeredGrid(
-        columns = StaggeredGridCells.Adaptive(minSize = 200.dp),
+        columns = StaggeredGridCells.Adaptive(minSize = 300.dp),
         modifier = Modifier.padding(top = 16.dp, start = 20.dp, end = 20.dp),
         verticalItemSpacing = 8.dp,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
