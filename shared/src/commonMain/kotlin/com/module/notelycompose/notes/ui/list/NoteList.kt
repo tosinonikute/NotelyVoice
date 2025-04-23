@@ -31,9 +31,6 @@ fun NoteList(
     ) {
         itemsIndexed(items = noteList) { index, note ->
             NoteItem(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .animateItemPlacement(),
                 note = note,
                 onNoteClick = {
                     onNoteClicked(note.id)

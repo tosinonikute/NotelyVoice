@@ -42,64 +42,67 @@ fun FormatBar(
         shape = RoundedCornerShape(16.dp),
         color = LocalCustomColors.current.bottomFormattingContainerColor
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 12.dp, end = 12.dp)
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = stringResource(Res.string.format_bar_text),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = LocalCustomColors.current.bottomFormattingContentColor
-                )
-                IconButton(onClick = onClose) {
-                    Icon(
-                        imageVector = Icons.Rounded.Close,
-                        contentDescription = stringResource(Res.string.format_bar_close),
-                        tint = LocalCustomColors.current.bottomFormattingContentColor
-                    )
-                }
-            }
-
-            Row(
+        Box {
+            Column(
                 modifier = Modifier
-                    .horizontalScroll(rememberScrollState()),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                    .width(600.dp)
+                    .align(Alignment.Center)
+                    .padding(start = 12.dp, end = 12.dp)
             ) {
-                FormatOptionTextFormat.values().forEach { format ->
-                    FormatOption(
-                        format = format,
-                        isSelected = format == selectedFormat,
-                        onClick = { onFormatSelected(format) }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(Res.string.format_bar_text),
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = LocalCustomColors.current.bottomFormattingContentColor
+                    )
+                    IconButton(onClick = onClose) {
+                        Icon(
+                            imageVector = Icons.Rounded.Close,
+                            contentDescription = stringResource(Res.string.format_bar_close),
+                            tint = LocalCustomColors.current.bottomFormattingContentColor
+                        )
+                    }
+                }
+
+                Row(
+                    modifier = Modifier
+                        .horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    FormatOptionTextFormat.values().forEach { format ->
+                        FormatOption(
+                            format = format,
+                            isSelected = format == selectedFormat,
+                            onClick = { onFormatSelected(format) }
+                        )
+                    }
+                    // Add end padding for last item
+                    Spacer(modifier = Modifier.width(4.dp))
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    EditingToolbar(
+                        onToggleBold = { onToggleBold() },
+                        onToggleItalic = { onToggleItalic() },
+                        onToggleUnderline = { onToggleUnderline() },
+                        onSetAlignment = { alignment ->
+                            onSetAlignment(alignment)
+                        }
                     )
                 }
-                // Add end padding for last item
-                Spacer(modifier = Modifier.width(4.dp))
-            }
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                EditingToolbar(
-                    onToggleBold = { onToggleBold() },
-                    onToggleItalic = { onToggleItalic() },
-                    onToggleUnderline = { onToggleUnderline() },
-                    onSetAlignment = { alignment ->
-                        onSetAlignment(alignment)
-                    }
-                )
+                Spacer(modifier = Modifier.height(16.dp))
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }

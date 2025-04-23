@@ -1,33 +1,13 @@
 package com.module.notelycompose.notes.ui.list
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment.Companion.Bottom
-import androidx.compose.ui.Alignment.Companion.BottomCenter
-import androidx.compose.ui.Alignment.Companion.CenterVertically
-import androidx.compose.ui.Alignment.Companion.Start
-import androidx.compose.ui.Alignment.Companion.TopCenter
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -50,87 +30,94 @@ private const val ZERO_WORDS = 0
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun NoteItem(
-    modifier: Modifier,
     note: NoteUiModel,
     onNoteClick: (Long) -> Unit,
     onDeleteClick: (Long) -> Unit
 ) {
-    Card(
-            modifier
-                .fillMaxWidth()
+        Card(
+            modifier = Modifier.fillMaxWidth()
                 .clickable {
                     onNoteClick(note.id)
                 },
             elevation = 4.dp,
-            shape = RoundedCornerShape(16.dp),
+            shape = RoundedCornerShape(28.dp),
             backgroundColor = Color(0xFFD18B60)
         ) {
-                Column(modifier = Modifier.padding(10.dp).fillMaxWidth()) {
-                    Row(modifier = Modifier.fillMaxWidth()) {
-                        Text(
-                            modifier = Modifier.weight(1f),
-                            text = note.title,
-                            color = LocalCustomColors.current.noteTextColor,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold,
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                        IconButton(modifier = Modifier.size(20.dp, 20.dp), onClick = {
-                            onDeleteClick(note.id)
-                        }) {
-                            Icon(
-                                imageVector = Icons.Default.Close,
-                                tint = LocalCustomColors.current.noteIconColor,
-                                contentDescription = stringResource(Res.string.note_item_delete)
-                            )
-                        }
-                    }
+            Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Text(
-                        text = note.content,
+                        text = note.createdAt,
                         color = LocalCustomColors.current.noteTextColor,
-                        fontSize = 14.sp,
-                        modifier = Modifier.padding(top = 14.dp, bottom = 8.dp),
-                        maxLines = 10,
-                        overflow = TextOverflow.Ellipsis
+                        fontSize = 16.sp,
+                        modifier = Modifier.padding(bottom = 12.dp)
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = CenterVertically
+                    Spacer(modifier = Modifier.width(8.dp))
+                    IconButton(
+                        onClick = {
+                            onDeleteClick(note.id)
+                        }
                     ) {
-                        FlowRow(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            NoteType(
-                                isStarred = note.isStarred,
-                                isVoice = note.isVoice
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            if (note.words > ZERO_WORDS) {
-                                Card(
-                                    shape = RoundedCornerShape(16.dp),
-                                    backgroundColor = Color(0xFFD18B60).copy(alpha = 0.5f)
-                                ) {
-                                    Text(
-                                        text = pluralStringResource(Res.plurals.words, note.words, note.words),
-                                        color = LocalCustomColors.current.noteTextColor,
-                                        fontSize = 12.sp,
-                                        modifier = Modifier.padding(4.dp)
-
-                                    )
-                                }
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            tint = LocalCustomColors.current.noteIconColor,
+                            contentDescription = stringResource(Res.string.note_item_delete)
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = note.title,
+                    color = LocalCustomColors.current.noteTextColor,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    text = note.content,
+                    color = LocalCustomColors.current.noteTextColor,
+                    fontSize = 16.sp,
+                    modifier = Modifier.padding(top = 24.dp, bottom = 8.dp),
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    FlowRow {
+                        NoteType(
+                            isStarred = note.isStarred,
+                            isVoice = note.isVoice
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        if (note.words > ZERO_WORDS) {
+                            Card(
+                                modifier = Modifier.padding(vertical = 4.dp),
+                                shape = RoundedCornerShape(16.dp),
+                                backgroundColor = Color(0xFFD18B60).copy(alpha = 0.5f)
+                            ) {
+                                Text(
+                                    text = pluralStringResource(Res.plurals.words, note.words, note.words),
+                                    color = LocalCustomColors.current.noteTextColor,
+                                    fontSize = 14.sp,
+                                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
+                                )
                             }
                         }
-
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Row(modifier = Modifier.fillMaxWidth()) {
-                        Text(
-                            modifier = Modifier.weight(1f),
-                            text = note.createdAt,
-                            color = LocalCustomColors.current.noteTextColor,
-                            fontSize = 12.sp,
-                        )
-                        IconButton(modifier = Modifier.size(20.dp, 20.dp), onClick = { onNoteClick(note.id) }) {
+
+                    Card(
+                        modifier = Modifier.padding(bottom = 8.dp),
+                        shape = RoundedCornerShape(32.dp),
+                        backgroundColor = Color(0xFFD18B60)
+                    ) {
+                        IconButton(onClick = { onNoteClick(note.id) }) {
                             Icon(
                                 imageVector = Images.Icons.IcArrowUpRight,
                                 tint = LocalCustomColors.current.noteIconColor,
@@ -139,5 +126,6 @@ fun NoteItem(
                         }
                     }
                 }
-    }
+            }
+        }
 }

@@ -47,14 +47,15 @@ fun NoteType(
 @Composable
 private fun NoteTypeCard(text: String) {
     Card(
+        modifier = Modifier.padding(vertical = 4.dp),
         shape = RoundedCornerShape(16.dp),
         backgroundColor = Color(0xFFD18B60).copy(alpha = 0.5f)
     ) {
         Text(
             text = text,
             color = LocalCustomColors.current.noteTextColor,
-            fontSize = 12.sp,
-            modifier = Modifier.padding(4.dp)
+            fontSize = 14.sp,
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
 
         )
     }

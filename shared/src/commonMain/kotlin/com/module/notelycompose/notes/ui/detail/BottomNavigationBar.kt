@@ -96,7 +96,7 @@ fun BottomNavigationBar(
             )
         ) {
             FormatBar(
-                modifier = Modifier.width(600.dp),
+                modifier = Modifier.fillMaxWidth(),
                 selectedFormat = selectedFormat,
                 onFormatSelected = {
                     selectedFormat = it

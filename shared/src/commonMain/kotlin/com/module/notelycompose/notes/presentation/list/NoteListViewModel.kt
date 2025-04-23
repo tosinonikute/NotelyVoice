@@ -17,6 +17,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
 import notelycompose.shared.generated.resources.Res
 
@@ -67,8 +68,11 @@ class NoteListViewModel(
     private fun createCombinedState(
         filter: NotesFilterDomainModel
     ) {
+        println("filter : ${filter}")
         viewModelScope.launch {
+            println("filter in launch : ${filter}")
             getAllNotesUseCase.execute(filter).collect { notes ->
+                println("filter in collect: ${filter}")
                 setNoteState(notes)
             }
         }
