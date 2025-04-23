@@ -102,4 +102,10 @@ actual class AudioRecorder(
     actual fun getRecordingFilePath(): String {
         return currentRecordingPath ?: File(context.cacheDir, DEFAULT).absolutePath
     }
+
+    actual suspend fun setup() {
+    }
+
+    actual suspend fun teardown() {
+    }
 }
