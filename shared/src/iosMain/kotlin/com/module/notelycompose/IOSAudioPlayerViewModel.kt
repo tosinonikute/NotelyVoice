@@ -33,6 +33,12 @@ class IOSAudioPlayerViewModel(
     fun onSeekTo(position: Int) {
         viewModel.onSeekTo(position)
     }
+    fun setupRecorder() {
+        viewModel.setupRecorder()
+    }
+    fun finishRecorder() {
+        viewModel.finishRecorder()
+    }
 
     fun onCleared() {
         viewModel.onClear()

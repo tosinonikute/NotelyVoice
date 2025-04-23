@@ -35,11 +35,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.rememberDismissState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -73,6 +75,7 @@ import com.module.notelycompose.audio.ui.recorder.RecordUiComponent
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcRecorder
 import com.module.notelycompose.resources.vectors.Images
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 import notelycompose.shared.generated.resources.Res
 import notelycompose.shared.generated.resources.note_detail_recorder
@@ -94,7 +97,19 @@ fun NoteDetailScreen(
     val focusRequester = remember { FocusRequester() }
     var showRecordDialog by remember { mutableStateOf(false) }
     var isTextFieldFocused by remember { mutableStateOf(false) }
-
+    val coroutineScope = rememberCoroutineScope()
+// Setup when dialog appears
+    DisposableEffect(Unit) {
+        val job = coroutineScope.launch {
+            onAudioActions.setupRecorder()
+        }
+        onDispose {
+            coroutineScope.launch {
+                job.cancel()
+                onAudioActions.finishRecorder()
+            }
+        }
+    }
     Scaffold(
         modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
         topBar = { DetailNoteTopBar(onNavigateBack = onNavigateBack) },
@@ -144,7 +159,7 @@ fun NoteDetailScreen(
             },
             recordCounterString = recordCounterString,
             onStartRecord = onAudioActions.onStartRecord,
-            onStopRecord = onAudioActions.onStopRecord
+            onStopRecord = onAudioActions.onStopRecord,
         )
     }
 }
@@ -334,6 +349,8 @@ data class NoteFormatActions(
 data class NoteAudioActions(
     val onStartRecord: () -> Unit,
     val onStopRecord: () -> Unit,
+    val setupRecorder: suspend () -> Unit,
+    val finishRecorder: suspend () -> Unit,
     val onRequestAudioPermission: () -> Unit,
     val onAfterRecord: () -> Unit,
     val onDeleteRecord: () -> Unit,
