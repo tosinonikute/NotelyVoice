@@ -17,7 +17,6 @@ import javax.inject.Inject
 @HiltViewModel
 class AndroidNoteListViewModel @Inject constructor(
     private val getAllNotesUseCase: GetAllNotesUseCase,
-    private val searchNotesUseCase: SearchNotesUseCase,
     private val deleteNoteById: DeleteNoteById,
     private val notePresentationMapper: NotePresentationMapper,
     private val notesFilterMapper: NotesFilterMapper
@@ -27,7 +26,6 @@ class AndroidNoteListViewModel @Inject constructor(
         NoteListViewModel(
             selectedTabTitle = "",
             getAllNotesUseCase = getAllNotesUseCase,
-            searchNotesUseCase = searchNotesUseCase,
             deleteNoteById = deleteNoteById,
             notePresentationMapper = notePresentationMapper,
             notesFilterMapper = notesFilterMapper,

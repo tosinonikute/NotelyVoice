@@ -15,13 +15,9 @@ class GetAllNotesUseCase(
     private val noteDataSource: NoteDataSource,
     private val noteDomainMapper: NoteDomainMapper
 ) {
-    fun execute(filter: NotesFilterDomainModel = ALL): CommonFlow<List<NoteDomainModel>> {
-        return when (filter) {
-            is ALL -> noteDataSource.getNotes()
-            is STARRED -> noteDataSource.getStarredNotes()
-            is VOICES -> noteDataSource.getVoiceNotes()
-            is RECENT -> noteDataSource.getNotes()
-        }.map { notes ->
+    fun execute(): CommonFlow<List<NoteDomainModel>> {
+        return noteDataSource.getNotes()
+        .map { notes ->
             notes.map { noteDataModel ->
                 noteDomainMapper.mapToDomainModel(noteDataModel)
             }
