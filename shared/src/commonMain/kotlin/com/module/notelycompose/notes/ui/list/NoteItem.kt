@@ -74,7 +74,7 @@ fun NoteItem(
                     color = LocalCustomColors.current.noteTextColor,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    maxLines = 2,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
@@ -82,15 +82,19 @@ fun NoteItem(
                     color = LocalCustomColors.current.noteTextColor,
                     fontSize = 16.sp,
                     modifier = Modifier.padding(top = 24.dp, bottom = 8.dp),
-                    maxLines = 3,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    FlowRow {
+                    FlowRow (
+                        modifier = Modifier.padding(vertical = 4.dp),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalArrangement = Arrangement.SpaceBetween){
                         NoteType(
                             isStarred = note.isStarred,
                             isVoice = note.isVoice
