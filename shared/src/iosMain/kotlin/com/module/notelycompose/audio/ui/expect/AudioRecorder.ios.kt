@@ -1,6 +1,7 @@
 package com.module.notelycompose.audio.ui.expect
 
 import kotlinx.cinterop.*
+import kotlinx.cinterop.alloc
 import platform.Foundation.*
 import kotlinx.coroutines.suspendCancellableCoroutine
 import platform.AVFAudio.AVAudioQualityHigh
@@ -37,13 +38,13 @@ actual class AudioRecorder {
      */
     @OptIn(ExperimentalForeignApi::class)
     actual suspend fun setup() {
-        // 1. Request permissions early
-        requestRecordingPermission()
 
-        // 2. Configure audio session
         try {
             recordingSession.setCategory(
-                AVAudioSessionCategoryPlayAndRecord, null)
+                AVAudioSessionCategoryPlayAndRecord,
+                withOptions = AVAudioSessionCategoryOptions.MAX_VALUE,
+                null
+            )
             recordingSession.setActive(true, null)
         } catch (e: Exception) {
             println("Audio session setup failed: ${e.message}")
@@ -73,6 +74,7 @@ actual class AudioRecorder {
 
     @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
     actual fun startRecording() {
+        // 1. Request permissions early
         if (!hasRecordingPermission()) {
             println("Recording permission not granted")
             return
@@ -113,6 +115,7 @@ actual class AudioRecorder {
     }
 
 
+    @OptIn(ExperimentalForeignApi::class)
     actual fun stopRecording() {
         println("Stop Recording")
         audioRecorder?.let { recorder ->
@@ -120,6 +123,7 @@ actual class AudioRecorder {
                 recorder.stop()
             }
         }
+
         audioRecorder = null
     }
 
@@ -131,12 +135,12 @@ actual class AudioRecorder {
         return recordingSession.recordPermission() == AVAudioSessionRecordPermissionGranted
     }
 
-    actual suspend fun requestRecordingPermission() {
-        if (hasRecordingPermission()) return
+    actual suspend fun requestRecordingPermission() : Boolean {
+        if (hasRecordingPermission()) return true
 
         return suspendCancellableCoroutine { continuation ->
             recordingSession.requestRecordPermission { granted ->
-                continuation.resume(Unit)
+                continuation.resume(granted)
             }
         }
     }

@@ -37,7 +37,7 @@ struct AppView: View {
                     
                 }
             }
-        }
+        }.navigationViewStyle(.stack)
     }
 }
 
