@@ -7,5 +7,6 @@ data class NoteUiModel(
     val isStarred: Boolean,
     val isVoice: Boolean,
     val createdAt: String,
+    val recordingPath: String,
     val words: Int
 )

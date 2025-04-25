@@ -84,6 +84,10 @@ class IOSTextEditorViewModel(
         return viewModel.onUpdateRecordingPath(recordingPath)
     }
 
+    fun onDeleteRecord() {
+        return viewModel.onDeleteRecord()
+    }
+
     fun onDeleteNote() {
         return viewModel.onDeleteNote()
     }

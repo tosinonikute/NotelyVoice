@@ -35,10 +35,10 @@ class AudioRecorderViewModel(
     private var counterJob: Job? = null
     private var recordingTimeSeconds = INITIAL_SECOND
 
-    fun onStartRecording() {
+    fun onStartRecording(updateUI:()->Unit) {
         viewModelScope.launch {
             if (!audioRecorder.hasRecordingPermission()) {
-                audioRecorder.requestRecordingPermission()
+             audioRecorder.requestRecordingPermission()
                 if (!audioRecorder.hasRecordingPermission()) {
                     return@launch
                 }
@@ -46,10 +46,13 @@ class AudioRecorderViewModel(
 
             if (!audioRecorder.isRecording()) {
                 audioRecorder.startRecording()
+                updateUI()
                 startCounter()
             }
         }
     }
+
+
 
     private fun startCounter() {
         // Reset counter
@@ -90,6 +93,14 @@ class AudioRecorderViewModel(
                 current.copy(recordingPath = recordingPath)
             }
         }
+    }
+
+    suspend fun setupRecorder(){
+            audioRecorder.setup()
+    }
+    suspend fun finishRecorder(){
+            audioRecorder.teardown()
+
     }
 
     private fun stopCounter() {

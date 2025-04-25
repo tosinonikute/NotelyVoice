@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.kotlinxSerialization)
     id("dev.sergiobelda.compose.vectorize") version "1.0.2"
     id("com.squareup.sqldelight")
+    //alias(libs.plugins.app.icon)
 }
 
 @OptIn(ExperimentalKotlinGradlePluginApi::class)

@@ -22,14 +22,19 @@ class IOSAudioRecorderViewModel(
         return viewModel.onGetUiState(presentationState)
     }
 
-    fun onStartRecording() {
-        viewModel.onStartRecording()
+    fun onStartRecording(updateUI:()->Unit) {
+        viewModel.onStartRecording(updateUI)
     }
 
     fun onStopRecording() {
         viewModel.onStopRecording()
     }
-
+    suspend fun setupRecorder() {
+        viewModel.setupRecorder()
+    }
+    suspend fun finishRecorder() {
+        viewModel.finishRecorder()
+    }
     fun onRequestAudioPermission() {
         viewModel.onRequestAudioPermission()
     }

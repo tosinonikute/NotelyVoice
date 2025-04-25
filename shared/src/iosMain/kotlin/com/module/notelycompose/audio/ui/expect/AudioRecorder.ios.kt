@@ -1,6 +1,7 @@
 package com.module.notelycompose.audio.ui.expect
 
 import kotlinx.cinterop.*
+import kotlinx.cinterop.alloc
 import platform.Foundation.*
 import kotlinx.coroutines.suspendCancellableCoroutine
 import platform.AVFAudio.AVAudioQualityHigh
@@ -20,6 +21,7 @@ import kotlin.coroutines.resume
 import kotlin.random.Random
 import platform.AVFoundation.*
 import platform.darwin.*
+import platform.AVFAudio.*
 
 private const val RECORDING_PREFIX = "recording_"
 private const val RECORDING_EXTENSION = ".m4a"
@@ -30,8 +32,44 @@ actual class AudioRecorder {
     private var recordingSession: AVAudioSession = AVAudioSession.sharedInstance()
     private lateinit var recordingURL: NSURL
 
+    /**
+     * Call when entering recording screen
+     */
     @OptIn(ExperimentalForeignApi::class)
+    actual suspend fun setup() {
+        try {
+            recordingSession.setCategory(
+                AVAudioSessionCategoryPlayAndRecord,
+                withOptions = AVAudioSessionCategoryOptionDefaultToSpeaker,
+                null
+            )
+            recordingSession.setActive(true, null)
+        } catch (e: Exception) {
+            println("Audio session setup failed: ${e.message}")
+        }
+    }
+
+    /**
+     * Call when leaving recording screen
+     */
+    @OptIn(ExperimentalForeignApi::class)
+    actual suspend fun teardown() {
+        // 1. Stop any active recording
+        if (isRecording()) {
+            stopRecording()
+        }
+
+        // 2. Deactivate audio session
+        try {
+            recordingSession.setActive(false, null)
+        } catch (e: Exception) {
+            println("Audio session teardown failed: ${e.message}")
+        }
+    }
+
+    @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
     actual fun startRecording() {
+        // 1. Request permissions early
         if (!hasRecordingPermission()) {
             println("Recording permission not granted")
             return
@@ -40,47 +78,46 @@ actual class AudioRecorder {
         val randomNumber = Random.nextInt(100000, 999999)
         val fileName = "$RECORDING_PREFIX$randomNumber$RECORDING_EXTENSION"
 
+        println("Start Recording: $fileName")
         val documentsDirectory = NSFileManager.defaultManager.URLsForDirectory(
             NSDocumentDirectory,
             NSUserDomainMask
         ).first() as NSURL
 
-        this.recordingURL = documentsDirectory.URLByAppendingPathComponent(fileName)!!
-
-        recordingSession.requestRecordPermission { granted: Boolean ->
-            if (granted) {
-                val settings = mapOf<Any?, Any?>(
-                    AVFormatIDKey to kAudioFormatMPEG4AAC,
-                    AVSampleRateKey to 44100.0,
-                    AVNumberOfChannelsKey to 1,
-                    AVEncoderBitRateKey to 32000
-                )
-                val url = NSURL.fileURLWithPath(this.recordingURL.path.orEmpty())
-                memScoped {
-                    try {
-                        val error: ObjCObjectVar<NSError?> = alloc()
-                        audioRecorder = AVAudioRecorder(url, settings, error.ptr)
-                        if(audioRecorder?.prepareToRecord() == true) {
-                            audioRecorder?.record()
-                        }
-                    } catch (e: Exception) {
-                        println(e.toString())
-                        e.printStackTrace()
-                    }
-                }
-            } else {
-                println("Recording permission not granted")
-            }
+        this.recordingURL = documentsDirectory.URLByAppendingPathComponent(fileName) ?: run {
+            println("Failed to create recording URL")
+            return
         }
-        recordingSession.setCategory(AVAudioSessionCategoryRecord, null )
-        recordingSession.setActive(true, null)
-    }
 
-    actual fun stopRecording() {
-        if (audioRecorder?.isRecording() == true) {
-            audioRecorder?.stop()
+        val settings = mapOf<Any?, Any?>(
+            AVFormatIDKey to kAudioFormatMPEG4AAC,
+            AVSampleRateKey to 44100.0,
+            AVNumberOfChannelsKey to 1,
+            AVEncoderAudioQualityKey to AVAudioQualityHigh,
+            AVEncoderBitRateKey to 32000
+        )
+
+        audioRecorder = AVAudioRecorder(recordingURL, settings, null)
+
+        if (audioRecorder?.prepareToRecord() == true) {
+            audioRecorder?.record()
+            println("Recording started successfully")
+        } else {
+            println("Failed to prepare recording")
             audioRecorder = null
         }
+    }
+
+
+    @OptIn(ExperimentalForeignApi::class)
+    actual fun stopRecording() {
+        audioRecorder?.let { recorder ->
+            if (recorder.isRecording()) {
+                recorder.stop()
+            }
+        }
+
+        audioRecorder = null
     }
 
     actual fun isRecording(): Boolean {
@@ -88,18 +125,15 @@ actual class AudioRecorder {
     }
 
     actual fun hasRecordingPermission(): Boolean {
-        val status = recordingSession.recordPermission()
-        return status == AVAudioSessionRecordPermissionGranted
+        return recordingSession.recordPermission() == AVAudioSessionRecordPermissionGranted
     }
 
-    actual suspend fun requestRecordingPermission() {
-        if (hasRecordingPermission()) {
-            return
-        }
+    actual suspend fun requestRecordingPermission() : Boolean {
+        if (hasRecordingPermission()) return true
 
         return suspendCancellableCoroutine { continuation ->
             recordingSession.requestRecordPermission { granted ->
-                continuation.resume(Unit)
+                continuation.resume(granted)
             }
         }
     }

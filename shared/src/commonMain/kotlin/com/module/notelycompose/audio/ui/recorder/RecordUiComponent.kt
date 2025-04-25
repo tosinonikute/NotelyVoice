@@ -33,6 +33,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -77,7 +78,7 @@ enum class ScreenState {
 fun RecordUiComponent(
     onDismiss: () -> Unit,
     recordCounterString: String,
-    onStartRecord: () -> Unit,
+    onStartRecord: (()->Unit) -> Unit,
     onStopRecord: () -> Unit,
     onAfterRecord: () -> Unit
 ) {
@@ -95,8 +96,10 @@ fun RecordUiComponent(
             ScreenState.Initial -> RecordingInitialScreen(
                 onNavigateBack = onDismiss,
                 onTapToRecord = {
-                    onStartRecord()
-                    screenState = ScreenState.Recording
+                    onStartRecord({
+                        screenState = ScreenState.Recording
+                    })
+
                 }
             )
             ScreenState.Recording -> RecordingInProgressScreen(
@@ -115,6 +118,8 @@ fun RecordUiComponent(
                     onDismiss()
                 }
             }
+
+
         }
     }
 }

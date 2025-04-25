@@ -11,6 +11,7 @@ import com.module.notelycompose.notes.presentation.mapper.NotePresentationMapper
 import com.module.notelycompose.notes.ui.list.model.NoteUiModel
 
 class IOSNoteListViewModel (
+    private val selectedTabTitle:String,
     private val getAllNotesUseCase: GetAllNotesUseCase,
     private val searchNotesUseCase: SearchNotesUseCase,
     private val deleteNoteById: DeleteNoteById,
@@ -20,8 +21,9 @@ class IOSNoteListViewModel (
 
     private val viewModel by lazy {
         NoteListViewModel(
+            selectedTabTitle = selectedTabTitle,
             getAllNotesUseCase = getAllNotesUseCase,
-            searchNotesUseCase = searchNotesUseCase,
+
             deleteNoteById = deleteNoteById,
             notePresentationMapper = notePresentationMapper,
             notesFilterMapper = notesFilterMapper,

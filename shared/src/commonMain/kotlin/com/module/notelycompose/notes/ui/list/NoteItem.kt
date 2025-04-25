@@ -27,23 +27,18 @@ import org.jetbrains.compose.resources.stringResource
 
 private const val ZERO_WORDS = 0
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun NoteItem(
-    modifier: Modifier,
     note: NoteUiModel,
     onNoteClick: (Long) -> Unit,
     onDeleteClick: (Long) -> Unit
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp)
-            .clickable {
-                onNoteClick(note.id)
-            }
-    ) {
         Card(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .clickable {
+                    onNoteClick(note.id)
+                },
             elevation = 4.dp,
             shape = RoundedCornerShape(28.dp),
             backgroundColor = Color(0xFFD18B60)
@@ -79,7 +74,7 @@ fun NoteItem(
                     color = LocalCustomColors.current.noteTextColor,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    maxLines = 2,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
@@ -87,15 +82,19 @@ fun NoteItem(
                     color = LocalCustomColors.current.noteTextColor,
                     fontSize = 16.sp,
                     modifier = Modifier.padding(top = 24.dp, bottom = 8.dp),
-                    maxLines = 3,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Row {
+                    FlowRow (
+                        modifier = Modifier.padding(vertical = 4.dp),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalArrangement = Arrangement.SpaceBetween){
                         NoteType(
                             isStarred = note.isStarred,
                             isVoice = note.isVoice
@@ -103,6 +102,7 @@ fun NoteItem(
                         Spacer(modifier = Modifier.width(8.dp))
                         if (note.words > ZERO_WORDS) {
                             Card(
+                                modifier = Modifier.padding(vertical = 4.dp),
                                 shape = RoundedCornerShape(16.dp),
                                 backgroundColor = Color(0xFFD18B60).copy(alpha = 0.5f)
                             ) {
@@ -132,5 +132,4 @@ fun NoteItem(
                 }
             }
         }
-    }
 }

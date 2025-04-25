@@ -4,17 +4,20 @@ composeVectorizeCore = "1.0.2"
 hilt = "2.49"
 hiltCompiler = "2.48.1"
 hiltCompose = "1.2.0"
+material = "1.11.0"
 navCompose = "2.8.3"
 sqldelight = "1.5.5"
 sqldelightCoroutines = "1.5.4"
 kotlinxDatetime = "0.4.0"
 atomicfu = "0.17.3"
-composeMultiplatform = "1.7.0"
+composeMultiplatform = "1.7.3"
 kotlin = "2.0.21"
 compose-material3 = "1.3.1"
 activityKtx = "1.9.3"
 animationAndroid = "1.7.6"
 kotlinxSerializationJson = "1.5.1"
+app-icon = "1.2.6"
+splashscreen = "1.0.1"
 
 [libraries]
 # Non-UI dependencies
@@ -24,6 +27,7 @@ hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-comp
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltCompose" }
 hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltCompose" }
 jetbrains-atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicfu" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navCompose" }
 sqldelight-runtime = { group = "com.squareup.sqldelight", name = "runtime", version.ref = "sqldelight" }
 sqldelight-coroutines = { group = "com.squareup.sqldelight", name = "coroutines-extensions", version.ref = "sqldelightCoroutines" }
@@ -45,6 +49,7 @@ hilt-android-gradle-plugin = { group = "com.google.dagger", name = "hilt-android
 atomicfu-gradle-plugin = { group = "org.jetbrains.kotlinx", name = "atomicfu-gradle-plugin", version.ref = "atomicfu" }
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
 animation-android = { group = "androidx.compose.animation", name = "animation-android", version.ref = "animationAndroid" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen" }
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
@@ -53,3 +58,4 @@ composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "k
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+app-icon = { id = "io.github.qamarelsafadi.kmp.app.icon.generator", version.ref = "app-icon" }

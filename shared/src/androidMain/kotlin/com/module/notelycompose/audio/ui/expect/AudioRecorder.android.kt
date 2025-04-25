@@ -77,20 +77,20 @@ actual class AudioRecorder(
         ) == PackageManager.PERMISSION_GRANTED
     }
 
-    actual suspend fun requestRecordingPermission() {
+    actual suspend fun requestRecordingPermission():Boolean {
         if (hasRecordingPermission()) {
-            return
+            return true
         }
 
         return suspendCancellableCoroutine { continuation ->
             permissionContinuation = { isGranted ->
-                continuation.resume(Unit)
+                continuation.resume(isGranted)
             }
 
             if (permissionLauncher != null) {
                 permissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
             } else {
-                continuation.resume(Unit)
+                continuation.resume(false)
             }
 
             continuation.invokeOnCancellation {
@@ -101,5 +101,11 @@ actual class AudioRecorder(
 
     actual fun getRecordingFilePath(): String {
         return currentRecordingPath ?: File(context.cacheDir, DEFAULT).absolutePath
+    }
+
+    actual suspend fun setup() {
+    }
+
+    actual suspend fun teardown() {
     }
 }

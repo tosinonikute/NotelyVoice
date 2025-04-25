@@ -73,11 +73,15 @@ fun NoteDetailController(
             onStartRecord = audioRecorderViewModel::onStartRecording,
             onStopRecord = audioRecorderViewModel::onStopRecording,
             onRequestAudioPermission = audioRecorderViewModel::onRequestAudioPermission,
-            onAfterRecord = { editorViewModel.onUpdateRecordingPath(audioRecorderState.recordingPath) },
+            onAfterRecord = {editorViewModel.onUpdateRecordingPath(audioRecorderState.recordingPath) },
+            onDeleteRecord = {editorViewModel.onDeleteRecord()},
             onLoadAudio = audioPlayerViewModel::onLoadAudio,
             onClear = audioPlayerViewModel::onCleared,
             onSeekTo = audioPlayerViewModel::onSeekTo,
-            onTogglePlayPause = audioPlayerViewModel::onTogglePlayPause
+            onTogglePlayPause = audioPlayerViewModel::onTogglePlayPause,
+            setupRecorder = audioRecorderViewModel::setupRecorder,
+            finishRecorder = audioRecorderViewModel::finishRecorder
+
         )
 
         val noteActions = NoteActions(
