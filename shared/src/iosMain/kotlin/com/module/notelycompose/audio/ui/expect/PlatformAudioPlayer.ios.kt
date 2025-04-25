@@ -44,7 +44,7 @@ actual class PlatformAudioPlayer actual constructor() {
                 }
 
                 audioPlayer = player
-                audioPlayer?.volume = 20.0f
+                audioPlayer?.volume = 1f
                 (player.duration * MILLISECONDS_MULTIPLIER).toInt()
             }
 
