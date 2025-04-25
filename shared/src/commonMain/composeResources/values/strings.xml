@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Notely App</string>
+    <string name="app_name">Notely Voice</string>
 
     <!-- TopBar -->
     <string name="top_bar_back">Back</string>
-    <string name="top_bar_notes">Notely App</string>
+    <string name="top_bar_notes">Notely Voice</string>
     <string name="top_bar_menu">Menu</string>
 
     <!-- Delete Dialog -->
