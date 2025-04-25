@@ -90,6 +90,10 @@ class AndroidTextEditorViewModel @Inject constructor(
         return viewModel.onUpdateRecordingPath(recordingPath)
     }
 
+    fun onDeleteRecord() {
+        return viewModel.onDeleteRecord()
+    }
+
     fun onDeleteNote() {
         return viewModel.onDeleteNote()
     }

@@ -8,13 +8,16 @@ import com.module.notelycompose.notes.ui.list.SharedNoteListScreen
 import com.module.notelycompose.notes.ui.theme.MyApplicationTheme
 
 fun NoteListController(
+    selectedTabTitle :String,
     onFloatingActionButtonClicked: () -> Unit,
     onNoteClicked: (Long) -> Unit,
+    onFilterTabClicked:(String) -> Unit
 ) = ComposeUIViewController {
     MyApplicationTheme {
         val appModule = remember { AppModule() }
         val viewmodel = remember {
             IOSNoteListViewModel(
+                selectedTabTitle = selectedTabTitle,
                 getAllNotesUseCase = appModule.getAllNotesUseCase,
                 searchNotesUseCase = appModule.searchNotesUseCase,
                 deleteNoteById = appModule.deleteNoteById,
@@ -32,6 +35,7 @@ fun NoteListController(
                 viewmodel.onProcessIntent(NoteListIntent.OnNoteDeleted(id))
             },
             onFilterTabItemClicked = { filter ->
+                onFilterTabClicked(filter)
                 viewmodel.onProcessIntent(NoteListIntent.OnFilterNote(filter))
             },
             onSearchByKeyword = { keyword ->

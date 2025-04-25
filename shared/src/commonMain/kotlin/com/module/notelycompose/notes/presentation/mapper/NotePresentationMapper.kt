@@ -18,6 +18,7 @@ class NotePresentationMapper {
             isStarred = domainModel.starred,
             isVoice = domainModel.recordingPath.isNotEmpty(),
             createdAt = completeTime(domainModel.createdAt),
+            recordingPath = domainModel.recordingPath,
             words = countWords(domainModel.content)
         )
     }
@@ -51,6 +52,7 @@ class NotePresentationMapper {
             isStarred = presentationModel.isStarred,
             isVoice = presentationModel.isVoice,
             createdAt = presentationModel.createdAt,
+            recordingPath = presentationModel.recordingPath,
             words = presentationModel.words
         )
     }

@@ -2,6 +2,7 @@ package com.module.notelycompose.notes.presentation.detail
 
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
+import com.module.notelycompose.audio.ui.expect.deleteFile
 import com.module.notelycompose.notes.domain.DeleteNoteById
 import com.module.notelycompose.notes.domain.GetLastNote
 import com.module.notelycompose.notes.domain.GetNoteById
@@ -13,10 +14,10 @@ import com.module.notelycompose.notes.presentation.detail.model.RecordingPathPre
 import com.module.notelycompose.notes.presentation.detail.model.TextPresentationFormat
 import com.module.notelycompose.notes.presentation.helpers.TextEditorHelper
 import com.module.notelycompose.notes.presentation.helpers.formattedDate
-import com.module.notelycompose.notes.ui.detail.EditorUiState
 import com.module.notelycompose.notes.presentation.mapper.EditorPresentationToUiStateMapper
 import com.module.notelycompose.notes.presentation.mapper.TextAlignPresentationMapper
 import com.module.notelycompose.notes.presentation.mapper.TextFormatPresentationMapper
+import com.module.notelycompose.notes.ui.detail.EditorUiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -106,6 +107,16 @@ class TextEditorViewModel (
         onUpdateContent(newContent = _editorPresentationState.value.content)
     }
 
+    fun onDeleteRecord() {
+        deleteFile(_editorPresentationState.value.recording.recordingPath)
+        _editorPresentationState.update {
+            it.copy(
+                recording = recordingPath(/*reset record path */"")
+            )
+        }
+        onUpdateContent(newContent = _editorPresentationState.value.content)
+    }
+
     private fun recordingPath(recordingPath: String) = RecordingPathPresentationModel(
         recordingPath = recordingPath,
         isRecordingExist = recordingPath.isNotEmpty()
@@ -179,6 +190,8 @@ class TextEditorViewModel (
 
     fun onDeleteNote() {
         _currentNoteId.value?.let { noteId ->
+            val path = _editorPresentationState.value.recording.recordingPath
+            deleteFile(filePath = path)
             deleteNote(id = noteId)
         }
     }

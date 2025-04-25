@@ -1,22 +1,29 @@
 package com.module.notelycompose.notes.ui.detail
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,6 +52,7 @@ private const val ZERO_DENSITY = 0
 
 @Composable
 fun BottomNavigationBar(
+    isTextFieldFocused: Boolean,
     selectionSize: TextFormatUiOption,
     isStarred: Boolean,
     showFormatBar: Boolean,
@@ -54,10 +62,13 @@ fun BottomNavigationBar(
     onDeleteNote: () -> Unit,
     onStarNote: () -> Unit
 ) {
+
+
     var selectedFormat by remember { mutableStateOf(FormatOptionTextFormat.Body) }
     var showDeleteDialog by remember { mutableStateOf(false) }
     val keyboardController = LocalSoftwareKeyboardController.current
-    val imeVisible = WindowInsets.ime.getBottom(LocalDensity.current) > ZERO_DENSITY
+    val imeHeight = WindowInsets.ime.getBottom(LocalDensity.current)
+    val isKeyboardOpen by keyboardAsState() // true or false
 
     when(selectionSize) {
         TextUiFormats.Title -> selectedFormat = FormatOptionTextFormat.Title
@@ -78,10 +89,14 @@ fun BottomNavigationBar(
             .fillMaxWidth()
     ) {
         AnimatedVisibility(
+            modifier = Modifier.align(Alignment.BottomCenter),
             visible = showFormatBar,
-            modifier = Modifier.align(Alignment.BottomCenter)
+            enter = fadeIn(
+                animationSpec = tween(durationMillis = 250)
+            )
         ) {
             FormatBar(
+                modifier = Modifier.fillMaxWidth(),
                 selectedFormat = selectedFormat,
                 onFormatSelected = {
                     selectedFormat = it
@@ -145,7 +160,7 @@ fun BottomNavigationBar(
                 )
             }
             IconButton(onClick = {
-                textFieldFocusRequester.showKeyboard(imeVisible, keyboardController)
+                textFieldFocusRequester.showKeyboard(imeHeight>0, keyboardController)
             }) {
                 Icon(
                     imageVector = Images.Icons.IcKeyboardHide,
@@ -155,4 +170,10 @@ fun BottomNavigationBar(
             }
         }
     }
+}
+
+@Composable
+fun keyboardAsState(): State<Boolean> {
+    val isImeVisible = WindowInsets.ime.getBottom(LocalDensity.current) > 0
+    return rememberUpdatedState(isImeVisible)
 }

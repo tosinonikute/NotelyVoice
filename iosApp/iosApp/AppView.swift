@@ -37,7 +37,7 @@ struct AppView: View {
                     
                 }
             }
-        }
+        }.navigationViewStyle(.stack)
     }
 }
 
@@ -51,14 +51,17 @@ struct SecondView: View {
             onNoteSaveClicked: {
                 
             },
+
             noteId: String(selectedNoteId),
             onNavigateBack: {
                 navigateToSecondView = false
                 onNoteSaved()
             }
         )
+        .ignoresSafeArea(.keyboard)
         .navigationBarHidden(true) // set to false to show native back button
-    }
+
+}
 }
 
 struct AppView_Previews: PreviewProvider {

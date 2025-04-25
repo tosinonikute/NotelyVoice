@@ -30,7 +30,7 @@ fun SharedNoteListScreen(
     notes: List<NoteUiModel>,
     onFloatingActionButtonClicked: () -> Unit,
     onNoteClicked: (Long) -> Unit,
-    onNoteDeleteClicked: (Long) -> Unit,
+    onNoteDeleteClicked: (NoteUiModel) -> Unit,
     onFilterTabItemClicked: (String) -> Unit,
     onSearchByKeyword: (String) -> Unit,
     selectedTabTitle: String

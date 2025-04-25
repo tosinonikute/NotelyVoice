@@ -30,8 +30,8 @@ class AndroidAudioRecorderViewModel @Inject constructor(
         return viewModel.onGetUiState(presentationState)
     }
 
-    fun onStartRecording() {
-        viewModel.onStartRecording()
+    fun onStartRecording(updateUI:()->Unit) {
+        viewModel.onStartRecording(updateUI)
     }
 
     fun onStopRecording() {
