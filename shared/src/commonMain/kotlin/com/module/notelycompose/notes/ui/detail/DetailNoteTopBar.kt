@@ -43,7 +43,7 @@ fun DetailNoteTopBar(
 }
 
 @Composable
-private fun AndroidNoteTopBar(
+fun AndroidNoteTopBar(
     title: String,
     onNavigateBack: () -> Unit
 ) {
@@ -63,7 +63,7 @@ private fun AndroidNoteTopBar(
 }
 
 @Composable
-private fun IOSNoteTopBar(
+fun IOSNoteTopBar(
     onNavigateBack: () -> Unit
 ) {
     TopAppBar(
