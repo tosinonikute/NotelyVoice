@@ -155,7 +155,6 @@ fun NoteDetailScreen(
     }
 
     if (showRecordDialog) {
-        onAudioActions.onRequestAudioPermission()
         RecordUiComponent(
             onDismiss = { showRecordDialog = false },
             onAfterRecord = {
@@ -369,7 +368,7 @@ data class NoteFormatActions(
 )
 
 data class NoteAudioActions(
-    val onStartRecord: () -> Unit,
+    val onStartRecord: (()->Unit) -> Unit,
     val onStopRecord: () -> Unit,
     val setupRecorder: suspend () -> Unit,
     val finishRecorder: suspend () -> Unit,

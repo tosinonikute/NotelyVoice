@@ -10,6 +10,8 @@ import kotlinx.cinterop.alloc
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.value
 import kotlinx.cinterop.*
+import platform.AVFAudio.AVAudioSession
+import platform.AVFAudio.AVAudioSessionCategoryPlayback
 
 private const val MILLISECONDS_MULTIPLIER = 1000
 private const val SECONDS_DIVISOR = 1000.0
@@ -18,6 +20,7 @@ private const val ERROR_DURATION = 0
 
 actual class PlatformAudioPlayer actual constructor() {
     private var audioPlayer: AVAudioPlayer? = null
+    private var recordingSession: AVAudioSession = AVAudioSession.sharedInstance()
 
     @OptIn(ExperimentalForeignApi::class)
     actual suspend fun prepare(filePath: String): Int {
@@ -41,6 +44,7 @@ actual class PlatformAudioPlayer actual constructor() {
                 }
 
                 audioPlayer = player
+                audioPlayer?.volume = 20.0f
                 (player.duration * MILLISECONDS_MULTIPLIER).toInt()
             }
 

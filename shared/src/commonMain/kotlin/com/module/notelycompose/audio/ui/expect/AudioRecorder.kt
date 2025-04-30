@@ -7,6 +7,6 @@ expect class AudioRecorder {
     fun stopRecording()
     fun isRecording(): Boolean
     fun hasRecordingPermission(): Boolean
-    suspend fun requestRecordingPermission()
     fun getRecordingFilePath(): String
+    suspend fun requestRecordingPermission(): Boolean
 }

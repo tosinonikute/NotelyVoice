@@ -51,7 +51,7 @@ private var selectedEncoding = AudioFormat.ENCODING_PCM_16BIT
             }
     }
 
-     actual   fun stopRecording() {
+     actual fun stopRecording() {
         try {
             recorder?.stopRecording()
         } catch (e: Exception) {
@@ -73,20 +73,20 @@ private var selectedEncoding = AudioFormat.ENCODING_PCM_16BIT
         ) == PackageManager.PERMISSION_GRANTED
     }
 
-     actual   suspend fun requestRecordingPermission() {
+    actual suspend fun requestRecordingPermission():Boolean {
         if (hasRecordingPermission()) {
-            return
+            return true
         }
 
         return suspendCancellableCoroutine { continuation ->
             permissionContinuation = { isGranted ->
-                continuation.resume(Unit)
+                continuation.resume(isGranted)
             }
 
             if (permissionLauncher != null) {
                 permissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
             } else {
-                continuation.resume(Unit)
+                continuation.resume(false)
             }
 
             continuation.invokeOnCancellation {
