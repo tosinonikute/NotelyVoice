@@ -39,7 +39,6 @@ fun FormatBar(
     Surface(
         modifier = modifier,
         shadowElevation = 8.dp,
-        shape = RoundedCornerShape(16.dp),
         color = LocalCustomColors.current.bottomFormattingContainerColor
     ) {
         Box {

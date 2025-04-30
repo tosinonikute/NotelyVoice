@@ -59,6 +59,12 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.sqldelight.android.driver)
+                // Wav Recorder
+                implementation(libs.android.wave.recorder)
+                // SpeechRecognizer
+                implementation(libs.alphacephei.vosk.android)
+                implementation(libs.kotlinx.serialization.json.v160)
+
             }
         }
         val iosX64Main by getting {

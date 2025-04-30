@@ -3,61 +3,57 @@ package com.module.notelycompose.audio.ui.expect
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
-import android.media.MediaRecorder
-import android.os.Build
+import android.media.AudioFormat
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.ContextCompat
+import com.github.squti.androidwaverecorder.WaveRecorder
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.io.File
 import kotlin.coroutines.resume
 import kotlin.random.Random
 
-private const val DEFAULT = "recording.mp3"
+private const val DEFAULT = "recording.wav"
 private const val RECORDING_PREFIX = "recording_"
-private const val RECORDING_EXTENSION = ".mp3"
+private const val RECORDING_EXTENSION = ".wav"
+private var selectedEncoding = AudioFormat.ENCODING_PCM_16BIT
 
-actual class AudioRecorder(
+ actual class AudioRecorder(
     private val context: Context,
     private val permissionLauncher: ActivityResultLauncher<String>?
 ) {
-    private var recorder: MediaRecorder? = null
+    private var recorder: WaveRecorder? = null
     private var isCurrentlyRecording = false
     private var permissionContinuation: ((Boolean) -> Unit)? = null
     private var currentRecordingPath: String? = null
 
-    actual fun startRecording() {
+     actual  fun startRecording() {
         val randomNumber = Random.nextInt(100000, 999999)
         val fileName = "$RECORDING_PREFIX$randomNumber$RECORDING_EXTENSION"
         val file = File(context.cacheDir, fileName)
         currentRecordingPath = file.absolutePath
 
-        recorder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            MediaRecorder(context)
-        } else {
-            MediaRecorder()
-        }.apply {
-            setAudioSource(MediaRecorder.AudioSource.MIC)
-            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-            setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-            setOutputFile(file.absolutePath)
+         recorder = WaveRecorder(file.absolutePath)
+             .configureWaveSettings {
+                 sampleRate = 16000
+                 channels = AudioFormat.CHANNEL_IN_MONO
+                 audioEncoding = selectedEncoding
+             }.configureSilenceDetection {
+                 minAmplitudeThreshold = 2000
+                 bufferDurationInMillis = 1500
+                 preSilenceDurationInMillis = 1500
+             }
 
             try {
-                prepare()
-                start()
+                recorder?.startRecording()
                 isCurrentlyRecording = true
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-        }
     }
 
-    actual fun stopRecording() {
+     actual   fun stopRecording() {
         try {
-            recorder?.apply {
-                stop()
-                reset()
-                release()
-            }
+            recorder?.stopRecording()
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
@@ -66,18 +62,18 @@ actual class AudioRecorder(
         }
     }
 
-    actual fun isRecording(): Boolean {
+     actual   fun isRecording(): Boolean {
         return isCurrentlyRecording
     }
 
-    actual fun hasRecordingPermission(): Boolean {
+     actual   fun hasRecordingPermission(): Boolean {
         return ContextCompat.checkSelfPermission(
             context,
             Manifest.permission.RECORD_AUDIO
         ) == PackageManager.PERMISSION_GRANTED
     }
 
-    actual suspend fun requestRecordingPermission() {
+     actual   suspend fun requestRecordingPermission() {
         if (hasRecordingPermission()) {
             return
         }
@@ -99,13 +95,13 @@ actual class AudioRecorder(
         }
     }
 
-    actual fun getRecordingFilePath(): String {
+     actual   fun getRecordingFilePath(): String {
         return currentRecordingPath ?: File(context.cacheDir, DEFAULT).absolutePath
     }
 
-    actual suspend fun setup() {
+     actual  suspend fun setup() {
     }
 
-    actual suspend fun teardown() {
+     actual suspend fun teardown() {
     }
 }

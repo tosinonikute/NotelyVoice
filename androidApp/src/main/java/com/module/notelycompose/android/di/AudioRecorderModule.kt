@@ -54,6 +54,7 @@ object AudioRecorderModule {
         return factory.create()
     }
 
+
     @Provides
     @Singleton
     fun provideAudioRecorderPresentationToUiStateMapper(): AudioRecorderPresentationToUiMapper {

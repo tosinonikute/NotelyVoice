@@ -79,4 +79,9 @@
     <string name="player_ui_pause">Pause</string>
     <string name="player_ui_play">Play</string>
 
+    <!-- Transcription Dialog -->
+    <string name="transcription_dialog_cancel">Cancel</string>
+    <string name="transcription_dialog_append">Append</string>
+    <string name="transcription_dialog_summarize">Summarize</string>
+
 </resources>
