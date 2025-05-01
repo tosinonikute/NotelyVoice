@@ -69,7 +69,6 @@ fun NoteItem(
                         )
                     }
                 }
-                //Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = note.title,
                     color = LocalCustomColors.current.noteTextColor,
@@ -86,7 +85,6 @@ fun NoteItem(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-                //Spacer(modifier = Modifier.height(4.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
