@@ -9,6 +9,7 @@ import com.module.notelycompose.notes.ui.detail.NoteActions
 import com.module.notelycompose.notes.ui.detail.NoteAudioActions
 import com.module.notelycompose.notes.ui.detail.NoteDetailScreen
 import com.module.notelycompose.notes.ui.detail.NoteFormatActions
+import com.module.notelycompose.notes.ui.detail.RecognitionActions
 import com.module.notelycompose.notes.ui.theme.MyApplicationTheme
 
 fun NoteDetailController(
@@ -39,6 +40,15 @@ fun NoteDetailController(
                 mapper = audioRecorderModule.audioRecorderPresentationToUiMapper
             )
         }
+
+
+        val speechRecognitionModule = SpeechRecognitionModule()
+        val speechRecognitionViewModel = remember {
+            IOSSpeechRecognitionViewModel(
+                speechRecognizer = speechRecognitionModule.speechRecognizer
+            )
+        }
+        val speechRecognitionState by speechRecognitionViewModel.state.collectAsState()
         val audioRecorderPresentationState by audioRecorderViewModel.state.collectAsState()
         val audioRecorderState = audioRecorderViewModel.onGetUiState(audioRecorderPresentationState)
 
@@ -84,6 +94,11 @@ fun NoteDetailController(
 
         )
 
+        val recognitionActions = RecognitionActions(
+            recognizeAudio = speechRecognitionViewModel::onStartRecognizing,
+            stopRecognition = speechRecognitionViewModel::finishRecognizer,
+        )
+
         val noteActions = NoteActions(
             onDeleteNote = {
                 editorViewModel.onDeleteNote()
@@ -101,7 +116,9 @@ fun NoteDetailController(
             onUpdateContent = editorViewModel::onUpdateContent,
             onFormatActions = formatActions,
             onAudioActions = audioActions,
-            onNoteActions = noteActions
+            onNoteActions = noteActions,
+            onRecognitionActions = recognitionActions,
+            transcriptionUiState = speechRecognitionState
         )
     }
 }
