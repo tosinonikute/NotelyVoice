@@ -78,7 +78,7 @@ fun TopBar(
             if (isRightIconVisible) {
                 Icon(
                     imageVector = Icons.Outlined.Settings,
-                    tint = LocalCustomColors.current.bodyContentColor,
+                    tint = LocalCustomColors.current.settingsIconColor,
                     modifier = Modifier
                         .align(Alignment.CenterEnd)
                         .size(24.dp)

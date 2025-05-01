@@ -7,7 +7,7 @@ val DarkCustomColors = CustomColors(
     sortAscendingIconColor = Color(0xFF8514CB),
     backgroundViewColor = Color(0xFF181818),
     dateContentColorViewColor = Color.White,
-    dateContentIconColor = Color.White,
+    dateContentIconColor = Color(0xFFCCCCCC),
     bottomBarBackgroundColor = Color.White,
     bottomBarIconColor = Color(0xFF8514CB),
     noteListBackgroundColor = Color(0xFFEEEEEE),
@@ -16,7 +16,7 @@ val DarkCustomColors = CustomColors(
     contentTopColor = Color.White,
     floatActionButtonBorderColor = Color.White,
     floatActionButtonIconColor = Color.White,
-    searchOutlinedTextFieldColor = Color.White,
+    searchOutlinedTextFieldColor = Color(0xFFCCCCCC),
     topButtonIconColor = Color.White,
     noteTextColor = Color.Black,
     noteIconColor = Color.Black,
@@ -26,14 +26,15 @@ val DarkCustomColors = CustomColors(
     bottomFormattingContentColor = Color.Black,
     activeThumbTrackColor = Color(0xFF666666),
     playerBoxBackgroundColor = Color(0xFFF2F2F2),
-    starredColor = Color.Blue
+    starredColor = Color.Blue,
+    settingsIconColor = Color(0xFFCCCCCC)
 )
 
 val LightCustomColors = CustomColors(
     sortAscendingIconColor = Color(0xFFA260CC),
     backgroundViewColor = Color(0xFFFFFFFF),
     dateContentColorViewColor = Color.Black,
-    dateContentIconColor = Color.Black,
+    dateContentIconColor = Color(0xFF1E1E24),
     bottomBarBackgroundColor = Color(0xFFFFFFFF),
     bottomBarIconColor = Color.White,
     noteListBackgroundColor = Color(0xFFF4E7F9),
@@ -52,7 +53,8 @@ val LightCustomColors = CustomColors(
     bottomFormattingContentColor = Color.Black,
     activeThumbTrackColor = Color(0xFF666666),
     playerBoxBackgroundColor = Color(0xFFEEEEEE),
-    starredColor = Color.Blue
+    starredColor = Color.Blue,
+    settingsIconColor = Color.Black
 )
 
 // Create a CompositionLocal to hold the custom colors

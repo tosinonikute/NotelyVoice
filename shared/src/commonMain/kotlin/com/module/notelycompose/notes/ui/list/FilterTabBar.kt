@@ -47,7 +47,7 @@ fun FilterTabBar(
                 start = 20.dp,
                 end = 20.dp,
                 top = 8.dp,
-                bottom = 8.dp
+                bottom = 4.dp
             )
     ) {
         FilterSelection(

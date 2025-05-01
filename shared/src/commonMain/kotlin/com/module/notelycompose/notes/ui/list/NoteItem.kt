@@ -1,5 +1,6 @@
 package com.module.notelycompose.notes.ui.list
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -68,7 +69,7 @@ fun NoteItem(
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(8.dp))
+                //Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = note.title,
                     color = LocalCustomColors.current.noteTextColor,
@@ -81,11 +82,11 @@ fun NoteItem(
                     text = note.content,
                     color = LocalCustomColors.current.noteTextColor,
                     fontSize = 16.sp,
-                    modifier = Modifier.padding(top = 24.dp, bottom = 8.dp),
+                    modifier = Modifier.padding(top = 16.dp, bottom = 8.dp),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+                //Spacer(modifier = Modifier.height(4.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -117,7 +118,7 @@ fun NoteItem(
                     }
 
                     Card(
-                        modifier = Modifier.padding(bottom = 8.dp),
+                        modifier = Modifier.padding(bottom = 4.dp),
                         shape = RoundedCornerShape(32.dp),
                         backgroundColor = Color(0xFFD18B60)
                     ) {

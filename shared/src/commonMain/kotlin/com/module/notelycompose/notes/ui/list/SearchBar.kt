@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -45,7 +46,7 @@ fun SearchBar(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(horizontal = 16.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -68,7 +69,7 @@ fun SearchBar(
                 textColor = LocalCustomColors.current.searchOutlinedTextFieldColor,
                 focusedBorderColor = LocalCustomColors.current.searchOutlinedTextFieldColor,
                 unfocusedBorderColor = LocalCustomColors.current.searchOutlinedTextFieldColor,
-                disabledBorderColor = LocalCustomColors.current.searchOutlinedTextFieldColor,
+                disabledBorderColor = LocalCustomColors.current.searchOutlinedTextFieldColor
             ),
             label = {
                 if (isLabelVisible) {
@@ -82,10 +83,11 @@ fun SearchBar(
                 Icon(
                     imageVector = Icons.Default.Search,
                     contentDescription = stringResource(Res.string.search_bar_search_description),
-                    tint = Color.White
+                    tint = LocalCustomColors.current.searchOutlinedTextFieldColor,
+                    modifier = Modifier.size(38.dp).padding(start = 8.dp)
                 )
             },
-            shape = RoundedCornerShape(16.dp),
+            shape = RoundedCornerShape(48.dp),
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
             keyboardActions = KeyboardActions(
                 onDone = {
