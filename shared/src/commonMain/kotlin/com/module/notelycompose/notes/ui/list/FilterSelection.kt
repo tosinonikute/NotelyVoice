@@ -45,8 +45,8 @@ fun FilterSelection(
                 modifier = Modifier
                     .tabIndicatorOffset(tabPositions[titles.indexOf(tabSelected)])
                     .fillMaxSize()
-                    .padding(horizontal = 4.dp, vertical = 4.dp)
-                    .border(BorderStroke(1.dp, LocalCustomColors.current.dateContentIconColor), RoundedCornerShape(38.dp))
+                    .padding(horizontal = 4.dp)
+                    .border(BorderStroke(2.dp, LocalCustomColors.current.dateContentIconColor), RoundedCornerShape(16.dp))
             )
         },
         divider = { }

@@ -59,7 +59,6 @@ fun SearchBar(
             },
             modifier = Modifier
                 .weight(1f)
-                .padding(end = 16.dp)
                 .onFocusChanged { focusState ->
                     isFocused = focusState.isFocused
                     isLabelVisible = !isFocused && value.isEmpty()
