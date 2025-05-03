@@ -1,6 +1,7 @@
 package com.module.notelycompose.audio.presentation
 
 import com.module.notelycompose.audio.ui.expect.SpeechRecognizer
+import com.module.notelycompose.summary.Text2Summary
 import com.module.notelycompose.transcription.TranscriptionUiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,7 +36,8 @@ class SpeechRecognitionViewModel(
             delay(2000)
             speechRecognizer.recognizeFile(filePath) { text ->
                 _uiState.update { current ->
-                    current.copy(isLoading = false, text = "${_uiState.value.text}\n${text?.trim()}")
+                    val newText = "${_uiState.value.text.trim()}\n${text?.trim()}"
+                    current.copy(isLoading = false, text = newText, summarizedText = newText)
                 }
             }
         }
@@ -43,11 +45,22 @@ class SpeechRecognitionViewModel(
 
      fun finishRecognizer() {
          _uiState.update { current ->
-             current.copy(text = "")
+             current.copy(text = "", summarizedText = "")
          }
         viewModelScope.launch {
             println("Inside finish recognize")
             speechRecognizer.tearDown()
+        }
+
+    }
+
+    fun summarize() {
+        viewModelScope.launch {
+            val summarizedText = Text2Summary.summarize(_uiState.value.text, 0.5f)
+            _uiState.update { current ->
+                current.copy(summarizedText = summarizedText)
+            }
+
         }
 
     }

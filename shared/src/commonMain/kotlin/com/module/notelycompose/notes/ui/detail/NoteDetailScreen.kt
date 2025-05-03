@@ -63,17 +63,21 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.module.notelycompose.transcription.TranscriptionDialog
-import com.module.notelycompose.transcription.TranscriptionUiState
 import com.module.notelycompose.audio.ui.player.PlatformAudioPlayerUi
 import com.module.notelycompose.audio.ui.player.model.AudioPlayerUiState
 import com.module.notelycompose.audio.ui.recorder.RecordUiComponent
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
-import com.module.notelycompose.resources.vectors.IcHeart
 import com.module.notelycompose.resources.vectors.IcRecorder
 import com.module.notelycompose.resources.vectors.Images
-import kotlinx.coroutines.delay
+import com.module.notelycompose.transcription.TranscriptionDialog
+import com.module.notelycompose.transcription.TranscriptionUiState
 import kotlinx.coroutines.launch
+import notelycompose.shared.generated.resources.Res
+import notelycompose.shared.generated.resources.ic_transcription
+import notelycompose.shared.generated.resources.note_detail_recorder
+import notelycompose.shared.generated.resources.transcription_icon
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun NoteDetailScreen(
@@ -113,12 +117,37 @@ fun NoteDetailScreen(
         floatingActionButton = {
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 if (editorState.recording.isRecordingExist) {
-                    Fab(
-                        img = Images.Icons.IcHeart,
-                        onClick = { showTranscriptionDialog = true })
+                    FloatingActionButton(
+                        modifier = Modifier.border(
+                            width = 1.dp,
+                            color = LocalCustomColors.current.floatActionButtonBorderColor,
+                            shape = CircleShape
+                        ),
+                        backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
+                        onClick = { showTranscriptionDialog = true }
+                    ) {
+                        Icon(
+                            painter = painterResource(Res.drawable.ic_transcription),
+                            contentDescription = stringResource(Res.string.transcription_icon),
+                            tint = LocalCustomColors.current.bodyContentColor
+                        )
+                    }
                 }
-                Fab(img = Images.Icons.IcRecorder,
-                    onClick = { showRecordDialog = true })
+                FloatingActionButton(
+                    modifier = Modifier.border(
+                        width = 1.dp,
+                        color = LocalCustomColors.current.floatActionButtonBorderColor,
+                        shape = CircleShape
+                    ),
+                    backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
+                    onClick = { showRecordDialog = true }
+                ) {
+                    Icon(
+                        imageVector = Images.Icons.IcRecorder,
+                        contentDescription = stringResource(Res.string.note_detail_recorder),
+                        tint = LocalCustomColors.current.bodyContentColor
+                    )
+                }
             }
         },
         floatingActionButtonPosition = FabPosition.End,
@@ -175,7 +204,7 @@ fun NoteDetailScreen(
             onRecognitionStopped = {onRecognitionActions.stopRecognition()},
             onDismiss = { showTranscriptionDialog = false },
             onSummarizeContent = {
-                // TODO summarization
+               onRecognitionActions.summarize()
             },
             onAppendContent = {
                 onUpdateContent(TextFieldValue("${editorState.content.text}\n$it"))
@@ -218,6 +247,7 @@ private fun NoteContent(
     audioPlayerUiState: AudioPlayerUiState,
     onAudioActions: NoteAudioActions
 ) {
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -383,7 +413,8 @@ data class NoteAudioActions(
 
 data class RecognitionActions(
     val recognizeAudio: (String) -> Unit,
-    val stopRecognition: () -> Unit
+    val stopRecognition: () -> Unit,
+    val summarize: () -> Unit
 )
 
 data class NoteActions(

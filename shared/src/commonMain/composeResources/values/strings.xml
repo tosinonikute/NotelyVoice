@@ -38,6 +38,7 @@
 
     <!-- Note Detail -->
     <string name="note_detail_recorder">Recorder</string>
+    <string name="transcription_icon">Icon</string>
 
     <!-- Date Selection -->
     <string name="note_detail_more_options">More options</string>

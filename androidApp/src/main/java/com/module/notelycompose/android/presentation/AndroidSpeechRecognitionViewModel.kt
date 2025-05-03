@@ -29,6 +29,9 @@ class AndroidSpeechRecognitionViewModel @Inject constructor(
     fun finishRecognizer(){
         viewModel.finishRecognizer()
     }
+    fun summarize(){
+        viewModel.summarize()
+    }
 
 
     override fun onCleared() {
