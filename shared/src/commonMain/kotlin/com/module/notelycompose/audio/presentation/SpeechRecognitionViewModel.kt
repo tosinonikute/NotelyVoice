@@ -27,7 +27,7 @@ class SpeechRecognitionViewModel(
     val uiState: StateFlow<TranscriptionUiState> = _uiState
 
 
-    fun onStartRecognizing(filePath: String) {
+    fun onStartRecognizing(filePath: String, onUpdate:(String)->String) {
         _uiState.update { current ->
             current.copy(isLoading = true, recordingPath = filePath)
         }
@@ -36,8 +36,7 @@ class SpeechRecognitionViewModel(
             delay(2000)
             speechRecognizer.recognizeFile(filePath) { text ->
                 _uiState.update { current ->
-                    val newText = "${_uiState.value.text.trim()}\n${text?.trim()}"
-                    current.copy(isLoading = false, text = newText, summarizedText = newText)
+                    current.copy(isLoading = false, text = onUpdate(text?:""))
                 }
             }
         }

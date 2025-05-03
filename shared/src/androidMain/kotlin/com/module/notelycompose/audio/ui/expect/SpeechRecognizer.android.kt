@@ -48,7 +48,10 @@ actual class SpeechRecognizer(
             speechStreamService?.stop()
     }
 
-    actual fun recognizeFile(filePath: String, onComplete:(String?)->Unit) {
+    actual fun recognizeFile(
+        filePath: String,
+        onComplete: (String?) -> Unit
+    ) {
         if (speechStreamService != null) {
             speechStreamService?.stop()
             speechStreamService = null
