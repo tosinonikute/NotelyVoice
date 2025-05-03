@@ -24,7 +24,7 @@ class AndroidSpeechRecognitionViewModel @Inject constructor(
 
     fun onStartRecognizing(filePath:String) {
         viewModel.onStartRecognizing(filePath){
-            "${viewModel.uiState.value.text}\n${it.trim()}"
+            "${viewModel.uiState.value.text.trim()}\n${it.trim()}"
         }
     }
 

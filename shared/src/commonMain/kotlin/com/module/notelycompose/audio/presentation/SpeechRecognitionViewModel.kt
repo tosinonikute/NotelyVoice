@@ -36,7 +36,8 @@ class SpeechRecognitionViewModel(
             delay(2000)
             speechRecognizer.recognizeFile(filePath) { text ->
                 _uiState.update { current ->
-                    current.copy(isLoading = false, text = onUpdate(text?:""))
+                    val newText = onUpdate(text?:"")
+                    current.copy(isLoading = false, text = newText, summarizedText = newText)
                 }
             }
         }

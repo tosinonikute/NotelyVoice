@@ -247,12 +247,15 @@ private fun NoteContent(
     audioPlayerUiState: AudioPlayerUiState,
     onAudioActions: NoteAudioActions
 ) {
-
+    val scrollState = rememberScrollState()
+    LaunchedEffect(editorState.content) {
+        scrollState.animateScrollTo(scrollState.maxValue)
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues)
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(scrollState)
             .background(LocalCustomColors.current.bodyBackgroundColor)
             .imePadding()
     ) {
@@ -340,6 +343,11 @@ private fun NoteEditor(
     onFocusChange:(Boolean)->Unit,
     onUpdateContent: (TextFieldValue) -> Unit
 ) {
+
+    val scrollState = rememberScrollState()
+    LaunchedEffect(editorState.content) {
+        scrollState.animateScrollTo(scrollState.maxValue)
+    }
     val transformation = VisualTransformation { text ->
         TransformedText(
             buildAnnotatedString {
@@ -372,7 +380,7 @@ private fun NoteEditor(
             .padding(horizontal = 16.dp)
             .onFocusChanged {
                 onFocusChange(it.isFocused)
-            },
+            }.verticalScroll(scrollState),
         textStyle = TextStyle(
             color = LocalCustomColors.current.bodyContentColor,
             textAlign = editorState.textAlign

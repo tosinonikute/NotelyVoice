@@ -97,6 +97,7 @@ fun NoteDetailController(
         val recognitionActions = RecognitionActions(
             recognizeAudio = speechRecognitionViewModel::onStartRecognizing,
             stopRecognition = speechRecognitionViewModel::finishRecognizer,
+            summarize = speechRecognitionViewModel::summarize
         )
 
         val noteActions = NoteActions(

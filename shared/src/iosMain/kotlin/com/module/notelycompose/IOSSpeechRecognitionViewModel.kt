@@ -28,6 +28,10 @@ class IOSSpeechRecognitionViewModel(
         viewModel.finishRecognizer()
     }
 
+    fun summarize(){
+        viewModel.summarize()
+    }
+
     fun onCleared() {
         viewModel.onCleared()
     }
