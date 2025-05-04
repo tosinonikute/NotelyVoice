@@ -16,7 +16,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.module.notelycompose.getPlatform
+import com.module.notelycompose.notes.ui.detail.AndroidNoteTopBar
+import com.module.notelycompose.notes.ui.detail.IOSNoteTopBar
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
+import com.module.notelycompose.resources.vectors.IcFaq
+import com.module.notelycompose.resources.vectors.Images
 import com.module.notelycompose.web.ui.WebViewScreen
 
 /**
@@ -41,22 +46,22 @@ fun InfoBottomSheet(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 16.dp)
+                .padding(vertical = 0.dp)
         ) {
-            Divider(
-                modifier = Modifier
-                    .width(40.dp)
-                    .height(4.dp)
-                    .clip(RoundedCornerShape(2.dp))
-                    .background(Color.Gray.copy(alpha = 0.3f))
-                    .align(Alignment.CenterHorizontally)
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
+            if (getPlatform().isAndroid) {
+                AndroidNoteTopBar(
+                    title = "",
+                    onNavigateBack = onDismiss
+                )
+            } else {
+                IOSNoteTopBar(
+                    onNavigateBack = onDismiss
+                )
+            }
 
             // List of menu items
             SettingsMenuItem(
-                icon = Icons.Default.Info,
+                icon = Images.Icons.IcFaq,
                 title = "FAQ",
                 onClick = {
                     currentPageTitle = "FAQ"
@@ -104,6 +109,8 @@ fun InfoBottomSheet(
                     onNavigateToWebPage(currentPageTitle, currentPageUrl)
                 }
             )
+
+            Spacer(Modifier.padding(600.dp))
         }
     }
 }

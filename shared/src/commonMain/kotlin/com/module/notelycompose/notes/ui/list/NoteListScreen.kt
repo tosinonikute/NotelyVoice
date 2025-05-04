@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.FabPosition
@@ -26,6 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
@@ -53,7 +55,7 @@ fun SharedNoteListScreen(
     // State to control bottom sheet
     val bottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
-        skipHalfExpanded = false
+        skipHalfExpanded = true
     )
 
     // State to toggle full screen mode
@@ -78,7 +80,12 @@ fun SharedNoteListScreen(
 
     ModalBottomSheetLayout(
         sheetState = bottomSheetState,
-        sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
+        sheetShape =
+            if(isSettingsTapped) {
+                RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
+            } else {
+                RectangleShape
+            },
         sheetContent = {
             if(isSettingsTapped) {
                 SettingsBottomSheet(
@@ -96,11 +103,7 @@ fun SharedNoteListScreen(
         // Full screen option
         sheetContentColor = LocalCustomColors.current.bodyContentColor,
         scrimColor = Color.Black.copy(alpha = 0.5f),
-        modifier = if (isFullScreen && bottomSheetState.isVisible) {
-            Modifier.fillMaxSize()
-        } else {
-            Modifier
-        }
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Scaffold(
             topBar = {

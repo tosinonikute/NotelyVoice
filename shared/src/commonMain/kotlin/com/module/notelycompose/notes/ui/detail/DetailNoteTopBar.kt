@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -16,6 +17,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.module.notelycompose.getPlatform
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
@@ -45,7 +47,8 @@ fun DetailNoteTopBar(
 @Composable
 fun AndroidNoteTopBar(
     title: String,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
+    elevation: Dp = AppBarDefaults.TopAppBarElevation
 ) {
     TopAppBar(
         title = { Text(title) },
@@ -58,7 +61,8 @@ fun AndroidNoteTopBar(
             }
         },
         backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
-        contentColor = LocalCustomColors.current.bodyContentColor
+        contentColor = LocalCustomColors.current.bodyContentColor,
+        elevation = elevation
     )
 }
 
@@ -89,6 +93,6 @@ fun IOSNoteTopBar(
         contentColor = LocalCustomColors.current.iOSBackButtonColor,
         backgroundColor = LocalCustomColors.current.transparentColor,
         modifier = Modifier.padding(start = 0.dp),
-        elevation = 0.dp,
+        elevation = 0.dp
     )
 }
