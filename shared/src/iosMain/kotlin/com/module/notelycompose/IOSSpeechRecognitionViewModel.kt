@@ -18,16 +18,25 @@ class IOSSpeechRecognitionViewModel(
     }
     val state = viewModel.uiState
 
-   fun onStartRecognizing(filePath:String){
-       viewModel.onStartRecognizing(filePath){
-           it.trim()
-       }
-   }
+    fun requestAudioPermission() {
+        viewModel.requestAudioPermission()
+    }
 
+    fun initRecognizer() {
+        viewModel.initRecognizer()
+    }
     fun finishRecognizer(){
         viewModel.finishRecognizer()
     }
+    fun startRecognizer() {
+        viewModel.startRecognizer { isFinal, text ->
+                text.trim()
+        }
+    }
 
+    fun stopRecognizer() {
+        viewModel.stopRecognizer()
+    }
     fun summarize(){
         viewModel.summarize()
     }
