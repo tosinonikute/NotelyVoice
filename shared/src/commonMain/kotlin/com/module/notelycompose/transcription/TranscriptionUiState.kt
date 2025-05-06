@@ -1,8 +1,10 @@
 package com.module.notelycompose.transcription
 
 data class TranscriptionUiState(
-    val isLoading: Boolean = false,
-    val recordingPath: String = "",
-    val text: String = "",
-    val summarizedText: String = ""
+    val isListening: Boolean = false,
+    val viewOriginalText: Boolean = true,
+    val finalText: String = "",
+    val partialText: String = "",
+    val summarizedText: String = "",
+    val originalText: String = ""
 )

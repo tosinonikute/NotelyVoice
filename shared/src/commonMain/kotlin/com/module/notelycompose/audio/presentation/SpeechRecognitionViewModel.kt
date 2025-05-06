@@ -5,16 +5,11 @@ import com.module.notelycompose.summary.Text2Summary
 import com.module.notelycompose.transcription.TranscriptionUiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-private const val RECORD_COUNTER_START = "00:00"
-private const val SECONDS_IN_MINUTE = 60
-private const val LEADING_ZERO_THRESHOLD = 10
-private const val INITIAL_SECOND = 0
 
 
 
@@ -26,46 +21,94 @@ class SpeechRecognitionViewModel(
     private val _uiState = MutableStateFlow(TranscriptionUiState())
     val uiState: StateFlow<TranscriptionUiState> = _uiState
 
+    fun requestAudioPermission() {
+        viewModelScope.launch {
+            speechRecognizer.requestRecordingPermission()
+        }
+    }
 
-    fun onStartRecognizing(filePath: String, onUpdate:(String)->String) {
+    fun initRecognizer() {
+        viewModelScope.launch {
+            speechRecognizer.initialize()
+        }
+        }
+
+
+    fun startRecognizer(onUpdate: (Boolean, String) -> String) {
         _uiState.update { current ->
-            current.copy(isLoading = true, recordingPath = filePath)
+            current.copy(
+                isListening = true,
+                finalText = _uiState.value.originalText,
+                partialText = ""
+            )
         }
         viewModelScope.launch {
-            speechRecognizer.setup()
-            delay(2000)
-            speechRecognizer.recognizeFile(filePath) { text ->
-                _uiState.update { current ->
-                    val newText = onUpdate(text?:"")
-                    current.copy(isLoading = false, text = newText, summarizedText = newText)
+            if (speechRecognizer.hasRecordingPermission()) {
+                speechRecognizer.startRecognizing { isFinal, text ->
+                    val newText = onUpdate(isFinal, text ?: "")
+                    _uiState.update { current ->
+                        if (isFinal)
+                            current.copy(
+                                originalText = newText,
+                                finalText = newText,
+                                partialText = ""
+                            )
+                        else
+                            current.copy(
+                                originalText = "${_uiState.value.finalText}\n${newText}".trim(),
+                                partialText = newText
+                            )
+                    }
+
                 }
             }
         }
+
     }
 
-     fun finishRecognizer() {
-         _uiState.update { current ->
-             current.copy(text = "", summarizedText = "")
-         }
+    fun stopRecognizer() {
+        _uiState.update { current ->
+            current.copy(isListening = false)
+        }
         viewModelScope.launch {
-            println("Inside finish recognize")
-            speechRecognizer.tearDown()
+            speechRecognizer.stopRecognizer()
         }
 
     }
 
-    fun summarize() {
+    fun finishRecognizer() {
+        _uiState.update { current ->
+            current.copy(
+                isListening = false,
+                originalText = "",
+                finalText = "",
+                partialText = "",
+                summarizedText = ""
+            )
+        }
         viewModelScope.launch {
-            val summarizedText = Text2Summary.summarize(_uiState.value.text, 0.5f)
-            _uiState.update { current ->
-                current.copy(summarizedText = summarizedText)
-            }
+            speechRecognizer.finishRecognizer()
+        }
+    }
 
+    fun summarize() {
+        if (_uiState.value.viewOriginalText) {
+            viewModelScope.launch {
+                val summarizedText = Text2Summary.summarize(_uiState.value.originalText, 0.7f)
+                _uiState.update { current ->
+                    current.copy(viewOriginalText = false, summarizedText = summarizedText)
+                }
+
+            }
+        } else {
+            _uiState.update { current ->
+                current.copy(viewOriginalText = true)
+            }
         }
 
     }
 
     fun onCleared() {
-        finishRecognizer()
+        stopRecognizer()
     }
 }

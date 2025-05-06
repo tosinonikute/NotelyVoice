@@ -20,16 +20,28 @@ class AndroidSpeechRecognitionViewModel @Inject constructor(
     }
 
     val state = viewModel.uiState
+    fun requestAudioPermission() {
+        viewModel.requestAudioPermission()
+    }
 
-
-    fun onStartRecognizing(filePath:String) {
-        viewModel.onStartRecognizing(filePath){
-            "${viewModel.uiState.value.text.trim()}\n${it.trim()}"
+    fun initRecognizer() {
+        viewModel.initRecognizer()
+    }
+    fun finishRecognizer(){
+        viewModel.finishRecognizer()
+    }
+    fun startRecognizer() {
+        viewModel.startRecognizer { isFinal, text ->
+            if (isFinal) {
+                "${viewModel.uiState.value.finalText.trim()}\n${text.trim()}".trim()
+            } else {
+                text.trim()
+            }
         }
     }
 
-    fun finishRecognizer(){
-        viewModel.finishRecognizer()
+    fun stopRecognizer() {
+        viewModel.stopRecognizer()
     }
     fun summarize(){
         viewModel.summarize()

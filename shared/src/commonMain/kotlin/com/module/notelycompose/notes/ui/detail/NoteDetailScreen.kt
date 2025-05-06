@@ -47,7 +47,6 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -115,8 +114,7 @@ fun NoteDetailScreen(
         modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
         topBar = { DetailNoteTopBar(onNavigateBack = onNavigateBack) },
         floatingActionButton = {
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                if (editorState.recording.isRecordingExist) {
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     FloatingActionButton(
                         modifier = Modifier.border(
                             width = 1.dp,
@@ -132,7 +130,7 @@ fun NoteDetailScreen(
                             tint = LocalCustomColors.current.bodyContentColor
                         )
                     }
-                }
+
                 FloatingActionButton(
                     modifier = Modifier.border(
                         width = 1.dp,
@@ -200,7 +198,10 @@ fun NoteDetailScreen(
         TranscriptionDialog(
             modifier = Modifier.width(500.dp).height(1000.dp),
             transcriptionUiState,
-            onRecognitionStart = {onRecognitionActions.recognizeAudio(editorState.recording.recordingPath)},
+            onAskingForAudioPermission = { onRecognitionActions.requestAudioPermission() },
+            onRecognitionInitialized = { onRecognitionActions.initRecognizer() },
+            onRecognitionFinished = { onRecognitionActions.finishRecognizer() },
+            onRecognitionStart = { onRecognitionActions.startRecognizer() },
             onRecognitionStopped = {onRecognitionActions.stopRecognition()},
             onDismiss = { showTranscriptionDialog = false },
             onSummarizeContent = {
@@ -214,24 +215,6 @@ fun NoteDetailScreen(
     }
 }
 
-@Composable
-private fun Fab(img: ImageVector, contentDescription: String = "", onClick: () -> Unit) {
-    FloatingActionButton(
-        modifier = Modifier.border(
-            width = 1.dp,
-            color = LocalCustomColors.current.floatActionButtonBorderColor,
-            shape = CircleShape
-        ),
-        backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
-        onClick = onClick
-    ) {
-        Icon(
-            imageVector = img,
-            contentDescription = contentDescription,
-            tint = LocalCustomColors.current.bodyContentColor
-        )
-    }
-}
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -261,7 +244,6 @@ private fun NoteContent(
     ) {
         Column(
             modifier = Modifier
-                .padding(paddingValues)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.Start
@@ -344,10 +326,10 @@ private fun NoteEditor(
     onUpdateContent: (TextFieldValue) -> Unit
 ) {
 
-    val scrollState = rememberScrollState()
-    LaunchedEffect(editorState.content) {
-        scrollState.animateScrollTo(scrollState.maxValue)
-    }
+//    val scrollState = rememberScrollState()
+//    LaunchedEffect(editorState.content) {
+//        scrollState.animateScrollTo(scrollState.maxValue)
+//    }
     val transformation = VisualTransformation { text ->
         TransformedText(
             buildAnnotatedString {
@@ -373,14 +355,13 @@ private fun NoteEditor(
     BasicTextField(
         value = editorState.content,
         onValueChange = onUpdateContent,
-        modifier = Modifier
-            .fillMaxSize()
-            .height(600.dp)
+        modifier =
+            Modifier
             .focusRequester(focusRequester)
             .padding(horizontal = 16.dp)
             .onFocusChanged {
                 onFocusChange(it.isFocused)
-            }.verticalScroll(scrollState),
+            },
         textStyle = TextStyle(
             color = LocalCustomColors.current.bodyContentColor,
             textAlign = editorState.textAlign
@@ -420,7 +401,10 @@ data class NoteAudioActions(
 )
 
 data class RecognitionActions(
-    val recognizeAudio: (String) -> Unit,
+    val requestAudioPermission: () -> Unit,
+    val initRecognizer: () -> Unit,
+    val finishRecognizer: () -> Unit,
+    val startRecognizer: () -> Unit,
     val stopRecognition: () -> Unit,
     val summarize: () -> Unit
 )

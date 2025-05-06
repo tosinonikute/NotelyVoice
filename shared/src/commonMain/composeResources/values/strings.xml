@@ -84,5 +84,6 @@
     <string name="transcription_dialog_cancel">Cancel</string>
     <string name="transcription_dialog_append">Append</string>
     <string name="transcription_dialog_summarize">Summarize</string>
+    <string name="transcription_dialog_original">Original</string>
 
 </resources>

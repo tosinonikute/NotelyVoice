@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.activity.result.ActivityResultLauncher
 import com.module.notelycompose.audio.presentation.mappers.AudioRecorderPresentationToUiMapper
 import com.module.notelycompose.audio.ui.expect.AudioRecorder
+import com.module.notelycompose.audio.ui.expect.SpeechRecognizer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AudioRecorderModule {
+object AudioRecorderSpeechModule {
 
     @Singleton
     class PermissionLauncherHolder @Inject constructor() {
@@ -30,7 +31,8 @@ object AudioRecorderModule {
     @Singleton
     class AudioRecorderFactory @Inject constructor(
         @ApplicationContext private val context: Context,
-        private val permissionLauncherHolder: PermissionLauncherHolder
+        private val permissionLauncherHolder: PermissionLauncherHolder,
+
     ) {
         fun create(): AudioRecorder {
             return AudioRecorder(
@@ -59,5 +61,34 @@ object AudioRecorderModule {
     @Singleton
     fun provideAudioRecorderPresentationToUiStateMapper(): AudioRecorderPresentationToUiMapper {
         return AudioRecorderPresentationToUiMapper()
+    }
+
+
+    @Singleton
+    class SpeechRecognizerFactory @Inject constructor(
+        @ApplicationContext private val context: Context,
+        private val permissionLauncherHolder: PermissionLauncherHolder
+    ) {
+        fun create(): SpeechRecognizer {
+            return SpeechRecognizer(
+                context = context,
+                permissionLauncher = permissionLauncherHolder.permissionLauncher
+            )
+        }
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideSpeechRecognizerFactory(
+        @ApplicationContext context: Context,
+        permissionLauncherHolder: PermissionLauncherHolder
+    ): SpeechRecognizerFactory {
+        return SpeechRecognizerFactory(context, permissionLauncherHolder)
+    }
+
+    @Provides
+    fun provideSpeechRecognizer(factory: SpeechRecognizerFactory): SpeechRecognizer {
+        return factory.create()
     }
 }
