@@ -66,8 +66,6 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     implementation(libs.navigation.compose)
     implementation(libs.androidx.core.splashscreen)
-
-    // TODO: remove this imports
     implementation(libs.kotlinx.datetime)
 }
 
