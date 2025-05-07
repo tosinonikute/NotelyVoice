@@ -51,7 +51,6 @@ fun SharedNoteListScreen(
     val focusManager = LocalFocusManager.current
     val coroutineScope = rememberCoroutineScope()
     var isSettingsTapped by remember { mutableStateOf(false) }
-    var showWebView by remember { mutableStateOf(false) }
 
     // State to control bottom sheet
     val bottomSheetState = rememberModalBottomSheetState(
@@ -59,19 +58,11 @@ fun SharedNoteListScreen(
         skipHalfExpanded = true
     )
 
-    // State to toggle full screen mode
-    var isFullScreen by remember { mutableStateOf(true) }
-
     // Function to handle bottom sheet dismissal
     val dismissBottomSheet: () -> Unit = {
         coroutineScope.launch {
             bottomSheetState.hide()
         }
-    }
-
-    // Function to toggle full screen mode
-    val toggleFullScreen: () -> Unit = {
-        isFullScreen = !isFullScreen
     }
 
     val navigateToWebPage: (String, String) -> Unit = { title, url ->
