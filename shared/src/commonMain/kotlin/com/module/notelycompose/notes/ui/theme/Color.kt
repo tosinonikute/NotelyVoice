@@ -5,13 +5,13 @@ import androidx.compose.runtime.compositionLocalOf
 
 val DarkCustomColors = CustomColors(
     sortAscendingIconColor = Color(0xFF8514CB),
-    backgroundViewColor = Color(0xFF181818),
+    backgroundViewColor = Color.Black, // // Color(0xFF181818),
     dateContentColorViewColor = Color.White,
     dateContentIconColor = Color(0xFFCCCCCC),
     bottomBarBackgroundColor = Color.White,
     bottomBarIconColor = Color(0xFF8514CB),
     noteListBackgroundColor = Color(0xFFEEEEEE),
-    bodyBackgroundColor = Color(0xFF181818),
+    bodyBackgroundColor = Color.Black,  // Color(0xFF181818),
     bodyContentColor = Color.White,
     contentTopColor = Color.White,
     floatActionButtonBorderColor = Color.White,
