@@ -1,17 +1,13 @@
 package com.module.notelycompose.notes.ui.list
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -23,6 +19,17 @@ import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcFaq
 import com.module.notelycompose.resources.vectors.Images
 import com.module.notelycompose.web.ui.WebViewScreen
+import notelycompose.shared.generated.resources.Res
+import notelycompose.shared.generated.resources.information_base_url
+import notelycompose.shared.generated.resources.faq_url
+import notelycompose.shared.generated.resources.about_url
+import notelycompose.shared.generated.resources.support_url
+import notelycompose.shared.generated.resources.privacy_url
+import notelycompose.shared.generated.resources.faq
+import notelycompose.shared.generated.resources.about
+import notelycompose.shared.generated.resources.support
+import notelycompose.shared.generated.resources.privacy
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * A settings bottom sheet that displays a list of options and can navigate to web content
@@ -30,11 +37,31 @@ import com.module.notelycompose.web.ui.WebViewScreen
 @Composable
 fun InfoBottomSheet(
     onDismiss: () -> Unit,
-    onNavigateToWebPage: (String, String) -> Unit
+    onNavigateToWebPage: (String, String) -> Unit,
+    bottomSheetState: ModalBottomSheetState
 ) {
     var showWebView by remember { mutableStateOf(false) }
     var currentPageTitle by remember { mutableStateOf("") }
     var currentPageUrl by remember { mutableStateOf("") }
+
+    val faq  = stringResource(Res.string.faq)
+    val about  = stringResource(Res.string.about)
+    val support  = stringResource(Res.string.support)
+    val privacy  = stringResource(Res.string.privacy)
+    val infoBaseUrl  = stringResource(Res.string.information_base_url)
+    val faqUrl  = infoBaseUrl + stringResource(Res.string.faq_url)
+    val aboutUrl  = infoBaseUrl + stringResource(Res.string.about_url)
+    val supportUrl  = infoBaseUrl + stringResource(Res.string.support_url)
+    val privacyUrl  = infoBaseUrl + stringResource(Res.string.privacy_url)
+
+    LaunchedEffect(bottomSheetState) {
+        snapshotFlow { bottomSheetState.currentValue }
+            .collect { sheetValue ->
+                if (sheetValue == ModalBottomSheetValue.Hidden) {
+                    showWebView = false
+                }
+            }
+    }
 
     if (showWebView) {
         WebViewScreen(
@@ -62,10 +89,10 @@ fun InfoBottomSheet(
             // List of menu items
             SettingsMenuItem(
                 icon = Images.Icons.IcFaq,
-                title = "FAQ",
+                title = faq,
                 onClick = {
-                    currentPageTitle = "FAQ"
-                    currentPageUrl = "https://example.com/faq"
+                    currentPageTitle = faq
+                    currentPageUrl = faqUrl
                     showWebView = true
                     onNavigateToWebPage(currentPageTitle, currentPageUrl)
                 }
@@ -75,10 +102,10 @@ fun InfoBottomSheet(
 
             SettingsMenuItem(
                 icon = Icons.Default.Info,
-                title = "About Us",
+                title = about,
                 onClick = {
-                    currentPageTitle = "About Us"
-                    currentPageUrl = "https://example.com/about"
+                    currentPageTitle = about
+                    currentPageUrl = aboutUrl
                     showWebView = true
                     onNavigateToWebPage(currentPageTitle, currentPageUrl)
                 }
@@ -88,10 +115,10 @@ fun InfoBottomSheet(
 
             SettingsMenuItem(
                 icon = Icons.Default.Star,
-                title = "Support",
+                title = support,
                 onClick = {
-                    currentPageTitle = "Support"
-                    currentPageUrl = "https://example.com/rate"
+                    currentPageTitle = support
+                    currentPageUrl = supportUrl
                     showWebView = true
                     onNavigateToWebPage(currentPageTitle, currentPageUrl)
                 }
@@ -101,10 +128,10 @@ fun InfoBottomSheet(
 
             SettingsMenuItem(
                 icon = Icons.Default.Lock,
-                title = "Privacy Policy",
+                title = privacy,
                 onClick = {
-                    currentPageTitle = "Privacy Policy"
-                    currentPageUrl = "https://tosinonikute.com/notely/"
+                    currentPageTitle =  privacy
+                    currentPageUrl = privacyUrl
                     showWebView = true
                     onNavigateToWebPage(currentPageTitle, currentPageUrl)
                 }

@@ -79,4 +79,15 @@
     <string name="player_ui_pause">Pause</string>
     <string name="player_ui_play">Play</string>
 
+    <!-- Information UI -->
+    <string name="information_base_url">https://tosinonikute.com/notely/</string>
+    <string name="faq">FAQ</string>
+    <string name="about">About Us</string>
+    <string name="support">Support</string>
+    <string name="privacy">Privacy Policy</string>
+    <string name="faq_url">faq.html</string>
+    <string name="about_url">about.html</string>
+    <string name="support_url">support.html</string>
+    <string name="privacy_url">privacy.html</string>
+
 </resources>

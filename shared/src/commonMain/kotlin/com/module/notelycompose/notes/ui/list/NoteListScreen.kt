@@ -51,6 +51,7 @@ fun SharedNoteListScreen(
     val focusManager = LocalFocusManager.current
     val coroutineScope = rememberCoroutineScope()
     var isSettingsTapped by remember { mutableStateOf(false) }
+    var showWebView by remember { mutableStateOf(false) }
 
     // State to control bottom sheet
     val bottomSheetState = rememberModalBottomSheetState(
@@ -94,7 +95,8 @@ fun SharedNoteListScreen(
             } else {
                 InfoBottomSheet(
                     onDismiss = dismissBottomSheet,
-                    onNavigateToWebPage = navigateToWebPage
+                    onNavigateToWebPage = navigateToWebPage,
+                    bottomSheetState = bottomSheetState
                 )
             }
         },
