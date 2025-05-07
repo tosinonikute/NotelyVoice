@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
@@ -196,7 +197,7 @@ fun NoteDetailScreen(
 
     if (showTranscriptionDialog) {
         TranscriptionDialog(
-            modifier = Modifier.width(500.dp).height(1000.dp),
+            modifier = Modifier.fillMaxSize(),
             transcriptionUiState,
             onAskingForAudioPermission = { onRecognitionActions.requestAudioPermission() },
             onRecognitionInitialized = { onRecognitionActions.initRecognizer() },
@@ -219,6 +220,7 @@ fun NoteDetailScreen(
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun NoteContent(
+    modifier: Modifier = Modifier,
     paddingValues: PaddingValues,
     newNoteDateString: String,
     editorState: EditorUiState,
@@ -243,8 +245,7 @@ private fun NoteContent(
             .imePadding()
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxSize(),
+            modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.Start
         ) {
@@ -294,6 +295,7 @@ private fun NoteContent(
             }
 
             NoteEditor(
+                modifier= Modifier.fillMaxWidth().weight(1f),
                 editorState = editorState,
                 showFormatBar = showFormatBar,
                 showRecordDialog = showRecordDialog,
@@ -318,6 +320,7 @@ private fun DateHeader(dateString: String) {
 
 @Composable
 private fun NoteEditor(
+    modifier: Modifier = Modifier,
     editorState: EditorUiState,
     showFormatBar: Boolean,
     showRecordDialog: Boolean,
@@ -356,7 +359,7 @@ private fun NoteEditor(
         value = editorState.content,
         onValueChange = onUpdateContent,
         modifier =
-            Modifier
+            modifier
             .focusRequester(focusRequester)
             .padding(horizontal = 16.dp)
             .onFocusChanged {

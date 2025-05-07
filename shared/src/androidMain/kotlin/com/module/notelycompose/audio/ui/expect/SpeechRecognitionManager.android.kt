@@ -296,9 +296,8 @@ actual class SpeechRecognitionManager(
         lastOnDevice = onDevice
         speechRecognizer?.destroy()
         speechRecognizer = null
-
-            println("Creating recognizer")
-            speechRecognizer = if (intentLookup) {
+        println("Creating recognizer")
+        speechRecognizer = if (intentLookup) {
                 SpeechRecognizer.createSpeechRecognizer(
                     context,
                     context.findComponentName()
