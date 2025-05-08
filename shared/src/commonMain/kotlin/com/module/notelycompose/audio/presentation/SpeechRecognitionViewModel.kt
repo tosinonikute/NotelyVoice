@@ -1,6 +1,7 @@
 package com.module.notelycompose.audio.presentation
 
 import com.module.notelycompose.audio.ui.expect.SpeechRecognizer
+import com.module.notelycompose.notes.ui.extensions.firstToUpperCase
 import com.module.notelycompose.summary.Text2Summary
 import com.module.notelycompose.transcription.TranscriptionUiState
 import kotlinx.coroutines.CoroutineScope
@@ -55,7 +56,7 @@ class SpeechRecognitionViewModel(
                             )
                         else
                             current.copy(
-                                originalText = "${_uiState.value.finalText}\n${newText}".trim(),
+                                originalText = "${_uiState.value.finalText}\n\n${newText.firstToUpperCase()}".trim(),
                                 partialText = newText
                             )
                     }

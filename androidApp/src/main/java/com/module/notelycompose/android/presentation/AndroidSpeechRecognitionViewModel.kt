@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.module.notelycompose.audio.presentation.SpeechRecognitionViewModel
 import com.module.notelycompose.audio.ui.expect.SpeechRecognizer
+import com.module.notelycompose.notes.ui.extensions.firstToUpperCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -33,7 +34,7 @@ class AndroidSpeechRecognitionViewModel @Inject constructor(
     fun startRecognizer() {
         viewModel.startRecognizer { isFinal, text ->
             if (isFinal) {
-                "${viewModel.uiState.value.finalText.trim()}\n${text.trim()}".trim()
+                "${viewModel.uiState.value.finalText.trim()}\n\n${text.firstToUpperCase().trim()}".trim()
             } else {
                 text.trim()
             }
