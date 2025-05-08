@@ -27,5 +27,6 @@ data class CustomColors(
     val bottomFormattingContentColor: Color,
     val activeThumbTrackColor: Color,
     val playerBoxBackgroundColor: Color,
-    val starredColor: Color
+    val starredColor: Color,
+    val settingsIconColor: Color
 )

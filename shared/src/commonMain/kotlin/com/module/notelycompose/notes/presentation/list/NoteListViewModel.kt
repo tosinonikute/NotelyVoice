@@ -52,14 +52,15 @@ class NoteListViewModel(
 
     private fun setupSearch() {
         // Combine notes flow with filter and search
-            searchQuery.debounce(SEARCH_DEBOUNCE)
-         .onEach { query ->
-             _state.update { currentState ->
-                 currentState.copy(
-                     filteredNotes = applyFilters(_state.value.originalNotes, _state.value.selectedTabTitle, query)
-                 )
-             }
-        }.launchIn(viewModelScope)
+
+        searchQuery.debounce(SEARCH_DEBOUNCE)
+            .onEach { query ->
+                _state.update { currentState ->
+                    currentState.copy(
+                        filteredNotes = applyFilters(_state.value.originalNotes, _state.value.selectedTabTitle, query)
+                    )
+                }
+            }.launchIn(viewModelScope)
     }
 
     fun onProcessIntent(intent: NoteListIntent) {
@@ -75,8 +76,7 @@ class NoteListViewModel(
         combine(
             getAllNotesUseCase.execute(),
             _state.map { it.selectedTabTitle }.distinctUntilChanged(),
-
-        ) { notes, filter ->
+            ) { notes, filter ->
             Pair(notes, filter)
         }.onEach { (notes, filter) ->
             handleNotesUpdate(notes, filter, "")

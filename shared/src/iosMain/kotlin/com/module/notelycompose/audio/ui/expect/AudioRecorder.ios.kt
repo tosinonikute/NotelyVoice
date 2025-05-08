@@ -32,25 +32,21 @@ actual class AudioRecorder {
     private var recordingSession: AVAudioSession = AVAudioSession.sharedInstance()
     private lateinit var recordingURL: NSURL
 
-
     /**
      * Call when entering recording screen
      */
     @OptIn(ExperimentalForeignApi::class)
     actual suspend fun setup() {
-
         try {
             recordingSession.setCategory(
                 AVAudioSessionCategoryPlayAndRecord,
-                withOptions = AVAudioSessionCategoryOptions.MAX_VALUE,
+                withOptions = AVAudioSessionCategoryOptionDefaultToSpeaker,
                 null
             )
             recordingSession.setActive(true, null)
         } catch (e: Exception) {
             println("Audio session setup failed: ${e.message}")
         }
-
-
     }
 
     /**
@@ -69,7 +65,6 @@ actual class AudioRecorder {
         } catch (e: Exception) {
             println("Audio session teardown failed: ${e.message}")
         }
-
     }
 
     @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
@@ -102,7 +97,6 @@ actual class AudioRecorder {
             AVEncoderBitRateKey to 32000
         )
 
-
         audioRecorder = AVAudioRecorder(recordingURL, settings, null)
 
         if (audioRecorder?.prepareToRecord() == true) {
@@ -117,7 +111,6 @@ actual class AudioRecorder {
 
     @OptIn(ExperimentalForeignApi::class)
     actual fun stopRecording() {
-        println("Stop Recording")
         audioRecorder?.let { recorder ->
             if (recorder.isRecording()) {
                 recorder.stop()

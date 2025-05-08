@@ -24,10 +24,16 @@
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
+
 	<key>NSMicrophoneUsageDescription</key>
     <string>We use speech recognition to provide a more interactive and hands-free experience by allowing you to speak directly to the app for certain actions or features.</string>
     <key>NSSpeechRecognitionUsageDescription</key>
     <string>We need access to your microphone to enable voice interactions and allow you to speak commands or provide input directly to the app.</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>This app requires access to play audio files.</string>
 	<key>NSMicrophoneUsageDescription</key>

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.ScrollableTabRow
@@ -75,7 +76,8 @@ fun FilterSelection(
                     Icon(
                         imageVector = icon,
                         contentDescription = stringResource(Res.string.note_detail_more_options),
-                        tint = LocalCustomColors.current.dateContentIconColor
+                        tint = LocalCustomColors.current.dateContentIconColor,
+                        modifier = Modifier.size(22.dp)
                     )
                     Text(
                         modifier = textModifier,

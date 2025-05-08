@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Notely</string>
+    <string name="app_name">Notely Voice</string>
 
     <!-- TopBar -->
     <string name="top_bar_back">Back</string>
-    <string name="top_bar_notes">Notes</string>
+    <string name="top_bar_notes">Notely Voice</string>
     <string name="top_bar_menu">Menu</string>
 
     <!-- Delete Dialog -->
@@ -80,10 +80,23 @@
     <string name="player_ui_pause">Pause</string>
     <string name="player_ui_play">Play</string>
 
+
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">Cancel</string>
     <string name="transcription_dialog_append">Append</string>
     <string name="transcription_dialog_summarize">Summarize</string>
     <string name="transcription_dialog_original">Original</string>
+
+    <!-- Information UI -->
+    <string name="information_base_url">https://tosinonikute.com/notely/</string>
+    <string name="faq">FAQ</string>
+    <string name="about">About Us</string>
+    <string name="support">Support</string>
+    <string name="privacy">Privacy Policy</string>
+    <string name="faq_url">faq.html</string>
+    <string name="about_url">about.html</string>
+    <string name="support_url">support.html</string>
+    <string name="privacy_url">privacy.html</string>
+
 
 </resources>

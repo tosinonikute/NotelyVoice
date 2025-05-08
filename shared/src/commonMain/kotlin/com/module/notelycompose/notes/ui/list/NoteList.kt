@@ -25,7 +25,7 @@ fun NoteList(
 ) {
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Adaptive(minSize = 300.dp),
-        modifier = Modifier.padding(top = 16.dp, start = 20.dp, end = 20.dp),
+        modifier = Modifier.padding(top = 8.dp, start = 20.dp, end = 20.dp),
         verticalItemSpacing = 8.dp,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
