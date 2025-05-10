@@ -68,8 +68,6 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
 
     implementation(project(":models"))
-
-    // TODO: remove this imports
     implementation(libs.kotlinx.datetime)
 
 }

@@ -138,6 +138,8 @@ fun InfoBottomSheet(
             )
 
             Spacer(Modifier.padding(600.dp))
+
+            // TODO: App Version should be included here
         }
     }
 }
