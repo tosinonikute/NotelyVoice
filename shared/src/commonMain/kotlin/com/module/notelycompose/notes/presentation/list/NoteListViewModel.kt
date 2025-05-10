@@ -52,6 +52,7 @@ class NoteListViewModel(
 
     private fun setupSearch() {
         // Combine notes flow with filter and search
+
         searchQuery.debounce(SEARCH_DEBOUNCE)
             .onEach { query ->
                 _state.update { currentState ->
@@ -75,7 +76,6 @@ class NoteListViewModel(
         combine(
             getAllNotesUseCase.execute(),
             _state.map { it.selectedTabTitle }.distinctUntilChanged(),
-
             ) { notes, filter ->
             Pair(notes, filter)
         }.onEach { (notes, filter) ->
@@ -105,9 +105,14 @@ class NoteListViewModel(
         val domainFilter = notesFilterMapper.mapToDomainModel(
             notesFilterMapper.mapStringToPresentationModel(filter)
         )
-
+        if (query.isBlank() && (domainFilter == NotesFilterDomainModel.ALL || domainFilter == NotesFilterDomainModel.RECENT)) {
+            return notes
+        }
         return notes.filter { note ->
-            matchesFilter(note, domainFilter) && matchesSearch(note, query)
+            matchesFilter(note, domainFilter) && matchesSearch(
+                note,
+                query
+            )
         }
     }
     private fun handleNotesUpdate(
@@ -126,7 +131,6 @@ class NoteListViewModel(
         }
     }
     private fun matchesFilter(note: NotePresentationModel, filter: NotesFilterDomainModel): Boolean {
-
         return when (filter) {
             NotesFilterDomainModel.VOICES -> isVoiceNote(note)
             NotesFilterDomainModel.STARRED -> isStarred(note)

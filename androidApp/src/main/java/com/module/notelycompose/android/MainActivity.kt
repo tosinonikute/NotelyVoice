@@ -4,10 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.ime
-import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -20,10 +17,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.module.notelycompose.android.di.AudioRecorderModule
+import com.module.notelycompose.android.di.AudioRecorderSpeechModule
 import com.module.notelycompose.android.presentation.AndroidAudioPlayerViewModel
 import com.module.notelycompose.android.presentation.AndroidAudioRecorderViewModel
 import com.module.notelycompose.android.presentation.AndroidNoteListViewModel
+import com.module.notelycompose.android.presentation.AndroidSpeechRecognitionViewModel
 import com.module.notelycompose.android.presentation.AndroidTextEditorViewModel
 import com.module.notelycompose.android.presentation.core.Routes
 import com.module.notelycompose.android.presentation.ui.NoteListScreen
@@ -31,6 +29,7 @@ import com.module.notelycompose.notes.ui.detail.NoteActions
 import com.module.notelycompose.notes.ui.detail.NoteAudioActions
 import com.module.notelycompose.notes.ui.detail.NoteDetailScreen
 import com.module.notelycompose.notes.ui.detail.NoteFormatActions
+import com.module.notelycompose.notes.ui.detail.RecognitionActions
 import com.module.notelycompose.notes.ui.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -41,10 +40,8 @@ private const val ROUTE_SEPARATOR = "/"
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
     @Inject
-    lateinit var permissionLauncherHolder: AudioRecorderModule.PermissionLauncherHolder
-
+    lateinit var permissionLauncherHolder: AudioRecorderSpeechModule.PermissionLauncherHolder
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
@@ -63,10 +60,11 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun initializeAudioRecorder() {
-        val permissionLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { }
+        val permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {isGranted->
+
+        }
         permissionLauncherHolder.permissionLauncher = permissionLauncher
+
     }
 
     override fun onDestroy() {
@@ -120,6 +118,7 @@ fun NoteDetailWrapper(
 ) {
     val audioPlayerViewModel = hiltViewModel<AndroidAudioPlayerViewModel>()
     val audioRecorderViewModel = hiltViewModel<AndroidAudioRecorderViewModel>()
+    val speechRecognitionViewModel = hiltViewModel<AndroidSpeechRecognitionViewModel>()
     val editorViewModel = hiltViewModel<AndroidTextEditorViewModel>()
 
     if(noteId.toLong() > 0L) {
@@ -131,6 +130,8 @@ fun NoteDetailWrapper(
 
     val audioRecorderState = audioRecorderViewModel.state.collectAsState().value
         .let { audioRecorderViewModel.onGetUiState(it) }
+
+    val speechRecognitionState = speechRecognitionViewModel.state.collectAsState().value
 
     val editorState = editorViewModel.state.collectAsState().value
         .let { editorViewModel.onGetUiState(it) }
@@ -158,6 +159,15 @@ fun NoteDetailWrapper(
         finishRecorder = {}
     )
 
+    val recognitionActions = RecognitionActions(
+        requestAudioPermission = speechRecognitionViewModel::requestAudioPermission,
+        initRecognizer = speechRecognitionViewModel::initRecognizer,
+        finishRecognizer = speechRecognitionViewModel::finishRecognizer,
+        startRecognizer = speechRecognitionViewModel::startRecognizer,
+        stopRecognition = speechRecognitionViewModel::stopRecognizer,
+        summarize =  speechRecognitionViewModel::summarize
+    )
+
     val noteActions = NoteActions(
         onDeleteNote = {
             editorViewModel.onDeleteNote()
@@ -175,6 +185,8 @@ fun NoteDetailWrapper(
         onUpdateContent = editorViewModel::onUpdateContent,
         onFormatActions = formatActions,
         onAudioActions = audioActions,
-        onNoteActions = noteActions
+        onNoteActions = noteActions,
+        onRecognitionActions = recognitionActions,
+        transcriptionUiState = speechRecognitionState
     )
 }

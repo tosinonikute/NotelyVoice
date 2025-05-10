@@ -66,7 +66,10 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     implementation(libs.navigation.compose)
     implementation(libs.androidx.core.splashscreen)
+
+    implementation(project(":models"))
     implementation(libs.kotlinx.datetime)
+
 }
 
 java {

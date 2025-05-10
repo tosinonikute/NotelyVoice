@@ -38,6 +38,7 @@
 
     <!-- Note Detail -->
     <string name="note_detail_recorder">Recorder</string>
+    <string name="transcription_icon">Icon</string>
 
     <!-- Date Selection -->
     <string name="note_detail_more_options">More options</string>
@@ -79,6 +80,13 @@
     <string name="player_ui_pause">Pause</string>
     <string name="player_ui_play">Play</string>
 
+
+    <!-- Transcription Dialog -->
+    <string name="transcription_dialog_cancel">Cancel</string>
+    <string name="transcription_dialog_append">Append</string>
+    <string name="transcription_dialog_summarize">Summarize</string>
+    <string name="transcription_dialog_original">Original</string>
+
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">FAQ</string>
@@ -89,5 +97,6 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacy.html</string>
+
 
 </resources>

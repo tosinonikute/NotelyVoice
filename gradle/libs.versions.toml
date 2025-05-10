@@ -1,9 +1,12 @@
 [versions]
 agp = "8.6.1"
+androidWaveRecorder = "2.1.0"
 composeVectorizeCore = "1.0.2"
 hilt = "2.56.2"
 hiltCompiler = "2.56.2"
 hiltCompose = "1.2.0"
+jna = "5.13.0"
+kotlinxSerializationJsonVersion = "1.6.0"
 material = "1.11.0"
 materialIconsCore = "1.7.3"
 navCompose = "2.8.3"
@@ -19,15 +22,20 @@ animationAndroid = "1.7.6"
 kotlinxSerializationJson = "1.5.1"
 app-icon = "1.2.6"
 splashscreen = "1.0.1"
+voskAndroidVersion = "0.3.47"
 
 [libraries]
 # Non-UI dependencies
+alphacephei-vosk-android = { module = "com.alphacephei:vosk-android", version.ref = "voskAndroidVersion" }
+android-wave-recorder = { module = "com.github.squti:Android-Wave-Recorder", version.ref = "androidWaveRecorder" }
 compose-vectorize-core = { module = "dev.sergiobelda.compose.vectorize:compose-vectorize-core", version.ref = "composeVectorizeCore" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltCompiler" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltCompose" }
 hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltCompose" }
 jetbrains-atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicfu" }
+jna = { module = "net.java.dev.jna:jna", version.ref = "jna" }
+kotlinx-serialization-json-v160 = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJsonVersion" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 material-icons-core = { module = "org.jetbrains.compose.material:material-icons-core", version.ref = "materialIconsCore" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navCompose" }
