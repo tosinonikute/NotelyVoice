@@ -35,7 +35,7 @@ class Tokenizer {
 
         // Returns a list of tokens ( words ) from a given sentence ( seq of words ).
         fun sentenceToTokens(s: String): Array<String> {
-            val sentence = s.trim().toLowerCase()
+            val sentence = s.trim().lowercase()
             var tokens = sentence.split(" ")
             tokens = tokens.map { Regex("[^A-Za-z0-9 ]").replace(it, "") }
             tokens = tokens.filter { !ENGLISH_STOP_WORDS.contains(it.trim()) }

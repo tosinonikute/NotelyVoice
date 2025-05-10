@@ -48,6 +48,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -66,6 +67,7 @@ import androidx.compose.ui.unit.sp
 import com.module.notelycompose.audio.ui.player.PlatformAudioPlayerUi
 import com.module.notelycompose.audio.ui.player.model.AudioPlayerUiState
 import com.module.notelycompose.audio.ui.recorder.RecordUiComponent
+import com.module.notelycompose.notes.ui.extensions.showKeyboard
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcRecorder
 import com.module.notelycompose.resources.vectors.Images
@@ -196,6 +198,7 @@ fun NoteDetailScreen(
     }
 
     if (showTranscriptionDialog) {
+        LocalSoftwareKeyboardController.current?.hide()
         TranscriptionDialog(
             modifier = Modifier.fillMaxSize(),
             transcriptionUiState,

@@ -40,7 +40,7 @@ actual class SpeechRecognizer {
 
     actual fun initialize() {
         recognizer = SFSpeechRecognizer()
-        prepareEngine()
+
         isInitialized = true
     }
     actual fun finishRecognizer() {
@@ -55,6 +55,7 @@ actual class SpeechRecognizer {
             task?.cancel()
             task = null
             audioEngine?.stop()
+            reset()
         }
     }
 
@@ -63,11 +64,12 @@ actual class SpeechRecognizer {
         if(!isListening) {
             isListening = true
             try {
-                audioEngine?.startAndReturnError(null)
+                prepareEngine()
+
                 println("speech:startRecognizer ${recognizer}")
                 if (request != null) {
                     task = recognizer?.recognitionTaskWithRequest(request!!) { result, error ->
-                        println("speech:task")
+                       // println("speech:task")
                         dispatch_async(dispatch_get_main_queue()) {
                             when {
                                 error != null -> {
@@ -80,13 +82,13 @@ actual class SpeechRecognizer {
 
                                 result.isFinal() -> {
                                     val text = result.bestTranscription.formattedString
-                                    //println("Final Result $text")
+                                   // println("Final Result $text")
                                     onComplete(result.final, text)
                                 }
 
                                 else -> {
                                     val text = result.bestTranscription.formattedString
-                                    //println("Result $text")
+                                 //   println("Result $text")
                                     onComplete(result.final, text)
                                 }
                             }
@@ -159,5 +161,6 @@ actual class SpeechRecognizer {
         audioEngine.prepare()
         this.audioEngine = audioEngine
         this.request = request
+        audioEngine.startAndReturnError(null)
     }
 }
