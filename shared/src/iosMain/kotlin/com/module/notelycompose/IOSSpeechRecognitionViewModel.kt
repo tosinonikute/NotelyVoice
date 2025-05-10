@@ -30,8 +30,29 @@ class IOSSpeechRecognitionViewModel(
     }
     fun startRecognizer() {
         viewModel.startRecognizer { isFinal, text ->
-                text.trim()
+                formatText(text.trim())
         }
+    }
+
+    private fun formatText(text: String): String {
+        val chunks = mutableListOf<String>()
+        var remaining = text
+
+        while (remaining.length > 250) {
+            val chunk = remaining.take(250)
+            val lastDot = chunk.lastIndexOf(".")
+
+            if (lastDot > 0) {
+                chunks.add(remaining.substring(0, lastDot + 1))
+                remaining = remaining.substring(lastDot + 1)
+            } else {
+                chunks.add(remaining.substring(0, 250))
+                remaining = remaining.substring(250)
+            }
+        }
+
+        chunks.add(remaining)
+        return chunks.joinToString("\n\n")
     }
 
     fun stopRecognizer() {
