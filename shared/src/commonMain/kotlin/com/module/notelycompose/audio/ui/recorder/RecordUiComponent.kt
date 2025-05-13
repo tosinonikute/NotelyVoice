@@ -45,6 +45,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
@@ -152,7 +153,7 @@ fun RecordingInitialScreen(
                 modifier = Modifier
                     .size(64.dp)
                     .clip(CircleShape)
-                    .background(LocalCustomColors.current.bodyContentColor)
+                    .background(Color.Green)
                     .clickable { onTapToRecord() },
                 contentAlignment = Alignment.Center
             ) {
@@ -234,7 +235,7 @@ fun RecordingInProgressScreen(
                         modifier = Modifier
                             .size(32.dp)
                             .clip(RoundedCornerShape(4.dp))
-                            .background(LocalCustomColors.current.bodyContentColor)
+                            .background(Color.Red)
                             .clickable { onStopRecording() }
                     )
                 }
