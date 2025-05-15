@@ -37,7 +37,6 @@ A modern, cross-platform note-taking application with powerful offline speech re
 🌓 **Theming** - Switch between dark and light themes based on your preference  
 💻 **Cross-Platform** - Seamless experience across Android & iOS  
 📱 **Offline Functionality** - Full app functionality without an internet connection  
-💾 **Export Options** - Share and export notes in multiple formats
 
 ## Speech Recognition Technology
 
