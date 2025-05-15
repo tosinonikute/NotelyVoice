@@ -35,7 +35,7 @@ A modern, cross-platform note-taking application with powerful offline speech re
 
 ### General
 🌓 **Theming** - Switch between dark and light themes based on your preference  
-💻 **Cross-Platform** - Seamless experience across Android & iOS  
+💻 **Cross-Platform** - Seamless experience across Android & iOS 
 📱 **Offline Functionality** - Full app functionality without an internet connection  
 
 ## Speech Recognition Technology
@@ -102,7 +102,7 @@ Contributions are welcome! Please follow these steps:
 
 1. Clone the repository
    ```sh
-   git clone https://github.com/tosinonikute/Notely.git
+   git clone https://github.com/tosinonikute/NotelyVoice.git
    ```
 
 2. Open the project in Android Studio
@@ -112,7 +112,7 @@ Contributions are welcome! Please follow these steps:
 ### License
 
 ```
-Copyright 2024 Notely, Inc. All Rights Reserved.
+Copyright 2024 Notely Voice, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
