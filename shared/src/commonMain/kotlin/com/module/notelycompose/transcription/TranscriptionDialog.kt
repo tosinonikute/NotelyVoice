@@ -81,7 +81,8 @@ fun TranscriptionDialog(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.padding(start = 12.dp, end = 12.dp, top = 8.dp, bottom = 48.dp)
             ) {
-                Box(modifier = Modifier.align(Alignment.Start).padding(4.dp)) {
+                Box(modifier = Modifier.align(Alignment.Start)
+                    .padding(start = 4.dp, bottom = 12.dp, top = 4.dp)) {
                     BackButton(onNavigateBack = {
                             onRecognitionStopped()
                             onRecognitionFinished()
