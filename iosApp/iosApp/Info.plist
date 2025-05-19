@@ -24,20 +24,17 @@
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
-
-	<key>NSMicrophoneUsageDescription</key>
-    <string>We use speech recognition to provide a more interactive and hands-free experience by allowing you to speak directly to the app for certain actions or features.</string>
     <key>NSSpeechRecognitionUsageDescription</key>
-    <string>We need access to your microphone to enable voice interactions and allow you to speak commands or provide input directly to the app.</string>
+    <string>Notely Voice needs speech recognition permission to transcribe your voice recordings into text. This allows you to read what you've recorded as text. These text recordings are stored locally on your device and are not shared with third parties.</string>
     <key>NSAppTransportSecurity</key>
     <dict>
         <key>NSAllowsArbitraryLoads</key>
         <true/>
     </dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>This app requires access to play audio files.</string>
+	<string>Notely Voice needs this permission to play back your voice notes that you've recorded within the app. We do not access or modify your media library - this is only used for playing the voice recordings you create in the app.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This app requires microphone access to record audio.</string>
+	<string>Notely Voice needs microphone access to record and save your spoken voice notes. These audio recordings are stored locally on your device and are not shared with third parties.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
