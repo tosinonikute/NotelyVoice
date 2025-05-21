@@ -35,6 +35,7 @@ class AudioRecorderViewModel(
 
     private var counterJob: Job? = null
     private var recordingTimeSeconds = INITIAL_SECOND
+    private var elapsedTimeBeforePause = 0
 
     fun onStartRecording(updateUI:()->Unit) {
         viewModelScope.launch {
@@ -105,11 +106,13 @@ class AudioRecorderViewModel(
     fun onPauseRecording() {
         audioRecorder.pauseRecording()
         updatePausedState()
+        pauseCounter()
     }
 
     fun onResumeRecording() {
         audioRecorder.resumeRecording()
         updatePausedState()
+        resumeCounter()
     }
 
     private fun stopCounter() {
@@ -139,6 +142,27 @@ class AudioRecorderViewModel(
         _audioRecorderPresentationState.value = _audioRecorderPresentationState.value.copy(
             isRecordPaused = audioRecorder.isPaused()
         )
+    }
+
+    private fun pauseCounter() {
+        counterJob?.cancel()
+        counterJob = null
+        elapsedTimeBeforePause = recordingTimeSeconds
+    }
+
+    private fun resumeCounter() {
+        counterJob?.cancel()
+        counterJob = viewModelScope.launch {
+            // Start counting from the last saved time
+            recordingTimeSeconds = elapsedTimeBeforePause
+            updateCounterString()
+
+            while (true) {
+                delay(1.seconds)
+                recordingTimeSeconds++
+                updateCounterString()
+            }
+        }
     }
 
     fun onGetUiState(presentationState: AudioRecorderPresentationState): AudioRecorderUiState {
