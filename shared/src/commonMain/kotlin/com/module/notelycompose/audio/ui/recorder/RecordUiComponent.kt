@@ -12,6 +12,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -56,6 +57,7 @@ import androidx.compose.ui.unit.sp
 import com.module.notelycompose.getPlatform
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcChevronLeft
+import com.module.notelycompose.resources.vectors.IcPause
 import com.module.notelycompose.resources.vectors.IcRecorder
 import com.module.notelycompose.resources.vectors.Images
 import kotlinx.coroutines.delay
@@ -67,6 +69,7 @@ import notelycompose.shared.generated.resources.recording_ui_loading
 import notelycompose.shared.generated.resources.recording_ui_loading_rotation
 import notelycompose.shared.generated.resources.recording_ui_checkmark
 import notelycompose.shared.generated.resources.top_bar_back
+import notelycompose.shared.generated.resources.transcription_icon
 import org.jetbrains.compose.resources.stringResource
 
 enum class ScreenState {
@@ -100,8 +103,8 @@ fun RecordUiComponent(
                     onStartRecord({
                         screenState = ScreenState.Recording
                     })
-
-                }
+                },
+                onStopRecording = onStopRecord
             )
             ScreenState.Recording -> RecordingInProgressScreen(
                 counterTimeString = recordCounterString,
@@ -120,7 +123,6 @@ fun RecordUiComponent(
                 }
             }
 
-
         }
     }
 }
@@ -128,7 +130,8 @@ fun RecordUiComponent(
 @Composable
 fun RecordingInitialScreen(
     onNavigateBack: () -> Unit,
-    onTapToRecord: () -> Unit
+    onTapToRecord: () -> Unit,
+    onStopRecording: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -136,9 +139,8 @@ fun RecordingInitialScreen(
             .background(LocalCustomColors.current.bodyBackgroundColor)
     ) {
         recordingUiComponentBackButton(
-            onNavigateBack = {
-                onNavigateBack()
-            }
+            onNavigateBack = onNavigateBack,
+            onStopRecording = onStopRecording
         )
 
         Column(
@@ -179,8 +181,8 @@ fun RecordingInitialScreen(
 @Composable
 fun RecordingInProgressScreen(
     counterTimeString: String,
-    onStopRecording: () -> Unit,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
+    onStopRecording: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -188,9 +190,8 @@ fun RecordingInProgressScreen(
             .background(LocalCustomColors.current.bodyBackgroundColor)
     ) {
         recordingUiComponentBackButton(
-            onNavigateBack = {
-                onNavigateBack()
-            }
+            onNavigateBack = onNavigateBack,
+            onStopRecording = onStopRecording
         )
 
         Column(
@@ -223,21 +224,47 @@ fun RecordingInProgressScreen(
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Box(
-                    modifier = Modifier
-                        .size(64.dp)
-                        .clip(CircleShape)
-                        .border(2.dp, LocalCustomColors.current.bodyContentColor, CircleShape)
-                        .padding(2.dp),
-                    contentAlignment = Alignment.Center
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
+
                     Box(
                         modifier = Modifier
-                            .size(32.dp)
-                            .clip(RoundedCornerShape(4.dp))
-                            .background(Color.Red)
-                            .clickable { onStopRecording() }
-                    )
+                            .size(64.dp)
+                            .clip(CircleShape)
+                            .border(2.dp, LocalCustomColors.current.bodyContentColor, CircleShape)
+                            .padding(vertical = 2.dp, horizontal = 2.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Images.Icons.IcPause,
+                            contentDescription = stringResource(Res.string.transcription_icon),
+                            tint = LocalCustomColors.current.bodyContentColor,
+                            modifier = Modifier
+                                .size(32.dp)
+                                .clickable {  }
+                        )
+                    }
+
+                    Box(
+                        modifier = Modifier
+                            .size(64.dp)
+                            .clip(CircleShape)
+                            .border(2.dp, LocalCustomColors.current.bodyContentColor, CircleShape)
+                            .padding(2.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(32.dp)
+                                .clip(RoundedCornerShape(4.dp))
+                                .background(Color.Red)
+                                .clickable {
+                                    onStopRecording()
+                                }
+                        )
+                    }
                 }
 
                 Text(
@@ -245,7 +272,7 @@ fun RecordingInProgressScreen(
                     color = LocalCustomColors.current.bodyContentColor,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal,
-                    modifier = Modifier.padding(top = 16.dp)
+                    modifier = Modifier.padding(top = 24.dp)
                 )
             }
         }
@@ -343,11 +370,15 @@ fun RecordingSuccessScreen() {
 
 @Composable
 fun recordingUiComponentBackButton(
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
+    onStopRecording: () -> Unit
 ) {
     if (getPlatform().isAndroid) {
         IconButton(
-            onClick = onNavigateBack,
+            onClick = {
+                onStopRecording()
+                onNavigateBack()
+            },
             modifier = Modifier.padding(16.dp)
         ) {
             androidx.compose.material3.Icon(
@@ -361,7 +392,10 @@ fun recordingUiComponentBackButton(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .padding(16.dp)
-                .clickable { onNavigateBack() }
+                .clickable {
+                    onStopRecording()
+                    onNavigateBack()
+                }
         ) {
             Icon(
                 imageVector = Images.Icons.IcChevronLeft,
