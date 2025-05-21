@@ -1,5 +1,6 @@
 package com.module.notelycompose.audio.ui.recorder
 
+import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -215,7 +216,9 @@ fun RecordingInProgressScreen(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier.size(200.dp)
             ) {
-                LoadingAnimation()
+                LoadingAnimation(
+                    isRecordPaused = isRecordPaused
+                )
                 Text(
                     text = counterTimeString,
                     style = MaterialTheme.typography.headlineLarge,
@@ -297,25 +300,30 @@ fun RecordingInProgressScreen(
 }
 
 @Composable
-fun LoadingAnimation() {
+fun LoadingAnimation(
+    isRecordPaused: Boolean
+) {
     val drawArcColor = LocalCustomColors.current.bodyContentColor
-    val infiniteTransition = rememberInfiniteTransition(
-        label = stringResource(Res.string.recording_ui_loading)
-    )
-    val rotation by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 360f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(2000, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
-        ),
-        label = stringResource(Res.string.recording_ui_loading_rotation)
-    )
+    val rotationAngle = remember { Animatable(0f) }
+
+    LaunchedEffect(isRecordPaused) {
+        if (!isRecordPaused) {
+            rotationAngle.animateTo(
+                targetValue = rotationAngle.value + 360f,
+                animationSpec = infiniteRepeatable(
+                    animation = tween(2000, easing = LinearEasing),
+                    repeatMode = RepeatMode.Restart
+                )
+            )
+        } else {
+            rotationAngle.stop()
+        }
+    }
 
     Canvas(modifier = Modifier.size(200.dp)) {
         drawArc(
             color = drawArcColor,
-            startAngle = rotation,
+            startAngle = rotationAngle.value,
             sweepAngle = 300f,
             useCenter = false,
             style = Stroke(width = 4f, cap = StrokeCap.Round)
