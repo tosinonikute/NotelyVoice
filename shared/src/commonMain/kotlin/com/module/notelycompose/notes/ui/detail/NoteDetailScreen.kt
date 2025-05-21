@@ -93,7 +93,8 @@ fun NoteDetailScreen(
     onFormatActions: NoteFormatActions,
     onAudioActions: NoteAudioActions,
     onRecognitionActions: RecognitionActions,
-    onNoteActions: NoteActions
+    onNoteActions: NoteActions,
+    isRecordPaused: Boolean
 ) {
     var showFormatBar by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
@@ -194,6 +195,9 @@ fun NoteDetailScreen(
             recordCounterString = recordCounterString,
             onStartRecord = onAudioActions.onStartRecord,
             onStopRecord = onAudioActions.onStopRecord,
+            isRecordPaused = isRecordPaused,
+            onPauseRecording = onAudioActions.onPauseRecording,
+            onResumeRecording = onAudioActions.onResumeRecording
         )
     }
 
@@ -395,6 +399,8 @@ data class NoteFormatActions(
 data class NoteAudioActions(
     val onStartRecord: (()->Unit) -> Unit,
     val onStopRecord: () -> Unit,
+    val onPauseRecording: () -> Unit,
+    val onResumeRecording: () -> Unit,
     val setupRecorder: suspend () -> Unit,
     val finishRecorder: suspend () -> Unit,
     val onRequestAudioPermission: () -> Unit,

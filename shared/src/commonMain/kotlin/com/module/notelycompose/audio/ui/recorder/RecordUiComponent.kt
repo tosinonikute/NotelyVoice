@@ -30,11 +30,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -84,9 +84,14 @@ fun RecordUiComponent(
     recordCounterString: String,
     onStartRecord: (()->Unit) -> Unit,
     onStopRecord: () -> Unit,
-    onAfterRecord: () -> Unit
+    onAfterRecord: () -> Unit,
+    onPauseRecording: () -> Unit,
+    onResumeRecording: () -> Unit,
+    isRecordPaused: Boolean
 ) {
     var screenState by remember { mutableStateOf(ScreenState.Initial) }
+
+    println("hello1: " + isRecordPaused)
 
     Box(
         modifier = Modifier
@@ -112,7 +117,10 @@ fun RecordUiComponent(
                     onStopRecord()
                     screenState = ScreenState.Success
                 },
-                onNavigateBack = onDismiss
+                onNavigateBack = onDismiss,
+                isRecordPaused = isRecordPaused,
+                onPauseRecording = onPauseRecording,
+                onResumeRecording = onResumeRecording
             )
             ScreenState.Success -> {
                 RecordingSuccessScreen()
@@ -182,7 +190,10 @@ fun RecordingInitialScreen(
 fun RecordingInProgressScreen(
     counterTimeString: String,
     onNavigateBack: () -> Unit,
-    onStopRecording: () -> Unit
+    onStopRecording: () -> Unit,
+    onPauseRecording: () -> Unit,
+    onResumeRecording: () -> Unit,
+    isRecordPaused: Boolean
 ) {
     Box(
         modifier = Modifier
@@ -238,12 +249,18 @@ fun RecordingInProgressScreen(
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
-                            imageVector = Images.Icons.IcPause,
+                            imageVector = if(!isRecordPaused) Images.Icons.IcPause else Icons.Filled.PlayArrow,
                             contentDescription = stringResource(Res.string.transcription_icon),
                             tint = LocalCustomColors.current.bodyContentColor,
                             modifier = Modifier
                                 .size(32.dp)
-                                .clickable {  }
+                                .clickable {
+                                    if(isRecordPaused) {
+                                        onResumeRecording()
+                                    } else {
+                                        onPauseRecording()
+                                    }
+                                }
                         )
                     }
 

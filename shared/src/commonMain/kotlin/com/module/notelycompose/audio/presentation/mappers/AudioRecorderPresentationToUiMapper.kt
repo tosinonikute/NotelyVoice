@@ -7,7 +7,8 @@ class AudioRecorderPresentationToUiMapper {
     fun mapToUiState(presentationState: AudioRecorderPresentationState): AudioRecorderUiState {
         return AudioRecorderUiState(
             recordCounterString = presentationState.recordCounterString,
-            recordingPath = presentationState.recordingPath
+            recordingPath = presentationState.recordingPath,
+            isRecordPaused = presentationState.isRecordPaused
         )
     }
 }

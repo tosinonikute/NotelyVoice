@@ -149,14 +149,16 @@ fun NoteDetailWrapper(
         onStartRecord = audioRecorderViewModel::onStartRecording,
         onStopRecord = audioRecorderViewModel::onStopRecording,
         onRequestAudioPermission = audioRecorderViewModel::onRequestAudioPermission,
-        onAfterRecord = {editorViewModel.onUpdateRecordingPath(audioRecorderState.recordingPath) },
-        onDeleteRecord = {editorViewModel.onDeleteRecord()},
+        onAfterRecord = { editorViewModel.onUpdateRecordingPath(audioRecorderState.recordingPath) },
+        onDeleteRecord = { editorViewModel.onDeleteRecord() },
         onLoadAudio = audioPlayerViewModel::onLoadAudio,
         onClear = audioPlayerViewModel::onCleared,
         onSeekTo = audioPlayerViewModel::onSeekTo,
         onTogglePlayPause = audioPlayerViewModel::onTogglePlayPause,
         setupRecorder = {},
-        finishRecorder = {}
+        finishRecorder = {},
+        onPauseRecording = audioRecorderViewModel::onPauseRecording,
+        onResumeRecording = audioRecorderViewModel::onResumeRecording
     )
 
     val recognitionActions = RecognitionActions(
@@ -187,6 +189,7 @@ fun NoteDetailWrapper(
         onAudioActions = audioActions,
         onNoteActions = noteActions,
         onRecognitionActions = recognitionActions,
-        transcriptionUiState = speechRecognitionState
+        transcriptionUiState = speechRecognitionState,
+        isRecordPaused = audioRecorderState.isRecordPaused
     )
 }

@@ -38,6 +38,14 @@ class AndroidAudioRecorderViewModel @Inject constructor(
         viewModel.onStopRecording()
     }
 
+    fun onPauseRecording() {
+        viewModel.onPauseRecording()
+    }
+
+    fun onResumeRecording() {
+        viewModel.onResumeRecording()
+    }
+
     fun onRequestAudioPermission() {
         viewModel.onRequestAudioPermission()
     }

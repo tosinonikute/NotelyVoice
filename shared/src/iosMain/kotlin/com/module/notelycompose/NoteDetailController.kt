@@ -41,7 +41,6 @@ fun NoteDetailController(
             )
         }
 
-
         val speechRecognitionModule = SpeechRecognitionModule()
         val speechRecognitionViewModel = remember {
             IOSSpeechRecognitionViewModel(
@@ -83,15 +82,16 @@ fun NoteDetailController(
             onStartRecord = audioRecorderViewModel::onStartRecording,
             onStopRecord = audioRecorderViewModel::onStopRecording,
             onRequestAudioPermission = audioRecorderViewModel::onRequestAudioPermission,
-            onAfterRecord = {editorViewModel.onUpdateRecordingPath(audioRecorderState.recordingPath) },
-            onDeleteRecord = {editorViewModel.onDeleteRecord()},
+            onAfterRecord = { editorViewModel.onUpdateRecordingPath(audioRecorderState.recordingPath) },
+            onDeleteRecord = { editorViewModel.onDeleteRecord() },
             onLoadAudio = audioPlayerViewModel::onLoadAudio,
             onClear = audioPlayerViewModel::onCleared,
             onSeekTo = audioPlayerViewModel::onSeekTo,
             onTogglePlayPause = audioPlayerViewModel::onTogglePlayPause,
             setupRecorder = audioRecorderViewModel::setupRecorder,
-            finishRecorder = audioRecorderViewModel::finishRecorder
-
+            finishRecorder = audioRecorderViewModel::finishRecorder,
+            onPauseRecording = audioRecorderViewModel::onPauseRecording,
+            onResumeRecording = audioRecorderViewModel::onResumeRecording
         )
 
         val recognitionActions = RecognitionActions(
@@ -122,7 +122,8 @@ fun NoteDetailController(
             onAudioActions = audioActions,
             onNoteActions = noteActions,
             onRecognitionActions = recognitionActions,
-            transcriptionUiState = speechRecognitionState
+            transcriptionUiState = speechRecognitionState,
+            isRecordPaused = audioRecorderState.isRecordPaused
         )
     }
 }

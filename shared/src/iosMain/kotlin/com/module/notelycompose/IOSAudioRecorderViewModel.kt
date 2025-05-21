@@ -29,12 +29,23 @@ class IOSAudioRecorderViewModel(
     fun onStopRecording() {
         viewModel.onStopRecording()
     }
+
     suspend fun setupRecorder() {
         viewModel.setupRecorder()
     }
+
     suspend fun finishRecorder() {
         viewModel.finishRecorder()
     }
+
+    fun onPauseRecording() {
+        viewModel.onPauseRecording()
+    }
+
+    fun onResumeRecording() {
+        viewModel.onResumeRecording()
+    }
+
     fun onRequestAudioPermission() {
         viewModel.onRequestAudioPermission()
     }

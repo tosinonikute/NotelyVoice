@@ -20,7 +20,8 @@ private const val INITIAL_SECOND = 0
 
 data class AudioRecorderPresentationState(
     val recordCounterString: String = RECORD_COUNTER_START,
-    val recordingPath: String = ""
+    val recordingPath: String = "",
+    val isRecordPaused: Boolean = false
 )
 
 class AudioRecorderViewModel(
@@ -51,8 +52,6 @@ class AudioRecorderViewModel(
             }
         }
     }
-
-
 
     private fun startCounter() {
         // Reset counter
@@ -96,11 +95,21 @@ class AudioRecorderViewModel(
     }
 
     suspend fun setupRecorder(){
-            audioRecorder.setup()
+        audioRecorder.setup()
     }
-    suspend fun finishRecorder(){
-            audioRecorder.teardown()
 
+    suspend fun finishRecorder(){
+        audioRecorder.teardown()
+    }
+
+    fun onPauseRecording() {
+        audioRecorder.pauseRecording()
+        updatePausedState()
+    }
+
+    fun onResumeRecording() {
+        audioRecorder.resumeRecording()
+        updatePausedState()
     }
 
     private fun stopCounter() {
@@ -124,6 +133,12 @@ class AudioRecorderViewModel(
                 }
             }
         }
+    }
+
+    private fun updatePausedState() {
+        _audioRecorderPresentationState.value = _audioRecorderPresentationState.value.copy(
+            isRecordPaused = audioRecorder.isPaused()
+        )
     }
 
     fun onGetUiState(presentationState: AudioRecorderPresentationState): AudioRecorderUiState {
