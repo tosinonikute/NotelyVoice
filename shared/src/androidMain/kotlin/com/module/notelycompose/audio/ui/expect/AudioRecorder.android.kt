@@ -22,6 +22,7 @@ actual class AudioRecorder(
 ) {
     private var recorder: MediaRecorder? = null
     private var isCurrentlyRecording = false
+    private var isCurrentlyPaused = false
     private var permissionContinuation: ((Boolean) -> Unit)? = null
     private var currentRecordingPath: String? = null
 
@@ -45,6 +46,7 @@ actual class AudioRecorder(
                 prepare()
                 start()
                 isCurrentlyRecording = true
+                isCurrentlyPaused = false
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -63,6 +65,7 @@ actual class AudioRecorder(
         } finally {
             recorder = null
             isCurrentlyRecording = false
+            isCurrentlyPaused = false
         }
     }
 
@@ -107,5 +110,31 @@ actual class AudioRecorder(
     }
 
     actual suspend fun teardown() {
+    }
+
+    actual fun pauseRecording() {
+        if (isCurrentlyRecording && !isCurrentlyPaused) {
+            try {
+                recorder?.pause()
+                isCurrentlyPaused = true
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    actual fun resumeRecording() {
+        if (isCurrentlyRecording && isCurrentlyPaused) {
+            try {
+                recorder?.resume()
+                isCurrentlyPaused = false
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    actual fun isPaused(): Boolean {
+        return isCurrentlyPaused
     }
 }

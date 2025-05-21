@@ -31,6 +31,7 @@ actual class AudioRecorder {
     private var audioRecorder: AVAudioRecorder? = null
     private var recordingSession: AVAudioSession = AVAudioSession.sharedInstance()
     private lateinit var recordingURL: NSURL
+    private var isCurrentlyPaused = false
 
     /**
      * Call when entering recording screen
@@ -101,13 +102,13 @@ actual class AudioRecorder {
 
         if (audioRecorder?.prepareToRecord() == true) {
             audioRecorder?.record()
+            isCurrentlyPaused = false
             println("Recording started successfully")
         } else {
             println("Failed to prepare recording")
             audioRecorder = null
         }
     }
-
 
     @OptIn(ExperimentalForeignApi::class)
     actual fun stopRecording() {
@@ -118,6 +119,7 @@ actual class AudioRecorder {
         }
 
         audioRecorder = null
+        isCurrentlyPaused = false
     }
 
     actual fun isRecording(): Boolean {
@@ -140,5 +142,29 @@ actual class AudioRecorder {
 
     actual fun getRecordingFilePath(): String {
         return recordingURL.path.orEmpty()
+    }
+
+    actual fun pauseRecording() {
+        if (isRecording() && !isCurrentlyPaused) {
+            audioRecorder?.let { recorder ->
+                recorder.pause()
+                isCurrentlyPaused = true
+                println("Recording paused successfully")
+            }
+        }
+    }
+
+    actual fun resumeRecording() {
+        if (isCurrentlyPaused) {
+            audioRecorder?.let { recorder ->
+                recorder.record()
+                isCurrentlyPaused = false
+                println("Recording resumed successfully")
+            }
+        }
+    }
+
+    actual fun isPaused(): Boolean {
+        return isCurrentlyPaused
     }
 }
