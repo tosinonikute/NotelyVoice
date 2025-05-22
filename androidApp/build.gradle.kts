@@ -48,6 +48,15 @@ android {
         // Disables dependency metadata when building Android App Bundles.
         includeInBundle = false
     }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
 }
 
 dependencies {
