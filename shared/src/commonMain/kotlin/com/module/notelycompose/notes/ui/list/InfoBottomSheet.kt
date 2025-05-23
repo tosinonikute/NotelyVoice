@@ -1,13 +1,19 @@
 package com.module.notelycompose.notes.ui.list
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.ModalBottomSheetState
+import androidx.compose.material.ModalBottomSheetValue
+import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -38,7 +44,8 @@ import org.jetbrains.compose.resources.stringResource
 fun InfoBottomSheet(
     onDismiss: () -> Unit,
     onNavigateToWebPage: (String, String) -> Unit,
-    bottomSheetState: ModalBottomSheetState
+    bottomSheetState: ModalBottomSheetState,
+    appVersion: String
 ) {
     var showWebView by remember { mutableStateOf(false) }
     var currentPageTitle by remember { mutableStateOf("") }
@@ -53,6 +60,7 @@ fun InfoBottomSheet(
     val aboutUrl  = infoBaseUrl + stringResource(Res.string.about_url)
     val supportUrl  = infoBaseUrl + stringResource(Res.string.support_url)
     val privacyUrl  = infoBaseUrl + stringResource(Res.string.privacy_url)
+    val appVersionStr = "Version $appVersion"
 
     LaunchedEffect(bottomSheetState) {
         snapshotFlow { bottomSheetState.currentValue }
@@ -89,7 +97,7 @@ fun InfoBottomSheet(
             // List of menu items
             SettingsMenuItem(
                 icon = Images.Icons.IcFaq,
-                title = faq,
+                title = "FAQ",
                 onClick = {
                     currentPageTitle = faq
                     currentPageUrl = faqUrl
@@ -98,11 +106,14 @@ fun InfoBottomSheet(
                 }
             )
 
-            Divider(modifier = Modifier.padding(horizontal = 16.dp))
+            HorizontalDivider(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)
+            )
 
             SettingsMenuItem(
                 icon = Icons.Default.Info,
-                title = about,
+                title = "About Us",
                 onClick = {
                     currentPageTitle = about
                     currentPageUrl = aboutUrl
@@ -111,11 +122,14 @@ fun InfoBottomSheet(
                 }
             )
 
-            Divider(modifier = Modifier.padding(horizontal = 16.dp))
+            HorizontalDivider(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)
+            )
 
             SettingsMenuItem(
                 icon = Icons.Default.Star,
-                title = support,
+                title = "Support",
                 onClick = {
                     currentPageTitle = support
                     currentPageUrl = supportUrl
@@ -124,11 +138,14 @@ fun InfoBottomSheet(
                 }
             )
 
-            Divider(modifier = Modifier.padding(horizontal = 16.dp))
+            HorizontalDivider(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)
+            )
 
             SettingsMenuItem(
                 icon = Icons.Default.Lock,
-                title = privacy,
+                title = "Privacy Policy",
                 onClick = {
                     currentPageTitle =  privacy
                     currentPageUrl = privacyUrl
@@ -137,9 +154,17 @@ fun InfoBottomSheet(
                 }
             )
 
-            Spacer(Modifier.padding(600.dp))
+            Spacer(modifier = Modifier.weight(1f))
 
-            // TODO: App Version should be included here
+            // App Version at the bottom
+            Text(
+                text = appVersionStr,
+                fontSize = 18.sp,
+                color = LocalCustomColors.current.bodyContentColor,
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(bottom = 16.dp)
+            )
         }
     }
 }
@@ -154,21 +179,31 @@ fun SettingsMenuItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .padding(16.dp),
+            .padding(horizontal = 16.dp, vertical = 20.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = title,
-            tint = LocalCustomColors.current.bodyContentColor
-        )
+        // Circular black background for icon
+        Box(
+            modifier = Modifier
+                .size(48.dp)
+                .clip(CircleShape)
+                .background(Color.Black),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = title,
+                tint = Color.White,
+                modifier = Modifier.size(24.dp)
+            )
+        }
 
         Spacer(modifier = Modifier.width(16.dp))
 
         Text(
             text = title,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Medium,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Normal,
             color = LocalCustomColors.current.bodyContentColor
         )
     }
