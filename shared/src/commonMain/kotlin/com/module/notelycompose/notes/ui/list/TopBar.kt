@@ -75,18 +75,17 @@ fun TopBar(
                 fontSize = 24.sp
             )
 
-// TODO: uncomment when feature is complete
-//            if (isRightIconVisible) {
-//                Icon(
-//                    imageVector = Icons.Outlined.Settings,
-//                    tint = LocalCustomColors.current.settingsIconColor,
-//                    modifier = Modifier
-//                        .align(Alignment.CenterEnd)
-//                        .size(24.dp)
-//                        .clickable { onSettingsClicked() },
-//                    contentDescription = ""
-//                )
-//            }
+            if (isRightIconVisible) {
+                Icon(
+                    imageVector = Icons.Outlined.Settings,
+                    tint = LocalCustomColors.current.settingsIconColor,
+                    modifier = Modifier
+                        .align(Alignment.CenterEnd)
+                        .size(24.dp)
+                        .clickable { onSettingsClicked() },
+                    contentDescription = ""
+                )
+            }
         }
     }
 }
