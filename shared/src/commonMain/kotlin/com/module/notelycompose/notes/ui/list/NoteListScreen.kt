@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
@@ -32,6 +31,8 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import com.module.notelycompose.notes.ui.list.model.NoteUiModel
+import com.module.notelycompose.notes.ui.settings.SettingsBottomSheet
+import com.module.notelycompose.notes.ui.settings.SettingsScreen
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import kotlinx.coroutines.launch
 import notelycompose.shared.generated.resources.Res
@@ -46,7 +47,8 @@ fun SharedNoteListScreen(
     onNoteDeleteClicked: (NoteUiModel) -> Unit,
     onFilterTabItemClicked: (String) -> Unit,
     onSearchByKeyword: (String) -> Unit,
-    selectedTabTitle: String
+    selectedTabTitle: String,
+    appVersion: String
 ) {
     val focusManager = LocalFocusManager.current
     val coroutineScope = rememberCoroutineScope()
@@ -72,22 +74,21 @@ fun SharedNoteListScreen(
 
     ModalBottomSheetLayout(
         sheetState = bottomSheetState,
-        sheetShape =
-            if(isSettingsTapped) {
-                RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
-            } else {
-                RectangleShape
-            },
+        sheetShape = RectangleShape,
         sheetContent = {
             if(isSettingsTapped) {
-                SettingsBottomSheet(
+//                SettingsBottomSheet(
+//                    onDismiss = dismissBottomSheet
+//                )
+                SettingsScreen(
                     onDismiss = dismissBottomSheet
                 )
             } else {
                 InfoBottomSheet(
                     onDismiss = dismissBottomSheet,
                     onNavigateToWebPage = navigateToWebPage,
-                    bottomSheetState = bottomSheetState
+                    bottomSheetState = bottomSheetState,
+                    appVersion = appVersion
                 )
             }
         },

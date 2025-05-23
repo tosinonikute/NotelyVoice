@@ -1,4 +1,4 @@
-package com.module.notelycompose.notes.ui.list
+package com.module.notelycompose.notes.ui.settings
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -47,7 +47,72 @@ fun SettingsBottomSheet(
         Divider()
 
         // Theme settings section with title and toggle switches
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Themes",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
+
         ThemeSettingsSection()
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Transcription Language",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
+
+        Divider()
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { }
+                .padding(vertical = 8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "English",
+                fontSize = 16.sp
+            )
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { }
+                .padding(vertical = 8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Button(
+                onClick = {}
+            ) {
+                Text(
+                    text = "Change Language",
+                    fontSize = 16.sp
+                )
+            }
+        }
+
+        Spacer(Modifier.padding(600.dp))
     }
 }
 

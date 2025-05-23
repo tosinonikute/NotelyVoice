@@ -27,7 +27,10 @@ val DarkCustomColors = CustomColors(
     activeThumbTrackColor = Color(0xFF666666),
     playerBoxBackgroundColor = Color(0xFFF2F2F2),
     starredColor = Color.Blue,
-    settingsIconColor = Color(0xFFCCCCCC)
+    settingsIconColor = Color(0xFFCCCCCC),
+    settingCancelBackgroundColor = Color(0xFF333333),
+    settingCancelTextColor = Color.White,
+    settingLanguageBackgroundColor = Color(0xFF222222)
 )
 
 val LightCustomColors = CustomColors(
@@ -54,7 +57,10 @@ val LightCustomColors = CustomColors(
     activeThumbTrackColor = Color(0xFF666666),
     playerBoxBackgroundColor = Color(0xFFEEEEEE),
     starredColor = Color.Blue,
-    settingsIconColor = Color.Black
+    settingsIconColor = Color.Black,
+    settingCancelBackgroundColor = Color(0xFFEEEEEE),
+    settingCancelTextColor = Color.Black,
+    settingLanguageBackgroundColor = Color(0xFFEEEEEE)
 )
 
 // Create a CompositionLocal to hold the custom colors

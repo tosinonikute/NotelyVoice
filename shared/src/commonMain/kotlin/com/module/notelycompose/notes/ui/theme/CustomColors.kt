@@ -28,5 +28,8 @@ data class CustomColors(
     val activeThumbTrackColor: Color,
     val playerBoxBackgroundColor: Color,
     val starredColor: Color,
-    val settingsIconColor: Color
+    val settingsIconColor: Color,
+    val settingCancelBackgroundColor: Color,
+    val settingCancelTextColor: Color,
+    val settingLanguageBackgroundColor: Color
 )
