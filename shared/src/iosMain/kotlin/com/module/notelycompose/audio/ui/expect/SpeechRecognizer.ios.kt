@@ -13,6 +13,7 @@ import platform.AVFAudio.setActive
 import platform.Foundation.NSError
 import platform.Foundation.NSLocale
 import platform.Foundation.NSURL
+import platform.Foundation.localeIdentifier
 import platform.Speech.SFSpeechAudioBufferRecognitionRequest
 import platform.Speech.SFSpeechRecognitionTask
 import platform.Speech.SFSpeechRecognitionTaskHintDictation
@@ -34,9 +35,6 @@ actual class SpeechRecognizer {
     private var isInitialized = false
     private var isListening = false
     val audioSession = AVAudioSession.sharedInstance()
-
-
-
 
     actual fun initialize() {
         recognizer = SFSpeechRecognizer()
@@ -162,5 +160,15 @@ actual class SpeechRecognizer {
         this.audioEngine = audioEngine
         this.request = request
         audioEngine.startAndReturnError(null)
+    }
+    
+    private fun supportedLocales() {
+        // Get the supported locales and extract their identifiers
+        val supportedLocales = SFSpeechRecognizer.supportedLocales()
+        val localeIdentifiers = supportedLocales.map { locale ->
+            (locale as NSLocale).localeIdentifier
+        }
+
+        print("Supported languages: $localeIdentifiers")
     }
 }
