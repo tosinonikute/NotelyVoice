@@ -76,4 +76,6 @@ class AppModule {
     val notesFilterMapper: NotesFilterMapper by lazy { NotesFilterMapper() }
 
     val textEditorHelper: TextEditorHelper by lazy { TextEditorHelper() }
+
+    val platformInfo: Platform by lazy { getPlatform() }
 }

@@ -1,6 +1,8 @@
 package com.module.notelycompose.android.di
 
 import android.app.Application
+import com.module.notelycompose.AndroidPlatform
+import com.module.notelycompose.Platform
 import com.module.notelycompose.core.DatabaseDriverFactory
 import com.module.notelycompose.database.NoteDatabase
 import com.module.notelycompose.notes.data.NoteSqlDelightDataSource
@@ -43,6 +45,23 @@ object AppModule {
         return NoteSqlDelightDataSource(
             database = NoteDatabase(driver)
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppVersion(app: Application): String {
+        return try {
+            val packageInfo = app.packageManager.getPackageInfo(app.packageName, 0)
+            packageInfo.versionName ?: "Unknown"
+        } catch (e: Exception) {
+            "Unknown"
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun providePlatform(appVersion: String): Platform {
+        return AndroidPlatform(appVersion)
     }
 
     @Provides
