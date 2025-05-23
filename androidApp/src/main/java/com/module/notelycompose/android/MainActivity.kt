@@ -17,10 +17,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.module.notelycompose.Platform
 import com.module.notelycompose.android.di.AudioRecorderSpeechModule
 import com.module.notelycompose.android.presentation.AndroidAudioPlayerViewModel
 import com.module.notelycompose.android.presentation.AndroidAudioRecorderViewModel
 import com.module.notelycompose.android.presentation.AndroidNoteListViewModel
+import com.module.notelycompose.android.presentation.AndroidPlatformViewModel
 import com.module.notelycompose.android.presentation.AndroidSpeechRecognitionViewModel
 import com.module.notelycompose.android.presentation.AndroidTextEditorViewModel
 import com.module.notelycompose.android.presentation.core.Routes
@@ -31,6 +33,7 @@ import com.module.notelycompose.notes.ui.detail.NoteDetailScreen
 import com.module.notelycompose.notes.ui.detail.NoteFormatActions
 import com.module.notelycompose.notes.ui.detail.RecognitionActions
 import com.module.notelycompose.notes.ui.theme.MyApplicationTheme
+import com.module.notelycompose.platform.presentation.PlatformViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -42,6 +45,9 @@ private const val ROUTE_SEPARATOR = "/"
 class MainActivity : ComponentActivity() {
     @Inject
     lateinit var permissionLauncherHolder: AudioRecorderSpeechModule.PermissionLauncherHolder
+    @Inject
+    lateinit var platformInfo: Platform
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
@@ -82,8 +88,10 @@ fun NoteAppRoot() {
     ) {
         composable(route = Routes.LIST) {
             val viewmodel = hiltViewModel<AndroidNoteListViewModel>()
+            val platformViewModel = hiltViewModel<AndroidPlatformViewModel>()
             NoteListScreen(
-                viewmodel = viewmodel,
+                androidNoteListViewModel = viewmodel,
+                platformViewModel = platformViewModel,
                 onFloatingActionButtonClicked = {
                     navController.navigate(Routes.DETAIL + ROUTE_SEPARATOR + DEFAULT_NOTE_ID)
                 },

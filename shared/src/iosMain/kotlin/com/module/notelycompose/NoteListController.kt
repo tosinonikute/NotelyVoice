@@ -25,6 +25,11 @@ fun NoteListController(
                 notesFilterMapper = appModule.notesFilterMapper
             )
         }
+        val platformViewmodel = remember {
+            IOSPlatformViewModel(
+                platformInfo = appModule.platformInfo
+            )
+        }
         val state = viewmodel.state.collectAsState()
         val notes = viewmodel.onGetUiState(state.value)
         SharedNoteListScreen(
@@ -41,7 +46,8 @@ fun NoteListController(
             onSearchByKeyword = { keyword ->
                 viewmodel.onProcessIntent(NoteListIntent.OnSearchNote(keyword))
             },
-            selectedTabTitle = state.value.selectedTabTitle
+            selectedTabTitle = state.value.selectedTabTitle,
+            appVersion = platformViewmodel.state.value.appVersion
         )
     }
 }
