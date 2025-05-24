@@ -30,7 +30,17 @@ val DarkCustomColors = CustomColors(
     settingsIconColor = Color(0xFFCCCCCC),
     settingCancelBackgroundColor = Color(0xFF333333),
     settingCancelTextColor = Color.White,
-    settingLanguageBackgroundColor = Color(0xFF222222)
+    settingLanguageBackgroundColor = Color(0xFF222222),
+    languageSearchBorderColor = Color.Gray,
+    languageSearchCancelButtonColor = Color.Gray,
+    languageSearchCancelIconTintColor = Color.White,
+    languageListHeaderColor = Color.Gray,
+    languageListTextColor = Color.White,
+    languageListBackgroundColor = Color(0xFF2C2C2E),
+    languageListDividerColor = Color.Gray,
+    languageSearchUnfocusedColor = Color.White,
+    shareDialogBackgroundColor = Color(0xFF333333),
+    shareDialogButtonColor = Color.White
 )
 
 val LightCustomColors = CustomColors(
@@ -60,7 +70,17 @@ val LightCustomColors = CustomColors(
     settingsIconColor = Color.Black,
     settingCancelBackgroundColor = Color(0xFFEEEEEE),
     settingCancelTextColor = Color.Black,
-    settingLanguageBackgroundColor = Color(0xFFEEEEEE)
+    settingLanguageBackgroundColor = Color(0xFFEEEEEE),
+    languageSearchBorderColor = Color.Black,
+    languageSearchCancelButtonColor = Color(0xFFCCCCCC),
+    languageSearchCancelIconTintColor = Color.Black,
+    languageListHeaderColor = Color.Black,
+    languageListTextColor = Color.Black,
+    languageListBackgroundColor = Color(0xFFEEEEEE),
+    languageListDividerColor = Color.Black,
+    languageSearchUnfocusedColor = Color.Black,
+    shareDialogBackgroundColor = Color.White,
+    shareDialogButtonColor = Color(0xFF333333)
 )
 
 // Create a CompositionLocal to hold the custom colors

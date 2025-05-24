@@ -14,13 +14,11 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.module.notelycompose.getPlatform
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcChevronLeft
 import com.module.notelycompose.resources.vectors.Images
@@ -29,30 +27,9 @@ import notelycompose.shared.generated.resources.top_bar_back
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun DetailNoteTopBar(
-    title: String = "My Note",
-    onNavigateBack: () -> Unit,
-    onShare: () -> Unit = {}
-) {
-    if (getPlatform().isAndroid) {
-        DetailAndroidNoteTopBar(
-            title = title,
-            onNavigateBack = onNavigateBack,
-            onShare = onShare
-        )
-    } else {
-        DetailIOSNoteTopBar(
-            onNavigateBack = onNavigateBack,
-            onShare = onShare
-        )
-    }
-}
-
-@Composable
-fun DetailAndroidNoteTopBar(
+fun AndroidNoteTopBar(
     title: String,
     onNavigateBack: () -> Unit,
-    onShare: () -> Unit,
     elevation: Dp = AppBarDefaults.TopAppBarElevation
 ) {
     TopAppBar(
@@ -65,14 +42,6 @@ fun DetailAndroidNoteTopBar(
                 )
             }
         },
-        actions = {
-            IconButton(onClick = { onShare() }) {
-                Icon(
-                    imageVector = Icons.Filled.Share,
-                    contentDescription = "Share note"
-                )
-            }
-        },
         backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
         contentColor = LocalCustomColors.current.bodyContentColor,
         elevation = elevation
@@ -80,9 +49,8 @@ fun DetailAndroidNoteTopBar(
 }
 
 @Composable
-fun DetailIOSNoteTopBar(
-    onNavigateBack: () -> Unit,
-    onShare: () -> Unit
+fun IOSNoteTopBar(
+    onNavigateBack: () -> Unit
 ) {
     TopAppBar(
         title = {
@@ -101,15 +69,6 @@ fun DetailIOSNoteTopBar(
                 Text(
                     text = stringResource(Res.string.top_bar_back),
                     style = MaterialTheme.typography.body1,
-                )
-            }
-        },
-        actions = {
-            IconButton(onClick = { onShare() }) {
-                Icon(
-                    imageVector = Icons.Filled.Share,
-                    contentDescription = "Share note",
-                    modifier = Modifier.size(24.dp)
                 )
             }
         },

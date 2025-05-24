@@ -31,5 +31,15 @@ data class CustomColors(
     val settingsIconColor: Color,
     val settingCancelBackgroundColor: Color,
     val settingCancelTextColor: Color,
-    val settingLanguageBackgroundColor: Color
+    val settingLanguageBackgroundColor: Color,
+    val languageSearchBorderColor: Color,
+    val languageSearchCancelButtonColor: Color,
+    val languageSearchCancelIconTintColor: Color,
+    val languageListHeaderColor: Color,
+    val languageListTextColor: Color,
+    val languageListBackgroundColor: Color,
+    val languageListDividerColor: Color,
+    val languageSearchUnfocusedColor: Color,
+    val shareDialogBackgroundColor: Color,
+    val shareDialogButtonColor: Color
 )

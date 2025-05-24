@@ -6,6 +6,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ModalBottomSheetState
+import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Close
@@ -22,34 +24,55 @@ import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 
 @Composable
 fun SettingsScreen(
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    bottomSheetState: ModalBottomSheetState
 ) {
     var selectedTheme by remember { mutableStateOf(Theme.SYSTEM) }
+    var showLanguageScreen by remember { mutableStateOf(false) }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(LocalCustomColors.current.bodyBackgroundColor)
-    ) {
-        // Header
-        SettingsHeader(
-            onDismiss = onDismiss
-        )
-
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(24.dp),
-            verticalArrangement = Arrangement.spacedBy(32.dp)
-        ) {
-            item {
-                LanguageRegionSection()
+    LaunchedEffect(bottomSheetState) {
+        snapshotFlow { bottomSheetState.currentValue }
+            .collect { sheetValue ->
+                if (sheetValue == ModalBottomSheetValue.Hidden) {
+                    showLanguageScreen = false
+                }
             }
+    }
 
-            item {
-                AppearanceSection(
-                    selectedTheme = selectedTheme,
-                    onThemeSelected = { selectedTheme = it }
-                )
+    if (showLanguageScreen) {
+        LanguageSelectionScreen(
+            onBackPressed = {
+                showLanguageScreen = false
+            }
+        )
+    } else {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(LocalCustomColors.current.bodyBackgroundColor)
+        ) {
+            // Header
+            SettingsHeader(
+                onDismiss = onDismiss
+            )
+
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(24.dp),
+                verticalArrangement = Arrangement.spacedBy(32.dp)
+            ) {
+                item {
+                    LanguageRegionSection(onShowLanguageScreen = { onShow ->
+                        showLanguageScreen = onShow
+                    })
+                }
+
+                item {
+                    AppearanceSection(
+                        selectedTheme = selectedTheme,
+                        onThemeSelected = { selectedTheme = it }
+                    )
+                }
             }
         }
     }
@@ -100,7 +123,9 @@ private fun SettingsHeader(
 }
 
 @Composable
-private fun LanguageRegionSection() {
+private fun LanguageRegionSection(
+    onShowLanguageScreen: (Boolean) -> Unit
+) {
     Column {
         Text(
             text = "Language & Region",
@@ -110,12 +135,14 @@ private fun LanguageRegionSection() {
             modifier = Modifier.padding(bottom = 24.dp)
         )
 
-        TranscriptionLanguageItem()
+        TranscriptionLanguageItem(onShowLanguageScreen = onShowLanguageScreen)
     }
 }
 
 @Composable
-private fun TranscriptionLanguageItem() {
+fun TranscriptionLanguageItem(
+    onShowLanguageScreen: (Boolean) -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -137,7 +164,7 @@ private fun TranscriptionLanguageItem() {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable { /* Handle language selection */ }
+                .clickable { onShowLanguageScreen(true) }
                 .border(
                     2.dp,
                     LocalCustomColors.current.bodyContentColor,

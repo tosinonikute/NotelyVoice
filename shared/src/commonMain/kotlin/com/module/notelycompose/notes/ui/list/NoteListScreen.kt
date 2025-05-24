@@ -81,7 +81,8 @@ fun SharedNoteListScreen(
 //                    onDismiss = dismissBottomSheet
 //                )
                 SettingsScreen(
-                    onDismiss = dismissBottomSheet
+                    onDismiss = dismissBottomSheet,
+                    bottomSheetState = bottomSheetState
                 )
             } else {
                 InfoBottomSheet(

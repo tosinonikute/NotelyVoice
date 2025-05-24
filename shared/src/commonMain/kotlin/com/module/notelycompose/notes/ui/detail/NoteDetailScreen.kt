@@ -68,6 +68,7 @@ import com.module.notelycompose.audio.ui.player.PlatformAudioPlayerUi
 import com.module.notelycompose.audio.ui.player.model.AudioPlayerUiState
 import com.module.notelycompose.audio.ui.recorder.RecordUiComponent
 import com.module.notelycompose.notes.ui.extensions.showKeyboard
+import com.module.notelycompose.notes.ui.share.ShareDialog
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.resources.vectors.IcRecorder
 import com.module.notelycompose.resources.vectors.Images
@@ -101,8 +102,10 @@ fun NoteDetailScreen(
     var showRecordDialog by remember { mutableStateOf(false) }
     var showTranscriptionDialog by remember { mutableStateOf(false) }
     var isTextFieldFocused by remember { mutableStateOf(false) }
+    var showShareDialog by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
-// Setup when dialog appears
+
+   // Setup when dialog appears
     DisposableEffect(Unit) {
         val job = coroutineScope.launch {
             onAudioActions.setupRecorder()
@@ -116,7 +119,14 @@ fun NoteDetailScreen(
     }
     Scaffold(
         modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
-        topBar = { DetailNoteTopBar(onNavigateBack = onNavigateBack) },
+        topBar = {
+            DetailNoteTopBar(
+                onNavigateBack = onNavigateBack,
+                onShare = {
+                    showShareDialog = true
+                }
+            )
+        },
         floatingActionButton = {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     FloatingActionButton(
@@ -219,6 +229,20 @@ fun NoteDetailScreen(
                 onUpdateContent(TextFieldValue("${editorState.content.text}\n$it"))
                 showTranscriptionDialog = false
             }
+        )
+    }
+
+    if (showShareDialog) {
+        ShareDialog(
+            onShareAudioRecording = {
+                // onShareAudioRecording()
+                showShareDialog = false
+            },
+            onShareTexts = {
+                // onShareTexts()
+                showShareDialog = false
+            },
+            onDismiss = { showShareDialog = false }
         )
     }
 }
