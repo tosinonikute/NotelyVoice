@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notely Voice</string>
+    <string name="error">त्रुटि</string>
+    <string name="close">बंद करें</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="navigate">नेविगेट करें</string>
+
+    <!-- TopBar -->
+    <string name="top_bar_back">वापस</string>
+    <string name="top_bar_notes">Notely Voice</string>
+    <string name="top_bar_menu">मेन्यू</string>
+    <string name="top_bar_my_note">मेरा नोट</string>
+    <string name="top_bar_export_audio_folder">ऑडियो को फोल्डर में एक्सपोर्ट करें</string>
+    <string name="top_bar_import_audio">ऑडियो इंपोर्ट करें</string>
+    <string name="top_bar_export_as_txt">टेक्स्ट को .txt के रूप में एक्सपोर्ट करें</string>
+
+    <!-- Delete Dialog -->
+    <string name="confirmation">पुष्टि करें</string>
+    <string name="confirmation_text">क्या आप नोट को डिलीट करना चाहते हैं?</string>
+    <string name="recording_confirmation_text">क्या आप वाकई रिकॉर्डिंग को डिलीट करना चाहते हैं?</string>
+    <string name="confirmation_delete">डिलीट करें</string>
+    <string name="confirmation_cancel">रद्द करें</string>
+    <string name="recording_replace_error">आपके पास पहले से एक रिकॉर्डिंग सेव है। नई रिकॉर्डिंग बनाने से यह स्थायी रूप से बदल जाएगी। क्या आप जारी रखना चाहते हैं?</string>
+    <string name="recording_import_error">आपके पास पहले से एक रिकॉर्डिंग सेव है। नई रिकॉर्डिंग इंपोर्ट करने से यह स्थायी रूप से बदल जाएगी। क्या आप जारी रखना चाहते हैं?</string>
+    <string name="recording_replace_continue">जारी रखें</string>
+
+    <!-- BottomNavigationBar -->
+    <string name="bottom_navigation_letter">अक्षर Aa</string>
+    <string name="bottom_navigation_starred">तारांकित</string>
+    <string name="bottom_navigation_bullet_list">बुलेट सूची</string>
+    <string name="bottom_navigation_delete">नोट डिलीट करें</string>
+    <string name="bottom_navigation_hide_keyboard">कीबोर्ड छुपाएं</string>
+
+    <!-- Editing Toolbar -->
+    <string name="editing_bold">बोल्ड</string>
+    <string name="editing_italic">तिर्यक</string>
+    <string name="editing_underline">रेखांकित</string>
+    <string name="editing_align_left">बाएं संरेखित करें</string>
+    <string name="editing_align_center">केंद्र संरेखित करें</string>
+    <string name="editing_align_right">दाएं संरेखित करें</string>
+
+    <!-- Format Bar -->
+    <string name="format_bar_text">फॉर्मेट</string>
+    <string name="format_bar_close">बंद करें</string>
+    <string name="format_bar_title">शीर्षक</string>
+    <string name="format_bar_heading">हेडिंग</string>
+    <string name="format_bar_subheading">उप-शीर्षक</string>
+    <string name="format_bar_body">मुख्य भाग</string>
+
+    <!-- Note Detail -->
+    <string name="note_detail_recorder">रिकॉर्डर</string>
+    <string name="transcription_icon">आइकन</string>
+
+    <!-- Date Selection -->
+    <string name="note_detail_more_options">अधिक विकल्प</string>
+
+    <!-- Date Tab Bar -->
+    <string name="date_tab_bar_all">सभी</string>
+    <string name="date_tab_bar_starred">तारांकित</string>
+    <string name="date_tab_bar_voices">आवाजें</string>
+    <string name="date_tab_bar_recent">हाल ही के</string>
+
+    <!-- Note Item -->
+    <string name="note_item_delete">नोट डिलीट करें</string>
+    <string name="note_item_edit">संपादित करें</string>
+    <string name="note_item_voice">आवाज</string>
+    <string name="note_item_starred">तारांकित</string>
+    <string name="note_item_note">नोट</string>
+    <plurals name="words">
+        <item quantity="one">%1$d शब्द</item>
+        <item quantity="other">%1$d शब्द</item>
+    </plurals>
+
+    <!-- Note List -->
+    <string name="note_list_add_note">नोट जोड़ें</string>
+
+    <!-- Search Bar -->
+    <string name="search_bar_search_text">नोट्स खोजें...</string>
+    <string name="search_bar_search_description">खोजें</string>
+
+    <!-- Recording UI -->
+    <string name="recording_ui_microphone">माइक्रोफ़ोन</string>
+    <string name="recording_ui_tap_start_record">रिकॉर्डिंग शुरू करने के लिए टैप करें</string>
+    <string name="recording_ui_tap_stop_record">रिकॉर्डिंग रोकने या बंद करने के लिए टैप करें</string>
+    <string name="recording_ui_loading">लोड हो रहा है</string>
+    <string name="recording_ui_loading_rotation">लोडिंग रोटेशन</string>
+    <string name="recording_ui_checkmark">चेकमार्क</string>
+
+    <!-- Player UI -->
+    <string name="player_ui_initial_time">00:00</string>
+    <string name="player_ui_pause">रोकें</string>
+    <string name="player_ui_play">चलाएं</string>
+
+    <!-- Transcription Dialog -->
+    <string name="transcription_dialog_cancel">रद्द करें</string>
+    <string name="transcription_dialog_append">जोड़ें</string>
+    <string name="transcription_dialog_summarize">सारांश बनाएं</string>
+    <string name="transcription_dialog_original">मूल</string>
+    <string name="transcription_dialog_error_got_it">समझ गया</string>
+    <string name="transcription_dialog_error_audio_file_title">ऑडियो फ़ाइल बहुत बड़ी है</string>
+    <string name="transcription_dialog_error_audio_file_desc">यह ऑडियो फ़ाइल आपके डिवाइस पर ट्रांसक्राइब करने के लिए बहुत बड़ी है। कम समय की रिकॉर्डिंग या छोटी फ़ाइल साइज़ का उपयोग करें।</string>
+
+    <!-- Download Dialog -->
+    <string name="download_dialog_error">डाउनलोड करते समय त्रुटि</string>
+
+    <!-- Information UI -->
+    <string name="information_base_url">https://tosinonikute.com/notely/</string>
+    <string name="faq">अक्सर पूछे जाने वाले प्रश्न</string>
+    <string name="about">हमारे बारे में</string>
+    <string name="support">सहायता</string>
+    <string name="privacy">गोपनीयता नीति</string>
+    <string name="faq_url">faq.html</string>
+    <string name="about_url">about.html</string>
+    <string name="support_url">support.html</string>
+    <string name="privacy_url">privacyupdated.html</string>
+
+    <!-- Empty List String -->
+    <string name="empty_list_title">अभी तक कोई नोट नहीं</string>
+    <string name="empty_list_description">अपने विचारों और आवाज़ की रिकॉर्डिंग को कैप्चर करना शुरू करें। अपना पहला नोट बनाने के लिए नीचे दाएं कोने में प्लस + आइकन पर टैप करें।</string>
+    <string name="empty_list_description_tablet">अपने विचारों और आवाज़ की रिकॉर्डिंग को कैप्चर करना शुरू करें।\nअपना पहला नोट बनाने के लिए नीचे दाएं कोने में प्लस + आइकन पर टैप करें।</string>
+
+    <!-- Share Dialog -->
+    <string name="share_options">शेयर विकल्प</string>
+    <string name="share_text">टेक्स्ट शेयर करें</string>
+    <string name="share_audio_recording">ऑडियो रिकॉर्डिंग शेयर करें</string>
+
+    <!-- Download Dialog -->
+    <string name="download_required">डाउनलोड आवश्यक</string>
+    <string name="for_accurate_transcription">सटीक ट्रांसक्रिप्शन के लिए, हमें AI मॉडल डाउनलोड करना होगा।</string>
+    <string name="take_few_minutes">इसमें कुछ मिनट लग सकते हैं और स्थिर इंटरनेट कनेक्शन की आवश्यकता है।</string>
+    <string name="file_size_approx">फ़ाइल साइज़: लगभग 142MB</string>
+    <string name="download">डाउनलोड करें</string>
+
+    <!-- Settings Screen -->
+    <string name="settings">सेटिंग्स</string>
+    <string name="customize_your_experience">अपने अनुभव को कस्टमाइज़ करें</string>
+    <string name="language_and_region">भाषा और क्षेत्र</string>
+    <string name="transcription_language">ट्रांसक्रिप्शन भाषा</string>
+    <string name="language_used_for_voice_transcription">आवाज़ ट्रांसक्रिप्शन के लिए उपयोग की जाने वाली भाषा</string>
+    <string name="select_language">भाषा चुनें</string>
+    <string name="appearance">दिखावट</string>
+    <string name="theme">थीम</string>
+    <string name="choose_how_the_app_looks">ऐप कैसा दिखता और महसूस होता है, यह चुनें</string>
+    <string name="accessibility">पहुंच</string>
+    <string name="body_text_size">मुख्य टेक्स्ट साइज़</string>
+    <string name="body_text_preferred_text">अपने लेखन अनुभव को बेहतर बनाने के लिए नोट्स एडिटर के लिए अपना पसंदीदा मुख्य टेक्स्ट साइज़ सेट करें।</string>
+    <string name="body_text_default">डिफ़ॉल्ट</string>
+    <string name="body_text_pt">%1$d pt</string>
+
+    <!-- Onboarding Screen -->
+    <string name="onboarding_get_started">शुरू करें</string>
+    <string name="onboarding_next">आगे</string>
+    <string name="onboarding_skip">छोड़ें</string>
+    <string name="onboarding_screen_one_title">नोट्स बनाएं\nऔर शेयर करें</string>
+    <string name="onboarding_screen_one_desc">अपने नोट्स को आसानी से\nतुरंत लिखें और शेयर करें</string>
+    <string name="onboarding_screen_two_title">आवाज़ का नोट\nरिकॉर्ड करें और शेयर करें</string>
+    <string name="onboarding_screen_two_desc">चलते-फिरते आवाज़ के नोट्स\nकैप्चर और शेयर करें</string>
+    <string name="onboarding_screen_three_title">ट्रांसक्राइब करें\nऔर सारांश बनाएं</string>
+    <string name="onboarding_screen_three_desc">बिना इंटरनेट के आवाज़ के नोट्स को\nटेक्स्ट और सारांश में बदलें</string>
+    <string name="onboarding_screen_four_title">50 से अधिक\nभाषाओं का समर्थन</string>
+    <string name="onboarding_screen_four_desc">अपनी पसंदीदा भाषा में नोट्स\nबनाएं और ट्रांसक्राइब करें</string>
+
+    <!-- Setting Bottom Sheet -->
+    <string name="settings_light_theme">लाइट थीम</string>
+    <string name="settings_dark_theme">डार्क थीम</string>
+    <string name="settings_system_default">सिस्टम डिफ़ॉल्ट</string>
+    <string name="settings_change_language">भाषा बदलें</string>
+    <string name="settings_change_default">हिंदी</string>
+    <string name="settings_transcription_language">ट्रांसक्रिप्शन भाषा</string>
+    <string name="settings_themes">थीम्स</string>
+    <string name="settings_title">सेटिंग्स</string>
+
+    <!-- Language Selection -->
+    <string name="language_selection_no_languages_found">कोई भाषा नहीं मिली</string>
+    <string name="language_selection_supported_languages">समर्थित भाषाएं</string>
+    <string name="language_selection_search">खोजें</string>
+    <string name="language_selection_select_language">भाषा चुनें</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_example">उदाहरण %1$d pt</string>
+    <string name="accessibility_desc">नोट्स एडिटर के लिए पसंदीदा लेखन मुख्य साइज़ सेट करने के लिए स्लाइडर का उपयोग करें, अपने अनुभव को कस्टमाइज़ करें।</string>
+    <string name="accessibility_a">अ</string>
+    <string name="accessibility_default">डिफ़ॉल्ट 14 pt है</string>
+
+</resources>
