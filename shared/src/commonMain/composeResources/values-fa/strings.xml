@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notely Voice</string>
+    <string name="error">خطا</string>
+    <string name="close">بستن</string>
+    <string name="cancel">لغو</string>
+    <string name="navigate">پیمایش</string>
+
+    <!-- TopBar -->
+    <string name="top_bar_back">بازگشت</string>
+    <string name="top_bar_notes">Notely Voice</string>
+    <string name="top_bar_menu">منو</string>
+    <string name="top_bar_my_note">یادداشت من</string>
+    <string name="top_bar_export_audio_folder">صادرات صوت به پوشه</string>
+    <string name="top_bar_import_audio">وارد کردن صوت</string>
+    <string name="top_bar_export_as_txt">صادرات متن به صورت .txt</string>
+
+    <!-- Delete Dialog -->
+    <string name="confirmation">تأیید</string>
+    <string name="confirmation_text">آیا می‌خواهید یادداشت را حذف کنید؟</string>
+    <string name="recording_confirmation_text">آیا مطمئن هستید که می‌خواهید ضبط را حذف کنید؟</string>
+    <string name="confirmation_delete">حذف</string>
+    <string name="confirmation_cancel">لغو</string>
+    <string name="recording_replace_error">شما قبلاً یک ضبط ذخیره کرده‌اید. ایجاد ضبط جدید آن را به طور دائم جایگزین خواهد کرد. آیا می‌خواهید ادامه دهید؟</string>
+    <string name="recording_import_error">شما قبلاً یک ضبط ذخیره کرده‌اید. وارد کردن ضبط جدید آن را به طور دائم جایگزین خواهد کرد. آیا می‌خواهید ادامه دهید؟</string>
+    <string name="recording_replace_continue">ادامه</string>
+
+    <!-- BottomNavigationBar -->
+    <string name="bottom_navigation_letter">حرف الف</string>
+    <string name="bottom_navigation_starred">ستاره‌دار</string>
+    <string name="bottom_navigation_bullet_list">لیست نقطه‌ای</string>
+    <string name="bottom_navigation_delete">حذف یادداشت</string>
+    <string name="bottom_navigation_hide_keyboard">مخفی کردن صفحه کلید</string>
+
+    <!-- Editing Toolbar -->
+    <string name="editing_bold">پررنگ</string>
+    <string name="editing_italic">کج</string>
+    <string name="editing_underline">زیرخط‌دار</string>
+    <string name="editing_align_left">تراز چپ</string>
+    <string name="editing_align_center">تراز وسط</string>
+    <string name="editing_align_right">تراز راست</string>
+
+    <!-- Format Bar -->
+    <string name="format_bar_text">قالب</string>
+    <string name="format_bar_close">بستن</string>
+    <string name="format_bar_title">عنوان</string>
+    <string name="format_bar_heading">سرتیتر</string>
+    <string name="format_bar_subheading">زیرعنوان</string>
+    <string name="format_bar_body">متن اصلی</string>
+
+    <!-- Note Detail -->
+    <string name="note_detail_recorder">ضبط‌کننده</string>
+    <string name="transcription_icon">آیکون</string>
+
+    <!-- Date Selection -->
+    <string name="note_detail_more_options">گزینه‌های بیشتر</string>
+
+    <!-- Date Tab Bar -->
+    <string name="date_tab_bar_all">همه</string>
+    <string name="date_tab_bar_starred">ستاره‌دار</string>
+    <string name="date_tab_bar_voices">صداها</string>
+    <string name="date_tab_bar_recent">اخیر</string>
+
+    <!-- Note Item -->
+    <string name="note_item_delete">حذف یادداشت</string>
+    <string name="note_item_edit">ویرایش</string>
+    <string name="note_item_voice">صدا</string>
+    <string name="note_item_starred">ستاره‌دار</string>
+    <string name="note_item_note">یادداشت</string>
+    <plurals name="words">
+        <item quantity="one">%1$d کلمه</item>
+        <item quantity="other">%1$d کلمه</item>
+    </plurals>
+
+    <!-- Note List -->
+    <string name="note_list_add_note">افزودن یادداشت</string>
+
+    <!-- Search Bar -->
+    <string name="search_bar_search_text">جستجو در یادداشت‌ها...</string>
+    <string name="search_bar_search_description">جستجو</string>
+
+    <!-- Recording UI -->
+    <string name="recording_ui_microphone">میکروفون</string>
+    <string name="recording_ui_tap_start_record">برای شروع ضبط ضربه بزنید</string>
+    <string name="recording_ui_tap_stop_record">برای توقف یا پایان ضبط ضربه بزنید</string>
+    <string name="recording_ui_loading">در حال بارگذاری</string>
+    <string name="recording_ui_loading_rotation">چرخش بارگذاری</string>
+    <string name="recording_ui_checkmark">علامت تیک</string>
+
+    <!-- Player UI -->
+    <string name="player_ui_initial_time">00:00</string>
+    <string name="player_ui_pause">توقف</string>
+    <string name="player_ui_play">پخش</string>
+
+    <!-- Transcription Dialog -->
+    <string name="transcription_dialog_cancel">لغو</string>
+    <string name="transcription_dialog_append">اضافه کردن</string>
+    <string name="transcription_dialog_summarize">خلاصه‌سازی</string>
+    <string name="transcription_dialog_original">اصلی</string>
+    <string name="transcription_dialog_error_got_it">متوجه شدم</string>
+    <string name="transcription_dialog_error_audio_file_title">فایل صوتی خیلی بزرگ است</string>
+    <string name="transcription_dialog_error_audio_file_desc">این فایل صوتی برای رونویسی روی دستگاه شما خیلی بزرگ است. ضبط کوتاه‌تر یا فایل با حجم کمتر استفاده کنید.</string>
+
+    <!-- Download Dialog -->
+    <string name="download_dialog_error">خطا در هنگام دانلود</string>
+
+    <!-- Information UI -->
+    <string name="information_base_url">https://tosinonikute.com/notely/</string>
+    <string name="faq">سوالات متداول</string>
+    <string name="about">درباره ما</string>
+    <string name="support">پشتیبانی</string>
+    <string name="privacy">حریم خصوصی</string>
+    <string name="faq_url">faq.html</string>
+    <string name="about_url">about.html</string>
+    <string name="support_url">support.html</string>
+    <string name="privacy_url">privacyupdated.html</string>
+
+    <!-- Empty List String -->
+    <string name="empty_list_title">هنوز یادداشتی نیست</string>
+    <string name="empty_list_description">شروع به ثبت افکار و ضبط صوتی خود کنید. برای ایجاد اولین یادداشت خود، روی آیکون پلاس + در گوشه پایین راست ضربه بزنید.</string>
+    <string name="empty_list_description_tablet">شروع به ثبت افکار و ضبط صوتی خود کنید.\nبرای ایجاد اولین یادداشت خود، روی آیکون پلاس + در گوشه پایین راست ضربه بزنید.</string>
+
+    <!-- Share Dialog -->
+    <string name="share_options">گزینه‌های اشتراک</string>
+    <string name="share_text">اشتراک متن</string>
+    <string name="share_audio_recording">اشتراک ضبط صوتی</string>
+
+    <!-- Download Dialog -->
+    <string name="download_required">دانلود مورد نیاز</string>
+    <string name="for_accurate_transcription">برای رونویسی دقیق، باید مدل هوش مصنوعی را دانلود کنیم.</string>
+    <string name="take_few_minutes">این کار ممکن است چند دقیقه طول بکشد و به اتصال اینترنت پایدار نیاز دارد.</string>
+    <string name="file_size_approx">حجم فایل: تقریباً 142 مگابایت</string>
+    <string name="download">دانلود</string>
+
+    <!-- Settings Screen -->
+    <string name="settings">تنظیمات</string>
+    <string name="customize_your_experience">تجربه خود را شخصی‌سازی کنید</string>
+    <string name="language_and_region">زبان و منطقه</string>
+    <string name="transcription_language">زبان رونویسی</string>
+    <string name="language_used_for_voice_transcription">زبان مورد استفاده برای رونویسی صوت</string>
+    <string name="select_language">انتخاب زبان</string>
+    <string name="appearance">ظاهر</string>
+    <string name="theme">تم</string>
+    <string name="choose_how_the_app_looks">انتخاب کنید اپ چگونه به نظر برسد و احساس شود</string>
+    <string name="accessibility">دسترسی</string>
+    <string name="body_text_size">اندازه متن اصلی</string>
+    <string name="body_text_preferred_text">اندازه متن اصلی مورد نظر خود را برای ویرایشگر یادداشت‌ها تنظیم کنید تا تجربه نوشتن شما بهبود یابد.</string>
+    <string name="body_text_default">پیش‌فرض</string>
+    <string name="body_text_pt">%1$d pt</string>
+
+    <!-- Onboarding Screen -->
+    <string name="onboarding_get_started">شروع کنید</string>
+    <string name="onboarding_next">بعدی</string>
+    <string name="onboarding_skip">رد کردن</string>
+    <string name="onboarding_screen_one_title">یادداشت بسازید\nو به اشتراک بگذارید</string>
+    <string name="onboarding_screen_one_desc">یادداشت‌های خود را به راحتی\nبه طور فوری بنویسید و به اشتراک بگذارید</string>
+    <string name="onboarding_screen_two_title">یادداشت صوتی ضبط کنید\nو به اشتراک بگذارید</string>
+    <string name="onboarding_screen_two_desc">یادداشت‌های صوتی را در حین حرکت\nضبط و به اشتراک بگذارید</string>
+    <string name="onboarding_screen_three_title">رونویسی و\nخلاصه‌سازی کنید</string>
+    <string name="onboarding_screen_three_desc">یادداشت‌های صوتی را بدون اینترنت\nبه متن و خلاصه تبدیل کنید</string>
+    <string name="onboarding_screen_four_title">پشتیبانی از\nبیش از 50 زبان</string>
+    <string name="onboarding_screen_four_desc">یادداشت‌ها را به زبان مورد نظر خود\nایجاد و رونویسی کنید</string>
+
+    <!-- Setting Bottom Sheet -->
+    <string name="settings_light_theme">تم روشن</string>
+    <string name="settings_dark_theme">تم تیره</string>
+    <string name="settings_system_default">پیش‌فرض سیستم</string>
+    <string name="settings_change_language">تغییر زبان</string>
+    <string name="settings_change_default">فارسی</string>
+    <string name="settings_transcription_language">زبان رونویسی</string>
+    <string name="settings_themes">تم‌ها</string>
+    <string name="settings_title">تنظیمات</string>
+
+    <!-- Language Selection -->
+    <string name="language_selection_no_languages_found">زبانی یافت نشد</string>
+    <string name="language_selection_supported_languages">زبان‌های پشتیبانی شده</string>
+    <string name="language_selection_search">جستجو</string>
+    <string name="language_selection_select_language">انتخاب زبان</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_example">مثال %1$d pt</string>
+    <string name="accessibility_desc">از نوار لغزان برای تنظیم اندازه نوشتن مورد نظر برای ویرایشگر یادداشت‌ها استفاده کنید، تجربه خود را شخصی‌سازی کنید.</string>
+    <string name="accessibility_a">الف</string>
+    <string name="accessibility_default">پیش‌فرض 14 pt است</string>
+
+</resources>
