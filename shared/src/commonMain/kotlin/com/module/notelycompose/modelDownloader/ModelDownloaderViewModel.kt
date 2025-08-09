@@ -54,7 +54,7 @@ class ModelDownloaderViewModel(
 
     fun startDownload() {
         viewModelScope.launch(Dispatchers.IO) {
-                val modelUrl = uiState.value.selectedModel.getModelUrl()
+                val modelUrl = uiState.value.selectedModel.url
 //            if (modelUrl != null) {
                 downloader.startDownload(modelUrl, uiState.value.selectedModel.name)
                 trackDownload()
