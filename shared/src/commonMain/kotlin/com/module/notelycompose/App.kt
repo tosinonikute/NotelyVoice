@@ -45,6 +45,7 @@ import org.koin.core.annotation.KoinExperimentalAPI
 
 object Arguments {
     const val NOTE_ID_PARAM = "noteId"
+    const val USE_BLUETOOTH_MIC = "useBluetoothMic"
     const val DEFAULT_NOTE_ID = "0"
     const val ROUTE_SEPARATOR = "/"
 }

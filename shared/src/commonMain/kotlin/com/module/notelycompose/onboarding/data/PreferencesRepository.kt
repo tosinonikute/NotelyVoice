@@ -24,6 +24,8 @@ class PreferencesRepository(
         private val KEY_THEME = stringPreferencesKey("theme")
         private val KEY_MODEL_DOWNLOAD_ID = longPreferencesKey("model_download_id")
         private val KEY_BODY_TEXT_SIZE = floatPreferencesKey("body_text_size")
+
+        private val KEY_USE_BLUETOOTH_WHEN_ENABLED = booleanPreferencesKey("use_bluetooth_when_enabled")
     }
 
     suspend fun hasCompletedOnboarding(): Boolean {
@@ -77,5 +79,15 @@ class PreferencesRepository(
             prefs[KEY_BODY_TEXT_SIZE] = size
         }
     }
+
+    fun getUseBluetoothWhenEnabled(): Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[KEY_USE_BLUETOOTH_WHEN_ENABLED] ?: false
+    }
+    suspend fun setUseBluetoothWhenEnabled(enabled: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[KEY_USE_BLUETOOTH_WHEN_ENABLED] = enabled
+        }
+    }
+
 }
 

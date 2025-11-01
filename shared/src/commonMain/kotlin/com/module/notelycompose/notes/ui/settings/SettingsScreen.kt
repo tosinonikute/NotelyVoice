@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -27,6 +28,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -60,10 +62,12 @@ import com.module.notelycompose.resources.theme
 import com.module.notelycompose.resources.choose_how_the_app_looks
 import com.module.notelycompose.resources.close
 import com.module.notelycompose.resources.accessibility
+import com.module.notelycompose.resources.bluetooth_mic
 import com.module.notelycompose.resources.body_text_default
 import com.module.notelycompose.resources.body_text_preferred_text
 import com.module.notelycompose.resources.body_text_size
 import com.module.notelycompose.resources.navigate
+import com.module.notelycompose.resources.use_bluetooth_mic
 
 @Composable
 fun SettingsScreen(
@@ -74,6 +78,7 @@ fun SettingsScreen(
 ) {
     val language by preferencesRepository.getDefaultTranscriptionLanguage()
         .collectAsState(languageCodeMap.entries.first().key)
+
     val uiMode by preferencesRepository.getTheme().collectAsState(Theme.SYSTEM.name)
     val coroutineScope = rememberCoroutineScope()
     val bodyTextSize = preferencesRepository.getBodyTextSize().collectAsState(TEXT_SIZE_BODY).value
@@ -106,6 +111,18 @@ fun SettingsScreen(
                     onThemeSelected = {
                         coroutineScope.launch {
                             preferencesRepository.setTheme(it.name)
+                        }
+                    }
+                )
+            }
+            item {
+                BluetoothSection(
+                    useBluetoothWhenEnabled = preferencesRepository
+                        .getUseBluetoothWhenEnabled()
+                        .collectAsState(false).value,
+                    onUseBluetoothWhenEnabledChange = {
+                        coroutineScope.launch {
+                            preferencesRepository.setUseBluetoothWhenEnabled(it)
                         }
                     }
                 )
@@ -183,6 +200,58 @@ private fun LanguageRegionSection(
             navigateToLanguages = navigateToLanguages,
             selectedLanguage = selectedLanguage
         )
+    }
+}
+
+@Composable
+private fun BluetoothSection(
+    useBluetoothWhenEnabled: Boolean,
+    onUseBluetoothWhenEnabledChange: (Boolean) -> Unit
+) {
+    Column {
+        Text(
+            text = stringResource(Res.string.bluetooth_mic),
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            color = LocalCustomColors.current.bodyContentColor,
+            modifier = Modifier.padding(bottom = 24.dp)
+        )
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { onUseBluetoothWhenEnabledChange(!useBluetoothWhenEnabled) }
+                .border(
+                    2.dp,
+                    LocalCustomColors.current.bodyContentColor,
+                    RoundedCornerShape(8.dp)
+                ),
+            colors = CardDefaults.cardColors(
+                containerColor = LocalCustomColors.current.settingLanguageBackgroundColor
+            ),
+            elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+            shape = RoundedCornerShape(12.dp)
+        ) {
+        Row(
+            modifier = Modifier.padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        )
+        {
+            Text(
+                text = stringResource(Res.string.use_bluetooth_mic),
+                fontSize = 14.sp,
+                color = LocalCustomColors.current.bodyContentColor,
+                modifier = Modifier.weight(1f)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Switch(
+                useBluetoothWhenEnabled,
+                onCheckedChange = {
+
+                }
+            )
+        }
+            }
     }
 }
 

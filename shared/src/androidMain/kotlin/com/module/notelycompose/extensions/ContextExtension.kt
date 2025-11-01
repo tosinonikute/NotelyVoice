@@ -6,12 +6,17 @@ import android.content.Intent
 import android.os.Build
 import android.service.quicksettings.TileService
 import com.module.notelycompose.Arguments.NOTE_ID_PARAM
+import com.module.notelycompose.Arguments.USE_BLUETOOTH_MIC
 import com.module.notelycompose.MainActivity
 import com.module.notelycompose.service.AudioRecordingService
 
-internal fun Context.startRecordingService(recordingAction: String, noteId: Long? = null) {
+internal fun Context.startRecordingService(
+    recordingAction: String,
+    noteId: Long? = null,
+    useBluetoothMic: Boolean = false) {
     val intent = Intent(this, AudioRecordingService::class.java).apply {
         action = recordingAction
+        putExtra(USE_BLUETOOTH_MIC, useBluetoothMic)
         if (noteId != null) {
             putExtra(NOTE_ID_PARAM, noteId)
         }

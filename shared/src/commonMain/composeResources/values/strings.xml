@@ -149,6 +149,10 @@
     <string name="body_text_preferred_text">Set your preferred body text size for the notes editor to enhance your writing experience.</string>
     <string name="body_text_default">Default</string>
     <string name="body_text_pt">%1$d pt</string>
+    <string name="bluetooth_mic">Bluetooth mic</string>
+    <string name="use_bluetooth_mic">Use bluetooth mic when available</string>
+    <string name="recording_bluetooth_mic">Recording using bluetooth mic</string>
+    <string name="bluetooth_lost">Bluetooth mic lost</string>
 
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">Get Started</string>

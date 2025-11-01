@@ -53,7 +53,7 @@ actual val platformModule = module {
 
 
     // domain
-    single<AudioRecorderInteractor> { AudioRecorderInteractorImpl(get(), get(), get()) }
+    single<AudioRecorderInteractor> { AudioRecorderInteractorImpl(get(), get(), get(), get()) }
     single<SaveAudioNoteInteractor> {
         SaveAudioNoteInteractorImpl(
             get(),

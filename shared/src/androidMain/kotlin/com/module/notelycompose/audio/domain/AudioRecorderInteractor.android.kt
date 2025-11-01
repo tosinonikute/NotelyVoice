@@ -1,17 +1,24 @@
 package com.module.notelycompose.audio.domain
 
 import android.content.Context
+import android.media.AudioManager
+import android.os.Build
 import audio.recorder.AudioRecorder
+import audio.recorder.BluetoothAudioRouter
+import audio.recorder.BluetoothAudioRouterLegacy
+import audio.recorder.BluetoothAudioRouterModern
 import com.module.notelycompose.audio.presentation.mappers.AudioRecorderPresentationToUiMapper
 import com.module.notelycompose.audio.ui.recorder.AudioRecorderUiState
 import com.module.notelycompose.core.debugPrintln
 import com.module.notelycompose.extensions.startRecordingService
+import com.module.notelycompose.onboarding.data.PreferencesRepository
 import com.module.notelycompose.service.AudioRecordingService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
@@ -20,6 +27,7 @@ class AudioRecorderInteractorImpl(
     private val context: Context,
     private val audioRecorder: AudioRecorder,
     private val mapper: AudioRecorderPresentationToUiMapper,
+    private val preferencesRepository: PreferencesRepository
 ) : AudioRecorderInteractor {
     private val _audioRecorderPresentationState = MutableStateFlow(AudioRecorderPresentationState())
     override val state = _audioRecorderPresentationState
@@ -28,9 +36,16 @@ class AudioRecorderInteractorImpl(
         _audioRecorderPresentationState.value = AudioRecorderPresentationState()
     }
 
+    private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+    private val router: BluetoothAudioRouter = if (Build.VERSION.SDK_INT >= 31)
+        BluetoothAudioRouterModern(context, audioManager)
+    else
+        BluetoothAudioRouterLegacy(context, audioManager)
+
     private var counterJob: Job? = null
     private var recordingTimeSeconds = INITIAL_SECOND
     private var elapsedTimeBeforePause = 0
+
 
     override fun onStartRecording(
         noteId: Long?,
@@ -45,15 +60,58 @@ class AudioRecorderInteractorImpl(
                 }
             }
 
-            if (!audioRecorder.isRecording()) {
-                context.startRecordingService(
-                    recordingAction = AudioRecordingService.ACTION_START,
-                    noteId = noteId
+            if (preferencesRepository.getUseBluetoothWhenEnabled().first()) {
+                router.enableBluetoothMic(
+                    onReady = {
+                        coroutineScope.launch {
+                            startRecorder(
+                                noteId = noteId,
+                                coroutineScope = coroutineScope,
+                                updateUI = updateUI
+                            )
+                        }
+                    },
+                    onBluetoothLost = {
+                        onPauseRecording(coroutineScope)
+                        // fallback to normal mic
+                        router.disableBluetoothMic()
+                    },
+                    onNoBlueToothDevice = {
+                        router.disableBluetoothMic()
+                        coroutineScope.launch {
+                            startRecorder(
+                                noteId = noteId,
+                                coroutineScope = coroutineScope,
+                                updateUI = updateUI
+                            )
+                        }
+                    }
                 )
-                delay(100L)
-                updateUI()
-                startCounter(coroutineScope)
+            } else {
+                router.disableBluetoothMic()
+                startRecorder(
+                    noteId = noteId,
+                    coroutineScope = coroutineScope,
+                    updateUI = updateUI
+                )
             }
+        }
+    }
+
+    private suspend fun startRecorder(
+        noteId: Long?,
+        coroutineScope: CoroutineScope,
+        updateUI: () -> Unit
+    ) {
+        if (!audioRecorder.isRecording()) {
+            context.startRecordingService(
+                recordingAction = AudioRecordingService.ACTION_START,
+                noteId = noteId,
+                useBluetoothMic = preferencesRepository.getUseBluetoothWhenEnabled().first()
+            )
+            delay(100L)
+            updateUI()
+            startCounter(coroutineScope)
         }
     }
 
@@ -87,6 +145,7 @@ class AudioRecorderInteractorImpl(
     }
 
     override fun onStopRecording(coroutineScope: CoroutineScope) {
+        router.disableBluetoothMic()
         coroutineScope.launch {
             debugPrintln { "inside stop recording ${audioRecorder.isRecording()}" }
             if (audioRecorder.isRecording()) {

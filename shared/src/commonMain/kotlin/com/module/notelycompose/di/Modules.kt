@@ -48,9 +48,7 @@ val appModule = module {
             database = NoteDatabase(get())
         )
     }
-
     factory { ModelSelection(get()) }
-
 }
 
 val mapperModule = module {

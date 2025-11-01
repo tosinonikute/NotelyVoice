@@ -9,18 +9,25 @@ import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import audio.recorder.AudioRecorder
 import com.module.notelycompose.Arguments.NOTE_ID_PARAM
+import com.module.notelycompose.Arguments.USE_BLUETOOTH_MIC
 import com.module.notelycompose.audio.domain.SaveAudioNoteInteractor
 import com.module.notelycompose.extensions.restartMainActivity
+import com.module.notelycompose.onboarding.data.PreferencesRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import kotlin.getValue
 
 class AudioRecordingService : Service() {
     private val audioRecorder by inject<AudioRecorder>()
     private val saveAudioNoteInteractor by inject<SaveAudioNoteInteractor>()
+
+
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
     private var noteId: Long? = null
+    private var useBluetoothMic = false
 
     override fun onCreate() {
         super.onCreate()
@@ -38,6 +45,7 @@ class AudioRecordingService : Service() {
         when (intent?.action) {
             ACTION_START -> {
                 noteId = intent.extras?.getLong(NOTE_ID_PARAM)
+                useBluetoothMic = intent.extras?.getBoolean(USE_BLUETOOTH_MIC) ?: false
                 startRecording()
             }
             ACTION_PAUSE -> pauseRecording()
