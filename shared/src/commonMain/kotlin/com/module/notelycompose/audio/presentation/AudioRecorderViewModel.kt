@@ -2,10 +2,15 @@ package com.module.notelycompose.audio.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.module.notelycompose.audio.ui.recorder.AudioRecorderUiState
 import com.module.notelycompose.audio.domain.AudioRecorderInteractor
 import com.module.notelycompose.audio.domain.AudioRecorderPresentationState
+import com.module.notelycompose.audio.ui.recorder.AudioRecorderUiState
+import com.module.notelycompose.audio.ui.recorder.ScreenState
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class AudioRecorderViewModel(
     private val interactor: AudioRecorderInteractor
@@ -13,13 +18,22 @@ class AudioRecorderViewModel(
     val audioRecorderPresentationState: StateFlow<AudioRecorderPresentationState> =
         interactor.state
 
-    fun onStartRecording(noteId: Long?, updateUI: () -> Unit) {
+    init {
+        setupRecorder()
+    }
+    private val _screenState = MutableStateFlow(ScreenState.Initial)
+    val uiState: StateFlow<ScreenState> = _screenState.asStateFlow()
+
+    fun onStartRecording(noteId: Long?) {
         interactor.initState()
-        interactor.onStartRecording(noteId,viewModelScope, updateUI)
+        interactor.onStartRecording(noteId,viewModelScope, {
+            _screenState.update { ScreenState.Recording }
+        })
     }
 
-    fun onStopRecording() {
-        interactor.onStopRecording(viewModelScope)
+    fun onStopRecording() = viewModelScope.launch {
+        interactor.onStopRecording(this)
+        _screenState.update { ScreenState.Success }
     }
 
     fun setupRecorder() {
@@ -39,7 +53,10 @@ class AudioRecorderViewModel(
     }
 
     override fun onCleared() {
+        super.onCleared()
         interactor.onCleared()
+        onStopRecording()
+        finishRecorder()
     }
 
     fun onRequestAudioPermission() {

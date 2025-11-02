@@ -5,7 +5,6 @@
     <string name="close">닫기</string>
     <string name="cancel">취소</string>
     <string name="navigate">탐색</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">뒤로</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">내 노트</string>
     <string name="top_bar_export_audio_folder">오디오를 폴더로 내보내기</string>
     <string name="top_bar_import_audio">오디오 가져오기</string>
+    <string name="top_bar_export_as_pdf">텍스트를 PDF로 내보내기</string>
     <string name="top_bar_export_as_txt">텍스트를 .txt로 내보내기</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">확인</string>
-    <string name="confirmation_text">노트를 삭제하시겠습니까?</string>
-    <string name="recording_confirmation_text">녹음을 삭제하시겠습니까?</string>
+    <string name="confirmation_text">메모를 삭제하시겠습니까? 이 작업은 취소할 수 없습니다</string>
+    <string name="recording_confirmation_text">녹음을 삭제하시겠습니까? 이 작업은 취소할 수 없습니다</string>
     <string name="confirmation_delete">삭제</string>
     <string name="confirmation_cancel">취소</string>
     <string name="recording_replace_error">이미 저장된 녹음이 있습니다. 새 녹음을 만들면 기존 녹음이 영구적으로 교체됩니다. 계속하시겠습니까?</string>
     <string name="recording_import_error">이미 저장된 녹음이 있습니다. 새 녹음을 가져오면 기존 녹음이 영구적으로 교체됩니다. 계속하시겠습니까?</string>
     <string name="recording_replace_continue">계속</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">글자 Aa</string>
     <string name="bottom_navigation_starred">즐겨찾기</string>
     <string name="bottom_navigation_bullet_list">글머리 기호 목록</string>
     <string name="bottom_navigation_delete">노트 삭제</string>
     <string name="bottom_navigation_hide_keyboard">키보드 숨기기</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">굵게</string>
     <string name="editing_italic">기울임</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">왼쪽 정렬</string>
     <string name="editing_align_center">가운데 정렬</string>
     <string name="editing_align_right">오른쪽 정렬</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">서식</string>
     <string name="format_bar_close">닫기</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">표제</string>
     <string name="format_bar_subheading">부제목</string>
     <string name="format_bar_body">본문</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">녹음기</string>
     <string name="transcription_icon">아이콘</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">더 많은 옵션</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">전체</string>
+    <string name="date_tab_bar_all">전체 %1$s</string>
     <string name="date_tab_bar_starred">즐겨찾기</string>
     <string name="date_tab_bar_voices">음성</string>
     <string name="date_tab_bar_recent">최근</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">노트 삭제</string>
     <string name="note_item_edit">편집</string>
@@ -71,14 +63,11 @@
         <item quantity="one">%1$d개 단어</item>
         <item quantity="other">%1$d개 단어</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">노트 추가</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">노트 검색...</string>
     <string name="search_bar_search_description">검색</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">마이크</string>
     <string name="recording_ui_tap_start_record">탭하여 녹음 시작</string>
@@ -86,12 +75,10 @@
     <string name="recording_ui_loading">로딩 중</string>
     <string name="recording_ui_loading_rotation">로딩 회전</string>
     <string name="recording_ui_checkmark">체크 표시</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">일시정지</string>
     <string name="player_ui_play">재생</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">취소</string>
     <string name="transcription_dialog_append">추가</string>
@@ -100,10 +87,8 @@
     <string name="transcription_dialog_error_got_it">알겠습니다</string>
     <string name="transcription_dialog_error_audio_file_title">오디오 파일이 너무 큽니다</string>
     <string name="transcription_dialog_error_audio_file_desc">이 오디오 파일은 기기에서 변환하기에 너무 큽니다. 더 짧은 녹음이나 더 작은 파일 크기를 사용해 보세요.</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">다운로드 중 오류 발생</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">자주 묻는 질문</string>
@@ -114,27 +99,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">아직 노트가 없습니다</string>
     <string name="empty_list_description">생각과 음성 녹음을 캡처하기 시작하세요. 오른쪽 하단 모서리의 플러스 + 아이콘을 탭하여 첫 번째 노트를 만드세요.</string>
     <string name="empty_list_description_tablet">생각과 음성 녹음을 캡처하기 시작하세요.\n오른쪽 하단 모서리의 플러스 + 아이콘을 탭하여 첫 번째 노트를 만드세요.</string>
-
     <!-- Share Dialog -->
     <string name="share_options">공유 옵션</string>
     <string name="share_text">텍스트 공유</string>
     <string name="share_audio_recording">오디오 녹음 공유</string>
-
     <!-- Download Dialog -->
     <string name="download_required">다운로드 필요</string>
+    <string name="download_required_for_hindi">힌디어 다운로드 필요</string>
     <string name="for_accurate_transcription">정확한 변환을 위해 AI 모델을 다운로드해야 합니다.</string>
     <string name="take_few_minutes">몇 분이 소요될 수 있으며 안정적인 인터넷 연결이 필요합니다.</string>
-    <string name="file_size_approx">파일 크기: 약 500MB</string>
+    <string name="file_size_approx">파일 크기: 약 %1$s</string>
+    <string name="file_model_english">다국어 모델 (50개 이상 언어 지원)</string>
+    <string name="file_model_hindi">힌디어 최적화 모델</string>
     <string name="download">다운로드</string>
-
     <!-- Settings Screen -->
     <string name="settings">설정</string>
-    <string name="customize_your_experience">경험을 맞춤설정하세요</string>
+    <string name="customize_your_experience">아래로 스크롤하여 모든 설정 보기</string>
     <string name="language_and_region">언어 및 지역</string>
     <string name="transcription_language">변환 언어</string>
     <string name="language_used_for_voice_transcription">음성 변환에 사용되는 언어</string>
@@ -147,7 +131,6 @@
     <string name="body_text_preferred_text">노트 편집기의 선호하는 본문 텍스트 크기를 설정하여 작성 경험을 향상시키세요.</string>
     <string name="body_text_default">기본값</string>
     <string name="body_text_pt">%1$d pt</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">시작하기</string>
     <string name="onboarding_next">다음</string>
@@ -160,7 +143,6 @@
     <string name="onboarding_screen_three_desc">인터넷 없이 음성 노트를\n텍스트와 요약으로 변환</string>
     <string name="onboarding_screen_four_title">50개 이상의\n언어 지원</string>
     <string name="onboarding_screen_four_desc">선호하는 언어로\n노트를 작성하고 변환하세요</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">밝은 테마</string>
     <string name="settings_dark_theme">어두운 테마</string>
@@ -170,18 +152,56 @@
     <string name="settings_transcription_language">변환 언어</string>
     <string name="settings_themes">테마</string>
     <string name="settings_title">설정</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">언어를 찾을 수 없습니다</string>
     <string name="language_selection_supported_languages">지원되는 언어</string>
     <string name="language_selection_search">검색</string>
     <string name="language_selection_select_language">언어 선택</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">예시 %1$d pt</string>
     <string name="accessibility_desc">슬라이더를 사용하여 노트 편집기의 선호하는 작성 본문 크기를 설정하고 경험을 맞춤설정하세요.</string>
     <string name="accessibility_a">가</string>
     <string name="accessibility_default">기본값은 14 pt입니다</string>
-
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">확인</string>
+    <string name="batch_export_failed">내보내기 실패</string>
+    <string name="batch_export_options">내보내기 옵션</string>
+    <string name="batch_export_select_formats">내보낼 형식을 선택하세요:</string>
+    <string name="batch_export_audio_files">오디오 파일 내보내기</string>
+    <string name="batch_export_txt_files">텍스트를 TXT 파일로 내보내기</string>
+    <string name="batch_export_select_at_least_one_option">최소 하나의 옵션을 선택하세요</string>
+    <string name="batch_export_title">내보내기</string>
+    <string name="batch_export_no_selection_made">선택하지 않았습니다. 내보낼 항목을 선택하세요</string>
+    <string name="batch_export_settings_title">여러 메모 내보내기</string>
+    <string name="batch_export_settings_description">메모 목록에서 내보내기 옵션을 표시하려면 메모 카드를 길게 누르세요</string>
+    <string name="batch_export_settings_how_to">여러 메모를 내보내는 방법</string>
+    <string name="batch_export_settings_how_to_description_1">선택 모드로 들어가려면 메모 카드를 길게 누른 다음 여러 메모를 한 번에 내보내세요</string>
+    <string name="batch_export_settings_how_to_description_2">메모를 길게 누르기</string>
+    <string name="batch_export_settings_how_to_description_3">내보낼 메모 선택</string>
+    <string name="batch_export_settings_how_to_description_4">하단의 내보내기 버튼 탭</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">내보내는 중 오류가 발생했습니다</string>
+    <string name="batch_export_settings_no_folder_selected">폴더 선택이 취소되었습니다</string>
+    <!-- Import -->
+    <string name="import_failed_title">가져오기 실패</string>
+    <string name="ok">확인</string>
+    <string name="select_deselect_all">모두 선택 / 선택 해제</string>
+    <string name="top_bar_import_video">동영상 가져오기</string>
+    <string name="question_mark">물음표</string>
+    <string name="ai_model_title">AI 모델이란 무엇인가요?</string>
+    <string name="ai_model_description">AI 모델은 음성을 이해하고 작성된 텍스트로 변환하도록 훈련된 디지털 두뇌와 같습니다. 다른 모델은 다른 강점을 가지고 있습니다 - 일부는 더 빠르고 일부는 더 정확합니다. 귀하의 필요에 맞는 것을 선택하십시오.</string>
+    <string name="standard_model_title">표준 모델 (다국어)</string>
+    <string name="standard_model_description">이것은 일상적인 사용에 적합한 더 빠르고 가벼운 옵션입니다. 음성을 빠르게 텍스트로 변환하며 휴대전화에서 많은 공간을 차지하지 않습니다. 빠른 결과를 원하고 여러 언어를 사용하는 경우 완벽합니다. 소형차처럼 생각하세요 - 효율적이고 작업을 완료합니다.</string>
+    <string name="optimized_model_title">최적화된 모델 (다국어)</string>
+    <string name="optimized_model_description">이것은 가능한 가장 정확한 전사를 제공하는 더 강력한 옵션입니다. 시간이 조금 더 걸리고 더 많은 저장 공간을 사용하지만, 특히 억양이나 배경 소음이 있는 경우 더 많은 단어를 정확하게 포착합니다. 고급차처럼 - 더 크고 느리지만 프리미엄 품질을 제공합니다. 참고: 힌디어/구자라트어를 지원하지 않습니다.</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">더 빠른 성능과 더 작은 파일 크기\n모든 언어 지원</string>
+    <string name="optimized_model_setting_desc">사용 가능한 최고 정확도\n더 큰 파일 크기, 더 느린 성능\n힌디어/구자라트어를 제외한 모든 언어 지원</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">모델 선택</string>
+    <string name="settings_model_selection_text">AI 모델</string>
+    <string name="settings_model_selection_description">필요에 가장 적합한 모델을 선택하세요</string>
 </resources>

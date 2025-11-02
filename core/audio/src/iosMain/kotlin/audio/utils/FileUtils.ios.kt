@@ -49,6 +49,11 @@ internal fun NSURL.savePickedAudioToAppStorage(): NSURL?{
 
 @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
 actual fun deleteFile(filePath: String): Boolean {
+    if (filePath.isBlank()) {
+        Napier.e { "Cannot delete file: filePath is null or empty" }
+        return false
+    }
+
     memScoped {
         val error: ObjCObjectVar<NSError?> = alloc()
         val success = NSFileManager.defaultManager.removeItemAtPath(filePath, error.ptr)

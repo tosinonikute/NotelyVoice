@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">નોટલી વૉઇસ</string>
+    <string name="error">ભૂલ</string>
+    <string name="close">બંધ કરો</string>
+    <string name="cancel">રદ કરો</string>
+    <string name="navigate">નેવિગેટ</string>
+    <!-- TopBar -->
+    <string name="top_bar_back">પાછળ</string>
+    <string name="top_bar_notes">નોટલી વૉઇસ</string>
+    <string name="top_bar_menu">મેનુ</string>
+    <string name="top_bar_my_note">મારી નોટ</string>
+    <string name="top_bar_export_audio_folder">ઓડિયોકોફોલ્ડરમાંએક્સપોર્ટકરો</string>
+    <string name="top_bar_import_audio">ઓડિયોઇમ્પોર્ટકરો</string>
+    <string name="top_bar_export_as_txt">ટેક્સ્ટફાઇલતરીકેએક્સપોર્ટકરો</string>
+    <!-- Delete Dialog -->
+    <string name="confirmation">પુષ્ટિ</string>
+    <string name="confirmation_text">શું તમે નોંધ કાઢી નાખવા માંગો છો? આ ક્રિયા પાછી લઈ શકાતી નથી</string>
+    <string name="recording_confirmation_text">શું તમે ખરેખર રેકોર્ડિંગ કાઢી નાખવા માંગો છો? આ ક્રિયા પાછી લઈ શકાતી નથી</string>
+    <string name="confirmation_delete">ડિલીટકરો</string>
+    <string name="confirmation_cancel">રદ કરો</string>
+    <string name="recording_replace_error">તમારીપાસેપહેલેથીએકરીકોર્ડિંગસાચવેલીછે.નવીરીકોર્ડિંગબનાવવાથીતેકાયમીરીતેબદલાઇજશે.શુંતમેચાલુરાખવામાંગચ્છો?</string>
+    <string name="recording_import_error">તમારીપાસેપહેલેથીએકરીકોર્ડિંગસાચવેલીછે.નવારેકોર્ડઇમ્પોર્ટકરવાથીતેકાયમીરીતેબદલાઇજશે.શુંતમેચાલુરાખવામાંગચ્છો?</string>
+    <string name="recording_replace_continue">ચાલુરાખો</string>
+    <!-- BottomNavigationBar -->
+    <string name="bottom_navigation_letter">અક્ષર Aa</string>
+    <string name="bottom_navigation_starred">સ્ટાર કર્યું</string>
+    <string name="bottom_navigation_bullet_list">બુલેટ યાદી</string>
+    <string name="bottom_navigation_delete">નોટ ડિલીટ કરો</string>
+    <string name="bottom_navigation_hide_keyboard">કીબોર્ડ છુપાવો</string>
+    <!-- Editing Toolbar -->
+    <string name="editing_bold">ઘટ્ટ</string>
+    <string name="editing_italic">ત્રાંસુ</string>
+    <string name="editing_underline">અંડરલાઇન</string>
+    <string name="editing_align_left">ડાબી બાજુ ગોઠવો</string>
+    <string name="editing_align_center">મધ્યમાં ગોઠવો</string>
+    <string name="editing_align_right">જમણી બાજુ ગોઠવો</string>
+    <!-- Format Bar -->
+    <string name="format_bar_text">ફોર્મેટ</string>
+    <string name="format_bar_close">બંધ કરો</string>
+    <string name="format_bar_title">શીર્ષક</string>
+    <string name="format_bar_heading">હેડિંગ</string>
+    <string name="format_bar_subheading">સબહેડિંગ</string>
+    <string name="format_bar_body">બોડી</string>
+    <!-- Note Detail -->
+    <string name="note_detail_recorder">રેકોર્ડર</string>
+    <string name="transcription_icon">આઇકન</string>
+    <!-- Date Selection -->
+    <string name="note_detail_more_options">વધુ વિકલ્પો</string>
+    <!-- Date Tab Bar -->
+    <string name="date_tab_bar_all">બધું %1$s</string>
+    <string name="date_tab_bar_starred">સ્ટાર કર્યું</string>
+    <string name="date_tab_bar_voices">અવાજો</string>
+    <string name="date_tab_bar_recent">તાજેતરનું</string>
+    <!-- Note Item -->
+    <string name="note_item_delete">નોટ ડિલીટ કરો</string>
+    <string name="note_item_edit">સંપાદન</string>
+    <string name="note_item_voice">અવાજ</string>
+    <string name="note_item_starred">સ્ટાર કર્યું</string>
+    <string name="note_item_note">નોટ</string>
+    <plurals name="words">
+        <item quantity="one">%1$d શબ્દ</item>
+        <item quantity="other">%1$d શબ્દો</item>
+    </plurals>
+    <!-- Note List -->
+    <string name="note_list_add_note">નોટ ઉમેરો</string>
+    <!-- Search Bar -->
+    <string name="search_bar_search_text">નોટ્સ શોધો...</string>
+    <string name="search_bar_search_description">શોધો</string>
+    <!-- Recording UI -->
+    <string name="recording_ui_microphone">માઇક્રોફોન</string>
+    <string name="recording_ui_tap_start_record">રીકોર્ડિંગ શરૂ કરવા માટે ટેપ કરો</string>
+    <string name="recording_ui_tap_stop_record">રીકોર્ડિંગ બંધ કરવા માટે ટેપ કરો</string>
+    <string name="recording_ui_loading">લોડ થઈ રહ્યું છે</string>
+    <string name="recording_ui_loading_rotation">લોડિંગ રોટેશન</string>
+    <string name="recording_ui_checkmark">ચેકમાર્ક</string>
+    <!-- Player UI -->
+    <string name="player_ui_initial_time">00:00</string>
+    <string name="player_ui_pause">થોભાવો</string>
+    <string name="player_ui_play">ચલાવો</string>
+    <!-- Transcription Dialog -->
+    <string name="transcription_dialog_cancel">રદ કરો</string>
+    <string name="transcription_dialog_append">ઉમેરો</string>
+    <string name="transcription_dialog_summarize">સારાંશ</string>
+    <string name="transcription_dialog_original">મૂળ</string>
+    <string name="transcription_dialog_error_got_it">સમજાઈ ગયું</string>
+    <string name="transcription_dialog_error_audio_file_title">ઓડિયો ફાઇલ ખૂબ મોટી છે</string>
+    <string name="transcription_dialog_error_audio_file_desc">આ ઓડિયો ફાઇલ તમારા ઉપકરણ પર ટ્રાન્સક્રાઇબ કરવા માટે ખૂબ મોટી છે. ટૂંકી રીકોર્ડિંગ અથવા નાના ફાઇલ સાઇઝનો ઉપયોગ કરવાનો પ્રયાસ કરો.</string>
+    <!-- Download Dialog -->
+    <string name="download_dialog_error">ડાઉનલોડ કરતી વખતે ભૂલ</string>
+    <!-- Information UI -->
+    <string name="information_base_url">https://tosinonikute.com/notely/</string>
+    <string name="faq">સામાન્ય પ્રશ્નો</string>
+    <string name="about">અમારા વિશે</string>
+    <string name="support">સપોર્ટ</string>
+    <string name="privacy">ગોપનીયતા નીતિ</string>
+    <string name="faq_url">faq.html</string>
+    <string name="about_url">about.html</string>
+    <string name="support_url">support.html</string>
+    <string name="privacy_url">privacyupdated.html</string>
+    <!-- Empty List String -->
+    <string name="empty_list_title">હજુ સુધી કોઈ નોટ્સ નથી</string>
+    <string name="empty_list_description">તમારા વિચારો અને વૉઇસ રેકોર્ડિંગ કેપ્ચર કરવાની શરૂઆત કરો. તમારી પ્રથમ નોટ બનાવવા માટે જમણી બાજુના નીચેના ખૂણામાં પ્લસ + આઇકન પર ટેપ કરો.</string>
+    <string name="empty_list_description_tablet">તમારા વિચારો અને વૉઇસ રેકોર્ડિંગ કેપ્ચર કરવાની શરૂઆત કરો.\nતમારી પ્રથમ નોટ બનાવવા માટે જમણી બાજુના નીચેના ખૂણામાં પ્લસ + આઇકન પર ટેપ કરો.</string>
+    <!-- Share Dialog -->
+    <string name="share_options">શેર વિકલ્પો</string>
+    <string name="share_text">ટેક્સ્ટ શેર કરો</string>
+    <string name="share_audio_recording">ઓડિયો રેકોર્ડિંગ શેર કરો</string>
+    <!-- Download Dialog -->
+    <string name="download_required">ડાઉનલોડ જરૂરી છે</string>
+    <string name="for_accurate_transcription">સચોટ ટ્રાન્સક્રિપ્શન માટે, અમને AI મોડેલ ડાઉનલોડ કરવાની જરૂર છે.</string>
+    <string name="take_few_minutes">આમાં થોડી મિનિટો લાગી શકે છે અને સ્થિર ઇન્ટરનેટ કનેક્શનની જરૂર છે.</string>
+    <string name="file_size_approx">ફાઇલ સાઇઝ: લગભગ 142MB</string>
+    <string name="download">ડાઉનલોડ</string>
+    <!-- Settings Screen -->
+    <string name="settings">સેટિંગ્સ</string>
+    <string name="customize_your_experience">બધી સેટિંગ્સ જોવા માટે નીચે સ્ક્રોલ કરો</string>
+    <string name="language_and_region">ભાષા અને પ્રદેશ</string>
+    <string name="transcription_language">ટ્રાન્સક્રિપ્શન ભાષા</string>
+    <string name="language_used_for_voice_transcription">વૉઇસ ટ્રાન્સક્રિપ્શન માટે ઉપયોગમાં લેવાતી ભાષા</string>
+    <string name="select_language">ભાષા પસંદ કરો</string>
+    <string name="appearance">દેખાવ</string>
+    <string name="theme">થીમ</string>
+    <string name="choose_how_the_app_looks">એપ્લિકેશન કેવો દેખાય અને કેવો અનુભવ આપે તે પસંદ કરો</string>
+    <string name="accessibility">સુલભતા</string>
+    <string name="body_text_size">બોડી ટેક્સ્ટ સાઇઝ</string>
+    <string name="body_text_preferred_text">તમારા લેખન અનુભવને વધારવા માટે નોટ્સ એડિટર માટે તમારા પસંદીદા બોડી ટેક્સ્ટ સાઇઝ સેટ કરો.</string>
+    <string name="body_text_default">ડિફોલ્ટ</string>
+    <string name="body_text_pt">%1$d pt</string>
+    <!-- Onboarding Screen -->
+    <string name="onboarding_get_started">શરૂઆત કરો</string>
+    <string name="onboarding_next">આગળ</string>
+    <string name="onboarding_skip">છોડો</string>
+    <string name="onboarding_screen_one_title">નોટ્સ બનાવો\nઅને શેર કરો</string>
+    <string name="onboarding_screen_one_desc">તમારી નોટ્સને સરળતાથી\nલખો અને શેર કરો</string>
+    <string name="onboarding_screen_two_title">વૉઇસ નોટ રેકોર્ડ કરો\nઅને શેર કરો</string>
+    <string name="onboarding_screen_two_desc">ચાલતા વખતે વૉઇસ નોટ્સ\nકેપ્ચર અને શેર કરો</string>
+    <string name="onboarding_screen_three_title">ટ્રાન્સક્રાઇબ કરો\nઅને સારાંશ આપો</string>
+    <string name="onboarding_screen_three_desc">ઇન્ટરનેટ વિના વૉઇસ નોટ્સને ટેક્સ્ટ\nઅને સારાંશમાં રૂપાંતરિત કરો</string>
+    <string name="onboarding_screen_four_title">50 થી વધુ\nભાષાઓનું સમર્થન</string>
+    <string name="onboarding_screen_four_desc">તમારી પસંદીદા ભાષામાં નોટ્સ\nબનાવો અને ટ્રાન્સક્રાઇબ કરો</string>
+    <!-- Setting Bottom Sheet -->
+    <string name="settings_light_theme">લાઇટ થીમ</string>
+    <string name="settings_dark_theme">ડાર્ક થીમ</string>
+    <string name="settings_system_default">સિસ્ટમ ડિફોલ્ટ</string>
+    <string name="settings_change_language">ભાષા બદલો</string>
+    <string name="settings_change_default">અંગ્રેજી</string>
+    <string name="settings_transcription_language">ટ્રાન્સક્રિપ્શન ભાષા</string>
+    <string name="settings_themes">થીમ્સ</string>
+    <string name="settings_title">સેટિંગ્સ</string>
+    <!-- Language Selection -->
+    <string name="language_selection_no_languages_found">કોઈ ભાષા મળી નથી</string>
+    <string name="language_selection_supported_languages">સમર્થિત ભાષાઓ</string>
+    <string name="language_selection_search">શોધો</string>
+    <string name="language_selection_select_language">ભાષા પસંદ કરો</string>
+    <!-- Accessibility -->
+    <string name="accessibility_example">ઉદાહરણ %1$d pt</string>
+    <string name="accessibility_desc">નોટ્સ એડિટર માટે પસંદીદા લેખન બોડી સાઇઝ સેટ કરવા માટે સ્લાઇડરનો ઉપયોગ કરો, તમારા અનુભવને કસ્ટમાઇઝ કરો.</string>
+    <string name="accessibility_a">A</string>
+    <string name="accessibility_default">ડિફોલ્ટ 14 pt છે</string>
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">ઠીક છે</string>
+    <string name="batch_export_failed">નિકાસ નિષ્ફળ</string>
+    <string name="batch_export_options">નિકાસ વિકલ્પો</string>
+    <string name="batch_export_select_formats">તમે જે ફોર્મેટ્સ નિકાસ કરવા માંગો છો તે પસંદ કરો:</string>
+    <string name="batch_export_audio_files">ઓડિયો ફાઇલો નિકાસ કરો</string>
+    <string name="batch_export_txt_files">TXT ફાઇલો તરીકે ટેક્સ્ટ નિકાસ કરો</string>
+    <string name="batch_export_select_at_least_one_option">કૃપા કરીને ઓછામાં ઓછો એક વિકલ્પ પસંદ કરો</string>
+    <string name="batch_export_title">નિકાસ</string>
+    <string name="batch_export_no_selection_made">કોઈ પસંદગી કરવામાં આવી નથી, કૃપા કરીને નિકાસ કરવા માટે એક આઇટમ પસંદ કરો</string>
+    <string name="batch_export_settings_title">બહુવિધ નોંધો નિકાસ કરો</string>
+    <string name="batch_export_settings_description">નોંધોની સૂચિમાં નિકાસ વિકલ્પો બતાવવા માટે કોઈપણ નોંધ કાર્ડને લાંબો દબાવો</string>
+    <string name="batch_export_settings_how_to">બહુવિધ નોંધો કેવી રીતે નિકાસ કરવી</string>
+    <string name="batch_export_settings_how_to_description_1">પસંદગી મોડમાં પ્રવેશ કરવા માટે કોઈપણ નોંધ કાર્ડને લાંબો દબાવો, પછી એક સાથે બહુવિધ નોંધો નિકાસ કરો</string>
+    <string name="batch_export_settings_how_to_description_2">નોંધને લાંબો દબાવો</string>
+    <string name="batch_export_settings_how_to_description_3">નિકાસ કરવા માટે નોંધો પસંદ કરો</string>
+    <string name="batch_export_settings_how_to_description_4">નીચે નિકાસ બટન પર ટેપ કરો</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">નિકાસ દરમિયાન ભૂલ આવી</string>
+    <string name="batch_export_settings_no_folder_selected">ફોલ્ડર પસંદગી રદ કરવામાં આવી</string>
+    <!-- Import -->
+    <string name="import_failed_title">આયાત નિષ્ફળ</string>
+    <string name="ok">ઠીક છે</string>
+    <string name="select_deselect_all">બધું પસંદ કરો / પસંદગી દૂર કરો</string>
+    <string name="top_bar_import_video">વિડિયો આયાત કરો</string>
+    <string name="question_mark">પ્રશ્ન ચિહ્ન</string>
+    <string name="ai_model_title">AI મોડેલ શું છે?</string>
+    <string name="ai_model_description">AI મોડેલ એક ડિજિટલ મગજ જેવું છે જેને ભાષણ સમજવા અને તેને લેખિત ટેક્સ્ટમાં રૂપાંતરિત કરવા માટે તાલીમ આપવામાં આવી છે. વિવિધ મોડેલ્સની વિવિધ શક્તિઓ છે - કેટલાક વધુ ઝડપી છે, કેટલાક વધુ સચોટ છે. તમારી જરૂરિયાતો સાથે મેળ ખાતું એક પસંદ કરો.</string>
+    <string name="standard_model_title">માનક મોડેલ (બહુભાષી)</string>
+    <string name="standard_model_description">આ ઝડપી, હલકો વિકલ્પ છે જે રોજિંદા ઉપયોગ માટે સારી રીતે કામ કરે છે. તે તમારી વાણીને ઝડપથી ટેક્સ્ટમાં રૂપાંતરિત કરે છે અને તમારા ફોન પર વધુ જગ્યા લેતું નથી. જો તમને ઝડપી પરિણામો જોઈતા હોય અને બહુવિધ ભાષાઓનો ઉપયોગ કરતા હોવ તો સંપૂર્ણ. તેને કોમ્પેક્ટ કાર જેવું વિચારો - કાર્યક્ષમ અને કામ કરી દે છે.</string>
+    <string name="optimized_model_title">ઑપ્ટિમાઇઝ્ડ મોડેલ (બહુભાષી)</string>
+    <string name="optimized_model_description">આ વધુ શક્તિશાળી વિકલ્પ છે જે તમને શક્ય તેટલા સચોટ ટ્રાન્સક્રિપ્શન્સ આપે છે. તે થોડો વધુ સમય લે છે અને વધુ સ્ટોરેજનો ઉપયોગ કરે છે, પરંતુ ખાસ કરીને ઉચ્ચારણ અથવા પૃષ્ઠભૂમિ અવાજ સાથે વધુ શબ્દો યોગ્ય રીતે પકડે છે. લક્ઝરી કાર જેવું - મોટું અને ધીમું, પરંતુ પ્રીમિયમ ગુણવત્તા પ્રદાન કરે છે. નોંધ: હિન્દી/ગુજરાતીને સપોર્ટ કરતું નથી.</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">ઝડપી કામગીરી અને નાનું ફાઇલ કદ\nબધી ભાષાઓને સપોર્ટ કરે છે</string>
+    <string name="optimized_model_setting_desc">સૌથી વધુ ઉપલબ્ધ ચોકસાઈ\nમોટું ફાઇલ કદ, ધીમી કામગીરી\nહિન્દી/ગુજરાતી સિવાયની બધી ભાષાઓને સપોર્ટ કરે છે</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">મોડલ પસંદગી</string>
+    <string name="settings_model_selection_text">AI મોડલ</string>
+    <string name="settings_model_selection_description">તમારી જરૂરિયાતોને શ્રેષ્ઠ રીતે અનુરૂપ મોડલ પસંદ કરો</string>
+</resources>

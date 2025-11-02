@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">نوٹ لی وائس</string>
+    <string name="error">خرابی</string>
+    <string name="close">بند کریں</string>
+    <string name="cancel">منسوخ</string>
+    <string name="navigate">نیویگیٹ</string>
+    <!-- TopBar -->
+    <string name="top_bar_back">واپس</string>
+    <string name="top_bar_notes">نوٹ لی وائس</string>
+    <string name="top_bar_menu">مینو</string>
+    <string name="top_bar_my_note">میرا نوٹ</string>
+    <string name="top_bar_export_audio_folder">آڈیو کو فولڈر میں ایکسپورٹ کریں</string>
+    <string name="top_bar_import_audio">آڈیو امپورٹ کریں</string>
+    <string name="top_bar_export_as_txt">ٹیکسٹ فائل کے طور پر ایکسپورٹ کریں</string>
+    <!-- Delete Dialog -->
+    <string name="confirmation">تصدیق</string>
+    <string name="confirmation_text">کیا آپ نوٹ کو حذف کرنا چاہتے ہیں؟ اس عمل کو واپس نہیں کیا جا سکتا</string>
+    <string name="recording_confirmation_text">کیا آپ واقعی ریکارڈنگ کو حذف کرنا چاہتے ہیں؟ اس عمل کو واپس نہیں کیا جا سکتا</string>
+    <string name="confirmation_delete">ڈیلیٹ کریں</string>
+    <string name="confirmation_cancel">منسوخ</string>
+    <string name="recording_replace_error">آپ کے پاس پہلے سے ایک ریکارڈنگ محفوظ ہے۔ نئی ریکارڈنگ بنانے سے یہ مستقل طور پر تبدیل ہو جائے گی۔ کیا آپ جاری رکھنا چاہتے ہیں؟</string>
+    <string name="recording_import_error">آپ کے پاس پہلے سے ایک ریکارڈنگ محفوظ ہے۔ نیا ریکارڈ امپورٹ کرنے سے یہ مستقل طور پر تبدیل ہو جائے گا۔ کیا آپ جاری رکھنا چاہتے ہیں؟</string>
+    <string name="recording_replace_continue">جاری رکھیں</string>
+    <!-- BottomNavigationBar -->
+    <string name="bottom_navigation_letter">حروف Aa</string>
+    <string name="bottom_navigation_starred">ستارہ لگا</string>
+    <string name="bottom_navigation_bullet_list">بلٹ فہرست</string>
+    <string name="bottom_navigation_delete">نوٹ ڈیلیٹ کریں</string>
+    <string name="bottom_navigation_hide_keyboard">کی بورڈ چھپائیں</string>
+    <!-- Editing Toolbar -->
+    <string name="editing_bold">موٹا</string>
+    <string name="editing_italic">ترچھا</string>
+    <string name="editing_underline">خط کشیدہ</string>
+    <string name="editing_align_left">بائیں ترتیب دیں</string>
+    <string name="editing_align_center">وسط میں ترتیب دیں</string>
+    <string name="editing_align_right">دائیں ترتیب دیں</string>
+    <!-- Format Bar -->
+    <string name="format_bar_text">فارمیٹ</string>
+    <string name="format_bar_close">بند کریں</string>
+    <string name="format_bar_title">عنوان</string>
+    <string name="format_bar_heading">سرخی</string>
+    <string name="format_bar_subheading">ذیلی سرخی</string>
+    <string name="format_bar_body">متن</string>
+    <!-- Note Detail -->
+    <string name="note_detail_recorder">ریکارڈر</string>
+    <string name="transcription_icon">آئیکن</string>
+    <!-- Date Selection -->
+    <string name="note_detail_more_options">مزید اختیارات</string>
+    <!-- Date Tab Bar -->
+    <string name="date_tab_bar_all">تمام</string>
+    <string name="date_tab_bar_starred">ستارہ لگا</string>
+    <string name="date_tab_bar_voices">آوازیں</string>
+    <string name="date_tab_bar_recent">حالیہ</string>
+    <!-- Note Item -->
+    <string name="note_item_delete">نوٹ ڈیلیٹ کریں</string>
+    <string name="note_item_edit">ترمیم</string>
+    <string name="note_item_voice">آواز</string>
+    <string name="note_item_starred">ستارہ لگا</string>
+    <string name="note_item_note">نوٹ</string>
+    <plurals name="words">
+        <item quantity="one">%1$d لفظ</item>
+        <item quantity="other">%1$d الفاظ</item>
+    </plurals>
+    <!-- Note List -->
+    <string name="note_list_add_note">نوٹ شامل کریں</string>
+    <!-- Search Bar -->
+    <string name="search_bar_search_text">نوٹس تلاش کریں...</string>
+    <string name="search_bar_search_description">تلاش</string>
+    <!-- Recording UI -->
+    <string name="recording_ui_microphone">مائیکروفون</string>
+    <string name="recording_ui_tap_start_record">ریکارڈنگ شروع کرنے کے لیے ٹیپ کریں</string>
+    <string name="recording_ui_tap_stop_record">ریکارڈنگ روکنے یا بند کرنے کے لیے ٹیپ کریں</string>
+    <string name="recording_ui_loading">لوڈ ہو رہا ہے</string>
+    <string name="recording_ui_loading_rotation">لوڈنگ گھومنا</string>
+    <string name="recording_ui_checkmark">چیک مارک</string>
+    <!-- Player UI -->
+    <string name="player_ui_initial_time">00:00</string>
+    <string name="player_ui_pause">رک جائیں</string>
+    <string name="player_ui_play">چلائیں</string>
+    <!-- Transcription Dialog -->
+    <string name="transcription_dialog_cancel">منسوخ</string>
+    <string name="transcription_dialog_append">شامل کریں</string>
+    <string name="transcription_dialog_summarize">خلاصہ</string>
+    <string name="transcription_dialog_original">اصل</string>
+    <string name="transcription_dialog_error_got_it">سمجھ گیا</string>
+    <string name="transcription_dialog_error_audio_file_title">آڈیو فائل بہت بڑی ہے</string>
+    <string name="transcription_dialog_error_audio_file_desc">یہ آڈیو فائل آپ کے آلے پر نقل کرنے کے لیے بہت بڑی ہے۔ چھوٹی ریکارڈنگ یا چھوٹا فائل سائز استعمال کرنے کی کوشش کریں۔</string>
+    <!-- Download Dialog -->
+    <string name="download_dialog_error">ڈاؤن لوڈ کرتے وقت خرابی</string>
+    <!-- Information UI -->
+    <string name="information_base_url">https://tosinonikute.com/notely/</string>
+    <string name="faq">عمومی سوالات</string>
+    <string name="about">ہمارے بارے میں</string>
+    <string name="support">سپورٹ</string>
+    <string name="privacy">پرائیویسی پالیسی</string>
+    <string name="faq_url">faq.html</string>
+    <string name="about_url">about.html</string>
+    <string name="support_url">support.html</string>
+    <string name="privacy_url">privacyupdated.html</string>
+    <!-- Empty List String -->
+    <string name="empty_list_title">ابھی تک کوئی نوٹ نہیں</string>
+    <string name="empty_list_description">اپنے خیالات اور آواز کی ریکارڈنگ محفوظ کرنا شروع کریں۔ اپنا پہلا نوٹ بنانے کے لیے نیچے دائیں کونے میں پلس + آئیکن پر ٹیپ کریں۔</string>
+    <string name="empty_list_description_tablet">اپنے خیالات اور آواز کی ریکارڈنگ محفوظ کرنا شروع کریں۔\nاپنا پہلا نوٹ بنانے کے لیے نیچے دائیں کونے میں پلس + آئیکن پر ٹیپ کریں۔</string>
+    <!-- Share Dialog -->
+    <string name="share_options">شیئر کے اختیارات</string>
+    <string name="share_text">متن شیئر کریں</string>
+    <string name="share_audio_recording">آڈیو ریکارڈنگ شیئر کریں</string>
+    <!-- Download Dialog -->
+    <string name="download_required">ڈاؤن لوڈ درکار ہے</string>
+    <string name="for_accurate_transcription">درست نقل کے لیے، ہمیں AI ماڈل ڈاؤن لوڈ کرنے کی ضرورت ہے۔</string>
+    <string name="take_few_minutes">اس میں کچھ منٹ لگ سکتے ہیں اور مستحکم انٹرنیٹ کنکشن کی ضرورت ہے۔</string>
+    <string name="file_size_approx">فائل کا سائز: تقریباً 142MB</string>
+    <string name="download">ڈاؤن لوڈ</string>
+    <!-- Settings Screen -->
+    <string name="settings">ترتیبات</string>
+    <string name="customize_your_experience">تمام ترتیبات دیکھنے کے لیے نیچے سکرول کریں</string>
+    <string name="language_and_region">زبان اور علاقہ</string>
+    <string name="transcription_language">نقل کی زبان</string>
+    <string name="language_used_for_voice_transcription">آواز کی نقل کے لیے استعمال ہونے والی زبان</string>
+    <string name="select_language">زبان منتخب کریں</string>
+    <string name="appearance">ظاہری شکل</string>
+    <string name="theme">تھیم</string>
+    <string name="choose_how_the_app_looks">ایپ کیسی دکھائی دے اور کیسا محسوس ہو اسے منتخب کریں</string>
+    <string name="accessibility">رسائی</string>
+    <string name="body_text_size">متن کا سائز</string>
+    <string name="body_text_preferred_text">اپنے لکھنے کے تجربے کو بہتر بنانے کے لیے نوٹس ایڈیٹر کے لیے اپنا پسندیدہ متن سائز مقرر کریں۔</string>
+    <string name="body_text_default">ڈیفالٹ</string>
+    <string name="body_text_pt">%1$d pt</string>
+    <!-- Onboarding Screen -->
+    <string name="onboarding_get_started">شروع کریں</string>
+    <string name="onboarding_next">اگلا</string>
+    <string name="onboarding_skip">چھوڑیں</string>
+    <string name="onboarding_screen_one_title">نوٹس بنائیں\nاور شیئر کریں</string>
+    <string name="onboarding_screen_one_desc">اپنے نوٹس آسانی سے لکھیں\nاور فوری طور پر شیئر کریں</string>
+    <string name="onboarding_screen_two_title">آواز کا نوٹ\nریکارڈ اور شیئر کریں</string>
+    <string name="onboarding_screen_two_desc">چلتے پھرتے آواز کے نوٹس\nریکارڈ اور شیئر کریں</string>
+    <string name="onboarding_screen_three_title">نقل اور\nخلاصہ کریں</string>
+    <string name="onboarding_screen_three_desc">بغیر انٹرنیٹ کے آواز کے نوٹس کو\nمتن اور خلاصے میں تبدیل کریں</string>
+    <string name="onboarding_screen_four_title">50 سے زیادہ\nزبانوں کی سپورٹ</string>
+    <string name="onboarding_screen_four_desc">اپنی پسندیدہ زبان میں\nنوٹس بنائیں اور نقل کریں</string>
+    <!-- Setting Bottom Sheet -->
+    <string name="settings_light_theme">ہلکا تھیم</string>
+    <string name="settings_dark_theme">گہرا تھیم</string>
+    <string name="settings_system_default">سسٹم ڈیفالٹ</string>
+    <string name="settings_change_language">زبان تبدیل کریں</string>
+    <string name="settings_change_default">انگریزی</string>
+    <string name="settings_transcription_language">نقل کی زبان</string>
+    <string name="settings_themes">تھیمز</string>
+    <string name="settings_title">ترتیبات</string>
+    <!-- Language Selection -->
+    <string name="language_selection_no_languages_found">کوئی زبان نہیں ملی</string>
+    <string name="language_selection_supported_languages">سپورٹ شدہ زبانیں</string>
+    <string name="language_selection_search">تلاش</string>
+    <string name="language_selection_select_language">زبان منتخب کریں</string>
+    <!-- Accessibility -->
+    <string name="accessibility_example">مثال %1$d pt</string>
+    <string name="accessibility_desc">نوٹس ایڈیٹر کے لیے پسندیدہ متن کا سائز مقرر کرنے کے لیے سلائیڈر استعمال کریں، اپنے تجربے کو اپنی مرضی کے مطابق بنائیں۔</string>
+    <string name="accessibility_a">A</string>
+    <string name="accessibility_default">ڈیفالٹ 14 pt ہے</string>
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">ٹھیک ہے</string>
+    <string name="batch_export_failed">برآمد ناکام</string>
+    <string name="batch_export_options">برآمد کے اختیارات</string>
+    <string name="batch_export_select_formats">وہ فارمیٹس منتخب کریں جنہیں آپ برآمد کرنا چاہتے ہیں:</string>
+    <string name="batch_export_audio_files">آڈیو فائلیں برآمد کریں</string>
+    <string name="batch_export_txt_files">متن کو TXT فائلوں کے طور پر برآمد کریں</string>
+    <string name="batch_export_select_at_least_one_option">براہ کرم کم از کم ایک اختیار منتخب کریں</string>
+    <string name="batch_export_title">برآمد</string>
+    <string name="batch_export_no_selection_made">کوئی انتخاب نہیں کیا گیا، براہ کرم برآمد کرنے کے لیے ایک آئٹم منتخب کریں</string>
+    <string name="batch_export_settings_title">متعدد نوٹس برآمد کریں</string>
+    <string name="batch_export_settings_description">نوٹس کی فہرست میں برآمد کے اختیارات دکھانے کے لیے کسی بھی نوٹ کارڈ کو لمبا دبائیں</string>
+    <string name="batch_export_settings_how_to">متعدد نوٹس کو کیسے برآمد کریں</string>
+    <string name="batch_export_settings_how_to_description_1">انتخاب موڈ میں داخل ہونے کے لیے کسی بھی نوٹ کارڈ کو لمبا دبائیں، پھر ایک ساتھ متعدد نوٹس برآمد کریں</string>
+    <string name="batch_export_settings_how_to_description_2">نوٹ کو لمبا دبائیں</string>
+    <string name="batch_export_settings_how_to_description_3">برآمد کرنے کے لیے نوٹس منتخب کریں</string>
+    <string name="batch_export_settings_how_to_description_4">نیچے برآمد بٹن پر ٹیپ کریں</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">برآمد کرتے وقت خرابی پیش آئی</string>
+    <string name="batch_export_settings_no_folder_selected">فولڈر کا انتخاب منسوخ کر دیا گیا</string>
+    <!-- Import -->
+    <string name="import_failed_title">درآمد ناکام</string>
+    <string name="ok">ٹھیک ہے</string>
+    <string name="select_deselect_all">سب منتخب کریں / غیر منتخب کریں</string>
+    <string name="top_bar_import_video">ویڈیو درآمد کریں</string>
+    <string name="question_mark">سوالیہ نشان</string>
+    <string name="ai_model_title">AI ماڈل کیا ہے؟</string>
+    <string name="ai_model_description">AI ماڈل ایک ڈیجیٹل دماغ کی طرح ہے جسے تقریر کو سمجھنے اور اسے تحریری متن میں تبدیل کرنے کے لیے تربیت دی گئی ہے۔ مختلف ماڈلز کی مختلف طاقتیں ہیں - کچھ تیز ہیں، کچھ زیادہ درست ہیں۔ وہ منتخب کریں جو آپ کی ضروریات سے میل کھاتا ہو۔</string>
+    <string name="standard_model_title">معیاری ماڈل (کثیر لسانی)</string>
+    <string name="standard_model_description">یہ تیز، ہلکا آپشن ہے جو روزمرہ کے استعمال کے لیے اچھی طرح کام کرتا ہے۔ یہ آپ کی تقریر کو تیزی سے متن میں تبدیل کرتا ہے اور آپ کے فون پر زیادہ جگہ نہیں لیتا۔ بہترین ہے اگر آپ تیز نتائج چاہتے ہیں اور متعدد زبانیں استعمال کرتے ہیں۔ اسے ایک کمپیکٹ کار کی طرح سوچیں - موثر اور کام مکمل کرتی ہے۔</string>
+    <string name="optimized_model_title">بہتر بنایا گیا ماڈل (کثیر لسانی)</string>
+    <string name="optimized_model_description">یہ زیادہ طاقتور آپشن ہے جو آپ کو ممکنہ طور پر سب سے درست نقل فراہم کرتا ہے۔ اس میں تھوڑا زیادہ وقت لگتا ہے اور زیادہ سٹوریج استعمال ہوتی ہے، لیکن خاص طور پر لہجے یا پس منظر کے شور کے ساتھ زیادہ الفاظ کو صحیح طریقے سے پکڑتا ہے۔ ایک عیش و آرام کی کار کی طرح - بڑی اور سست، لیکن پریمیم معیار فراہم کرتی ہے۔ نوٹ: ہندی/گجراتی کی حمایت نہیں کرتا۔</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">تیز رفتار کارکردگی اور چھوٹا فائل سائز\nتمام زبانوں کی معاونت کرتا ہے</string>
+    <string name="optimized_model_setting_desc">دستیاب بلند ترین درستگی\nبڑا فائل سائز، سست رفتار کارکردگی\nہندی/گجراتی کے علاوہ تمام زبانوں کی معاونت کرتا ہے</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">ماڈل کا انتخاب</string>
+    <string name="settings_model_selection_text">AI ماڈل</string>
+    <string name="settings_model_selection_description">وہ ماڈل منتخب کریں جو آپ کی ضروریات کے لیے بہترین ہو</string>
+</resources>

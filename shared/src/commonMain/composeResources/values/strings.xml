@@ -4,8 +4,10 @@
     <string name="error">Error</string>
     <string name="close">Close</string>
     <string name="cancel">Cancel</string>
+    <string name="export">Export</string>
     <string name="navigate">Navigate</string>
-
+    <string name="ok">OK</string>
+    <string name="copy">Copy</string>
     <!-- TopBar -->
     <string name="top_bar_back">Back</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,26 +15,24 @@
     <string name="top_bar_my_note">My Note</string>
     <string name="top_bar_export_audio_folder">Export Audio to Folder</string>
     <string name="top_bar_import_audio">Import Audio</string>
+    <string name="top_bar_import_video">Import Video</string>
     <string name="top_bar_export_as_pdf">Export Text as PDF</string>
     <string name="top_bar_export_as_txt">Export as Text File</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">Confirm</string>
-    <string name="confirmation_text">Do you want to delete the Note?</string>
-    <string name="recording_confirmation_text">Are you sure you want to delete the recording?</string>
+    <string name="confirmation_text">Do you want to delete the Note? This action cannot be undone</string>
+    <string name="recording_confirmation_text">Are you sure you want to delete the recording? This action cannot be undone</string>
     <string name="confirmation_delete">Delete</string>
     <string name="confirmation_cancel">Cancel</string>
     <string name="recording_replace_error">You already have a recording saved. Creating a new recording will permanently replace it. Do you want to continue?</string>
     <string name="recording_import_error">You already have a recording saved. Importing a new record will permanently replace it. Do you want to continue?</string>
     <string name="recording_replace_continue">Continue</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">Letter Aa</string>
     <string name="bottom_navigation_starred">Starred</string>
     <string name="bottom_navigation_bullet_list">Bullet list</string>
     <string name="bottom_navigation_delete">Delete Note</string>
     <string name="bottom_navigation_hide_keyboard">Hide Keyboard</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">Bold</string>
     <string name="editing_italic">Italic</string>
@@ -40,7 +40,6 @@
     <string name="editing_align_left">Align Left</string>
     <string name="editing_align_center">Align Center</string>
     <string name="editing_align_right">Align Right</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">Format</string>
     <string name="format_bar_close">Close</string>
@@ -48,20 +47,17 @@
     <string name="format_bar_heading">Heading</string>
     <string name="format_bar_subheading">Subheading</string>
     <string name="format_bar_body">Body</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">Recorder</string>
     <string name="transcription_icon">Icon</string>
-
+    <string name="copied">Copied!</string>
     <!-- Date Selection -->
     <string name="note_detail_more_options">More options</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">All</string>
+    <string name="date_tab_bar_all">All %1$s</string>
     <string name="date_tab_bar_starred">Starred</string>
     <string name="date_tab_bar_voices">Voices</string>
     <string name="date_tab_bar_recent">Recent</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">Delete Note</string>
     <string name="note_item_edit">Edit</string>
@@ -72,14 +68,12 @@
         <item quantity="one">%1$d word</item>
         <item quantity="other">%1$d words</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">Add Note</string>
-
+    <string name="select_deselect_all">Select / Deselect All</string>
     <!-- Search Bar -->
     <string name="search_bar_search_text">Search notes...</string>
     <string name="search_bar_search_description">Search</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">Microphone</string>
     <string name="recording_ui_tap_start_record">Tap to start recording</string>
@@ -87,13 +81,10 @@
     <string name="recording_ui_loading">loading</string>
     <string name="recording_ui_loading_rotation">loading rotation</string>
     <string name="recording_ui_checkmark">checkmark</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">Pause</string>
     <string name="player_ui_play">Play</string>
-
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">Cancel</string>
     <string name="transcription_dialog_append">Append</string>
@@ -102,10 +93,8 @@
     <string name="transcription_dialog_error_got_it">Got it</string>
     <string name="transcription_dialog_error_audio_file_title">Audio file too large</string>
     <string name="transcription_dialog_error_audio_file_desc">This audio file is too big to transcribe on your device. Try using a shorter recording or a smaller file size.</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">Error while downloading</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">FAQ</string>
@@ -116,29 +105,29 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">No Notes Yet</string>
     <string name="empty_list_description">Start capturing your thoughts and voice recordings. Tap the plus + icon at the bottom right corner to create your first note.</string>
     <string name="empty_list_description_tablet">Start capturing your thoughts and voice recordings.\nTap the plus + icon at the bottom right corner to create your first note.</string>
-
     <!-- Share Dialog -->
     <string name="share_options">Share Options</string>
     <string name="share_text">Share Texts</string>
     <string name="share_audio_recording">Share Audio Recording</string>
-
     <!-- Download Dialog -->
     <string name="download_required">Download Required</string>
+    <string name="download_required_for_hindi">Download Required for Hindi</string>
     <string name="for_accurate_transcription">For accurate transcription, we need to download the AI model.</string>
     <string name="take_few_minutes">This may take a few minutes and requires a stable internet connection.</string>
-    <string name="file_size_approx">File size: approximately 500MB</string>
+    <string name="file_size_approx">File size: approximately %1$s</string>
+    <string name="file_model_english">Multilingual model (supports 50+ languages)</string>
+    <string name="file_model_hindi">Hindi-optimized model</string>
     <string name="download">Download</string>
-
     <!-- Settings Screen -->
     <string name="settings">Settings</string>
-    <string name="customize_your_experience">Customize your experience</string>
+    <string name="customize_your_experience">Scroll down to see all settings</string>
     <string name="language_and_region">Language &amp; Region</string>
     <string name="transcription_language">Transcription Language</string>
+    <string name="transcription_model_selection">Model Selection</string>
     <string name="language_used_for_voice_transcription">Language used for voice transcription</string>
     <string name="select_language">Select language</string>
     <string name="appearance">Appearance</string>
@@ -153,7 +142,6 @@
     <string name="use_bluetooth_mic">Use bluetooth mic when available</string>
     <string name="recording_bluetooth_mic">Recording using bluetooth mic</string>
     <string name="bluetooth_lost">Bluetooth mic lost</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">Get Started</string>
     <string name="onboarding_next">Next</string>
@@ -166,7 +154,6 @@
     <string name="onboarding_screen_three_desc">Convert voice notes to text and\nsummaries without internet</string>
     <string name="onboarding_screen_four_title">Supports\nOver 50 languages</string>
     <string name="onboarding_screen_four_desc">Create and transcribe notes in\nyour preferred language</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">Light Theme</string>
     <string name="settings_dark_theme">Dark Theme</string>
@@ -176,18 +163,54 @@
     <string name="settings_transcription_language">Transcription Language</string>
     <string name="settings_themes">Themes</string>
     <string name="settings_title">Settings</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">No languages found</string>
     <string name="language_selection_supported_languages">SUPPORTED LANGUAGES</string>
     <string name="language_selection_search">Search</string>
     <string name="language_selection_select_language">Select Language</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">Example %1$d pt</string>
     <string name="accessibility_desc">Use the slider to set the preferred writing body size for the notes editor, customise your experience.</string>
     <string name="accessibility_a">A</string>
     <string name="accessibility_default">Default is 14 pt</string>
-
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">OK</string>
+    <string name="batch_export_failed">Export Failed</string>
+    <string name="batch_export_options">Export Options</string>
+    <string name="batch_export_select_formats">Select the formats you want to export:</string>
+    <string name="batch_export_audio_files">Export audio files</string>
+    <string name="batch_export_txt_files">Export text as TXT files</string>
+    <string name="batch_export_select_at_least_one_option">Please select at least one option</string>
+    <string name="batch_export_title">Export</string>
+    <string name="batch_export_no_selection_made">No selection made, please select an item to export</string>
+    <string name="batch_export_settings_title">Export multiple notes</string>
+    <string name="batch_export_settings_description">LONG PRESS any note card to show export options on the notes list</string>
+    <string name="batch_export_settings_how_to">How to export multiple notes</string>
+    <string name="batch_export_settings_how_to_description_1">LONG PRESS any note card to enter selection mode, then export multiple notes at once</string>
+    <string name="batch_export_settings_how_to_description_2">Long press note</string>
+    <string name="batch_export_settings_how_to_description_3">Select notes to export</string>
+    <string name="batch_export_settings_how_to_description_4">Tap the export button at the bottom</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">error occurred while exporting</string>
+    <string name="batch_export_settings_no_folder_selected">Folder selection cancelled</string>
+    <!-- Import -->
+    <string name="import_failed_title">Import Failed</string>
+    <!-- model selection -->
+    <string name="question_mark">question mark</string>
+    <string name="ai_model_title">What is an AI model?</string>
+    <string name="ai_model_description">An AI model is like a digital brain that has been trained to understand speech and convert it into written text. Different models have different strengths - some are faster, some are more accurate. Choose the one that matches your needs.</string>
+    <string name="standard_model_title">Standard model (multilingual)</string>
+    <string name="standard_model_description">This is the faster, lighter option that works well for everyday use. It quickly converts your speech to text and doesn't take up much space on your phone. Perfect if you want quick results and use multiple languages. Think of it like a compact car - efficient and gets the job done.</string>
+    <string name="optimized_model_title">Optimized Model (Multilingual)</string>
+    <string name="optimized_model_description">This is the more powerful option that gives you the most accurate transcriptions possible. It takes a bit longer and uses more storage, but catches more words correctly, especially with accents or background noise. Like a luxury car - bigger and slower, but delivers premium quality. Note: doesn't support Hindi/Gujarati.</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">Faster performance and smaller file size\nSupports all languages</string>
+    <string name="optimized_model_setting_desc">Highest accuracy available\nLarger file size, slower performance\nSupports all languages except Hindi/Gujarati</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">Model Selection</string>
+    <string name="settings_model_selection_text">AI Model</string>
+    <string name="settings_model_selection_description">Choose the model that best fits your needs</string>
 </resources>

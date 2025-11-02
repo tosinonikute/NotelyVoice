@@ -5,7 +5,6 @@
     <string name="close">बंद करें</string>
     <string name="cancel">रद्द करें</string>
     <string name="navigate">नेविगेट करें</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">वापस</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">मेरा नोट</string>
     <string name="top_bar_export_audio_folder">ऑडियो को फोल्डर में एक्सपोर्ट करें</string>
     <string name="top_bar_import_audio">ऑडियो इंपोर्ट करें</string>
+    <string name="top_bar_export_as_pdf">टेक्स्ट को PDF के रूप में निर्यात करें</string>
     <string name="top_bar_export_as_txt">टेक्स्ट फ़ाइल के रूप में निर्यात करेंं</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">पुष्टि करें</string>
-    <string name="confirmation_text">क्या आप नोट को डिलीट करना चाहते हैं?</string>
-    <string name="recording_confirmation_text">क्या आप वाकई रिकॉर्डिंग को डिलीट करना चाहते हैं?</string>
+    <string name="confirmation_text">क्या आप नोट को हटाना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता</string>
+    <string name="recording_confirmation_text">क्या आप वाकई रिकॉर्डिंग को हटाना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता</string>
     <string name="confirmation_delete">डिलीट करें</string>
     <string name="confirmation_cancel">रद्द करें</string>
     <string name="recording_replace_error">आपके पास पहले से एक रिकॉर्डिंग सेव है। नई रिकॉर्डिंग बनाने से यह स्थायी रूप से बदल जाएगी। क्या आप जारी रखना चाहते हैं?</string>
     <string name="recording_import_error">आपके पास पहले से एक रिकॉर्डिंग सेव है। नई रिकॉर्डिंग इंपोर्ट करने से यह स्थायी रूप से बदल जाएगी। क्या आप जारी रखना चाहते हैं?</string>
     <string name="recording_replace_continue">जारी रखें</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">अक्षर Aa</string>
     <string name="bottom_navigation_starred">तारांकित</string>
     <string name="bottom_navigation_bullet_list">बुलेट सूची</string>
     <string name="bottom_navigation_delete">नोट डिलीट करें</string>
     <string name="bottom_navigation_hide_keyboard">कीबोर्ड छुपाएं</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">बोल्ड</string>
     <string name="editing_italic">तिर्यक</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">बाएं संरेखित करें</string>
     <string name="editing_align_center">केंद्र संरेखित करें</string>
     <string name="editing_align_right">दाएं संरेखित करें</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">फॉर्मेट</string>
     <string name="format_bar_close">बंद करें</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">हेडिंग</string>
     <string name="format_bar_subheading">उप-शीर्षक</string>
     <string name="format_bar_body">मुख्य भाग</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">रिकॉर्डर</string>
     <string name="transcription_icon">आइकन</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">अधिक विकल्प</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">सभी</string>
+    <string name="date_tab_bar_all">सभी %1$s</string>
     <string name="date_tab_bar_starred">तारांकित</string>
     <string name="date_tab_bar_voices">आवाजें</string>
     <string name="date_tab_bar_recent">हाल ही के</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">नोट डिलीट करें</string>
     <string name="note_item_edit">संपादित करें</string>
@@ -71,14 +63,11 @@
         <item quantity="one">%1$d शब्द</item>
         <item quantity="other">%1$d शब्द</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">नोट जोड़ें</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">नोट्स खोजें...</string>
     <string name="search_bar_search_description">खोजें</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">माइक्रोफ़ोन</string>
     <string name="recording_ui_tap_start_record">रिकॉर्डिंग शुरू करने के लिए टैप करें</string>
@@ -86,12 +75,10 @@
     <string name="recording_ui_loading">लोड हो रहा है</string>
     <string name="recording_ui_loading_rotation">लोडिंग रोटेशन</string>
     <string name="recording_ui_checkmark">चेकमार्क</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">रोकें</string>
     <string name="player_ui_play">चलाएं</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">रद्द करें</string>
     <string name="transcription_dialog_append">जोड़ें</string>
@@ -100,10 +87,8 @@
     <string name="transcription_dialog_error_got_it">समझ गया</string>
     <string name="transcription_dialog_error_audio_file_title">ऑडियो फ़ाइल बहुत बड़ी है</string>
     <string name="transcription_dialog_error_audio_file_desc">यह ऑडियो फ़ाइल आपके डिवाइस पर ट्रांसक्राइब करने के लिए बहुत बड़ी है। कम समय की रिकॉर्डिंग या छोटी फ़ाइल साइज़ का उपयोग करें।</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">डाउनलोड करते समय त्रुटि</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">अक्सर पूछे जाने वाले प्रश्न</string>
@@ -114,27 +99,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">अभी तक कोई नोट नहीं</string>
     <string name="empty_list_description">अपने विचारों और आवाज़ की रिकॉर्डिंग को कैप्चर करना शुरू करें। अपना पहला नोट बनाने के लिए नीचे दाएं कोने में प्लस + आइकन पर टैप करें।</string>
     <string name="empty_list_description_tablet">अपने विचारों और आवाज़ की रिकॉर्डिंग को कैप्चर करना शुरू करें।\nअपना पहला नोट बनाने के लिए नीचे दाएं कोने में प्लस + आइकन पर टैप करें।</string>
-
     <!-- Share Dialog -->
     <string name="share_options">शेयर विकल्प</string>
     <string name="share_text">टेक्स्ट शेयर करें</string>
     <string name="share_audio_recording">ऑडियो रिकॉर्डिंग शेयर करें</string>
-
     <!-- Download Dialog -->
     <string name="download_required">डाउनलोड आवश्यक</string>
+    <string name="download_required_for_hindi">हिंदी के लिए डाउनलोड आवश्यक</string>
     <string name="for_accurate_transcription">सटीक ट्रांसक्रिप्शन के लिए, हमें AI मॉडल डाउनलोड करना होगा।</string>
     <string name="take_few_minutes">इसमें कुछ मिनट लग सकते हैं और स्थिर इंटरनेट कनेक्शन की आवश्यकता है।</string>
-    <string name="file_size_approx">फ़ाइल साइज़: लगभग 500MB</string>
+    <string name="file_size_approx">फ़ाइल साइज़: लगभग %1$s</string>
+    <string name="file_model_english">बहुभाषी मॉडल (50+ भाषाओं का समर्थन करता है)</string>
+    <string name="file_model_hindi">हिंदी-अनुकूलित मॉडल</string>
     <string name="download">डाउनलोड करें</string>
-
     <!-- Settings Screen -->
     <string name="settings">सेटिंग्स</string>
-    <string name="customize_your_experience">अपने अनुभव को कस्टमाइज़ करें</string>
+    <string name="customize_your_experience">सभी सेटिंग्स देखने के लिए नीचे स्क्रॉल करें</string>
     <string name="language_and_region">भाषा और क्षेत्र</string>
     <string name="transcription_language">ट्रांसक्रिप्शन भाषा</string>
     <string name="language_used_for_voice_transcription">आवाज़ ट्रांसक्रिप्शन के लिए उपयोग की जाने वाली भाषा</string>
@@ -147,7 +131,6 @@
     <string name="body_text_preferred_text">अपने लेखन अनुभव को बेहतर बनाने के लिए नोट्स एडिटर के लिए अपना पसंदीदा मुख्य टेक्स्ट साइज़ सेट करें।</string>
     <string name="body_text_default">डिफ़ॉल्ट</string>
     <string name="body_text_pt">%1$d pt</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">शुरू करें</string>
     <string name="onboarding_next">आगे</string>
@@ -160,7 +143,6 @@
     <string name="onboarding_screen_three_desc">बिना इंटरनेट के आवाज़ के नोट्स को\nटेक्स्ट और सारांश में बदलें</string>
     <string name="onboarding_screen_four_title">50 से अधिक\nभाषाओं का समर्थन</string>
     <string name="onboarding_screen_four_desc">अपनी पसंदीदा भाषा में नोट्स\nबनाएं और ट्रांसक्राइब करें</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">लाइट थीम</string>
     <string name="settings_dark_theme">डार्क थीम</string>
@@ -170,17 +152,56 @@
     <string name="settings_transcription_language">ट्रांसक्रिप्शन भाषा</string>
     <string name="settings_themes">थीम्स</string>
     <string name="settings_title">सेटिंग्स</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">कोई भाषा नहीं मिली</string>
     <string name="language_selection_supported_languages">समर्थित भाषाएं</string>
     <string name="language_selection_search">खोजें</string>
     <string name="language_selection_select_language">भाषा चुनें</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">उदाहरण %1$d pt</string>
     <string name="accessibility_desc">नोट्स एडिटर के लिए पसंदीदा लेखन मुख्य साइज़ सेट करने के लिए स्लाइडर का उपयोग करें, अपने अनुभव को कस्टमाइज़ करें।</string>
     <string name="accessibility_a">अ</string>
     <string name="accessibility_default">डिफ़ॉल्ट 14 pt है</string>
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">ठीक है</string>
+    <string name="batch_export_failed">निर्यात विफल</string>
+    <string name="batch_export_options">निर्यात विकल्प</string>
+    <string name="batch_export_select_formats">वे प्रारूप चुनें जिन्हें आप निर्यात करना चाहते हैं:</string>
+    <string name="batch_export_audio_files">ऑडियो फाइलें निर्यात करें</string>
+    <string name="batch_export_txt_files">टेक्स्ट को TXT फाइलों के रूप में निर्यात करें</string>
+    <string name="batch_export_select_at_least_one_option">कृपया कम से कम एक विकल्प चुनें</string>
+    <string name="batch_export_title">निर्यात</string>
+    <string name="batch_export_no_selection_made">कोई चयन नहीं किया गया, कृपया निर्यात करने के लिए एक आइटम चुनें</string>
+    <string name="batch_export_settings_title">एकाधिक नोट्स निर्यात करें</string>
+    <string name="batch_export_settings_description">नोट्स सूची में निर्यात विकल्प दिखाने के लिए किसी भी नोट कार्ड को लंबे समय तक दबाएं</string>
+    <string name="batch_export_settings_how_to">एकाधिक नोट्स कैसे निर्यात करें</string>
+    <string name="batch_export_settings_how_to_description_1">चयन मोड में प्रवेश करने के लिए किसी भी नोट कार्ड को लंबे समय तक दबाएं, फिर एक साथ एकाधिक नोट्स निर्यात करें</string>
+    <string name="batch_export_settings_how_to_description_2">नोट को लंबे समय तक दबाएं</string>
+    <string name="batch_export_settings_how_to_description_3">निर्यात के लिए नोट्स चुनें</string>
+    <string name="batch_export_settings_how_to_description_4">नीचे निर्यात बटन पर टैप करें</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">निर्यात करते समय त्रुटि हुई</string>
+    <string name="batch_export_settings_no_folder_selected">फ़ोल्डर चयन रद्द किया गया</string>
+    <!-- Import -->
+    <string name="import_failed_title">आयात विफल</string>
+    <string name="ok">ठीक है</string>
+    <string name="select_deselect_all">सभी चुनें / अचयनित करें</string>
+    <string name="top_bar_import_video">वीडियो आयात करें</string>
+    <string name="question_mark">प्रश्न चिह्न</string>
+    <string name="ai_model_title">AI मॉडल क्या है?</string>
+    <string name="ai_model_description">एक AI मॉडल एक डिजिटल मस्तिष्क की तरह है जिसे भाषण को समझने और इसे लिखित पाठ में बदलने के लिए प्रशिक्षित किया गया है। विभिन्न मॉडलों की अलग-अलग ताकतें हैं - कुछ तेज़ हैं, कुछ अधिक सटीक हैं। अपनी आवश्यकताओं से मेल खाने वाला चुनें।</string>
+    <string name="standard_model_title">मानक मॉडल (बहुभाषी)</string>
+    <string name="standard_model_description">यह तेज़, हल्का विकल्प है जो रोज़मर्रा के उपयोग के लिए अच्छी तरह से काम करता है। यह आपके भाषण को जल्दी से पाठ में बदल देता है और आपके फोन पर ज्यादा जगह नहीं लेता है। यदि आप त्वरित परिणाम चाहते हैं और कई भाषाओं का उपयोग करते हैं तो बिल्कुल सही। इसे एक कॉम्पैक्ट कार की तरह सोचें - कुशल और काम पूरा कर देती है।</string>
+    <string name="optimized_model_title">अनुकूलित मॉडल (बहुभाषी)</string>
+    <string name="optimized_model_description">यह अधिक शक्तिशाली विकल्प है जो आपको सबसे सटीक संभव प्रतिलेखन देता है। इसमें थोड़ा अधिक समय लगता है और अधिक स्टोरेज का उपयोग होता है, लेकिन यह विशेष रूप से उच्चारण या पृष्ठभूमि शोर के साथ अधिक शब्दों को सही ढंग से पकड़ता है। एक लक्जरी कार की तरह - बड़ी और धीमी, लेकिन प्रीमियम गुणवत्ता प्रदान करती है। नोट: हिंदी/गुजराती का समर्थन नहीं करता।</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">तेज़ प्रदर्शन और छोटा फ़ाइल आकार\nसभी भाषाओं का समर्थन करता है</string>
+    <string name="optimized_model_setting_desc">उपलब्ध उच्चतम सटीकता\nबड़ा फ़ाइल आकार, धीमा प्रदर्शन\nहिंदी/गुजराती को छोड़कर सभी भाषाओं का समर्थन करता है</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">मॉडल चयन</string>
+    <string name="settings_model_selection_text">AI मॉडल</string>
+    <string name="settings_model_selection_description">वह मॉडल चुनें जो आपकी आवश्यकताओं के लिए सबसे उपयुक्त हो</string>
 </resources>

@@ -5,7 +5,6 @@
     <string name="close">Tutup</string>
     <string name="cancel">Batal</string>
     <string name="navigate">Navigasi</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">Kembali</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">Catatan Saya</string>
     <string name="top_bar_export_audio_folder">Ekspor Audio ke Folder</string>
     <string name="top_bar_import_audio">Impor Audio</string>
+    <string name="top_bar_export_as_pdf">Ekspor Teks sebagai PDF</string>
     <string name="top_bar_export_as_txt">Ekspor Teks sebagai .txt</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">Konfirmasi</string>
-    <string name="confirmation_text">Apakah Anda ingin menghapus catatan?</string>
-    <string name="recording_confirmation_text">Apakah Anda yakin ingin menghapus rekaman?</string>
+    <string name="confirmation_text">Apakah Anda ingin menghapus Catatan? Tindakan ini tidak dapat dibatalkan</string>
+    <string name="recording_confirmation_text">Apakah Anda yakin ingin menghapus rekaman? Tindakan ini tidak dapat dibatalkan</string>
     <string name="confirmation_delete">Hapus</string>
     <string name="confirmation_cancel">Batal</string>
     <string name="recording_replace_error">Anda sudah memiliki rekaman yang tersimpan. Membuat rekaman baru akan menggantikannya secara permanen. Apakah Anda ingin melanjutkan?</string>
     <string name="recording_import_error">Anda sudah memiliki rekaman yang tersimpan. Mengimpor rekaman baru akan menggantikannya secara permanen. Apakah Anda ingin melanjutkan?</string>
     <string name="recording_replace_continue">Lanjutkan</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">Huruf Aa</string>
     <string name="bottom_navigation_starred">Berbintang</string>
     <string name="bottom_navigation_bullet_list">Daftar poin</string>
     <string name="bottom_navigation_delete">Hapus Catatan</string>
     <string name="bottom_navigation_hide_keyboard">Sembunyikan Keyboard</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">Tebal</string>
     <string name="editing_italic">Miring</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">Rata Kiri</string>
     <string name="editing_align_center">Rata Tengah</string>
     <string name="editing_align_right">Rata Kanan</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">Format</string>
     <string name="format_bar_close">Tutup</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">Heading</string>
     <string name="format_bar_subheading">Sub-heading</string>
     <string name="format_bar_body">Isi</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">Perekam</string>
     <string name="transcription_icon">Ikon</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">Opsi lainnya</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">Semua</string>
+    <string name="date_tab_bar_all">Semua %1$s</string>
     <string name="date_tab_bar_starred">Berbintang</string>
     <string name="date_tab_bar_voices">Suara</string>
     <string name="date_tab_bar_recent">Terbaru</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">Hapus Catatan</string>
     <string name="note_item_edit">Edit</string>
@@ -71,14 +63,11 @@
         <item quantity="one">%1$d kata</item>
         <item quantity="other">%1$d kata</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">Tambah Catatan</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">Cari catatan...</string>
     <string name="search_bar_search_description">Cari</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">Mikrofon</string>
     <string name="recording_ui_tap_start_record">Ketuk untuk mulai merekam</string>
@@ -86,12 +75,10 @@
     <string name="recording_ui_loading">memuat</string>
     <string name="recording_ui_loading_rotation">rotasi memuat</string>
     <string name="recording_ui_checkmark">tanda centang</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">Jeda</string>
     <string name="player_ui_play">Putar</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">Batal</string>
     <string name="transcription_dialog_append">Tambahkan</string>
@@ -100,10 +87,8 @@
     <string name="transcription_dialog_error_got_it">Mengerti</string>
     <string name="transcription_dialog_error_audio_file_title">File audio terlalu besar</string>
     <string name="transcription_dialog_error_audio_file_desc">File audio ini terlalu besar untuk ditranskripsi di perangkat Anda. Coba gunakan rekaman yang lebih pendek atau ukuran file yang lebih kecil.</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">Kesalahan saat mengunduh</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">Pertanyaan yang Sering Diajukan</string>
@@ -114,27 +99,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">Belum Ada Catatan</string>
     <string name="empty_list_description">Mulai merekam pikiran dan rekaman suara Anda. Ketuk ikon plus + di sudut kanan bawah untuk membuat catatan pertama Anda.</string>
     <string name="empty_list_description_tablet">Mulai merekam pikiran dan rekaman suara Anda.\nKetuk ikon plus + di sudut kanan bawah untuk membuat catatan pertama Anda.</string>
-
     <!-- Share Dialog -->
     <string name="share_options">Opsi Berbagi</string>
     <string name="share_text">Bagikan Teks</string>
     <string name="share_audio_recording">Bagikan Rekaman Audio</string>
-
     <!-- Download Dialog -->
     <string name="download_required">Unduhan Diperlukan</string>
+    <string name="download_required_for_hindi">Unduhan Diperlukan untuk Hindi</string>
     <string name="for_accurate_transcription">Untuk transkripsi yang akurat, kami perlu mengunduh model AI.</string>
     <string name="take_few_minutes">Ini mungkin memakan waktu beberapa menit dan memerlukan koneksi internet yang stabil.</string>
-    <string name="file_size_approx">Ukuran file: sekitar 500MB</string>
+    <string name="file_size_approx">Ukuran file: sekitar %1$s</string>
+    <string name="file_model_english">Model multibahasa (mendukung 50+ bahasa)</string>
+    <string name="file_model_hindi">Model yang dioptimalkan untuk Hindi</string>
     <string name="download">Unduh</string>
-
     <!-- Settings Screen -->
     <string name="settings">Pengaturan</string>
-    <string name="customize_your_experience">Sesuaikan pengalaman Anda</string>
+    <string name="customize_your_experience">Gulir ke bawah untuk melihat semua pengaturan</string>
     <string name="language_and_region">Bahasa &amp; Wilayah</string>
     <string name="transcription_language">Bahasa Transkripsi</string>
     <string name="language_used_for_voice_transcription">Bahasa yang digunakan untuk transkripsi suara</string>
@@ -147,7 +131,6 @@
     <string name="body_text_preferred_text">Atur ukuran teks isi yang Anda sukai untuk editor catatan guna meningkatkan pengalaman menulis Anda.</string>
     <string name="body_text_default">Default</string>
     <string name="body_text_pt">%1$d pt</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">Mulai</string>
     <string name="onboarding_next">Berikutnya</string>
@@ -160,7 +143,6 @@
     <string name="onboarding_screen_three_desc">Ubah catatan suara menjadi teks dan\nringkasan tanpa internet</string>
     <string name="onboarding_screen_four_title">Mendukung\nLebih dari 50 Bahasa</string>
     <string name="onboarding_screen_four_desc">Buat dan transkripsi catatan dalam\nbahasa pilihan Anda</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">Tema Terang</string>
     <string name="settings_dark_theme">Tema Gelap</string>
@@ -170,18 +152,56 @@
     <string name="settings_transcription_language">Bahasa Transkripsi</string>
     <string name="settings_themes">Tema</string>
     <string name="settings_title">Pengaturan</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">Tidak ada bahasa yang ditemukan</string>
     <string name="language_selection_supported_languages">BAHASA YANG DIDUKUNG</string>
     <string name="language_selection_search">Cari</string>
     <string name="language_selection_select_language">Pilih Bahasa</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">Contoh %1$d pt</string>
     <string name="accessibility_desc">Gunakan slider untuk mengatur ukuran teks penulisan yang disukai untuk editor catatan, sesuaikan pengalaman Anda.</string>
     <string name="accessibility_a">A</string>
     <string name="accessibility_default">Default adalah 14 pt</string>
-
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">OK</string>
+    <string name="batch_export_failed">Ekspor Gagal</string>
+    <string name="batch_export_options">Opsi Ekspor</string>
+    <string name="batch_export_select_formats">Pilih format yang ingin Anda ekspor:</string>
+    <string name="batch_export_audio_files">Ekspor file audio</string>
+    <string name="batch_export_txt_files">Ekspor teks sebagai file TXT</string>
+    <string name="batch_export_select_at_least_one_option">Silakan pilih setidaknya satu opsi</string>
+    <string name="batch_export_title">Ekspor</string>
+    <string name="batch_export_no_selection_made">Tidak ada pilihan yang dibuat, silakan pilih item untuk diekspor</string>
+    <string name="batch_export_settings_title">Ekspor beberapa catatan</string>
+    <string name="batch_export_settings_description">TEKAN LAMA kartu catatan apa pun untuk menampilkan opsi ekspor pada daftar catatan</string>
+    <string name="batch_export_settings_how_to">Cara mengekspor beberapa catatan</string>
+    <string name="batch_export_settings_how_to_description_1">TEKAN LAMA kartu catatan apa pun untuk masuk ke mode pemilihan, lalu ekspor beberapa catatan sekaligus</string>
+    <string name="batch_export_settings_how_to_description_2">Tekan lama catatan</string>
+    <string name="batch_export_settings_how_to_description_3">Pilih catatan untuk diekspor</string>
+    <string name="batch_export_settings_how_to_description_4">Ketuk tombol ekspor di bagian bawah</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">terjadi kesalahan saat mengekspor</string>
+    <string name="batch_export_settings_no_folder_selected">Pemilihan folder dibatalkan</string>
+    <!-- Import -->
+    <string name="import_failed_title">Impor Gagal</string>
+    <string name="ok">OK</string>
+    <string name="select_deselect_all">Pilih / Batalkan Pilihan Semua</string>
+    <string name="top_bar_import_video">Impor Video</string>
+    <string name="question_mark">tanda tanya</string>
+    <string name="ai_model_title">Apa itu model AI?</string>
+    <string name="ai_model_description">Model AI seperti otak digital yang telah dilatih untuk memahami ucapan dan mengubahnya menjadi teks tertulis. Model yang berbeda memiliki kekuatan yang berbeda - beberapa lebih cepat, beberapa lebih akurat. Pilih yang sesuai dengan kebutuhan Anda.</string>
+    <string name="standard_model_title">Model standar (multibahasa)</string>
+    <string name="standard_model_description">Ini adalah opsi yang lebih cepat dan ringan yang bekerja dengan baik untuk penggunaan sehari-hari. Ini dengan cepat mengubah ucapan Anda menjadi teks dan tidak memakan banyak ruang di ponsel Anda. Sempurna jika Anda menginginkan hasil cepat dan menggunakan beberapa bahasa. Anggap saja seperti mobil kompak - efisien dan menyelesaikan pekerjaan.</string>
+    <string name="optimized_model_title">Model yang Dioptimalkan (Multibahasa)</string>
+    <string name="optimized_model_description">Ini adalah opsi yang lebih kuat yang memberi Anda transkripsi paling akurat yang mungkin. Ini membutuhkan waktu sedikit lebih lama dan menggunakan lebih banyak penyimpanan, tetapi menangkap lebih banyak kata dengan benar, terutama dengan aksen atau kebisingan latar belakang. Seperti mobil mewah - lebih besar dan lebih lambat, tetapi memberikan kualitas premium. Catatan: tidak mendukung Hindi/Gujarat.</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">Kinerja lebih cepat dan ukuran file lebih kecil\nMendukung semua bahasa</string>
+    <string name="optimized_model_setting_desc">Akurasi tertinggi yang tersedia\nUkuran file lebih besar, kinerja lebih lambat\nMendukung semua bahasa kecuali Hindi/Gujarat</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">Pemilihan Model</string>
+    <string name="settings_model_selection_text">Model AI</string>
+    <string name="settings_model_selection_description">Pilih model yang paling sesuai dengan kebutuhan Anda</string>
 </resources>

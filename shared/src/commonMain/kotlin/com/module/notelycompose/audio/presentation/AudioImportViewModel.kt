@@ -37,6 +37,26 @@ class AudioImportViewModel(
         }
     }
 
+    internal fun importVideo() = fileManager.launchVideoPicker {
+        viewModelScope.launch {
+            _importingState.update { ImportingAudioState.Importing() }
+
+            val path = fileManager.processPickedVideoToWav(
+                onProgress = { progress ->
+                    _importingState.update { ImportingAudioState.Importing(progress) }
+                }
+            )
+
+            if (path == null) {
+                _importingState.update { ImportingAudioState.Failure("Failed to import video") }
+                return@launch
+            }
+
+            Napier.d { "✅ Imported video path: $path" }
+            _importingState.update { ImportingAudioState.Success(path) }
+        }
+    }
+
     internal fun releaseState() = viewModelScope.launch {
         _importingState.update { ImportingAudioState.Idle }
     }

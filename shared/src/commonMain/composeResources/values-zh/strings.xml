@@ -5,7 +5,6 @@
     <string name="close">关闭</string>
     <string name="cancel">取消</string>
     <string name="navigate">导航</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">返回</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -14,24 +13,21 @@
     <string name="top_bar_export_audio_folder">导出音频到文件夹</string>
     <string name="top_bar_import_audio">导入音频</string>
     <string name="top_bar_export_as_txt">导出文本为.txt</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">确认</string>
-    <string name="confirmation_text">您要删除这条笔记吗？</string>
-    <string name="recording_confirmation_text">您确定要删除此录音吗？</string>
+    <string name="confirmation_text">您要删除笔记吗？此操作无法撤消</string>
+    <string name="recording_confirmation_text">您确定要删除录音吗？此操作无法撤消</string>
     <string name="confirmation_delete">删除</string>
     <string name="confirmation_cancel">取消</string>
     <string name="recording_replace_error">您已经保存了一条录音。创建新的录音将会永久替换掉当前的录音。您要继续吗？</string>
     <string name="recording_import_error">您已经保存了一条录音。导入新的录音将永久替换当前的录音。您要继续吗？</string>
     <string name="recording_replace_continue">继续</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">文字样式</string>
     <string name="bottom_navigation_starred">已加星标</string>
     <string name="bottom_navigation_bullet_list">项目列表</string>
     <string name="bottom_navigation_delete">删除笔记</string>
     <string name="bottom_navigation_hide_keyboard">隐藏键盘</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">粗体</string>
     <string name="editing_italic">斜体</string>
@@ -39,7 +35,6 @@
     <string name="editing_align_left">左对齐</string>
     <string name="editing_align_center">居中对齐</string>
     <string name="editing_align_right">右对齐</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">格式</string>
     <string name="format_bar_close">关闭</string>
@@ -47,20 +42,16 @@
     <string name="format_bar_heading">标题</string>
     <string name="format_bar_subheading">副标题</string>
     <string name="format_bar_body">正文</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">录音机</string>
     <string name="transcription_icon">图标</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">更多选项</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">全部</string>
+    <string name="date_tab_bar_all">全部 %1$s</string>
     <string name="date_tab_bar_starred">已加星标</string>
     <string name="date_tab_bar_voices">语音</string>
     <string name="date_tab_bar_recent">最近</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">删除笔记</string>
     <string name="note_item_edit">编辑</string>
@@ -70,14 +61,11 @@
     <plurals name="words">
         <item quantity="other">%1$d 单词</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">添加笔记</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">搜索笔记…</string>
     <string name="search_bar_search_description">搜索</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">麦克风</string>
     <string name="recording_ui_tap_start_record">轻点开始录音</string>
@@ -85,12 +73,10 @@
     <string name="recording_ui_loading">加载中</string>
     <string name="recording_ui_loading_rotation">加载循环</string>
     <string name="recording_ui_checkmark">对勾</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">暂停</string>
     <string name="player_ui_play">播放</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">取消</string>
     <string name="transcription_dialog_append">追加</string>
@@ -99,10 +85,8 @@
     <string name="transcription_dialog_error_got_it">明白了</string>
     <string name="transcription_dialog_error_audio_file_title">音频文件过大</string>
     <string name="transcription_dialog_error_audio_file_desc">此音频文件太大，无法在您的设备上进行转录。请尝试使用较短的录音或较小的文件。</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">下载时出错</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">常见问题</string>
@@ -113,27 +97,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">暂无笔记</string>
     <string name="empty_list_description">开始记录你的想法和语音留言。点击右下角的加号 + 图标，创建你的第一条笔记。</string>
     <string name="empty_list_description_tablet">开始记录你的想法和语音留言。\n点击右下角的加号 + 图标，创建你的第一条笔记。</string>
-
     <!-- Share Dialog -->
     <string name="share_options">分享选项</string>
     <string name="share_text">分享文字</string>
     <string name="share_audio_recording">分享音频录音</string>
-
     <!-- Download Dialog -->
     <string name="download_required">所需下载</string>
+    <string name="download_required_for_hindi">印地语需要下载</string>
     <string name="for_accurate_transcription">为了确保转录的准确性，我们需要下载AI模型。</string>
     <string name="take_few_minutes">这可能需要几分钟时间，需要稳定的网络连接。</string>
-    <string name="file_size_approx">文件大小：约500MB</string>
+    <string name="file_size_approx">文件大小：约 %1$s</string>
+    <string name="file_model_english">多语言模型（支持50多种语言）</string>
+    <string name="file_model_hindi">印地语优化模型</string>
     <string name="download">下载</string>
-
     <!-- Settings Screen -->
     <string name="settings">设置</string>
-    <string name="customize_your_experience">个性化您的体验</string>
+    <string name="customize_your_experience">向下滚动查看所有设置</string>
     <string name="language_and_region">语言与地区</string>
     <string name="transcription_language">转录语言</string>
     <string name="language_used_for_voice_transcription">语音转录使用的语言</string>
@@ -146,7 +129,6 @@
     <string name="body_text_preferred_text">设置您首选的正文字体大小，以增强您在笔记编辑器中的书写体验。</string>
     <string name="body_text_default">默认</string>
     <string name="body_text_pt">%1$d 磅</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">开始使用</string>
     <string name="onboarding_next">下一步</string>
@@ -159,7 +141,6 @@
     <string name="onboarding_screen_three_desc">将语音备忘录转换为文字\n并生成摘要，无需联网</string>
     <string name="onboarding_screen_four_title">支持\n超过50种语言</string>
     <string name="onboarding_screen_four_desc">使用您偏好的语言\n创建并转录笔记</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">明亮主题</string>
     <string name="settings_dark_theme">暗色主题</string>
@@ -169,17 +150,56 @@
     <string name="settings_transcription_language">转录语言</string>
     <string name="settings_themes">主题</string>
     <string name="settings_title">设置</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">未找到语言</string>
     <string name="language_selection_supported_languages">支持的语言</string>
     <string name="language_selection_search">搜索</string>
     <string name="language_selection_select_language">选择语言</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">示例 %1$d 磅</string>
     <string name="accessibility_desc">使用滑块设置笔记编辑器的首选正文字体大小，个性化您的体验。</string>
     <string name="accessibility_a">A</string>
     <string name="accessibility_default">默认为 14 磅</string>
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">确定</string>
+    <string name="batch_export_failed">导出失败</string>
+    <string name="batch_export_options">导出选项</string>
+    <string name="batch_export_select_formats">选择您要导出的格式：</string>
+    <string name="batch_export_audio_files">导出音频文件</string>
+    <string name="batch_export_txt_files">将文本导出为TXT文件</string>
+    <string name="batch_export_select_at_least_one_option">请至少选择一个选项</string>
+    <string name="batch_export_title">导出</string>
+    <string name="batch_export_no_selection_made">未进行选择，请选择要导出的项目</string>
+    <string name="batch_export_settings_title">导出多个笔记</string>
+    <string name="batch_export_settings_description">长按任意笔记卡片以在笔记列表中显示导出选项</string>
+    <string name="batch_export_settings_how_to">如何导出多个笔记</string>
+    <string name="batch_export_settings_how_to_description_1">长按任意笔记卡片进入选择模式，然后一次导出多个笔记</string>
+    <string name="batch_export_settings_how_to_description_2">长按笔记</string>
+    <string name="batch_export_settings_how_to_description_3">选择要导出的笔记</string>
+    <string name="batch_export_settings_how_to_description_4">点击底部的导出按钮</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">导出时发生错误</string>
+    <string name="batch_export_settings_no_folder_selected">文件夹选择已取消</string>
+    <!-- Import -->
+    <string name="import_failed_title">导入失败</string>
+    <string name="ok">确定</string>
+    <string name="select_deselect_all">全选 / 取消全选</string>
+    <string name="top_bar_import_video">导入视频</string>
+    <string name="question_mark">问号</string>
+    <string name="ai_model_title">什么是AI模型？</string>
+    <string name="ai_model_description">AI模型就像一个经过训练的数字大脑，能够理解语音并将其转换为书面文本。不同的模型有不同的优势 - 有些更快，有些更准确。选择符合您需求的模型。</string>
+    <string name="standard_model_title">标准模型（多语言）</string>
+    <string name="standard_model_description">这是更快、更轻的选项，适合日常使用。它能快速将您的语音转换为文本，并且不会占用手机太多空间。如果您想要快速结果并使用多种语言，这是完美的选择。可以把它想象成一辆紧凑型汽车 - 高效并能完成工作。</string>
+    <string name="optimized_model_title">优化模型（多语言）</string>
+    <string name="optimized_model_description">这是更强大的选项，能为您提供尽可能准确的转录。它需要更长的时间并使用更多存储空间，但能更准确地捕捉单词，特别是在有口音或背景噪音的情况下。就像一辆豪华车 - 更大、更慢，但提供优质品质。注意：不支持印地语/古吉拉特语。</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">性能更快，文件更小\n支持所有语言</string>
+    <string name="optimized_model_setting_desc">可用的最高准确度\n文件较大，性能较慢\n支持除印地语/古吉拉特语外的所有语言</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">模型选择</string>
+    <string name="settings_model_selection_text">AI 模型</string>
+    <string name="settings_model_selection_description">选择最适合您需求的模型</string>
 </resources>

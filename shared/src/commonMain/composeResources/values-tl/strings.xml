@@ -5,7 +5,6 @@
     <string name="close">Isara</string>
     <string name="cancel">Kanselahin</string>
     <string name="navigate">Mag-navigate</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">Bumalik</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">Aking Tala</string>
     <string name="top_bar_export_audio_folder">I-export ang Audio sa Folder</string>
     <string name="top_bar_import_audio">Mag-import ng Audio</string>
+    <string name="top_bar_export_as_pdf">I-export ang Teksto bilang PDF</string>
     <string name="top_bar_export_as_txt">I-export ang Teksto bilang .txt</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">Kumpirmahin</string>
-    <string name="confirmation_text">Gusto mo bang tanggalin ang tala?</string>
-    <string name="recording_confirmation_text">Sigurado ka bang gusto mong tanggalin ang recording?</string>
+    <string name="confirmation_text">Gusto mo bang tanggalin ang Tala? Hindi na maaaring bawiin ang aksyong ito</string>
+    <string name="recording_confirmation_text">Sigurado ka bang gusto mong tanggalin ang recording? Hindi na maaaring bawiin ang aksyong ito</string>
     <string name="confirmation_delete">Tanggalin</string>
     <string name="confirmation_cancel">Kanselahin</string>
     <string name="recording_replace_error">Mayroon ka nang nakaimbak na recording. Ang paggawa ng bagong recording ay papalitan ito nang permanente. Gusto mo bang magpatuloy?</string>
     <string name="recording_import_error">Mayroon ka nang nakaimbak na recording. Ang pag-import ng bagong recording ay papalitan ito nang permanente. Gusto mo bang magpatuloy?</string>
     <string name="recording_replace_continue">Magpatuloy</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">Titik Aa</string>
     <string name="bottom_navigation_starred">May Bituin</string>
     <string name="bottom_navigation_bullet_list">Listahan ng mga tuldok</string>
     <string name="bottom_navigation_delete">Tanggalin ang Tala</string>
     <string name="bottom_navigation_hide_keyboard">Itago ang Keyboard</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">Makapal</string>
     <string name="editing_italic">Nakahilig</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">Ihanay sa Kaliwa</string>
     <string name="editing_align_center">Ihanay sa Gitna</string>
     <string name="editing_align_right">Ihanay sa Kanan</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">Format</string>
     <string name="format_bar_close">Isara</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">Pangunahing Pamagat</string>
     <string name="format_bar_subheading">Pangalawang Pamagat</string>
     <string name="format_bar_body">Nilalaman</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">Recorder</string>
     <string name="transcription_icon">Icon</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">Higit pang mga pagpipilian</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">Lahat</string>
+    <string name="date_tab_bar_all">Lahat %1$s</string>
     <string name="date_tab_bar_starred">May Bituin</string>
     <string name="date_tab_bar_voices">Mga Boses</string>
     <string name="date_tab_bar_recent">Kamakailang</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">Tanggalin ang Tala</string>
     <string name="note_item_edit">I-edit</string>
@@ -71,14 +63,11 @@
         <item quantity="one">%1$d salita</item>
         <item quantity="other">%1$d mga salita</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">Magdagdag ng Tala</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">Maghanap ng mga tala...</string>
     <string name="search_bar_search_description">Maghanap</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">Mikropono</string>
     <string name="recording_ui_tap_start_record">I-tap para simulang mag-record</string>
@@ -86,12 +75,10 @@
     <string name="recording_ui_loading">naglo-load</string>
     <string name="recording_ui_loading_rotation">umiikot habang naglo-load</string>
     <string name="recording_ui_checkmark">tsek</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">I-pause</string>
     <string name="player_ui_play">I-play</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">Kanselahin</string>
     <string name="transcription_dialog_append">Idagdag</string>
@@ -100,10 +87,8 @@
     <string name="transcription_dialog_error_got_it">Naintindihan</string>
     <string name="transcription_dialog_error_audio_file_title">Masyadong malaki ang audio file</string>
     <string name="transcription_dialog_error_audio_file_desc">Ang audio file na ito ay masyadong malaki para ma-transcribe sa inyong device. Subukan ang mas maikling recording o mas maliit na file size.</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">May mali habang nag-download</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">Mga Madalas na Tanong</string>
@@ -114,27 +99,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">Walang Mga Tala Pa</string>
     <string name="empty_list_description">Simulang kunin ang inyong mga iniisip at mga voice recording. I-tap ang plus + icon sa kanang sulok sa ibaba para gumawa ng inyong unang tala.</string>
     <string name="empty_list_description_tablet">Simulang kunin ang inyong mga iniisip at mga voice recording.\nI-tap ang plus + icon sa kanang sulok sa ibaba para gumawa ng inyong unang tala.</string>
-
     <!-- Share Dialog -->
     <string name="share_options">Mga Pagpipilian sa Pagbabahagi</string>
     <string name="share_text">Ibahagi ang Teksto</string>
     <string name="share_audio_recording">Ibahagi ang Audio Recording</string>
-
     <!-- Download Dialog -->
     <string name="download_required">Kailangan ng Download</string>
+    <string name="download_required_for_hindi">Kailangan ang Download para sa Hindi</string>
     <string name="for_accurate_transcription">Para sa tumpak na transcription, kailangan namin i-download ang AI model.</string>
     <string name="take_few_minutes">Maaaring tumagal ito ng ilang minuto at kailangan ng matatag na internet connection.</string>
-    <string name="file_size_approx">Laki ng file: humigit-kumulang 500MB</string>
+    <string name="file_size_approx">Laki ng file: humigit-kumulang %1$s</string>
+    <string name="file_model_english">Multilingual na modelo (sumusuporta sa 50+ na wika)</string>
+    <string name="file_model_hindi">Hindi-optimized na modelo</string>
     <string name="download">I-download</string>
-
     <!-- Settings Screen -->
     <string name="settings">Mga Setting</string>
-    <string name="customize_your_experience">I-customize ang inyong karanasan</string>
+    <string name="customize_your_experience">Mag-scroll pababa upang makita ang lahat ng mga setting</string>
     <string name="language_and_region">Wika &amp; Rehiyon</string>
     <string name="transcription_language">Wika ng Transcription</string>
     <string name="language_used_for_voice_transcription">Wikang ginagamit para sa voice transcription</string>
@@ -147,7 +131,6 @@
     <string name="body_text_preferred_text">Itakda ang inyong gustong laki ng body text para sa notes editor upang mapahusay ang inyong karanasan sa pagsusulat.</string>
     <string name="body_text_default">Default</string>
     <string name="body_text_pt">%1$d pt</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">Magsimula</string>
     <string name="onboarding_next">Susunod</string>
@@ -160,7 +143,6 @@
     <string name="onboarding_screen_three_desc">I-convert ang mga voice note sa teksto at\nmga buod nang walang internet</string>
     <string name="onboarding_screen_four_title">Sumusuporta sa\nMahigit 50 Wika</string>
     <string name="onboarding_screen_four_desc">Gumawa at mag-transcribe ng mga tala sa\ninyong gustong wika</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">Maliwanag na Tema</string>
     <string name="settings_dark_theme">Madilim na Tema</string>
@@ -170,18 +152,56 @@
     <string name="settings_transcription_language">Wika ng Transcription</string>
     <string name="settings_themes">Mga Tema</string>
     <string name="settings_title">Mga Setting</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">Walang nahanap na wika</string>
     <string name="language_selection_supported_languages">MGA SUPORTADONG WIKA</string>
     <string name="language_selection_search">Maghanap</string>
     <string name="language_selection_select_language">Pumili ng Wika</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">Halimbawa %1$d pt</string>
     <string name="accessibility_desc">Gamitin ang slider para itakda ang gustong laki ng pagsusulat para sa notes editor, i-customize ang inyong karanasan.</string>
     <string name="accessibility_a">A</string>
     <string name="accessibility_default">Ang default ay 14 pt</string>
-
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">OK</string>
+    <string name="batch_export_failed">Nabigo ang Pag-export</string>
+    <string name="batch_export_options">Mga Opsyon sa Pag-export</string>
+    <string name="batch_export_select_formats">Piliin ang mga format na nais mong i-export:</string>
+    <string name="batch_export_audio_files">Mag-export ng mga audio file</string>
+    <string name="batch_export_txt_files">Mag-export ng teksto bilang mga TXT file</string>
+    <string name="batch_export_select_at_least_one_option">Mangyaring pumili ng hindi bababa sa isang opsyon</string>
+    <string name="batch_export_title">I-export</string>
+    <string name="batch_export_no_selection_made">Walang ginawang pagpili, mangyaring pumili ng item na ie-export</string>
+    <string name="batch_export_settings_title">Mag-export ng maraming tala</string>
+    <string name="batch_export_settings_description">PINDUTIN NANG MATAGAL ang kahit anong note card upang ipakita ang mga opsyon sa pag-export sa listahan ng mga tala</string>
+    <string name="batch_export_settings_how_to">Paano mag-export ng maraming tala</string>
+    <string name="batch_export_settings_how_to_description_1">PINDUTIN NANG MATAGAL ang kahit anong note card upang pumasok sa selection mode, pagkatapos ay mag-export ng maraming tala nang sabay-sabay</string>
+    <string name="batch_export_settings_how_to_description_2">Pindutin nang matagal ang tala</string>
+    <string name="batch_export_settings_how_to_description_3">Piliin ang mga tala na ie-export</string>
+    <string name="batch_export_settings_how_to_description_4">I-tap ang button ng pag-export sa ibaba</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">may naganap na error habang nag-e-export</string>
+    <string name="batch_export_settings_no_folder_selected">Kinansela ang pagpili ng folder</string>
+    <!-- Import -->
+    <string name="import_failed_title">Nabigo ang Pag-import</string>
+    <string name="ok">OK</string>
+    <string name="select_deselect_all">Piliin / I-deselect Lahat</string>
+    <string name="top_bar_import_video">Mag-import ng Video</string>
+    <string name="question_mark">tandang pananong</string>
+    <string name="ai_model_title">Ano ang AI model?</string>
+    <string name="ai_model_description">Ang AI model ay parang digital na utak na sinanay upang maintindihan ang pagsasalita at i-convert ito sa nakasulat na teksto. Ang iba\'t ibang modelo ay may iba\'t ibang lakas - ang iba ay mas mabilis, ang iba ay mas tumpak. Piliin ang tumutugma sa iyong pangangailangan.</string>
+    <string name="standard_model_title">Standard na modelo (multilinggwal)</string>
+    <string name="standard_model_description">Ito ang mas mabilis, mas magaan na opsyon na gumagana nang maayos para sa pang-araw-araw na paggamit. Mabilis nitong kino-convert ang iyong pagsasalita sa teksto at hindi kumukuha ng maraming espasyo sa iyong telepono. Perpekto kung gusto mo ng mabilis na resulta at gumagamit ng maraming wika. Isipin ito bilang isang compact na kotse - epektibo at natapos ang trabaho.</string>
+    <string name="optimized_model_title">Na-optimize na Modelo (Multilinggwal)</string>
+    <string name="optimized_model_description">Ito ang mas makapangyarihang opsyon na nagbibigay sa iyo ng pinakatumpak na mga transkripsyon na posible. Mas matagal ng kaunti at gumagamit ng mas maraming storage, ngunit nahuhuli ang mas maraming salita nang tama, lalo na sa mga accent o background noise. Tulad ng isang luxury na kotse - mas malaki at mas mabagal, ngunit naghahatid ng premium na kalidad. Tandaan: hindi sumusuporta sa Hindi/Gujarati.</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">Mas mabilis na performance at mas maliit na laki ng file\nSuportado ang lahat ng wika</string>
+    <string name="optimized_model_setting_desc">Pinakamataas na katumpakan na available\nMas malaking laki ng file, mas mabagal na performance\nSuportado ang lahat ng wika maliban sa Hindi/Gujarati</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">Pagpili ng Model</string>
+    <string name="settings_model_selection_text">AI Model</string>
+    <string name="settings_model_selection_description">Pumili ng model na pinakaangkop sa iyong pangangailangan</string>
 </resources>

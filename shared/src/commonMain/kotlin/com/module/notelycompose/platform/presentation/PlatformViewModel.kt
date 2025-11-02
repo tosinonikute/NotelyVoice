@@ -107,6 +107,21 @@ class PlatformViewModel (
         }
     }
 
+    fun onCopy(text: String) {
+        if (text.isNotBlank()) {
+            onClearCopyState()
+            platformUtils.copyTextToClipboard(text) { success, _ ->
+                _state.value = _state.value.copy(
+                    copySuccess = success
+                )
+            }
+        }
+    }
+
+    fun onClearCopyState() {
+        _state.value = _state.value.copy(copySuccess = null)
+    }
+
     fun clearExportStatus() {
         _state.value = _state.value.copy(
             exportSuccess = null,
@@ -123,5 +138,6 @@ data class PlatformUiState(
     val isLandscape: Boolean = false,
     val isExporting: Boolean = false,
     val exportSuccess: Boolean? = null,
-    val exportMessage: String? = null
+    val exportMessage: String? = null,
+    val copySuccess: Boolean? = null
 )

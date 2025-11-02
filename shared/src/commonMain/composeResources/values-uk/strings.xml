@@ -5,7 +5,6 @@
     <string name="close">Закрити</string>
     <string name="cancel">Скасувати</string>
     <string name="navigate">Навігація</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">Назад</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">Моя нотатка</string>
     <string name="top_bar_export_audio_folder">Експортувати аудіо в папку</string>
     <string name="top_bar_import_audio">Імпортувати аудіо</string>
+    <string name="top_bar_export_as_pdf">Експорт тексту в PDF</string>
     <string name="top_bar_export_as_txt">Експортувати текст як .txt</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">Підтвердження</string>
-    <string name="confirmation_text">Ви хочете видалити нотатку?</string>
-    <string name="recording_confirmation_text">Ви впевнені, що хочете видалити запис?</string>
+    <string name="confirmation_text">Ви хочете видалити нотатку? Цю дію неможливо скасувати</string>
+    <string name="recording_confirmation_text">Ви впевнені, що хочете видалити запис? Цю дію неможливо скасувати</string>
     <string name="confirmation_delete">Видалити</string>
     <string name="confirmation_cancel">Скасувати</string>
     <string name="recording_replace_error">У вас уже є збережений запис. Створення нового запису замінить його назавжди. Ви хочете продовжити?</string>
     <string name="recording_import_error">У вас уже є збережений запис. Імпорт нового запису замінить його назавжди. Ви хочете продовжити?</string>
     <string name="recording_replace_continue">Продовжити</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">Літера Aa</string>
     <string name="bottom_navigation_starred">Позначено зіркою</string>
     <string name="bottom_navigation_bullet_list">Маркований список</string>
     <string name="bottom_navigation_delete">Видалити нотатку</string>
     <string name="bottom_navigation_hide_keyboard">Сховати клавіатуру</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">Жирний</string>
     <string name="editing_italic">Курсив</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">Вирівняти ліворуч</string>
     <string name="editing_align_center">Вирівняти по центру</string>
     <string name="editing_align_right">Вирівняти праворуч</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">Формат</string>
     <string name="format_bar_close">Закрити</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">Заголовок</string>
     <string name="format_bar_subheading">Підзаголовок</string>
     <string name="format_bar_body">Основний текст</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">Диктофон</string>
     <string name="transcription_icon">Іконка</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">Більше опцій</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">Усі</string>
+    <string name="date_tab_bar_all">Усі %1$s</string>
     <string name="date_tab_bar_starred">Позначені зіркою</string>
     <string name="date_tab_bar_voices">Голоси</string>
     <string name="date_tab_bar_recent">Нещодавні</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">Видалити нотатку</string>
     <string name="note_item_edit">Редагувати</string>
@@ -73,14 +65,11 @@
         <item quantity="many">%1$d слів</item>
         <item quantity="other">%1$d слів</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">Додати нотатку</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">Пошук нотаток...</string>
     <string name="search_bar_search_description">Пошук</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">Мікрофон</string>
     <string name="recording_ui_tap_start_record">Торкніться, щоб почати запис</string>
@@ -88,12 +77,10 @@
     <string name="recording_ui_loading">завантаження</string>
     <string name="recording_ui_loading_rotation">обертання завантаження</string>
     <string name="recording_ui_checkmark">галочка</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">Пауза</string>
     <string name="player_ui_play">Відтворити</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">Скасувати</string>
     <string name="transcription_dialog_append">Додати</string>
@@ -102,10 +89,8 @@
     <string name="transcription_dialog_error_got_it">Зрозуміло</string>
     <string name="transcription_dialog_error_audio_file_title">Аудіофайл занадто великий</string>
     <string name="transcription_dialog_error_audio_file_desc">Цей аудіофайл занадто великий для транскрибування на вашому пристрої. Спробуйте використати коротший запис або файл меншого розміру.</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">Помилка при завантаженні</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">Часті питання</string>
@@ -116,27 +101,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">Поки що немає нотаток</string>
     <string name="empty_list_description">Почніть записувати свої думки та голосові записи. Торкніться іконки плюс + у правому нижньому куті, щоб створити свою першу нотатку.</string>
     <string name="empty_list_description_tablet">Почніть записувати свої думки та голосові записи.\nТоркніться іконки плюс + у правому нижньому куті, щоб створити свою першу нотатку.</string>
-
     <!-- Share Dialog -->
     <string name="share_options">Опції поділитися</string>
     <string name="share_text">Поділитися текстом</string>
     <string name="share_audio_recording">Поділитися аудіозаписом</string>
-
     <!-- Download Dialog -->
     <string name="download_required">Потрібно завантажити</string>
+    <string name="download_required_for_hindi">Потрібне завантаження для гінді</string>
     <string name="for_accurate_transcription">Для точної транскрипції нам потрібно завантажити модель ШІ.</string>
     <string name="take_few_minutes">Це може зайняти декілька хвилин і потребує стабільного інтернет-з\'єднання.</string>
-    <string name="file_size_approx">Розмір файлу: приблизно 500MB</string>
+    <string name="file_size_approx">Розмір файлу: приблизно %1$s</string>
+    <string name="file_model_english">Багатомовна модель (підтримує понад 50 мов)</string>
+    <string name="file_model_hindi">Модель, оптимізована для гінді</string>
     <string name="download">Завантажити</string>
-
     <!-- Settings Screen -->
     <string name="settings">Налаштування</string>
-    <string name="customize_your_experience">Налаштуйте свій досвід</string>
+    <string name="customize_your_experience">Прокрутіть вниз, щоб побачити всі налаштування</string>
     <string name="language_and_region">Мова &amp; Регіон</string>
     <string name="transcription_language">Мова транскрипції</string>
     <string name="language_used_for_voice_transcription">Мова, що використовується для транскрипції голосу</string>
@@ -149,7 +133,6 @@
     <string name="body_text_preferred_text">Встановіть бажаний розмір основного тексту для редактора нотаток, щоб покращити досвід написання.</string>
     <string name="body_text_default">За замовчуванням</string>
     <string name="body_text_pt">%1$d pt</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">Почати</string>
     <string name="onboarding_next">Далі</string>
@@ -162,7 +145,6 @@
     <string name="onboarding_screen_three_desc">Перетворюйте голосові нотатки на текст і\nрезюме без інтернету</string>
     <string name="onboarding_screen_four_title">Підтримує\nпонад 50 мов</string>
     <string name="onboarding_screen_four_desc">Створюйте і транскрибуйте нотатки\nвашою улюбленою мовою</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">Світла тема</string>
     <string name="settings_dark_theme">Темна тема</string>
@@ -172,18 +154,56 @@
     <string name="settings_transcription_language">Мова транскрипції</string>
     <string name="settings_themes">Теми</string>
     <string name="settings_title">Налаштування</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">Мови не знайдено</string>
     <string name="language_selection_supported_languages">ПІДТРИМУВАНІ МОВИ</string>
     <string name="language_selection_search">Пошук</string>
     <string name="language_selection_select_language">Вибрати мову</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">Приклад %1$d pt</string>
     <string name="accessibility_desc">Використовуйте повзунок, щоб встановити бажаний розмір тексту для редактора нотаток, налаштуйте свій досвід.</string>
     <string name="accessibility_a">А</string>
     <string name="accessibility_default">За замовчуванням 14 pt</string>
-
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">OK</string>
+    <string name="batch_export_failed">Експорт не вдався</string>
+    <string name="batch_export_options">Параметри експорту</string>
+    <string name="batch_export_select_formats">Виберіть формати для експорту:</string>
+    <string name="batch_export_audio_files">Експортувати аудіофайли</string>
+    <string name="batch_export_txt_files">Експортувати текст як файли TXT</string>
+    <string name="batch_export_select_at_least_one_option">Будь ласка, виберіть принаймні один варіант</string>
+    <string name="batch_export_title">Експорт</string>
+    <string name="batch_export_no_selection_made">Вибір не зроблено, будь ласка, виберіть елемент для експорту</string>
+    <string name="batch_export_settings_title">Експорт кількох приміток</string>
+    <string name="batch_export_settings_description">ДОВГО НАТИСНІТЬ на будь-яку картку примітки, щоб показати параметри експорту у списку приміток</string>
+    <string name="batch_export_settings_how_to">Як експортувати кілька приміток</string>
+    <string name="batch_export_settings_how_to_description_1">ДОВГО НАТИСНІТЬ на будь-яку картку примітки для входу в режим вибору, потім експортуйте кілька приміток одночасно</string>
+    <string name="batch_export_settings_how_to_description_2">Довго натисніть примітку</string>
+    <string name="batch_export_settings_how_to_description_3">Виберіть примітки для експорту</string>
+    <string name="batch_export_settings_how_to_description_4">Натисніть кнопку експорту внизу</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">сталася помилка під час експорту</string>
+    <string name="batch_export_settings_no_folder_selected">Вибір папки скасовано</string>
+    <!-- Import -->
+    <string name="import_failed_title">Імпорт не вдався</string>
+    <string name="ok">OK</string>
+    <string name="select_deselect_all">Вибрати / Скасувати все</string>
+    <string name="top_bar_import_video">Імпортувати відео</string>
+    <string name="question_mark">знак питання</string>
+    <string name="ai_model_title">Що таке модель ШІ?</string>
+    <string name="ai_model_description">Модель ШІ схожа на цифровий мозок, який був навчений розуміти мовлення та перетворювати його на письмовий текст. Різні моделі мають різні переваги - деякі швидші, деякі точніші. Виберіть ту, що відповідає вашим потребам.</string>
+    <string name="standard_model_title">Стандартна модель (багатомовна)</string>
+    <string name="standard_model_description">Це швидший, легший варіант, який добре працює для щоденного використання. Він швидко перетворює ваше мовлення на текст і не займає багато місця на вашому телефоні. Ідеально, якщо ви хочете швидких результатів і використовуєте кілька мов. Думайте про нього як про компактний автомобіль - ефективний і виконує роботу.</string>
+    <string name="optimized_model_title">Оптимізована модель (багатомовна)</string>
+    <string name="optimized_model_description">Це потужніший варіант, який надає вам найточніші можливі транскрипції. Це займає трохи більше часу і використовує більше пам\'яті, але правильно розпізнає більше слів, особливо з акцентами або фоновим шумом. Як розкішний автомобіль - більший і повільніший, але забезпечує преміальну якість. Примітка: не підтримує гінді/гуджараті.</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">Швидша продуктивність і менший розмір файлу\nПідтримує всі мови</string>
+    <string name="optimized_model_setting_desc">Найвища доступна точність\nБільший розмір файлу, повільніша продуктивність\nПідтримує всі мови, крім хінді/гуджараті</string>
+    <string name="standard_model_setting_size">142 МБ</string>
+    <string name="optimized_model_setting_size">465 МБ</string>
+    <string name="settings_model_selection">Вибір моделі</string>
+    <string name="settings_model_selection_text">Модель ШІ</string>
+    <string name="settings_model_selection_description">Виберіть модель, яка найкраще відповідає вашим потребам</string>
 </resources>

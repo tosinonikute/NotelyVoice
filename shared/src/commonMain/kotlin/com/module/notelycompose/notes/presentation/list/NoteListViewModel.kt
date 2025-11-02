@@ -54,9 +54,11 @@ class NoteListViewModel(
             .onEach { query ->
                 _state.update { currentState ->
                     val filtered = applyFilters(_state.value.originalNotes, _state.value.selectedTabIndex, query)
+                    val allNotesSizeStr = if (filtered.isEmpty()) "" else "(${filtered.size})"
                     currentState.copy(
                         filteredNotes = filtered,
-                        showEmptyContent = filtered.isEmpty()
+                        showEmptyContent = filtered.isEmpty(),
+                        allNotesSizeStr = allNotesSizeStr
                     )
                 }
             }.launchIn(viewModelScope)
@@ -122,12 +124,14 @@ class NoteListViewModel(
     ) {
 
         val presentationNotes = notes.map { domainToPresentationModel(it) }
+        val allNotesSizeStr = if (presentationNotes.isEmpty()) "" else "(${presentationNotes.size})"
 
         _state.update { currentState ->
             currentState.copy(
                 originalNotes = presentationNotes,
                 filteredNotes = applyFilters(presentationNotes, selectedTabIndex, query),
-                showEmptyContent = presentationNotes.isEmpty()
+                showEmptyContent = presentationNotes.isEmpty(),
+                allNotesSizeStr = allNotesSizeStr
             )
         }
     }

@@ -5,7 +5,6 @@
     <string name="close">Sulge</string>
     <string name="cancel">Katkesta</string>
     <string name="navigate">Liigu rakenduses</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">Tagasi</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">Minu märge</string>
     <string name="top_bar_export_audio_folder">Ekspordi helifailid kausta</string>
     <string name="top_bar_import_audio">Impordi helifailid</string>
+    <string name="top_bar_export_as_pdf">Ekspordi tekst PDF-failina</string>
     <string name="top_bar_export_as_txt">Ekspordi tekstifailina</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">Kinnita</string>
-    <string name="confirmation_text">Kas sa soovid selle märke kustutada?</string>
-    <string name="recording_confirmation_text">Kas sa oled kindel, et soovid selle salvestise kustutada?</string>
+    <string name="confirmation_text">Kas soovite märkuse kustutada? Seda toimingut ei saa tagasi võtta</string>
+    <string name="recording_confirmation_text">Kas olete kindel, et soovite salvestuse kustutada? Seda toimingut ei saa tagasi võtta</string>
     <string name="confirmation_delete">Kustuta</string>
     <string name="confirmation_cancel">Katkesta</string>
     <string name="recording_replace_error">Sa oled juba ühe salvestise teinud. Uue tegemisel asendatakse too jäädavalt. Kas soovid jätkata?</string>
     <string name="recording_import_error">Sa oled juba ühe salvestise teinud. Uue importimisel asendatakse too jäädavalt. Kas soovid jätkata?</string>
     <string name="recording_replace_continue">Jätka</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">Aa täht</string>
     <string name="bottom_navigation_starred">Tähekesega märgitud</string>
     <string name="bottom_navigation_bullet_list">Nummerdamata loend</string>
     <string name="bottom_navigation_delete">Kustuta märge</string>
     <string name="bottom_navigation_hide_keyboard">Peida klahvistik</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">Paks kiri</string>
     <string name="editing_italic">Kaldkiri</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">Joonda vasakule</string>
     <string name="editing_align_center">Joonda keskele</string>
     <string name="editing_align_right">Joonda paremale</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">Vorming</string>
     <string name="format_bar_close">Sulge</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">Vahepealkiri</string>
     <string name="format_bar_subheading">Alampealkiri</string>
     <string name="format_bar_body">Sisutekst</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">Salvestaja</string>
     <string name="transcription_icon">Ikoon</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">Lisavalikud</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">Kõik</string>
+    <string name="date_tab_bar_all">Kõik %1$s</string>
     <string name="date_tab_bar_starred">Tähekesega märgitud</string>
     <string name="date_tab_bar_voices">Hääled</string>
     <string name="date_tab_bar_recent">Hiljutised</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">Kustuta märge</string>
     <string name="note_item_edit">Muuda</string>
@@ -71,27 +63,22 @@
         <item quantity="one">%1$d sõna</item>
         <item quantity="other">%1$d sõna</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">Lisa märge</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">Otsi märkmeid...</string>
     <string name="search_bar_search_description">Otsi</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">Mikrofon</string>
     <string name="recording_ui_tap_start_record">Klõpsi salvestamise alustamiseks</string>
     <string name="recording_ui_tap_stop_record">Klõpsi salvestamise peatamiseks või lõpetamiseks</string>
     <string name="recording_ui_loading">laadin</string>
-    <string name="recording_ui_loading_rotation">laadin vahetust</string>
+    <string name="recording_ui_loading_rotation">laadimine on töös</string>
     <string name="recording_ui_checkmark">märkeruut</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">Peata</string>
     <string name="player_ui_play">Esita</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">Katkesta</string>
     <string name="transcription_dialog_append">Lisa märkme juurde</string>
@@ -100,10 +87,8 @@
     <string name="transcription_dialog_error_got_it">Selge, sain aru</string>
     <string name="transcription_dialog_error_audio_file_title">Helifail on liiga suur</string>
     <string name="transcription_dialog_error_audio_file_desc">See fail on liiga suur, et selles nutiseadmes temast märkmeid koostada. Proovi kasutada lühemat salvestust või väiksemat faili.</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">Viga allalaadimisel</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">KKK</string>
@@ -114,27 +99,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">Märkmeid veel pole</string>
     <string name="empty_list_description">Võid alustada oma mõtete ülestähendamisega ja salvestamisega. Esimese märkme lisamiseks klõpsi + ikooni all paremal nurgas.</string>
     <string name="empty_list_description_tablet">Võid alustada oma mõtete ülestähendamisega ja salvestamisega.\nEsimese märkme lisamiseks klõpsi + ikooni all paremal nurgas.</string>
-
     <!-- Share Dialog -->
     <string name="share_options">Jagamise valikud</string>
     <string name="share_text">Jaga tekstina</string>
     <string name="share_audio_recording">Jaga helisalvestisena</string>
-
     <!-- Download Dialog -->
     <string name="download_required">Andmed vajavad allalaadimist</string>
+    <string name="download_required_for_hindi">Hindi jaoks on vajalik allalaadimine</string>
     <string name="for_accurate_transcription">Täpseks ümberkirjutuseks peama laadima alla vajaliku tehisaru mudeli.</string>
     <string name="take_few_minutes">Selleks võib kuluda mõni minut ja eeldab stabiilse internetiühenduse olemasolu.</string>
-    <string name="file_size_approx">Faili suurus: umbes 500MB</string>
+    <string name="file_size_approx">Faili suurus: umbes %1$s</string>
+    <string name="file_model_english">Mitmekeelne mudel (toetab üle 50 keele)</string>
+    <string name="file_model_hindi">Hindi-optimeeritud mudel</string>
     <string name="download">Laadi alla</string>
-
     <!-- Settings Screen -->
     <string name="settings">Seadistused</string>
-    <string name="customize_your_experience">Kohanda kasutajaliides selliseks, nagu soovid</string>
+    <string name="customize_your_experience">Kõikide seadistuste vaatamiseks keri alla</string>
     <string name="language_and_region">Keel ja piirkond</string>
     <string name="transcription_language">Ümberkirjutuse keel</string>
     <string name="language_used_for_voice_transcription">Heli ümberkirjutuseks kasutatud keel</string>
@@ -147,7 +131,6 @@
     <string name="body_text_preferred_text">Et kirjutamine oleks mugavam, siis vali enda jaoks sobilik põhiteksti suurus.</string>
     <string name="body_text_default">Vaikimisi tekst</string>
     <string name="body_text_pt">%1$d pt</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">Alustame siis</string>
     <string name="onboarding_next">Edasi</string>
@@ -160,7 +143,6 @@
     <string name="onboarding_screen_three_desc">Muuda oma häälmärkmed tekstideks ja\nkoosta neist kokkuvõtted ilma võrguühendust kasutamata</string>
     <string name="onboarding_screen_four_title">Enam kui 50\nkeele tugi</string>
     <string name="onboarding_screen_four_desc">Koosta märkmeid ning nende\nümberkirjutusi oma eelistatud keeles</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">Hele kujundus</string>
     <string name="settings_dark_theme">Tume kujundus</string>
@@ -170,18 +152,60 @@
     <string name="settings_transcription_language">Ümberkirjutuse keel</string>
     <string name="settings_themes">Kujundused</string>
     <string name="settings_title">Seadistused</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">Ühtegi keelt ei leidu</string>
     <string name="language_selection_supported_languages">TOETATUD KEELED</string>
     <string name="language_selection_search">Otsi</string>
     <string name="language_selection_select_language">Vali keel</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">Näidis: %1$d pt</string>
     <string name="accessibility_desc">Kasutades liugurvalijat, vali enda jaoks sobilik põhiteksti suurus.</string>
     <string name="accessibility_a">A</string>
     <string name="accessibility_default">Vaikimisi suurus on 14 pt</string>
-
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">OK</string>
+    <string name="batch_export_failed">Eksport ebaõnnestus</string>
+    <string name="batch_export_options">Ekspordi valikud</string>
+    <string name="batch_export_select_formats">Valige vormingud, mida soovite eksportida:</string>
+    <string name="batch_export_audio_files">Ekspordi helifailid</string>
+    <string name="batch_export_txt_files">Ekspordi tekst TXT-failidena</string>
+    <string name="batch_export_select_at_least_one_option">Palun valige vähemalt üks valik</string>
+    <string name="batch_export_title">Eksport</string>
+    <string name="batch_export_no_selection_made">Valikut ei tehtud, palun valige eksportimiseks üksus</string>
+    <string name="batch_export_settings_title">Ekspordi mitu märkust</string>
+    <string name="batch_export_settings_description">VAJUTAGE PIKALT mis tahes märkuse kaarti, et kuvada ekspordi valikud märkuste loendis</string>
+    <string name="batch_export_settings_how_to">Kuidas eksportida mitut märkust</string>
+    <string name="batch_export_settings_how_to_description_1">VAJUTAGE PIKALT mis tahes märkuse kaarti, et siseneda valikurežiimi, seejärel eksportige mitu märkust korraga</string>
+    <string name="batch_export_settings_how_to_description_2">Vajutage pikalt märkust</string>
+    <string name="batch_export_settings_how_to_description_3">Valige eksportimiseks märkused</string>
+    <string name="batch_export_settings_how_to_description_4">Puudutage ekspordi nuppu all</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">eksportimisel tekkis viga</string>
+    <string name="batch_export_settings_no_folder_selected">Kausta valik tühistati</string>
+    <!-- Import -->
+    <string name="import_failed_title">Import ebaõnnestus</string>
+    <string name="export">Ekspordi</string>
+    <string name="ok">Sobib</string>
+    <string name="top_bar_import_video">Impordi video</string>
+    <string name="select_deselect_all">Vali kõik / Eemalda valik</string>
+    <string name="copy">Kopeeri</string>
+    <string name="copied">Kopeeritud!</string>
+    <string name="transcription_model_selection">Mudeli valik</string>
+    <string name="question_mark">küsimärk</string>
+    <string name="ai_model_title">Mis on tehisaru mudel?</string>
+    <string name="ai_model_description">AI mudel on nagu digitaalne aju, mis on koolitatud kõnet mõistma ja seda kirjalikuks tekstiks teisendama. Erinevatel mudelitel on erinevad tugevused - mõned on kiiremad, mõned täpsemad. Vali see, mis sobib sinu vajadustega.</string>
+    <string name="standard_model_title">Standardmudel (mitmekeelne)</string>
+    <string name="standard_model_description">See on kiirem ja kergem valik, mis sobib igapäevaseks kasutamiseks. See teisendab su kõne kiiresti tekstiks ega võta telefonis palju ruumi. Ideaalne, kui soovid kiireid tulemusi ja kasutad mitut keelt. Mõtle sellele nagu kompaktsele autole - tõhus ja teeb töö ära.</string>
+    <string name="optimized_model_title">Optimeeritud mudel (mitmekeelne)</string>
+    <string name="optimized_model_description">See on võimsam valik, mis annab sulle kõige täpsemad võimalikud transkriptsioonid. See võtab veidi rohkem aega ja kasutab rohkem salvestusruumi, kuid tabab rohkem sõnu õigesti, eriti aktsendiga või taustamüra korral. Nagu luksusauto - suurem ja aeglasem, kuid pakub ülitasemel kvaliteeti. Märkus: ei toeta hindi/gudžarati keelt.</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">Kiirem jõudlus ja väiksem failisuurus\nToetab kõiki keeli</string>
+    <string name="optimized_model_setting_desc">Kõrgeim saadaolev täpsus\nSuurem failisuurus, aeglasem jõudlus\nToetab kõiki keeli peale hindi/gudžarati</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">Mudeli valik</string>
+    <string name="settings_model_selection_text">Tehisaru mudel</string>
+    <string name="settings_model_selection_description">Vali mudel, mis parimal viisil sobib sinu vajadustega</string>
 </resources>

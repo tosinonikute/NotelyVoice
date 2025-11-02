@@ -70,9 +70,9 @@ actual class Transcriber(
             val modelFile = File(modelsPath, modelFileName)
             whisperContext = WhisperContext.createContextFromFile(modelFile.absolutePath)
             canTranscribe = true
-        } catch (e:RuntimeException){
+        } catch (e: OutOfMemoryError) {
             e.printStackTrace()
-        } catch (e:Exception){
+        } catch (e: Throwable) {
             e.printStackTrace()
         }
     }
@@ -83,11 +83,11 @@ actual class Transcriber(
     }
 
     actual fun isValidModel(modelFileName: String) : Boolean{
-      try {
-          loadBaseModel(modelFileName)
-      }catch (e:Exception){
+        try {
+             loadBaseModel(modelFileName)
+        } catch (e:Exception){
           return false
-      }
+        }
         return true
     }
 

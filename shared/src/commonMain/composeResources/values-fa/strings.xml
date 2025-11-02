@@ -5,7 +5,6 @@
     <string name="close">بستن</string>
     <string name="cancel">لغو</string>
     <string name="navigate">پیمایش</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">بازگشت</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">یادداشت من</string>
     <string name="top_bar_export_audio_folder">صادرات صوت به پوشه</string>
     <string name="top_bar_import_audio">وارد کردن صوت</string>
+    <string name="top_bar_export_as_pdf">صادرات متن به عنوان PDF</string>
     <string name="top_bar_export_as_txt">صادرات متن به صورت .txt</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">تأیید</string>
-    <string name="confirmation_text">آیا می‌خواهید یادداشت را حذف کنید؟</string>
-    <string name="recording_confirmation_text">آیا مطمئن هستید که می‌خواهید ضبط را حذف کنید؟</string>
+    <string name="confirmation_text">آیا می‌خواهید یادداشت را حذف کنید؟ این عمل قابل بازگشت نیست</string>
+    <string name="recording_confirmation_text">آیا مطمئن هستید که می‌خواهید ضبط را حذف کنید؟ این عمل قابل بازگشت نیست</string>
     <string name="confirmation_delete">حذف</string>
     <string name="confirmation_cancel">لغو</string>
     <string name="recording_replace_error">شما قبلاً یک ضبط ذخیره کرده‌اید. ایجاد ضبط جدید آن را به طور دائم جایگزین خواهد کرد. آیا می‌خواهید ادامه دهید؟</string>
     <string name="recording_import_error">شما قبلاً یک ضبط ذخیره کرده‌اید. وارد کردن ضبط جدید آن را به طور دائم جایگزین خواهد کرد. آیا می‌خواهید ادامه دهید؟</string>
     <string name="recording_replace_continue">ادامه</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">حرف الف</string>
     <string name="bottom_navigation_starred">ستاره‌دار</string>
     <string name="bottom_navigation_bullet_list">لیست نقطه‌ای</string>
     <string name="bottom_navigation_delete">حذف یادداشت</string>
     <string name="bottom_navigation_hide_keyboard">مخفی کردن صفحه کلید</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">پررنگ</string>
     <string name="editing_italic">کج</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">تراز چپ</string>
     <string name="editing_align_center">تراز وسط</string>
     <string name="editing_align_right">تراز راست</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">قالب</string>
     <string name="format_bar_close">بستن</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">سرتیتر</string>
     <string name="format_bar_subheading">زیرعنوان</string>
     <string name="format_bar_body">متن اصلی</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">ضبط‌کننده</string>
     <string name="transcription_icon">آیکون</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">گزینه‌های بیشتر</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">همه</string>
+    <string name="date_tab_bar_all">همه %1$s</string>
     <string name="date_tab_bar_starred">ستاره‌دار</string>
     <string name="date_tab_bar_voices">صداها</string>
     <string name="date_tab_bar_recent">اخیر</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">حذف یادداشت</string>
     <string name="note_item_edit">ویرایش</string>
@@ -71,14 +63,11 @@
         <item quantity="one">%1$d کلمه</item>
         <item quantity="other">%1$d کلمه</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">افزودن یادداشت</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">جستجو در یادداشت‌ها...</string>
     <string name="search_bar_search_description">جستجو</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">میکروفون</string>
     <string name="recording_ui_tap_start_record">برای شروع ضبط ضربه بزنید</string>
@@ -86,12 +75,10 @@
     <string name="recording_ui_loading">در حال بارگذاری</string>
     <string name="recording_ui_loading_rotation">چرخش بارگذاری</string>
     <string name="recording_ui_checkmark">علامت تیک</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">توقف</string>
     <string name="player_ui_play">پخش</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">لغو</string>
     <string name="transcription_dialog_append">اضافه کردن</string>
@@ -100,10 +87,8 @@
     <string name="transcription_dialog_error_got_it">متوجه شدم</string>
     <string name="transcription_dialog_error_audio_file_title">فایل صوتی خیلی بزرگ است</string>
     <string name="transcription_dialog_error_audio_file_desc">این فایل صوتی برای رونویسی روی دستگاه شما خیلی بزرگ است. ضبط کوتاه‌تر یا فایل با حجم کمتر استفاده کنید.</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">خطا در هنگام دانلود</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">سوالات متداول</string>
@@ -114,27 +99,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">هنوز یادداشتی نیست</string>
     <string name="empty_list_description">شروع به ثبت افکار و ضبط صوتی خود کنید. برای ایجاد اولین یادداشت خود، روی آیکون پلاس + در گوشه پایین راست ضربه بزنید.</string>
     <string name="empty_list_description_tablet">شروع به ثبت افکار و ضبط صوتی خود کنید.\nبرای ایجاد اولین یادداشت خود، روی آیکون پلاس + در گوشه پایین راست ضربه بزنید.</string>
-
     <!-- Share Dialog -->
     <string name="share_options">گزینه‌های اشتراک</string>
     <string name="share_text">اشتراک متن</string>
     <string name="share_audio_recording">اشتراک ضبط صوتی</string>
-
     <!-- Download Dialog -->
     <string name="download_required">دانلود مورد نیاز</string>
+    <string name="download_required_for_hindi">دانلود برای هندی مورد نیاز است</string>
     <string name="for_accurate_transcription">برای رونویسی دقیق، باید مدل هوش مصنوعی را دانلود کنیم.</string>
     <string name="take_few_minutes">این کار ممکن است چند دقیقه طول بکشد و به اتصال اینترنت پایدار نیاز دارد.</string>
-    <string name="file_size_approx">حجم فایل: تقریباً 142 مگابایت</string>
+    <string name="file_size_approx">حجم فایل: تقریباً %1$s مگابایت</string>
+    <string name="file_model_english">مدل چندزبانه (پشتیبانی از بیش از ۵۰ زبان)</string>
+    <string name="file_model_hindi">مدل بهینه‌شده برای هندی</string>
     <string name="download">دانلود</string>
-
     <!-- Settings Screen -->
     <string name="settings">تنظیمات</string>
-    <string name="customize_your_experience">تجربه خود را شخصی‌سازی کنید</string>
+    <string name="customize_your_experience">برای مشاهده همه تنظیمات به پایین بروید</string>
     <string name="language_and_region">زبان و منطقه</string>
     <string name="transcription_language">زبان رونویسی</string>
     <string name="language_used_for_voice_transcription">زبان مورد استفاده برای رونویسی صوت</string>
@@ -147,7 +131,6 @@
     <string name="body_text_preferred_text">اندازه متن اصلی مورد نظر خود را برای ویرایشگر یادداشت‌ها تنظیم کنید تا تجربه نوشتن شما بهبود یابد.</string>
     <string name="body_text_default">پیش‌فرض</string>
     <string name="body_text_pt">%1$d pt</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">شروع کنید</string>
     <string name="onboarding_next">بعدی</string>
@@ -160,7 +143,6 @@
     <string name="onboarding_screen_three_desc">یادداشت‌های صوتی را بدون اینترنت\nبه متن و خلاصه تبدیل کنید</string>
     <string name="onboarding_screen_four_title">پشتیبانی از\nبیش از 50 زبان</string>
     <string name="onboarding_screen_four_desc">یادداشت‌ها را به زبان مورد نظر خود\nایجاد و رونویسی کنید</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">تم روشن</string>
     <string name="settings_dark_theme">تم تیره</string>
@@ -170,17 +152,56 @@
     <string name="settings_transcription_language">زبان رونویسی</string>
     <string name="settings_themes">تم‌ها</string>
     <string name="settings_title">تنظیمات</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">زبانی یافت نشد</string>
     <string name="language_selection_supported_languages">زبان‌های پشتیبانی شده</string>
     <string name="language_selection_search">جستجو</string>
     <string name="language_selection_select_language">انتخاب زبان</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">مثال %1$d pt</string>
     <string name="accessibility_desc">از نوار لغزان برای تنظیم اندازه نوشتن مورد نظر برای ویرایشگر یادداشت‌ها استفاده کنید، تجربه خود را شخصی‌سازی کنید.</string>
     <string name="accessibility_a">الف</string>
     <string name="accessibility_default">پیش‌فرض 14 pt است</string>
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">تأیید</string>
+    <string name="batch_export_failed">خروجی ناموفق بود</string>
+    <string name="batch_export_options">گزینه‌های خروجی</string>
+    <string name="batch_export_select_formats">فرمت‌هایی که می‌خواهید خروجی بگیرید را انتخاب کنید:</string>
+    <string name="batch_export_audio_files">خروجی گرفتن فایل‌های صوتی</string>
+    <string name="batch_export_txt_files">خروجی گرفتن متن به عنوان فایل‌های TXT</string>
+    <string name="batch_export_select_at_least_one_option">لطفاً حداقل یک گزینه را انتخاب کنید</string>
+    <string name="batch_export_title">خروجی</string>
+    <string name="batch_export_no_selection_made">انتخابی انجام نشده است، لطفاً یک مورد برای خروجی انتخاب کنید</string>
+    <string name="batch_export_settings_title">خروجی گرفتن از چندین یادداشت</string>
+    <string name="batch_export_settings_description">برای نمایش گزینه‌های خروجی در لیست یادداشت‌ها، روی هر کارت یادداشت به صورت طولانی فشار دهید</string>
+    <string name="batch_export_settings_how_to">نحوه خروجی گرفتن از چندین یادداشت</string>
+    <string name="batch_export_settings_how_to_description_1">روی هر کارت یادداشت به صورت طولانی فشار دهید تا وارد حالت انتخاب شوید، سپس چندین یادداشت را به طور همزمان خروجی بگیرید</string>
+    <string name="batch_export_settings_how_to_description_2">روی یادداشت به صورت طولانی فشار دهید</string>
+    <string name="batch_export_settings_how_to_description_3">یادداشت‌ها را برای خروجی انتخاب کنید</string>
+    <string name="batch_export_settings_how_to_description_4">روی دکمه خروجی در پایین ضربه بزنید</string>
+    <string name="batch_export_settings_how_to_1">۱.</string>
+    <string name="batch_export_settings_how_to_2">۲.</string>
+    <string name="batch_export_settings_how_to_3">۳.</string>
+    <string name="batch_export_settings_error_occurred">خطایی در هنگام خروجی رخ داد</string>
+    <string name="batch_export_settings_no_folder_selected">انتخاب پوشه لغو شد</string>
+    <!-- Import -->
+    <string name="import_failed_title">ورودی ناموفق بود</string>
+    <string name="ok">تأیید</string>
+    <string name="select_deselect_all">انتخاب / لغو انتخاب همه</string>
+    <string name="top_bar_import_video">وارد کردن ویدیو</string>
+    <string name="question_mark">علامت سؤال</string>
+    <string name="ai_model_title">مدل هوش مصنوعی چیست؟</string>
+    <string name="ai_model_description">یک مدل هوش مصنوعی مانند یک مغز دیجیتال است که برای درک گفتار و تبدیل آن به متن نوشتاری آموزش دیده است. مدل‌های مختلف نقاط قوت متفاوتی دارند - برخی سریع‌تر هستند، برخی دقیق‌تر. آنی را انتخاب کنید که با نیازهای شما مطابقت دارد.</string>
+    <string name="standard_model_title">مدل استاندارد (چندزبانه)</string>
+    <string name="standard_model_description">این گزینه سریع‌تر و سبک‌تر است که برای استفاده روزمره مناسب است. به سرعت گفتار شما را به متن تبدیل می‌کند و فضای زیادی در تلفن شما اشغال نمی‌کند. عالی است اگر نتایج سریع می‌خواهید و از چندین زبان استفاده می‌کنید. مانند یک خودروی کوچک فکر کنید - کارآمد و کار را انجام می‌دهد.</string>
+    <string name="optimized_model_title">مدل بهینه‌شده (چندزبانه)</string>
+    <string name="optimized_model_description">این گزینه قدرتمندتر است که دقیق‌ترین رونوشت‌هایممکن را به شما ارائه می‌دهد. کمی بیشتر طول می‌کشد و فضای ذخیره‌سازی بیشتری استفاده می‌کند، اما کلمات بیشتری را به درستی می‌گیرد، به‌ویژه با لهجه‌ها یا نویز پس‌زمینه. مانند یک خودروی لوکس - بزرگ‌تر و کندتر، اما کیفیت ممتاز ارائه می‌دهد. توجه: از هندی/گجراتی پشتیبانی نمی‌کند.</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">عملکرد سریع‌تر و حجم فایل کوچک‌تر\nپشتیبانی از همه زبان‌ها</string>
+    <string name="optimized_model_setting_desc">بالاترین دقت موجود\nحجم فایل بزرگ‌تر، عملکرد کندتر\nپشتیبانی از همه زبان‌ها به جز هندی/گجراتی</string>
+    <string name="standard_model_setting_size">۱۴۲ مگابایت</string>
+    <string name="optimized_model_setting_size">۴۶۵ مگابایت</string>
+    <string name="settings_model_selection">انتخاب مدل</string>
+    <string name="settings_model_selection_text">مدل هوش مصنوعی</string>
+    <string name="settings_model_selection_description">مدلی را انتخاب کنید که بهترین تطابق با نیازهای شما دارد</string>
 </resources>

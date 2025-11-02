@@ -5,7 +5,6 @@
     <string name="close">ปิด</string>
     <string name="cancel">ยกเลิก</string>
     <string name="navigate">นำทาง</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">กลับ</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">โน้ตของฉัน</string>
     <string name="top_bar_export_audio_folder">ส่งออกเสียงไปยังโฟลเดอร์</string>
     <string name="top_bar_import_audio">นำเข้าเสียง</string>
+    <string name="top_bar_export_as_pdf">ส่งออกข้อความเป็น PDF</string>
     <string name="top_bar_export_as_txt">ส่งออกข้อความเป็น .txt</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">ยืนยัน</string>
-    <string name="confirmation_text">คุณต้องการลบโน้ตหรือไม่?</string>
-    <string name="recording_confirmation_text">คุณแน่ใจหรือไม่ว่าต้องการลบการบันทึก?</string>
+    <string name="confirmation_text">คุณต้องการลบโน้ตหรือไม่? การดำเนินการนี้ไม่สามารถยกเลิกได้</string>
+    <string name="recording_confirmation_text">คุณแน่ใจหรือไม่ว่าต้องการลบการบันทึก? การดำเนินการนี้ไม่สามารถยกเลิกได้</string>
     <string name="confirmation_delete">ลบ</string>
     <string name="confirmation_cancel">ยกเลิก</string>
     <string name="recording_replace_error">คุณมีการบันทึกที่บันทึกไว้แล้ว การสร้างการบันทึกใหม่จะแทนที่การบันทึกเดิมอย่างถาวร คุณต้องการดำเนินการต่อหรือไม่?</string>
     <string name="recording_import_error">คุณมีการบันทึกที่บันทึกไว้แล้ว การนำเข้าการบันทึกใหม่จะแทนที่การบันทึกเดิมอย่างถาวร คุณต้องการดำเนินการต่อหรือไม่?</string>
     <string name="recording_replace_continue">ดำเนินการต่อ</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">ตัวอักษร Aa</string>
     <string name="bottom_navigation_starred">ติดดาว</string>
     <string name="bottom_navigation_bullet_list">รายการสัญลักษณ์หัวข้อย่อย</string>
     <string name="bottom_navigation_delete">ลบโน้ต</string>
     <string name="bottom_navigation_hide_keyboard">ซ่อนแป้นพิมพ์</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">ตัวหนา</string>
     <string name="editing_italic">ตัวเอียง</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">จัดชิดซ้าย</string>
     <string name="editing_align_center">จัดกึ่งกลาง</string>
     <string name="editing_align_right">จัดชิดขวา</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">รูปแบบ</string>
     <string name="format_bar_close">ปิด</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">หัวข้อหลัก</string>
     <string name="format_bar_subheading">หัวข้อย่อย</string>
     <string name="format_bar_body">เนื้อหา</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">เครื่องบันทึกเสียง</string>
     <string name="transcription_icon">ไอคอน</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">ตัวเลือกเพิ่มเติม</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">ทั้งหมด</string>
+    <string name="date_tab_bar_all">ทั้งหมด %1$s</string>
     <string name="date_tab_bar_starred">ติดดาว</string>
     <string name="date_tab_bar_voices">เสียง</string>
     <string name="date_tab_bar_recent">ล่าสุด</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">ลบโน้ต</string>
     <string name="note_item_edit">แก้ไข</string>
@@ -71,14 +63,11 @@
         <item quantity="one">%1$d คำ</item>
         <item quantity="other">%1$d คำ</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">เพิ่มโน้ต</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">ค้นหาโน้ต...</string>
     <string name="search_bar_search_description">ค้นหา</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">ไมโครโฟน</string>
     <string name="recording_ui_tap_start_record">แตะเพื่อเริ่มบันทึก</string>
@@ -86,12 +75,10 @@
     <string name="recording_ui_loading">กำลังโหลด</string>
     <string name="recording_ui_loading_rotation">การหมุนขณะโหลด</string>
     <string name="recording_ui_checkmark">เครื่องหมายถูก</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">หยุดชั่วคราว</string>
     <string name="player_ui_play">เล่น</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">ยกเลิก</string>
     <string name="transcription_dialog_append">เพิ่มต่อท้าย</string>
@@ -100,10 +87,8 @@
     <string name="transcription_dialog_error_got_it">เข้าใจแล้ว</string>
     <string name="transcription_dialog_error_audio_file_title">ไฟล์เสียงใหญ่เกินไป</string>
     <string name="transcription_dialog_error_audio_file_desc">ไฟล์เสียงนี้ใหญ่เกินไปสำหรับการแปลงเป็นข้อความบนอุปกรณ์ของคุณ ลองใช้การบันทึกที่สั้นกว่าหรือไฟล์ที่มีขนาดเล็กกว่า</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">เกิดข้อผิดพลาดขณะดาวน์โหลด</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">คำถามที่พบบ่อย</string>
@@ -114,27 +99,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">ยังไม่มีโน้ต</string>
     <string name="empty_list_description">เริ่มบันทึกความคิดและการบันทึกเสียงของคุณ แตะไอคอนเครื่องหมายบวก + ที่มุมขวาล่างเพื่อสร้างโน้ตแรกของคุณ</string>
     <string name="empty_list_description_tablet">เริ่มบันทึกความคิดและการบันทึกเสียงของคุณ\nแตะไอคอนเครื่องหมายบวก + ที่มุมขวาล่างเพื่อสร้างโน้ตแรกของคุณ</string>
-
     <!-- Share Dialog -->
     <string name="share_options">ตัวเลือกการแชร์</string>
     <string name="share_text">แชร์ข้อความ</string>
     <string name="share_audio_recording">แชร์การบันทึกเสียง</string>
-
     <!-- Download Dialog -->
     <string name="download_required">จำเป็นต้องดาวน์โหลด</string>
+    <string name="download_required_for_hindi">จำเป็นต้องดาวน์โหลดสำหรับภาษาฮินดี</string>
     <string name="for_accurate_transcription">เพื่อการแปลงเป็นข้อความที่แม่นยำ เราจำเป็นต้องดาวน์โหลดโมเดล AI</string>
     <string name="take_few_minutes">อาจใช้เวลาสองสามนาทีและต้องการการเชื่อมต่ออินเทอร์เน็ตที่เสถียร</string>
-    <string name="file_size_approx">ขนาดไฟล์: ประมาณ 500MB</string>
+    <string name="file_size_approx">ขนาดไฟล์: ประมาณ %1$s</string>
+    <string name="file_model_english">โมเดลหลายภาษา (รองรับมากกว่า 50 ภาษา)</string>
+    <string name="file_model_hindi">โมเดลที่เหมาะสำหรับภาษาฮินดี</string>
     <string name="download">ดาวน์โหลด</string>
-
     <!-- Settings Screen -->
     <string name="settings">การตั้งค่า</string>
-    <string name="customize_your_experience">ปรับแต่งประสบการณ์ของคุณ</string>
+    <string name="customize_your_experience">เลื่อนลงเพื่อดูการตั้งค่าทั้งหมด</string>
     <string name="language_and_region">ภาษาและภูมิภาค</string>
     <string name="transcription_language">ภาษาการแปลงข้อความ</string>
     <string name="language_used_for_voice_transcription">ภาษาที่ใช้สำหรับการแปลงเสียงเป็นข้อความ</string>
@@ -147,7 +131,6 @@
     <string name="body_text_preferred_text">ตั้งค่าขนาดข้อความเนื้อหาที่คุณต้องการสำหรับตัวแก้ไขโน้ตเพื่อเพิ่มประสบการณ์การเขียนของคุณ</string>
     <string name="body_text_default">ค่าเริ่มต้น</string>
     <string name="body_text_pt">%1$d pt</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">เริ่มต้น</string>
     <string name="onboarding_next">ถัดไป</string>
@@ -160,7 +143,6 @@
     <string name="onboarding_screen_three_desc">แปลงโน้ตเสียงเป็นข้อความและ\nสรุปโดยไม่ต้องใช้อินเทอร์เน็ต</string>
     <string name="onboarding_screen_four_title">รองรับ\nมากกว่า 50 ภาษา</string>
     <string name="onboarding_screen_four_desc">สร้างและแปลงโน้ตในภาษา\nที่คุณต้องการ</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">ธีมสว่าง</string>
     <string name="settings_dark_theme">ธีมมืด</string>
@@ -170,18 +152,56 @@
     <string name="settings_transcription_language">ภาษาการแปลงข้อความ</string>
     <string name="settings_themes">ธีม</string>
     <string name="settings_title">การตั้งค่า</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">ไม่พบภาษา</string>
     <string name="language_selection_supported_languages">ภาษาที่รองรับ</string>
     <string name="language_selection_search">ค้นหา</string>
     <string name="language_selection_select_language">เลือกภาษา</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">ตัวอย่าง %1$d pt</string>
     <string name="accessibility_desc">ใช้แถบเลื่อนเพื่อตั้งค่าขนาดข้อความการเขียนที่ต้องการสำหรับตัวแก้ไขโน้ต ปรับแต่งประสบการณ์ของคุณ</string>
     <string name="accessibility_a">ก</string>
     <string name="accessibility_default">ค่าเริ่มต้นคือ 14 pt</string>
-
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">ตกลง</string>
+    <string name="batch_export_failed">การส่งออกล้มเหลว</string>
+    <string name="batch_export_options">ตัวเลือกการส่งออก</string>
+    <string name="batch_export_select_formats">เลือกรูปแบบที่คุณต้องการส่งออก:</string>
+    <string name="batch_export_audio_files">ส่งออกไฟล์เสียง</string>
+    <string name="batch_export_txt_files">ส่งออกข้อความเป็นไฟล์ TXT</string>
+    <string name="batch_export_select_at_least_one_option">โปรดเลือกตัวเลือกอย่างน้อยหนึ่งตัวเลือก</string>
+    <string name="batch_export_title">ส่งออก</string>
+    <string name="batch_export_no_selection_made">ไม่ได้เลือก โปรดเลือกรายการที่จะส่งออก</string>
+    <string name="batch_export_settings_title">ส่งออกหลายบันทึก</string>
+    <string name="batch_export_settings_description">กดค้างบัตรบันทึกใดก็ได้เพื่อแสดงตัวเลือกการส่งออกในรายการบันทึก</string>
+    <string name="batch_export_settings_how_to">วิธีส่งออกหลายบันทึก</string>
+    <string name="batch_export_settings_how_to_description_1">กดค้างบัตรบันทึกใดก็ได้เพื่อเข้าสู่โหมดการเลือก จากนั้นส่งออกหลายบันทึกพร้อมกัน</string>
+    <string name="batch_export_settings_how_to_description_2">กดค้างบันทึก</string>
+    <string name="batch_export_settings_how_to_description_3">เลือกบันทึกที่จะส่งออก</string>
+    <string name="batch_export_settings_how_to_description_4">แตะปุ่มส่งออกที่ด้านล่าง</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">เกิดข้อผิดพลาดขึ้นระหว่างการส่งออก</string>
+    <string name="batch_export_settings_no_folder_selected">การเลือกโฟลเดอร์ถูกยกเลิก</string>
+    <!-- Import -->
+    <string name="import_failed_title">การนำเข้าล้มเหลว</string>
+    <string name="ok">ตกลง</string>
+    <string name="select_deselect_all">เลือก / ยกเลิกการเลือกทั้งหมด</string>
+    <string name="top_bar_import_video">นำเข้าวิดีโอ</string>
+    <string name="question_mark">เครื่องหมายคำถาม</string>
+    <string name="ai_model_title">โมเดล AI คืออะไร?</string>
+    <string name="ai_model_description">โมเดล AI เปรียบเสมือนสมองดิจิทัลที่ได้รับการฝึกฝนให้เข้าใจการพูดและแปลงเป็นข้อความที่เขียน โมเดลต่างๆ มีจุดแข็งที่แตกต่างกัน - บางตัวเร็วกว่า บางตัวแม่นยำกว่า เลือกตัวที่ตรงกับความต้องการของคุณ</string>
+    <string name="standard_model_title">โมเดลมาตรฐาน (หลายภาษา)</string>
+    <string name="standard_model_description">นี่คือตัวเลือกที่เร็วกว่าและเบากว่าที่ใช้งานได้ดีในการใช้งานประจำวัน แปลงคำพูดของคุณเป็นข้อความอย่างรวดเร็วและไม่ใช้พื้นที่มากในโทรศัพท์ของคุณ เหมาะอย่างยิ่งหากคุณต้องการผลลัพธ์ที่รวดเร็วและใช้หลายภาษา คิดว่ามันเหมือนรถยนต์ขนาดเล็ก - มีประสิทธิภาพและทำงานได้สำเร็จ</string>
+    <string name="optimized_model_title">โมเดลที่ปรับให้เหมาะสม (หลายภาษา)</string>
+    <string name="optimized_model_description">นี่คือตัวเลือกที่ทรงพลังกว่าที่ให้การถอดเสียงที่แม่นยำที่สุดเท่าที่จะเป็นไปได้ ใช้เวลานานขึ้นเล็กน้อยและใช้พื้นที่จัดเก็บมากขึ้น แต่จับคำได้ถูกต้องมากขึ้น โดยเฉพาะกับสำเนียงหรือเสียงรบกวนพื้นหลัง เหมือนรถยนต์หรู - ใหญ่กว่าและช้ากว่า แต่ให้คุณภาพระดับพรีเมียม หมายเหตุ: ไม่รองรับภาษาฮินดี/คุชราต</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">ประสิทธิภาพที่เร็วขึ้นและขนาดไฟล์ที่เล็กลง\nรองรับทุกภาษา</string>
+    <string name="optimized_model_setting_desc">ความแม่นยำสูงสุดที่มี\nขนาดไฟล์ใหญ่ขึ้น ประสิทธิภาพช้าลง\nรองรับทุกภาษายกเว้นฮินดี/คุชราต</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">การเลือกโมเดล</string>
+    <string name="settings_model_selection_text">โมเดล AI</string>
+    <string name="settings_model_selection_description">เลือกโมเดลที่เหมาะสมกับความต้องการของคุณมากที่สุด</string>
 </resources>

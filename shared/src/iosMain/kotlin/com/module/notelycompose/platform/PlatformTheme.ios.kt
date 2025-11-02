@@ -182,4 +182,14 @@ actual class PlatformUtils(
             onResult(false, "PDF export failed: ${e.message}")
         }
     }
+
+    actual fun copyTextToClipboard(text: String, onResult: (Boolean, String?) -> Unit) {
+        try {
+            val pasteboard = platform.UIKit.UIPasteboard.generalPasteboard
+            pasteboard.string = text
+            onResult(true, "Text copied to clipboard")
+        } catch (e: Exception) {
+            onResult(false, "Failed to copy: ${e.message}")
+        }
+    }
 }

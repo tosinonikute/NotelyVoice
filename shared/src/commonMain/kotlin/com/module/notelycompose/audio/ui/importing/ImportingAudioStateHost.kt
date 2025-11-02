@@ -19,7 +19,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.module.notelycompose.audio.ui.recorder.RecordingSuccessScreen
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
+import com.module.notelycompose.resources.Res
+import com.module.notelycompose.resources.import_failed_title
+import com.module.notelycompose.resources.ok
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun ImportingAudioStateHost(
@@ -50,10 +54,10 @@ internal fun ImportingAudioStateHost(
                 onDismissRequest = onRelease,
                 confirmButton = {
                     TextButton(onClick = onRelease) {
-                        Text("OK")
+                        Text(stringResource(Res.string.ok))
                     }
                 },
-                title = { Text("Import Failed") },
+                title = { Text(stringResource(Res.string.import_failed_title)) },
                 text = { Text(state.message) }
             )
         }

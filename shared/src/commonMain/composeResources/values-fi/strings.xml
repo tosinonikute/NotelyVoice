@@ -5,7 +5,6 @@
     <string name="close">Sulje</string>
     <string name="cancel">Peruuta</string>
     <string name="navigate">Navigoi</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">Takaisin</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">Muistiinpanoni</string>
     <string name="top_bar_export_audio_folder">Vie ääni kansioon</string>
     <string name="top_bar_import_audio">Tuo ääni</string>
+    <string name="top_bar_export_as_pdf">Vie teksti PDF-muodossa</string>
     <string name="top_bar_export_as_txt">Vie teksti .txt-tiedostona</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">Vahvista</string>
-    <string name="confirmation_text">Haluatko poistaa muistiinpanon?</string>
-    <string name="recording_confirmation_text">Oletko varma, että haluat poistaa äänityksen?</string>
+    <string name="confirmation_text">Haluatko poistaa muistiinpanon? Tätä toimintoa ei voi perua</string>
+    <string name="recording_confirmation_text">Haluatko varmasti poistaa tallennuksen? Tätä toimintoa ei voi perua</string>
     <string name="confirmation_delete">Poista</string>
     <string name="confirmation_cancel">Peruuta</string>
     <string name="recording_replace_error">Sinulla on jo tallennettu äänite. Uuden äänityksen luominen korvaa sen pysyvästi. Haluatko jatkaa?</string>
     <string name="recording_import_error">Sinulla on jo tallennettu äänite. Uuden äänityksen tuominen korvaa sen pysyvästi. Haluatko jatkaa?</string>
     <string name="recording_replace_continue">Jatka</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">Kirjain Aa</string>
     <string name="bottom_navigation_starred">Tähdellä merkityt</string>
     <string name="bottom_navigation_bullet_list">Luettelomerkit</string>
     <string name="bottom_navigation_delete">Poista muistiinpano</string>
     <string name="bottom_navigation_hide_keyboard">Piilota näppäimistö</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">Lihavointi</string>
     <string name="editing_italic">Kursivointi</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">Tasaa vasemmalle</string>
     <string name="editing_align_center">Keskitä</string>
     <string name="editing_align_right">Tasaa oikealle</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">Muotoilu</string>
     <string name="format_bar_close">Sulje</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">Pääotsikko</string>
     <string name="format_bar_subheading">Aliotsikko</string>
     <string name="format_bar_body">Leipäteksti</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">Tallennin</string>
     <string name="transcription_icon">Kuvake</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">Lisää vaihtoehtoja</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">Kaikki</string>
+    <string name="date_tab_bar_all">Kaikki %1$s</string>
     <string name="date_tab_bar_starred">Tähdellä merkityt</string>
     <string name="date_tab_bar_voices">Äänet</string>
     <string name="date_tab_bar_recent">Viimeisimmät</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">Poista muistiinpano</string>
     <string name="note_item_edit">Muokkaa</string>
@@ -71,14 +63,11 @@
         <item quantity="one">%1$d sana</item>
         <item quantity="other">%1$d sanaa</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">Lisää muistiinpano</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">Etsi muistiinpanoja...</string>
     <string name="search_bar_search_description">Hae</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">Mikrofoni</string>
     <string name="recording_ui_tap_start_record">Napauta aloittaaksesi äänityksen</string>
@@ -86,12 +75,10 @@
     <string name="recording_ui_loading">ladataan</string>
     <string name="recording_ui_loading_rotation">lataus pyörii</string>
     <string name="recording_ui_checkmark">valintamerkki</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">Keskeytä</string>
     <string name="player_ui_play">Toista</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">Peruuta</string>
     <string name="transcription_dialog_append">Liitä</string>
@@ -100,10 +87,8 @@
     <string name="transcription_dialog_error_got_it">Selvä</string>
     <string name="transcription_dialog_error_audio_file_title">Äänitiedosto liian suuri</string>
     <string name="transcription_dialog_error_audio_file_desc">Tämä äänitiedosto on liian suuri transkriptiota varten laitteessasi. Kokeile lyhyempää äänitystä tai pienempää tiedostokokoa.</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">Virhe ladattaessa</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">Usein kysytyt kysymykset</string>
@@ -114,27 +99,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">Ei vielä muistiinpanoja</string>
     <string name="empty_list_description">Ala tallentaa ajatuksiasi ja äänimuistiinpanoja. Napauta plus + -kuvaketta oikeassa alakulmassa luodaksesi ensimmäisen muistiinpanosi.</string>
     <string name="empty_list_description_tablet">Ala tallentaa ajatuksiasi ja äänimuistiinpanoja.\nNapauta plus + -kuvaketta oikeassa alakulmassa luodaksesi ensimmäisen muistiinpanosi.</string>
-
     <!-- Share Dialog -->
     <string name="share_options">Jakamisvaihtoehdot</string>
     <string name="share_text">Jaa teksti</string>
     <string name="share_audio_recording">Jaa äänitallennus</string>
-
     <!-- Download Dialog -->
     <string name="download_required">Lataus vaaditaan</string>
+    <string name="download_required_for_hindi">Lataus vaaditaan hindille</string>
     <string name="for_accurate_transcription">Tarkkaa transkriptiota varten meidän täytyy ladata tekoälymalli.</string>
     <string name="take_few_minutes">Tämä voi kestää muutaman minuutin ja vaatii vakaan internetyhteyden.</string>
-    <string name="file_size_approx">Tiedostokoko: noin 500MB</string>
+    <string name="file_size_approx">Tiedostokoko: noin %1$s</string>
+    <string name="file_model_english">Monikielinen malli (tukee yli 50 kieltä)</string>
+    <string name="file_model_hindi">Hindi-optimoitu malli</string>
     <string name="download">Lataa</string>
-
     <!-- Settings Screen -->
     <string name="settings">Asetukset</string>
-    <string name="customize_your_experience">Mukauta kokemustasi</string>
+    <string name="customize_your_experience">Vieritä alas nähdäksesi kaikki asetukset</string>
     <string name="language_and_region">Kieli &amp; Alue</string>
     <string name="transcription_language">Transkriptiokieli</string>
     <string name="language_used_for_voice_transcription">Puhetranskripcióssa käytettävä kieli</string>
@@ -147,7 +131,6 @@
     <string name="body_text_preferred_text">Aseta haluamasi leipätekstin koko muistiinpano-editorille parantaaksesi kirjoituskokemustasi.</string>
     <string name="body_text_default">Oletus</string>
     <string name="body_text_pt">%1$d pt</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">Aloita</string>
     <string name="onboarding_next">Seuraava</string>
@@ -160,7 +143,6 @@
     <string name="onboarding_screen_three_desc">Muunna äänimuistiinpanot tekstiksi ja\ntiivistelmiksi ilman internetiä</string>
     <string name="onboarding_screen_four_title">Tukee\nyli 50 kieltä</string>
     <string name="onboarding_screen_four_desc">Luo ja transkriptoi muistiinpanoja\nhaluamallasi kielellä</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">Vaalea teema</string>
     <string name="settings_dark_theme">Tumma teema</string>
@@ -170,18 +152,56 @@
     <string name="settings_transcription_language">Transkriptiokieli</string>
     <string name="settings_themes">Teemat</string>
     <string name="settings_title">Asetukset</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">Kieliä ei löytynyt</string>
     <string name="language_selection_supported_languages">TUETUT KIELET</string>
     <string name="language_selection_search">Hae</string>
     <string name="language_selection_select_language">Valitse kieli</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">Esimerkki %1$d pt</string>
     <string name="accessibility_desc">Käytä liukusäädintä asettaaksesi haluamasi kirjoitustekstin koko muistiinpano-editorille, mukauta kokemustasi.</string>
     <string name="accessibility_a">A</string>
     <string name="accessibility_default">Oletus on 14 pt</string>
-
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">OK</string>
+    <string name="batch_export_failed">Vienti epäonnistui</string>
+    <string name="batch_export_options">Viennin asetukset</string>
+    <string name="batch_export_select_formats">Valitse vietävät tiedostomuodot:</string>
+    <string name="batch_export_audio_files">Vie äänitiedostot</string>
+    <string name="batch_export_txt_files">Vie teksti TXT-tiedostoina</string>
+    <string name="batch_export_select_at_least_one_option">Valitse vähintään yksi vaihtoehto</string>
+    <string name="batch_export_title">Vie</string>
+    <string name="batch_export_no_selection_made">Valintaa ei tehty, valitse vietävä kohde</string>
+    <string name="batch_export_settings_title">Vie useita muistiinpanoja</string>
+    <string name="batch_export_settings_description">PAINA PITKÄÄN mitä tahansa muistiinpanokorttia näyttääksesi viennin asetukset muistiinpanoluettelossa</string>
+    <string name="batch_export_settings_how_to">Useiden muistiinpanojen vieminen</string>
+    <string name="batch_export_settings_how_to_description_1">PAINA PITKÄÄN mitä tahansa muistiinpanokorttia siirtyäksesi valintatilaan ja vie sitten useita muistiinpanoja kerralla</string>
+    <string name="batch_export_settings_how_to_description_2">Paina muistiinpanoa pitkään</string>
+    <string name="batch_export_settings_how_to_description_3">Valitse vietävät muistiinpanot</string>
+    <string name="batch_export_settings_how_to_description_4">Napauta vientipainiketta alareunassa</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">viennin aikana tapahtui virhe</string>
+    <string name="batch_export_settings_no_folder_selected">Kansion valinta peruutettu</string>
+    <!-- Import -->
+    <string name="import_failed_title">Tuonti epäonnistui</string>
+    <string name="ok">OK</string>
+    <string name="select_deselect_all">Valitse / Poista valinta kaikista</string>
+    <string name="top_bar_import_video">Tuo video</string>
+    <string name="question_mark">kysymysmerkki</string>
+    <string name="ai_model_title">Mikä on tekoälymalli?</string>
+    <string name="ai_model_description">Tekoälymalli on kuin digitaalinen aivot, joka on koulutettu ymmärtämään puhetta ja muuttamaan se kirjoitetuksi tekstiksi. Eri malleilla on eri vahvuudet - jotkut ovat nopeampia, jotkut tarkempia. Valitse tarpeisiisi sopiva.</string>
+    <string name="standard_model_title">Vakiomalli (monikielinen)</string>
+    <string name="standard_model_description">Tämä on nopeampi, kevyempi vaihtoehto, joka toimii hyvin päivittäisessä käytössä. Se muuntaa puheesi nopeasti tekstiksi eikä vie paljon tilaa puhelimestasi. Täydellinen, jos haluat nopeita tuloksia ja käytät useita kieliä. Ajattele sitä kuin pientä autoa - tehokas ja tekee työn.</string>
+    <string name="optimized_model_title">Optimoitu malli (monikielinen)</string>
+    <string name="optimized_model_description">Tämä on tehokkaampi vaihtoehto, joka antaa tarkimmat mahdolliset transkriptiot. Se kestää hieman kauemmin ja käyttää enemmän tallennustilaa, mutta tunnistaa enemmän sanoja oikein, erityisesti aksenttien tai taustamelun kanssa. Kuin luksusauto - isompi ja hitaampi, mutta tarjoaa premium-laatua. Huomaa: ei tue hindiä/gudžaratia.</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">Nopeampi suorituskyky ja pienempi tiedostokoko\nTukee kaikkia kieliä</string>
+    <string name="optimized_model_setting_desc">Korkein saatavilla oleva tarkkuus\nSuurempi tiedostokoko, hitaampi suorituskyky\nTukee kaikkia kieliä paitsi hindiä/gudžaratia</string>
+    <string name="standard_model_setting_size">142 Mt</string>
+    <string name="optimized_model_setting_size">465 Mt</string>
+    <string name="settings_model_selection">Mallin valinta</string>
+    <string name="settings_model_selection_text">Tekoälymalli</string>
+    <string name="settings_model_selection_description">Valitse tarpeisiisi parhaiten sopiva malli</string>
 </resources>

@@ -5,7 +5,6 @@
     <string name="close">Schließen</string>
     <string name="cancel">Abbrechen</string>
     <string name="navigate">Navigieren</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">Zurück</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">Meine Notiz</string>
     <string name="top_bar_export_audio_folder">Audio in Ordner exportieren</string>
     <string name="top_bar_import_audio">Audio importieren</string>
+    <string name="top_bar_export_as_pdf">Text als PDF exportieren</string>
     <string name="top_bar_export_as_txt">Text als .txt exportieren</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">Bestätigen</string>
-    <string name="confirmation_text">Möchten Sie die Notiz löschen?</string>
-    <string name="recording_confirmation_text">Sind Sie sicher, dass Sie die Aufnahme löschen möchten?</string>
+    <string name="confirmation_text">¿Quieres eliminar la nota? Esta acción no se puede deshacer</string>
+    <string name="recording_confirmation_text">¿Estás seguro de que quieres eliminar la grabación? Esta acción no se puede deshacer</string>
     <string name="confirmation_delete">Löschen</string>
     <string name="confirmation_cancel">Abbrechen</string>
     <string name="recording_replace_error">Sie haben bereits eine Aufnahme gespeichert. Eine neue Aufnahme zu erstellen wird diese dauerhaft ersetzen. Möchten Sie fortfahren?</string>
     <string name="recording_import_error">Sie haben bereits eine Aufnahme gespeichert. Eine neue Aufnahme zu importieren wird diese dauerhaft ersetzen. Möchten Sie fortfahren?</string>
     <string name="recording_replace_continue">Fortfahren</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">Buchstabe Aa</string>
     <string name="bottom_navigation_starred">Mit Stern</string>
     <string name="bottom_navigation_bullet_list">Aufzählungsliste</string>
     <string name="bottom_navigation_delete">Notiz löschen</string>
     <string name="bottom_navigation_hide_keyboard">Tastatur ausblenden</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">Fett</string>
     <string name="editing_italic">Kursiv</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">Linksbündig</string>
     <string name="editing_align_center">Zentriert</string>
     <string name="editing_align_right">Rechtsbündig</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">Format</string>
     <string name="format_bar_close">Schließen</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">Überschrift</string>
     <string name="format_bar_subheading">Unterüberschrift</string>
     <string name="format_bar_body">Fließtext</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">Aufnahmegerät</string>
     <string name="transcription_icon">Symbol</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">Weitere Optionen</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">Alle</string>
+    <string name="date_tab_bar_all">Alle %1$s</string>
     <string name="date_tab_bar_starred">Mit Stern</string>
     <string name="date_tab_bar_voices">Stimmen</string>
     <string name="date_tab_bar_recent">Zuletzt verwendet</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">Notiz löschen</string>
     <string name="note_item_edit">Bearbeiten</string>
@@ -71,14 +63,11 @@
         <item quantity="one">%1$d Wort</item>
         <item quantity="other">%1$d Wörter</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">Notiz hinzufügen</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">Notizen durchsuchen...</string>
     <string name="search_bar_search_description">Suchen</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">Mikrofon</string>
     <string name="recording_ui_tap_start_record">Zum Starten der Aufnahme tippen</string>
@@ -86,12 +75,10 @@
     <string name="recording_ui_loading">wird geladen</string>
     <string name="recording_ui_loading_rotation">Laderotation</string>
     <string name="recording_ui_checkmark">Häkchen</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">Pausieren</string>
     <string name="player_ui_play">Abspielen</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">Abbrechen</string>
     <string name="transcription_dialog_append">Anhängen</string>
@@ -100,10 +87,8 @@
     <string name="transcription_dialog_error_got_it">Verstanden</string>
     <string name="transcription_dialog_error_audio_file_title">Audiodatei zu groß</string>
     <string name="transcription_dialog_error_audio_file_desc">Diese Audiodatei ist zu groß, um auf Ihrem Gerät transkribiert zu werden. Versuchen Sie eine kürzere Aufnahme oder eine kleinere Dateigröße.</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">Fehler beim Herunterladen</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">Häufig gestellte Fragen</string>
@@ -114,27 +99,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">Noch keine Notizen</string>
     <string name="empty_list_description">Beginnen Sie damit, Ihre Gedanken und Sprachaufnahmen festzuhalten. Tippen Sie auf das Plus-Symbol + in der unteren rechten Ecke, um Ihre erste Notiz zu erstellen.</string>
     <string name="empty_list_description_tablet">Beginnen Sie damit, Ihre Gedanken und Sprachaufnahmen festzuhalten.\nTippen Sie auf das Plus-Symbol + in der unteren rechten Ecke, um Ihre erste Notiz zu erstellen.</string>
-
     <!-- Share Dialog -->
     <string name="share_options">Teilen-Optionen</string>
     <string name="share_text">Text teilen</string>
     <string name="share_audio_recording">Audioaufnahme teilen</string>
-
     <!-- Download Dialog -->
     <string name="download_required">Download erforderlich</string>
+    <string name="download_required_for_hindi">Download erforderlich für Hindi</string>
     <string name="for_accurate_transcription">Für eine genaue Transkription müssen wir das KI-Modell herunterladen.</string>
     <string name="take_few_minutes">Dies kann einige Minuten dauern und erfordert eine stabile Internetverbindung.</string>
-    <string name="file_size_approx">Dateigröße: etwa 500MB</string>
+    <string name="file_size_approx">Dateigröße: etwa %1$s</string>
+    <string name="file_model_english">Mehrsprachiges Modell (unterstützt über 50 Sprachen)</string>
+    <string name="file_model_hindi">Hindi-optimiertes Modell</string>
     <string name="download">Herunterladen</string>
-
     <!-- Settings Screen -->
     <string name="settings">Einstellungen</string>
-    <string name="customize_your_experience">Passen Sie Ihre Erfahrung an</string>
+    <string name="customize_your_experience">Scrollen Sie nach unten, um alle Einstellungen zu sehen</string>
     <string name="language_and_region">Sprache &amp; Region</string>
     <string name="transcription_language">Transkriptionssprache</string>
     <string name="language_used_for_voice_transcription">Sprache für Sprach-Transkription</string>
@@ -147,7 +131,6 @@
     <string name="body_text_preferred_text">Legen Sie Ihre bevorzugte Fließtext-Größe für den Notizen-Editor fest, um Ihr Schreiberlebnis zu verbessern.</string>
     <string name="body_text_default">Standard</string>
     <string name="body_text_pt">%1$d pt</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">Loslegen</string>
     <string name="onboarding_next">Weiter</string>
@@ -160,7 +143,6 @@
     <string name="onboarding_screen_three_desc">Wandeln Sie Sprachnotizen in Text und\nZusammenfassungen ohne Internet um</string>
     <string name="onboarding_screen_four_title">Unterstützt\nüber 50 Sprachen</string>
     <string name="onboarding_screen_four_desc">Erstellen und transkribieren Sie Notizen\nin Ihrer bevorzugten Sprache</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">Helles Design</string>
     <string name="settings_dark_theme">Dunkles Design</string>
@@ -170,18 +152,56 @@
     <string name="settings_transcription_language">Transkriptionssprache</string>
     <string name="settings_themes">Designs</string>
     <string name="settings_title">Einstellungen</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">Keine Sprachen gefunden</string>
     <string name="language_selection_supported_languages">UNTERSTÜTZTE SPRACHEN</string>
     <string name="language_selection_search">Suchen</string>
     <string name="language_selection_select_language">Sprache auswählen</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">Beispiel %1$d pt</string>
     <string name="accessibility_desc">Verwenden Sie den Schieberegler, um die bevorzugte Schriftgröße für den Notizen-Editor einzustellen und Ihre Erfahrung anzupassen.</string>
     <string name="accessibility_a">A</string>
     <string name="accessibility_default">Standard ist 14 pt</string>
-
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">OK</string>
+    <string name="batch_export_failed">Export fehlgeschlagen</string>
+    <string name="batch_export_options">Exportoptionen</string>
+    <string name="batch_export_select_formats">Wählen Sie die Formate aus, die Sie exportieren möchten:</string>
+    <string name="batch_export_audio_files">Audiodateien exportieren</string>
+    <string name="batch_export_txt_files">Text als TXT-Dateien exportieren</string>
+    <string name="batch_export_select_at_least_one_option">Bitte wählen Sie mindestens eine Option</string>
+    <string name="batch_export_title">Exportieren</string>
+    <string name="batch_export_no_selection_made">Keine Auswahl getroffen, bitte wählen Sie ein Element zum Exportieren</string>
+    <string name="batch_export_settings_title">Mehrere Notizen exportieren</string>
+    <string name="batch_export_settings_description">LANG DRÜCKEN Sie auf eine beliebige Notizkarte, um Exportoptionen in der Notizenliste anzuzeigen</string>
+    <string name="batch_export_settings_how_to">So exportieren Sie mehrere Notizen</string>
+    <string name="batch_export_settings_how_to_description_1">LANG DRÜCKEN Sie auf eine beliebige Notizkarte, um den Auswahlmodus zu aktivieren, und exportieren Sie dann mehrere Notizen gleichzeitig</string>
+    <string name="batch_export_settings_how_to_description_2">Notiz lang drücken</string>
+    <string name="batch_export_settings_how_to_description_3">Notizen zum Exportieren auswählen</string>
+    <string name="batch_export_settings_how_to_description_4">Tippen Sie auf die Exportschaltfläche unten</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">Fehler beim Exportieren aufgetreten</string>
+    <string name="batch_export_settings_no_folder_selected">Selección de carpeta cancelada</string>
+    <!-- Import -->
+    <string name="import_failed_title">Import fehlgeschlagen</string>
+    <string name="ok">OK</string>
+    <string name="select_deselect_all">Alle auswählen / abwählen</string>
+    <string name="top_bar_import_video">Video importieren</string>
+    <string name="question_mark">Fragezeichen</string>
+    <string name="ai_model_title">Was ist ein KI-Modell?</string>
+    <string name="ai_model_description">Ein KI-Modell ist wie ein digitales Gehirn, das trainiert wurde, Sprache zu verstehen und in geschriebenen Text umzuwandeln. Verschiedene Modelle haben unterschiedliche Stärken - einige sind schneller, einige sind genauer. Wählen Sie das Modell, das Ihren Anforderungen entspricht.</string>
+    <string name="standard_model_title">Standardmodell (mehrsprachig)</string>
+    <string name="standard_model_description">Dies ist die schnellere, leichtere Option, die für den täglichen Gebrauch gut funktioniert. Es wandelt Ihre Sprache schnell in Text um und nimmt nicht viel Platz auf Ihrem Telefon ein. Perfekt, wenn Sie schnelle Ergebnisse wünschen und mehrere Sprachen verwenden. Stellen Sie es sich wie ein kompaktes Auto vor - effizient und erledigt die Arbeit.</string>
+    <string name="optimized_model_title">Optimiertes Modell (mehrsprachig)</string>
+    <string name="optimized_model_description">Dies ist die leistungsstärkere Option, die Ihnen die genauesten Transkriptionen bietet. Es dauert etwas länger und verwendet mehr Speicher, erfasst aber mehr Wörter korrekt, insbesondere bei Akzenten oder Hintergrundgeräuschen. Wie ein Luxusauto - größer und langsamer, aber liefert Premium-Qualität. Hinweis: unterstützt kein Hindi/Gujarati.</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">Schnellere Leistung und kleinere Dateigröße\nUnterstützt alle Sprachen</string>
+    <string name="optimized_model_setting_desc">Höchste verfügbare Genauigkeit\nGrößere Dateigröße, langsamere Leistung\nUnterstützt alle Sprachen außer Hindi/Gujarati</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">Modellauswahl</string>
+    <string name="settings_model_selection_text">KI-Modell</string>
+    <string name="settings_model_selection_description">Wählen Sie das Modell, das Ihren Anforderungen am besten entspricht</string>
 </resources>

@@ -238,4 +238,52 @@ internal class AndroidAudioConverter(
             putInt(pcmDataLength)
         }.array()
     }
+
+    override suspend fun extractAudioFromVideoToWav(
+        videoPath: String,
+        onProgress: (Float) -> Unit
+    ): String? = withContext(Dispatchers.IO) {
+        if (!isValidVideoFile(videoPath)) {
+            Napier.w("Unsupported video format: $videoPath")
+            return@withContext null
+        }
+
+        val extractor = MediaExtractor()
+        try {
+            extractor.setDataSource(videoPath)
+
+            val audioTrackIndex = findAudioTrack(extractor)
+            if (audioTrackIndex == -1) {
+                Napier.w("No audio track found in video")
+                return@withContext null
+            }
+
+            extractor.selectTrack(audioTrackIndex)
+            val format = extractor.getTrackFormat(audioTrackIndex)
+
+            // Prepare output WAV file
+            val outputFile = context.generateWavFile(prefix = IMPORTING_PREFIX)
+
+            // Convert in chunks and report progress
+            val success = processAudioInChunks(
+                extractor = extractor,
+                format = format,
+                outputFile = outputFile,
+                onProgress = onProgress
+            )
+
+            if (success) outputFile.absolutePath else null
+
+        } catch (e: Exception) {
+            Napier.e("Video to audio conversion failed: ${e.message}", e)
+            null
+        } finally {
+            extractor.release()
+        }
+    }
+
+    private fun isValidVideoFile(path: String): Boolean {
+        val videoExtensions = listOf("mp4", "mov", "avi", "mkv", "3gp", "webm")
+        return videoExtensions.any { path.lowercase().endsWith(".$it") }
+    }
 }

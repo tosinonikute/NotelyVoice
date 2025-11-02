@@ -104,7 +104,19 @@ kotlin {
 
     targets.all {
         compilations.all {
-            kotlinOptions.freeCompilerArgs += "-Xexpect-actual-classes"
+            compilerOptions.configure {
+                allWarningsAsErrors = false
+                freeCompilerArgs.add("-Xexpected-actual-classes")
+                // For deterministic builds
+                freeCompilerArgs.add("-Xjsr305=strict")
+                freeCompilerArgs.add("-Xno-param-assertions")
+                freeCompilerArgs.add("-Xno-call-assertions")
+                freeCompilerArgs.add("-Xno-receiver-assertions")
+                freeCompilerArgs.add("-Xno-optimize")
+                freeCompilerArgs.add("-Xassertions=jvm")
+                freeCompilerArgs.add("-Xuse-deterministic-jar-order")
+                freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+            }
         }
     }
 
@@ -144,11 +156,13 @@ kotlin {
         }
     }
 }
+
 compose.resources {
     publicResClass = true
     packageOfResClass = "com.module.notelycompose.resources"
     generateResClass = always
 }
+
 sqldelight {
     database("NoteDatabase") {
         packageName = "com.module.notelycompose.database"
@@ -167,8 +181,8 @@ android {
         applicationId = "com.module.notelycompose.android"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 18
-        versionName = "1.1.7"
+        versionCode = 27
+        versionName = "1.2.6"
     }
     buildFeatures {
         compose = true
@@ -183,28 +197,37 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
     packaging {
-        // Force consistent ordering
+        // Ensure reproducible packaging
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/DEPENDENCIES"
+            excludes += "META-INF/LICENSE*"
+            excludes += "META-INF/NOTICE*"
+            excludes += "META-INF/*.version"
+            excludes += "assets/composeResources/com.module.notelycompose.resources/strings.xml"
+        }
+
+        // Force deterministic file ordering
         jniLibs {
             useLegacyPackaging = true
+            // 16KB Page Size Support: Use uncompressed native libraries
+            pickFirsts += listOf("**/libc++_shared.so", "**/libwhisper.so")
+        }
+
+        // Ensure reproducible DEX files
+        dex {
+            useLegacyPackaging = false
         }
     }
     buildTypes {
         getByName("release") {
-//            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            isMinifyEnabled = false
+            isDebuggable = false
             // uncomment to run on release for testing
             // signingConfig = signingConfigs.getByName("debug")
         }

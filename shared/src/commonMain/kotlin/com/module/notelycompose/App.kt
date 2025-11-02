@@ -22,10 +22,13 @@ import com.module.notelycompose.core.composableNoAnimation
 import com.module.notelycompose.core.composableWithHorizontalSlide
 import com.module.notelycompose.core.composableWithVerticalSlide
 import com.module.notelycompose.core.navigateSingleTop
+import com.module.notelycompose.export.ui.ExportNotesScreen
 import com.module.notelycompose.notes.ui.detail.NoteDetailScreen
 import com.module.notelycompose.notes.ui.list.InfoScreen
 import com.module.notelycompose.notes.ui.list.NoteListScreen
 import com.module.notelycompose.notes.ui.settings.LanguageSelectionScreen
+import com.module.notelycompose.notes.ui.settings.ModelExplanationScreen
+import com.module.notelycompose.notes.ui.settings.ModelSelectionScreen
 import com.module.notelycompose.notes.ui.settings.NoteDetailTextSizeScreen
 import com.module.notelycompose.notes.ui.settings.SettingsScreen
 import com.module.notelycompose.notes.ui.settings.SettingsTextSizeScreen
@@ -110,6 +113,9 @@ fun NoteAppRoot(platformUiState: PlatformUiState) {
                     navigateToNoteDetails = { noteId ->
                         navController.navigateSingleTop(Routes.Details(noteId))
                     },
+                    navigateToExportNotes = {
+                        navController.navigateSingleTop(Routes.ExportBatchNotes)
+                    },
                     platformUiState = platformUiState
                 )
             }
@@ -124,9 +130,12 @@ fun NoteAppRoot(platformUiState: PlatformUiState) {
             composableWithVerticalSlide<Routes.Settings> {
                 SettingsScreen(
                     navigateBack = { navController.popBackStack() },
-                    navigateToLanguages = { navController.navigateSingleTop(Routes.Language)},
+                    navigateToLanguages = { navController.navigateSingleTop(Routes.Language) },
                     navigateToSettingsText = {
                         navController.navigateSingleTop(Routes.SettingsText)
+                    },
+                    navigateToModelSelection = {
+                        navController.navigateSingleTop(Routes.LanguageModelSelection)
                     }
                 )
             }
@@ -189,6 +198,26 @@ fun NoteAppRoot(platformUiState: PlatformUiState) {
                     noteId = route.noteId?.toLong()?.takeIf { it != 0L },
                     navigateBack = { navController.popBackStack() },
                     editorViewModel = koinViewModel(viewModelStoreOwner = parentEntry)
+                )
+            }
+            composableWithHorizontalSlide<Routes.ExportBatchNotes> { backStackEntry ->
+                val parentEntry = remember(backStackEntry) {
+                    navController.getBackStackEntry(Routes.List)
+                }
+                ExportNotesScreen(
+                    navigateBack = { navController.popBackStack() },
+                    viewModel = koinViewModel(viewModelStoreOwner = parentEntry)
+                )
+            }
+            composableWithVerticalSlide<Routes.LanguageModelSelection> {
+                ModelSelectionScreen(
+                    navigateBack = { navController.popBackStack() },
+                    navigateToModelExplanation = { navController.navigateSingleTop(Routes.LanguageModelExplanation) }
+                )
+            }
+            composableWithVerticalSlide<Routes.LanguageModelExplanation> {
+                ModelExplanationScreen(
+                    navigateBack = { navController.popBackStack() }
                 )
             }
         }

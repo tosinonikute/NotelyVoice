@@ -31,14 +31,20 @@ import androidx.compose.ui.unit.dp
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
 import com.module.notelycompose.platform.getPlatform
 import com.module.notelycompose.resources.Res
+import com.module.notelycompose.resources.cancel
+import com.module.notelycompose.resources.copy
+import com.module.notelycompose.resources.ic_cancel_all
+import com.module.notelycompose.resources.ic_copy
 import com.module.notelycompose.resources.top_bar_back
 import com.module.notelycompose.resources.top_bar_export_audio_folder
 import com.module.notelycompose.resources.top_bar_import_audio
 import com.module.notelycompose.resources.top_bar_my_note
 import com.module.notelycompose.resources.top_bar_export_as_txt
 import com.module.notelycompose.resources.top_bar_export_as_pdf
+import com.module.notelycompose.resources.top_bar_import_video
 import com.module.notelycompose.resources.vectors.IcChevronLeft
 import com.module.notelycompose.resources.vectors.Images
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -46,24 +52,35 @@ fun DetailNoteTopBar(
     title: String = stringResource(Res.string.top_bar_my_note),
     onNavigateBack: () -> Unit,
     onShare: () -> Unit = {},
+    onCopy: () -> Unit = {},
     onExportAudio: () -> Unit,
     onImportClick: () -> Unit = {},
+    onImportVideoClick: () -> Unit = {},
     onExportTextAsTxt: () -> Unit,
     onExportTextAsPDF: () -> Unit,
     isRecordingExist: Boolean
 ) {
     var showExistingRecordConfirmDialog by remember { mutableStateOf(false) }
+    var showExistingVideoRecordConfirmDialog by remember { mutableStateOf(false) }
     if (getPlatform().isAndroid) {
         DetailAndroidNoteTopBar(
             title = title,
             onNavigateBack = onNavigateBack,
             onShare = onShare,
+            onCopy = onCopy,
             onExportAudio = onExportAudio,
             onImportClick = {
                 if (!isRecordingExist) {
                     onImportClick()
                 } else {
                     showExistingRecordConfirmDialog = true
+                }
+            },
+            onImportVideoClick = {
+                if (!isRecordingExist) {
+                    onImportVideoClick()
+                } else {
+                    showExistingVideoRecordConfirmDialog = true
                 }
             },
             onExportTextAsTxt = onExportTextAsTxt,
@@ -73,12 +90,20 @@ fun DetailNoteTopBar(
         DetailIOSNoteTopBar(
             onNavigateBack = onNavigateBack,
             onShare = onShare,
+            onCopy = onCopy,
             onExportAudio = onExportAudio,
             onImportClick = {
                 if (!isRecordingExist) {
                     onImportClick()
                 } else {
                     showExistingRecordConfirmDialog = true
+                }
+            },
+            onImportVideoClick = {
+                if (!isRecordingExist) {
+                    onImportVideoClick()
+                } else {
+                    showExistingVideoRecordConfirmDialog = true
                 }
             },
             onExportTextAsTxt = onExportTextAsTxt,
@@ -96,6 +121,17 @@ fun DetailNoteTopBar(
         },
         option = RecordingConfirmationUiModel.Import
     )
+
+    ReplaceRecordingConfirmationDialog(
+        showDialog = showExistingVideoRecordConfirmDialog,
+        onDismiss = {
+            showExistingVideoRecordConfirmDialog = false
+        },
+        onConfirm = {
+            onImportVideoClick()
+        },
+        option = RecordingConfirmationUiModel.Import
+    )
 }
 
 @Composable
@@ -103,8 +139,10 @@ fun DetailAndroidNoteTopBar(
     title: String,
     onNavigateBack: () -> Unit,
     onShare: () -> Unit,
+    onCopy: () -> Unit,
     onExportAudio: () -> Unit,
     onImportClick: () -> Unit,
+    onImportVideoClick: () -> Unit,
     onExportTextAsTxt: () -> Unit,
     onExportTextAsPDF: () -> Unit,
     elevation: Dp = AppBarDefaults.TopAppBarElevation
@@ -120,6 +158,14 @@ fun DetailAndroidNoteTopBar(
             }
         },
         actions = {
+            IconButton(onClick = { onCopy() }) {
+                Icon(
+                    painter = painterResource(Res.drawable.ic_copy),
+                    contentDescription = stringResource(Res.string.copy),
+                    modifier = Modifier.size(24.dp)
+                )
+            }
+
             IconButton(onClick = { onShare() }) {
                 Icon(
                     imageVector = Icons.Filled.Share,
@@ -130,6 +176,7 @@ fun DetailAndroidNoteTopBar(
             DetailDropDownMenu(
                 onExportAudio = onExportAudio,
                 onImportClick = onImportClick,
+                onImportVideoClick = onImportVideoClick,
                 onExportTextAsTxt = onExportTextAsTxt,
                 onExportTextAsPDF = onExportTextAsPDF
             )
@@ -143,8 +190,10 @@ fun DetailAndroidNoteTopBar(
 @Composable
 fun DetailIOSNoteTopBar(
     onNavigateBack: () -> Unit,
+    onCopy: () -> Unit,
     onExportAudio: () -> Unit,
     onImportClick: () -> Unit,
+    onImportVideoClick: () -> Unit,
     onExportTextAsTxt: () -> Unit,
     onExportTextAsPDF: () -> Unit,
     onShare: () -> Unit
@@ -170,6 +219,14 @@ fun DetailIOSNoteTopBar(
             }
         },
         actions = {
+            IconButton(onClick = { onCopy() }) {
+                Icon(
+                    painter = painterResource(Res.drawable.ic_copy),
+                    contentDescription = stringResource(Res.string.copy),
+                    modifier = Modifier.size(24.dp)
+                )
+            }
+            
             IconButton(onClick = { onShare() }) {
                 Icon(
                     imageVector = Icons.Filled.Share,
@@ -180,6 +237,7 @@ fun DetailIOSNoteTopBar(
             DetailDropDownMenu(
                 onExportAudio = onExportAudio,
                 onImportClick = onImportClick,
+                onImportVideoClick = onImportVideoClick,
                 onExportTextAsTxt = onExportTextAsTxt,
                 onExportTextAsPDF = onExportTextAsPDF
             )
@@ -195,6 +253,7 @@ fun DetailIOSNoteTopBar(
 fun DetailDropDownMenu(
     onExportAudio: () -> Unit,
     onImportClick: () -> Unit = {},
+    onImportVideoClick: () -> Unit = {},
     onExportTextAsTxt: () -> Unit,
     onExportTextAsPDF: () -> Unit
 ) {
@@ -219,6 +278,15 @@ fun DetailDropDownMenu(
                 }
             ) {
                 Text(stringResource(Res.string.top_bar_import_audio))
+            }
+
+            DropdownMenuItem(
+                onClick = {
+                    dropdownExpanded = false
+                    onImportVideoClick()
+                }
+            ) {
+                Text(stringResource(Res.string.top_bar_import_video))
             }
 
             DropdownMenuItem(

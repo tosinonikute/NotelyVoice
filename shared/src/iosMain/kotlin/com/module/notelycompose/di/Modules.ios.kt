@@ -4,6 +4,8 @@ package com.module.notelycompose.di
 import com.module.notelycompose.audio.domain.AudioRecorderInteractor
 import com.module.notelycompose.audio.domain.AudioRecorderInteractorImpl
 import com.module.notelycompose.database.NoteDatabase
+import com.module.notelycompose.export.domain.ExportSelectionInteractor
+import com.module.notelycompose.export.domain.ExportSelectionInteractorImpl
 import com.module.notelycompose.platform.BrowserLauncher
 import com.module.notelycompose.platform.Downloader
 import com.module.notelycompose.platform.IOSPlatform
@@ -46,4 +48,5 @@ actual val platformModule = module {
 
     // domain
     single<AudioRecorderInteractor> { AudioRecorderInteractorImpl(get(), get()) }
+    single<ExportSelectionInteractor> { ExportSelectionInteractorImpl() }
 }

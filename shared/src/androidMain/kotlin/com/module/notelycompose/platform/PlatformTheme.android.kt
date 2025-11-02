@@ -165,4 +165,15 @@ actual class PlatformUtils(
             false
         }
     }
+
+    actual fun copyTextToClipboard(text: String, onResult: (Boolean, String?) -> Unit) {
+        try {
+            val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+            val clip = android.content.ClipData.newPlainText("text", text)
+            clipboard.setPrimaryClip(clip)
+            onResult(true, "Text copied to clipboard")
+        } catch (e: Exception) {
+            onResult(false, "Failed to copy: ${e.message}")
+        }
+    }
 }

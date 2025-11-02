@@ -7,5 +7,6 @@ data class NoteListPresentationState(
     val originalNotes: List<NotePresentationModel> = emptyList(),
     val filteredNotes: List<NotePresentationModel> = emptyList(),
     val selectedTabIndex: Int = NotesFilterConstants.ALL,
-    val showEmptyContent: Boolean = false
+    val showEmptyContent: Boolean = false,
+    val allNotesSizeStr: String = ""
 )

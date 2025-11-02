@@ -26,4 +26,8 @@ expect class PlatformUtils {
         textSize: Float,
         onResult: (Boolean, String?) -> Unit
     )
+    fun copyTextToClipboard(
+        text: String,
+        onResult: (Boolean, String?) -> Unit
+    )
 }

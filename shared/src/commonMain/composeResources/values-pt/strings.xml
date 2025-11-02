@@ -5,7 +5,6 @@
     <string name="close">Fechar</string>
     <string name="cancel">Cancelar</string>
     <string name="navigate">Navegar</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">Voltar</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">Minha Nota</string>
     <string name="top_bar_export_audio_folder">Exportar Áudio para Pasta</string>
     <string name="top_bar_import_audio">Importar Áudio</string>
+    <string name="top_bar_export_as_pdf">Exportar texto como PDF</string>
     <string name="top_bar_export_as_txt">Exportar Texto como .txt</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">Confirmação</string>
-    <string name="confirmation_text">Quer excluir a nota?</string>
-    <string name="recording_confirmation_text">Tem certeza de que quer excluir a gravação?</string>
+    <string name="confirmation_text">Deseja excluir a nota? Esta ação não pode ser desfeita</string>
+    <string name="recording_confirmation_text">Tem certeza de que deseja excluir a gravação? Esta ação não pode ser desfeita</string>
     <string name="confirmation_delete">Excluir</string>
     <string name="confirmation_cancel">Cancelar</string>
     <string name="recording_replace_error">Você já tem uma gravação salva. Criar uma nova gravação irá substituí-la permanentemente. Quer continuar?</string>
     <string name="recording_import_error">Você já tem uma gravação salva. Importar uma nova gravação irá substituí-la permanentemente. Quer continuar?</string>
     <string name="recording_replace_continue">Continuar</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">Letra Aa</string>
     <string name="bottom_navigation_starred">Favoritas</string>
     <string name="bottom_navigation_bullet_list">Lista com marcadores</string>
     <string name="bottom_navigation_delete">Excluir Nota</string>
     <string name="bottom_navigation_hide_keyboard">Ocultar Teclado</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">Negrito</string>
     <string name="editing_italic">Itálico</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">Alinhar à Esquerda</string>
     <string name="editing_align_center">Centralizar</string>
     <string name="editing_align_right">Alinhar à Direita</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">Formato</string>
     <string name="format_bar_close">Fechar</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">Cabeçalho</string>
     <string name="format_bar_subheading">Subcabeçalho</string>
     <string name="format_bar_body">Corpo</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">Gravador</string>
     <string name="transcription_icon">Ícone</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">Mais opções</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">Todas</string>
+    <string name="date_tab_bar_all">Todas %1$s</string>
     <string name="date_tab_bar_starred">Favoritas</string>
     <string name="date_tab_bar_voices">Vozes</string>
     <string name="date_tab_bar_recent">Recentes</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">Excluir Nota</string>
     <string name="note_item_edit">Editar</string>
@@ -71,14 +63,11 @@
         <item quantity="one">%1$d palavra</item>
         <item quantity="other">%1$d palavras</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">Adicionar Nota</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">Buscar notas...</string>
     <string name="search_bar_search_description">Buscar</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">Microfone</string>
     <string name="recording_ui_tap_start_record">Toque para começar a gravar</string>
@@ -86,12 +75,10 @@
     <string name="recording_ui_loading">carregando</string>
     <string name="recording_ui_loading_rotation">rotação de carregamento</string>
     <string name="recording_ui_checkmark">marca de verificação</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">Pausar</string>
     <string name="player_ui_play">Reproduzir</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">Cancelar</string>
     <string name="transcription_dialog_append">Anexar</string>
@@ -100,10 +87,8 @@
     <string name="transcription_dialog_error_got_it">Entendi</string>
     <string name="transcription_dialog_error_audio_file_title">Arquivo de áudio muito grande</string>
     <string name="transcription_dialog_error_audio_file_desc">Este arquivo de áudio é muito grande para ser transcrito no seu dispositivo. Tente usar uma gravação mais curta ou um arquivo menor.</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">Erro ao baixar</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">Perguntas Frequentes</string>
@@ -114,27 +99,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">Ainda Não Há Notas</string>
     <string name="empty_list_description">Comece a capturar seus pensamentos e gravações de voz. Toque no ícone de mais + no canto inferior direito para criar sua primeira nota.</string>
     <string name="empty_list_description_tablet">Comece a capturar seus pensamentos e gravações de voz.\nToque no ícone de mais + no canto inferior direito para criar sua primeira nota.</string>
-
     <!-- Share Dialog -->
     <string name="share_options">Opções de Compartilhamento</string>
     <string name="share_text">Compartilhar Texto</string>
     <string name="share_audio_recording">Compartilhar Gravação de Áudio</string>
-
     <!-- Download Dialog -->
     <string name="download_required">Download Necessário</string>
+    <string name="download_required_for_hindi">Download necessário para hindi</string>
     <string name="for_accurate_transcription">Para transcrição precisa, precisamos baixar o modelo de IA.</string>
     <string name="take_few_minutes">Isso pode levar alguns minutos e requer uma conexão estável com a internet.</string>
-    <string name="file_size_approx">Tamanho do arquivo: aproximadamente 500MB</string>
+    <string name="file_size_approx">Tamanho do arquivo: aproximadamente %1$s</string>
+    <string name="file_model_english">Modelo multilíngue (suporta mais de 50 idiomas)</string>
+    <string name="file_model_hindi">Modelo otimizado para hindi</string>
     <string name="download">Baixar</string>
-
     <!-- Settings Screen -->
     <string name="settings">Configurações</string>
-    <string name="customize_your_experience">Personalize sua experiência</string>
+    <string name="customize_your_experience">Role para baixo para ver todas as configurações</string>
     <string name="language_and_region">Idioma e Região</string>
     <string name="transcription_language">Idioma de Transcrição</string>
     <string name="language_used_for_voice_transcription">Idioma usado para transcrição de voz</string>
@@ -147,7 +131,6 @@
     <string name="body_text_preferred_text">Defina seu tamanho de texto do corpo preferido para o editor de notas para melhorar sua experiência de escrita.</string>
     <string name="body_text_default">Padrão</string>
     <string name="body_text_pt">%1$d pt</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">Começar</string>
     <string name="onboarding_next">Próximo</string>
@@ -160,7 +143,6 @@
     <string name="onboarding_screen_three_desc">Converta notas de voz em texto e\nresumos sem internet</string>
     <string name="onboarding_screen_four_title">Suporta\nMais de 50 Idiomas</string>
     <string name="onboarding_screen_four_desc">Crie e transcreva notas no\nseu idioma preferido</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">Tema Claro</string>
     <string name="settings_dark_theme">Tema Escuro</string>
@@ -170,18 +152,56 @@
     <string name="settings_transcription_language">Idioma de Transcrição</string>
     <string name="settings_themes">Temas</string>
     <string name="settings_title">Configurações</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">Nenhum idioma encontrado</string>
     <string name="language_selection_supported_languages">IDIOMAS SUPORTADOS</string>
     <string name="language_selection_search">Buscar</string>
     <string name="language_selection_select_language">Selecionar Idioma</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">Exemplo %1$d pt</string>
     <string name="accessibility_desc">Use o controle deslizante para definir o tamanho de texto de escrita preferido para o editor de notas, personalize sua experiência.</string>
     <string name="accessibility_a">A</string>
     <string name="accessibility_default">O padrão é 14 pt</string>
-
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">OK</string>
+    <string name="batch_export_failed">Exportação Falhou</string>
+    <string name="batch_export_options">Opções de Exportação</string>
+    <string name="batch_export_select_formats">Selecione os formatos que deseja exportar:</string>
+    <string name="batch_export_audio_files">Exportar arquivos de áudio</string>
+    <string name="batch_export_txt_files">Exportar texto como arquivos TXT</string>
+    <string name="batch_export_select_at_least_one_option">Selecione pelo menos uma opção</string>
+    <string name="batch_export_title">Exportar</string>
+    <string name="batch_export_no_selection_made">Nenhuma seleção feita, selecione um item para exportar</string>
+    <string name="batch_export_settings_title">Exportar várias notas</string>
+    <string name="batch_export_settings_description">PRESSIONE LONGAMENTE qualquer cartão de nota para mostrar as opções de exportação na lista de notas</string>
+    <string name="batch_export_settings_how_to">Como exportar várias notas</string>
+    <string name="batch_export_settings_how_to_description_1">PRESSIONE LONGAMENTE qualquer cartão de nota para entrar no modo de seleção e, em seguida, exporte várias notas de uma vez</string>
+    <string name="batch_export_settings_how_to_description_2">Pressione longamente a nota</string>
+    <string name="batch_export_settings_how_to_description_3">Selecione as notas para exportar</string>
+    <string name="batch_export_settings_how_to_description_4">Toque no botão de exportação na parte inferior</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">ocorreu um erro ao exportar</string>
+    <string name="batch_export_settings_no_folder_selected">Seleção de pasta cancelada</string>
+    <!-- Import -->
+    <string name="import_failed_title">Importação Falhou</string>
+    <string name="ok">OK</string>
+    <string name="select_deselect_all">Selecionar / Desselecionar tudo</string>
+    <string name="top_bar_import_video">Importar vídeo</string>
+    <string name="question_mark">ponto de interrogação</string>
+    <string name="ai_model_title">O que é um modelo de IA?</string>
+    <string name="ai_model_description">Um modelo de IA é como um cérebro digital que foi treinado para entender a fala e convertê-la em texto escrito. Diferentes modelos têm diferentes pontos fortes - alguns são mais rápidos, alguns são mais precisos. Escolha o que corresponde às suas necessidades.</string>
+    <string name="standard_model_title">Modelo padrão (multilíngue)</string>
+    <string name="standard_model_description">Esta é a opção mais rápida e leve que funciona bem para o uso diário. Converte rapidamente sua fala em texto e não ocupa muito espaço no seu telefone. Perfeito se você quer resultados rápidos e usa vários idiomas. Pense nele como um carro compacto - eficiente e faz o trabalho.</string>
+    <string name="optimized_model_title">Modelo otimizado (multilíngue)</string>
+    <string name="optimized_model_description">Esta é a opção mais poderosa que oferece as transcrições mais precisas possíveis. Leva um pouco mais de tempo e usa mais armazenamento, mas captura mais palavras corretamente, especialmente com sotaques ou ruído de fundo. Como um carro de luxo - maior e mais lento, mas oferece qualidade premium. Nota: não suporta hindi/gujarati.</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">Desempenho mais rápido e tamanho de arquivo menor\nSuporta todos os idiomas</string>
+    <string name="optimized_model_setting_desc">Maior precisão disponível\nTamanho de arquivo maior, desempenho mais lento\nSuporta todos os idiomas exceto hindi/gujarati</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">Seleção de modelo</string>
+    <string name="settings_model_selection_text">Modelo de IA</string>
+    <string name="settings_model_selection_description">Escolha o modelo que melhor atende às suas necessidades</string>
 </resources>

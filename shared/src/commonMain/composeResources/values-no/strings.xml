@@ -5,7 +5,6 @@
     <string name="close">Lukk</string>
     <string name="cancel">Avbryt</string>
     <string name="navigate">Naviger</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">Tilbake</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">Mitt notat</string>
     <string name="top_bar_export_audio_folder">Eksporter lyd til mappe</string>
     <string name="top_bar_import_audio">Importer lyd</string>
+    <string name="top_bar_export_as_pdf">Eksporter tekst som PDF</string>
     <string name="top_bar_export_as_txt">Eksporter tekst som .txt</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">Bekreft</string>
-    <string name="confirmation_text">Vil du slette notatet?</string>
-    <string name="recording_confirmation_text">Er du sikker på at du vil slette opptaket?</string>
+    <string name="confirmation_text">Vil du slette notatet? Denne handlingen kan ikke angres</string>
+    <string name="recording_confirmation_text">Er du sikker på at du vil slette opptaket? Denne handlingen kan ikke angres</string>
     <string name="confirmation_delete">Slett</string>
     <string name="confirmation_cancel">Avbryt</string>
     <string name="recording_replace_error">Du har allerede et lagret opptak. Å lage et nytt opptak vil erstatte det permanent. Vil du fortsette?</string>
     <string name="recording_import_error">Du har allerede et lagret opptak. Å importere et nytt opptak vil erstatte det permanent. Vil du fortsette?</string>
     <string name="recording_replace_continue">Fortsett</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">Bokstav Aa</string>
     <string name="bottom_navigation_starred">Stjernemerket</string>
     <string name="bottom_navigation_bullet_list">Punktliste</string>
     <string name="bottom_navigation_delete">Slett notat</string>
     <string name="bottom_navigation_hide_keyboard">Skjul tastatur</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">Fet</string>
     <string name="editing_italic">Kursiv</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">Venstrejuster</string>
     <string name="editing_align_center">Sentrer</string>
     <string name="editing_align_right">Høyrejuster</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">Format</string>
     <string name="format_bar_close">Lukk</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">Overskrift</string>
     <string name="format_bar_subheading">Underoverskrift</string>
     <string name="format_bar_body">Brødtekst</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">Opptaker</string>
     <string name="transcription_icon">Ikon</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">Flere alternativer</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">Alle</string>
+    <string name="date_tab_bar_all">Alle %1$s</string>
     <string name="date_tab_bar_starred">Stjernemerket</string>
     <string name="date_tab_bar_voices">Stemmer</string>
     <string name="date_tab_bar_recent">Nylige</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">Slett notat</string>
     <string name="note_item_edit">Rediger</string>
@@ -71,14 +63,11 @@
         <item quantity="one">%1$d ord</item>
         <item quantity="other">%1$d ord</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">Legg til notat</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">Søk i notater...</string>
     <string name="search_bar_search_description">Søk</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">Mikrofon</string>
     <string name="recording_ui_tap_start_record">Trykk for å starte opptak</string>
@@ -86,12 +75,10 @@
     <string name="recording_ui_loading">laster</string>
     <string name="recording_ui_loading_rotation">laster rotasjon</string>
     <string name="recording_ui_checkmark">avkrysning</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">Pause</string>
     <string name="player_ui_play">Spill av</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">Avbryt</string>
     <string name="transcription_dialog_append">Legg til</string>
@@ -100,10 +87,8 @@
     <string name="transcription_dialog_error_got_it">Forstått</string>
     <string name="transcription_dialog_error_audio_file_title">Lydfil for stor</string>
     <string name="transcription_dialog_error_audio_file_desc">Denne lydfilen er for stor til å transkribere på enheten din. Prøv med et kortere opptak eller mindre filstørrelse.</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">Feil under nedlasting</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">Ofte stilte spørsmål</string>
@@ -114,27 +99,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">Ingen notater ennå</string>
     <string name="empty_list_description">Begynn å fange tankene dine og taleopptak. Trykk på pluss + ikonet i nederste høyre hjørne for å lage ditt første notat.</string>
     <string name="empty_list_description_tablet">Begynn å fange tankene dine og taleopptak.\nTrykk på pluss + ikonet i nederste høyre hjørne for å lage ditt første notat.</string>
-
     <!-- Share Dialog -->
     <string name="share_options">Delingsalternativer</string>
     <string name="share_text">Del tekst</string>
     <string name="share_audio_recording">Del lydopptak</string>
-
     <!-- Download Dialog -->
     <string name="download_required">Nedlasting kreves</string>
+    <string name="download_required_for_hindi">Nedlasting kreves for hindi</string>
     <string name="for_accurate_transcription">For nøyaktig transkripsjon må vi laste ned AI-modellen.</string>
     <string name="take_few_minutes">Dette kan ta noen minutter og krever en stabil internettforbindelse.</string>
-    <string name="file_size_approx">Filstørrelse: omtrent 500MB</string>
+    <string name="file_size_approx">Filstørrelse: omtrent %1$s</string>
+    <string name="file_model_english">Flerspråklig modell (støtter 50+ språk)</string>
+    <string name="file_model_hindi">Hindi-optimalisert modell</string>
     <string name="download">Last ned</string>
-
     <!-- Settings Screen -->
     <string name="settings">Innstillinger</string>
-    <string name="customize_your_experience">Tilpass opplevelsen din</string>
+    <string name="customize_your_experience">Rull ned for å se alle innstillingene</string>
     <string name="language_and_region">Språk og region</string>
     <string name="transcription_language">Transkripsjonsspråk</string>
     <string name="language_used_for_voice_transcription">Språk brukt for taletranskripsjon</string>
@@ -147,7 +131,6 @@
     <string name="body_text_preferred_text">Angi din foretrukne brødtekststørrelse for notatredigereren for å forbedre skriveopplevelsen.</string>
     <string name="body_text_default">Standard</string>
     <string name="body_text_pt">%1$d pt</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">Kom i gang</string>
     <string name="onboarding_next">Neste</string>
@@ -160,7 +143,6 @@
     <string name="onboarding_screen_three_desc">Konverter talenotater til tekst og\nsammendrag uten internett</string>
     <string name="onboarding_screen_four_title">Støtter\nover 50 språk</string>
     <string name="onboarding_screen_four_desc">Lag og transkriber notater på\nditt foretrukne språk</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">Lyst tema</string>
     <string name="settings_dark_theme">Mørkt tema</string>
@@ -170,18 +152,56 @@
     <string name="settings_transcription_language">Transkripsjonsspråk</string>
     <string name="settings_themes">Temaer</string>
     <string name="settings_title">Innstillinger</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">Ingen språk funnet</string>
     <string name="language_selection_supported_languages">STØTTEDE SPRÅK</string>
     <string name="language_selection_search">Søk</string>
     <string name="language_selection_select_language">Velg språk</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">Eksempel %1$d pt</string>
     <string name="accessibility_desc">Bruk skyveknappen for å angi foretrukket skrivetekststørrelse for notatredigereren, tilpass opplevelsen din.</string>
     <string name="accessibility_a">A</string>
     <string name="accessibility_default">Standard er 14 pt</string>
-
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">OK</string>
+    <string name="batch_export_failed">Eksport mislyktes</string>
+    <string name="batch_export_options">Eksportalternativer</string>
+    <string name="batch_export_select_formats">Velg formatene du vil eksportere:</string>
+    <string name="batch_export_audio_files">Eksporter lydfiler</string>
+    <string name="batch_export_txt_files">Eksporter tekst som TXT-filer</string>
+    <string name="batch_export_select_at_least_one_option">Vennligst velg minst ett alternativ</string>
+    <string name="batch_export_title">Eksporter</string>
+    <string name="batch_export_no_selection_made">Ingen valg er gjort, vennligst velg et element å eksportere</string>
+    <string name="batch_export_settings_title">Eksporter flere notater</string>
+    <string name="batch_export_settings_description">TRYKK LENGE på et notatkort for å vise eksportalternativer i notatlisten</string>
+    <string name="batch_export_settings_how_to">Hvordan eksportere flere notater</string>
+    <string name="batch_export_settings_how_to_description_1">TRYKK LENGE på et notatkort for å gå inn i valgmodus, og eksporter deretter flere notater samtidig</string>
+    <string name="batch_export_settings_how_to_description_2">Trykk lenge på notat</string>
+    <string name="batch_export_settings_how_to_description_3">Velg notater å eksportere</string>
+    <string name="batch_export_settings_how_to_description_4">Trykk på eksportknappen nederst</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">det oppstod en feil under eksportering</string>
+    <string name="batch_export_settings_no_folder_selected">Mappevalg avbrutt</string>
+    <!-- Import -->
+    <string name="import_failed_title">Import mislyktes</string>
+    <string name="ok">OK</string>
+    <string name="select_deselect_all">Velg / Fjern valg av alle</string>
+    <string name="top_bar_import_video">Importer video</string>
+    <string name="question_mark">spørsmålstegn</string>
+    <string name="ai_model_title">Hva er en AI-modell?</string>
+    <string name="ai_model_description">En AI-modell er som en digital hjerne som har blitt trent til å forstå tale og konvertere det til skrevet tekst. Ulike modeller har ulike styrker - noen er raskere, noen er mer nøyaktige. Velg den som passer dine behov.</string>
+    <string name="standard_model_title">Standardmodell (flerspråklig)</string>
+    <string name="standard_model_description">Dette er det raskere, lettere alternativet som fungerer godt for daglig bruk. Den konverterer talen din raskt til tekst og tar ikke mye plass på telefonen din. Perfekt hvis du vil ha raske resultater og bruker flere språk. Tenk på den som en kompakt bil - effektiv og får jobben gjort.</string>
+    <string name="optimized_model_title">Optimalisert modell (flerspråklig)</string>
+    <string name="optimized_model_description">Dette er det kraftigere alternativet som gir deg de mest nøyaktige transkripsjonene mulig. Det tar litt lengre tid og bruker mer lagringsplass, men fanger flere ord riktig, spesielt med aksenter eller bakgrunnsstøy. Som en luksusbil - større og tregere, men leverer premium kvalitet. Merk: støtter ikke hindi/gujarati.</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">Raskere ytelse og mindre filstørrelse\nStøtter alle språk</string>
+    <string name="optimized_model_setting_desc">Høyeste tilgjengelige nøyaktighet\nStørre filstørrelse, tregere ytelse\nStøtter alle språk unntatt hindi/gujarati</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">Modellvalg</string>
+    <string name="settings_model_selection_text">AI-modell</string>
+    <string name="settings_model_selection_description">Velg modellen som passer best for dine behov</string>
 </resources>

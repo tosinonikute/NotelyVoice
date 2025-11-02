@@ -46,4 +46,12 @@ sealed interface Routes {
     @Serializable
     data object NoteSettingsText : Routes
 
+    @Serializable
+    data object ExportBatchNotes : Routes
+
+    @Serializable
+    data object LanguageModelSelection : Routes
+
+    @Serializable
+    data object LanguageModelExplanation : Routes
 }

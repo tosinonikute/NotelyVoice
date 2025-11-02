@@ -5,7 +5,6 @@
     <string name="close">閉じる</string>
     <string name="cancel">キャンセル</string>
     <string name="navigate">ナビゲート</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">戻る</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">マイノート</string>
     <string name="top_bar_export_audio_folder">音声をフォルダにエクスポート</string>
     <string name="top_bar_import_audio">音声をインポート</string>
+    <string name="top_bar_export_as_pdf">テキストをPDFとしてエクスポート</string>
     <string name="top_bar_export_as_txt">テキストを.txtとしてエクスポート</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">確認</string>
-    <string name="confirmation_text">ノートを削除しますか？</string>
-    <string name="recording_confirmation_text">録音を削除してもよろしいですか？</string>
+    <string name="confirmation_text">メモを削除しますか？この操作は元に戻せません</string>
+    <string name="recording_confirmation_text">録音を削除してもよろしいですか？この操作は元に戻せません</string>
     <string name="confirmation_delete">削除</string>
     <string name="confirmation_cancel">キャンセル</string>
     <string name="recording_replace_error">保存された録音がすでにあります。新しい録音を作成すると、既存の録音が永続的に置き換えられます。続行しますか？</string>
     <string name="recording_import_error">保存された録音がすでにあります。新しい録音をインポートすると、既存の録音が永続的に置き換えられます。続行しますか？</string>
     <string name="recording_replace_continue">続行</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">文字 Aa</string>
     <string name="bottom_navigation_starred">スター付き</string>
     <string name="bottom_navigation_bullet_list">箇条書きリスト</string>
     <string name="bottom_navigation_delete">ノートを削除</string>
     <string name="bottom_navigation_hide_keyboard">キーボードを非表示</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">太字</string>
     <string name="editing_italic">斜体</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">左揃え</string>
     <string name="editing_align_center">中央揃え</string>
     <string name="editing_align_right">右揃え</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">書式</string>
     <string name="format_bar_close">閉じる</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">見出し</string>
     <string name="format_bar_subheading">小見出し</string>
     <string name="format_bar_body">本文</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">レコーダー</string>
     <string name="transcription_icon">アイコン</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">その他のオプション</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">すべて</string>
+    <string name="date_tab_bar_all">すべて %1$s</string>
     <string name="date_tab_bar_starred">スター付き</string>
     <string name="date_tab_bar_voices">音声</string>
     <string name="date_tab_bar_recent">最近</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">ノートを削除</string>
     <string name="note_item_edit">編集</string>
@@ -71,14 +63,11 @@
         <item quantity="one">%1$d語</item>
         <item quantity="other">%1$d語</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">ノートを追加</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">ノートを検索...</string>
     <string name="search_bar_search_description">検索</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">マイク</string>
     <string name="recording_ui_tap_start_record">タップして録音開始</string>
@@ -86,12 +75,10 @@
     <string name="recording_ui_loading">読み込み中</string>
     <string name="recording_ui_loading_rotation">読み込み回転</string>
     <string name="recording_ui_checkmark">チェックマーク</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">一時停止</string>
     <string name="player_ui_play">再生</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">キャンセル</string>
     <string name="transcription_dialog_append">追加</string>
@@ -100,10 +87,8 @@
     <string name="transcription_dialog_error_got_it">了解</string>
     <string name="transcription_dialog_error_audio_file_title">音声ファイルが大きすぎます</string>
     <string name="transcription_dialog_error_audio_file_desc">この音声ファイルは、お使いのデバイスで文字起こしするには大きすぎます。より短い録音またはより小さなファイルサイズをお試しください。</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">ダウンロード中にエラーが発生しました</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">よくある質問</string>
@@ -114,27 +99,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">まだノートがありません</string>
     <string name="empty_list_description">思考や音声録音のキャプチャを開始しましょう。右下角のプラス+アイコンをタップして、最初のノートを作成してください。</string>
     <string name="empty_list_description_tablet">思考や音声録音のキャプチャを開始しましょう。\n右下角のプラス+アイコンをタップして、最初のノートを作成してください。</string>
-
     <!-- Share Dialog -->
     <string name="share_options">共有オプション</string>
     <string name="share_text">テキストを共有</string>
     <string name="share_audio_recording">音声録音を共有</string>
-
     <!-- Download Dialog -->
     <string name="download_required">ダウンロードが必要</string>
+    <string name="download_required_for_hindi">ヒンディー語にはダウンロードが必要です</string>
     <string name="for_accurate_transcription">正確な文字起こしのために、AIモデルをダウンロードする必要があります。</string>
     <string name="take_few_minutes">これには数分かかる場合があり、安定したインターネット接続が必要です。</string>
-    <string name="file_size_approx">ファイルサイズ：約500MB</string>
+    <string name="file_size_approx">ファイルサイズ：約 %1$s</string>
+    <string name="file_model_english">多言語モデル（50以上の言語をサポート）</string>
+    <string name="file_model_hindi">ヒンディー語最適化モデル</string>
     <string name="download">ダウンロード</string>
-
     <!-- Settings Screen -->
     <string name="settings">設定</string>
-    <string name="customize_your_experience">あなたの体験をカスタマイズ</string>
+    <string name="customize_your_experience">下にスクロールしてすべての設定を表示</string>
     <string name="language_and_region">言語と地域</string>
     <string name="transcription_language">文字起こし言語</string>
     <string name="language_used_for_voice_transcription">音声文字起こしに使用される言語</string>
@@ -147,7 +131,6 @@
     <string name="body_text_preferred_text">ノートエディターの優先本文テキストサイズを設定して、書く体験を向上させましょう。</string>
     <string name="body_text_default">デフォルト</string>
     <string name="body_text_pt">%1$d pt</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">始める</string>
     <string name="onboarding_next">次へ</string>
@@ -160,7 +143,6 @@
     <string name="onboarding_screen_three_desc">インターネットなしで音声ノートを\nテキストと要約に変換</string>
     <string name="onboarding_screen_four_title">50以上の\n言語をサポート</string>
     <string name="onboarding_screen_four_desc">お好みの言語でノートを\n作成・文字起こし</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">ライトテーマ</string>
     <string name="settings_dark_theme">ダークテーマ</string>
@@ -170,18 +152,56 @@
     <string name="settings_transcription_language">文字起こし言語</string>
     <string name="settings_themes">テーマ</string>
     <string name="settings_title">設定</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">言語が見つかりません</string>
     <string name="language_selection_supported_languages">サポートされている言語</string>
     <string name="language_selection_search">検索</string>
     <string name="language_selection_select_language">言語を選択</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">例 %1$d pt</string>
     <string name="accessibility_desc">スライダーを使用してノートエディターの優先書きテキストサイズを設定し、あなたの体験をカスタマイズしてください。</string>
     <string name="accessibility_a">あ</string>
     <string name="accessibility_default">デフォルトは14 ptです</string>
-
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">OK</string>
+    <string name="batch_export_failed">エクスポートに失敗しました</string>
+    <string name="batch_export_options">エクスポートオプション</string>
+    <string name="batch_export_select_formats">エクスポートする形式を選択してください：</string>
+    <string name="batch_export_audio_files">オーディオファイルをエクスポート</string>
+    <string name="batch_export_txt_files">テキストをTXTファイルとしてエクスポート</string>
+    <string name="batch_export_select_at_least_one_option">少なくとも1つのオプションを選択してください</string>
+    <string name="batch_export_title">エクスポート</string>
+    <string name="batch_export_no_selection_made">選択されていません。エクスポートするアイテムを選択してください</string>
+    <string name="batch_export_settings_title">複数のメモをエクスポート</string>
+    <string name="batch_export_settings_description">メモリストでエクスポートオプションを表示するには、任意のメモカードを長押ししてください</string>
+    <string name="batch_export_settings_how_to">複数のメモをエクスポートする方法</string>
+    <string name="batch_export_settings_how_to_description_1">任意のメモカードを長押しして選択モードに入り、複数のメモを一度にエクスポートします</string>
+    <string name="batch_export_settings_how_to_description_2">メモを長押し</string>
+    <string name="batch_export_settings_how_to_description_3">エクスポートするメモを選択</string>
+    <string name="batch_export_settings_how_to_description_4">下部のエクスポートボタンをタップ</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">エクスポート中にエラーが発生しました</string>
+    <string name="batch_export_settings_no_folder_selected">フォルダの選択がキャンセルされました</string>
+    <!-- Import -->
+    <string name="import_failed_title">インポートに失敗しました</string>
+    <string name="ok">OK</string>
+    <string name="select_deselect_all">すべて選択 / 選択解除</string>
+    <string name="top_bar_import_video">動画をインポート</string>
+    <string name="question_mark">疑問符</string>
+    <string name="ai_model_title">AIモデルとは？</string>
+    <string name="ai_model_description">AIモデルは、音声を理解し、それを書かれたテキストに変換するように訓練されたデジタル脳のようなものです。異なるモデルには異なる強みがあります - より速いものもあれば、より正確なものもあります。あなたのニーズに合ったものを選んでください。</string>
+    <string name="standard_model_title">標準モデル（多言語）</string>
+    <string name="standard_model_description">これは、日常的な使用に適した、より高速で軽量なオプションです。音声をすばやくテキストに変換し、携帯電話のスペースをあまり占有しません。迅速な結果が必要で、複数の言語を使用する場合に最適です。コンパクトカーのように考えてください - 効率的で仕事を成し遂げます。</string>
+    <string name="optimized_model_title">最適化されたモデル（多言語）</string>
+    <string name="optimized_model_description">これは、可能な限り最も正確な文字起こしを提供する、より強力なオプションです。少し時間がかかり、より多くのストレージを使用しますが、特にアクセントやバックグラウンドノイズがある場合に、より多くの単語を正確にキャッチします。高級車のように - より大きく、より遅いですが、プレミアム品質を提供します。注：ヒンディー語/グジャラート語はサポートしていません。</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">高速なパフォーマンスと小さいファイルサイズ\nすべての言語をサポート</string>
+    <string name="optimized_model_setting_desc">最高の精度\nファイルサイズが大きく、パフォーマンスが遅い\nヒンディー語/グジャラート語を除くすべての言語をサポート</string>
+    <string name="standard_model_setting_size">142 MB</string>
+    <string name="optimized_model_setting_size">465 MB</string>
+    <string name="settings_model_selection">モデルの選択</string>
+    <string name="settings_model_selection_text">AIモデル</string>
+    <string name="settings_model_selection_description">ニーズに最適なモデルを選択してください</string>
 </resources>

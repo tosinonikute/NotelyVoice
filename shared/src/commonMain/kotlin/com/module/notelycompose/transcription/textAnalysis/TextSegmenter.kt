@@ -6,7 +6,8 @@ interface TextSegmenter {
 }
 
 val segmenters: Map<String, TextSegmenter> = mapOf(
-    "hi" to HindiTextSegmenter()
+    "hi" to HindiTextSegmenter(),
+    "gu" to GujaratiTextSegmenter()
 )
 
 class DefaultSegmenter : TextSegmenter {

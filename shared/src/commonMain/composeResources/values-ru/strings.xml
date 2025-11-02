@@ -5,7 +5,6 @@
     <string name="close">Закрыть</string>
     <string name="cancel">Отменить</string>
     <string name="navigate">Навигация</string>
-
     <!-- TopBar -->
     <string name="top_bar_back">Назад</string>
     <string name="top_bar_notes">Notely Voice</string>
@@ -13,25 +12,23 @@
     <string name="top_bar_my_note">Моя заметка</string>
     <string name="top_bar_export_audio_folder">Экспорт аудио в папку</string>
     <string name="top_bar_import_audio">Импорт аудио</string>
+    <string name="top_bar_export_as_pdf">Экспорт текста в PDF</string>
     <string name="top_bar_export_as_txt">Экспортировать как текстовый файл</string>
-
     <!-- Delete Dialog -->
     <string name="confirmation">Подтвердить</string>
-    <string name="confirmation_text">Вы хотите удалить заметку?</string>
-    <string name="recording_confirmation_text">Вы уверены, что хотите удалить запись?</string>
+    <string name="confirmation_text">Вы хотите удалить заметку? Это действие нельзя отменить</string>
+    <string name="recording_confirmation_text">Вы уверены, что хотите удалить запись? Это действие нельзя отменить</string>
     <string name="confirmation_delete">Удалить</string>
     <string name="confirmation_cancel">Отменить</string>
     <string name="recording_replace_error">У вас уже есть сохраненная запись. Создание новой записи навсегда заменит ее. Вы хотите продолжить?</string>
     <string name="recording_import_error">У вас уже есть сохраненная запись. Импорт новой записи навсегда заменит ее. Вы хотите продолжить?</string>
     <string name="recording_replace_continue">Продолжить</string>
-
     <!-- BottomNavigationBar -->
     <string name="bottom_navigation_letter">Буква Aa</string>
     <string name="bottom_navigation_starred">Закладки</string>
     <string name="bottom_navigation_bullet_list">Маркированный список</string>
     <string name="bottom_navigation_delete">Удалить заметку</string>
     <string name="bottom_navigation_hide_keyboard">Скрыть клавиатуру</string>
-
     <!-- Editing Toolbar -->
     <string name="editing_bold">Жирный</string>
     <string name="editing_italic">Курсив</string>
@@ -39,7 +36,6 @@
     <string name="editing_align_left">Выровнять по левому краю</string>
     <string name="editing_align_center">Выровнять по центру</string>
     <string name="editing_align_right">Выровнять по правому краю</string>
-
     <!-- Format Bar -->
     <string name="format_bar_text">Формат</string>
     <string name="format_bar_close">Закрыть</string>
@@ -47,20 +43,16 @@
     <string name="format_bar_heading">Заголовок</string>
     <string name="format_bar_subheading">Подзаголовок</string>
     <string name="format_bar_body">Текст</string>
-
     <!-- Note Detail -->
     <string name="note_detail_recorder">Запись</string>
     <string name="transcription_icon">Значок</string>
-
     <!-- Date Selection -->
     <string name="note_detail_more_options">Дополнительно</string>
-
     <!-- Date Tab Bar -->
-    <string name="date_tab_bar_all">Все</string>
+    <string name="date_tab_bar_all">Все %1$s</string>
     <string name="date_tab_bar_starred">Отмеченные</string>
     <string name="date_tab_bar_voices">Голоса</string>
     <string name="date_tab_bar_recent">Недавние</string>
-
     <!-- Note Item -->
     <string name="note_item_delete">Удалить заметку</string>
     <string name="note_item_edit">Редактировать</string>
@@ -73,14 +65,11 @@
         <item quantity="many">%1$d слов</item>
         <item quantity="other">%1$d слов</item>
     </plurals>
-
     <!-- Note List -->
     <string name="note_list_add_note">Добавить заметку</string>
-
     <!-- Search Bar -->
     <string name="search_bar_search_text">Искать в заметках ...</string>
     <string name="search_bar_search_description">Поиск</string>
-
     <!-- Recording UI -->
     <string name="recording_ui_microphone">Микрофон</string>
     <string name="recording_ui_tap_start_record">Нажмите для начала записи</string>
@@ -88,12 +77,10 @@
     <string name="recording_ui_loading">загрузка</string>
     <string name="recording_ui_loading_rotation">вращение загрузки</string>
     <string name="recording_ui_checkmark">галочка</string>
-
     <!-- Player UI -->
     <string name="player_ui_initial_time">00:00</string>
     <string name="player_ui_pause">Пауза</string>
     <string name="player_ui_play">Воспроизвести</string>
-
     <!-- Transcription Dialog -->
     <string name="transcription_dialog_cancel">Отменить</string>
     <string name="transcription_dialog_append">Добавить</string>
@@ -102,10 +89,8 @@
     <string name="transcription_dialog_error_got_it">Понятно</string>
     <string name="transcription_dialog_error_audio_file_title">Аудиофайл слишком большой</string>
     <string name="transcription_dialog_error_audio_file_desc">Этот аудиофайл слишком большой для транскрипции на вашем устройстве. Попробуйте использовать более короткую запись или файл меньшего размера.</string>
-
     <!-- Download Dialog -->
     <string name="download_dialog_error">Ошибка в процессе загрузки</string>
-
     <!-- Information UI -->
     <string name="information_base_url">https://tosinonikute.com/notely/</string>
     <string name="faq">ЧАВО</string>
@@ -116,27 +101,26 @@
     <string name="about_url">about.html</string>
     <string name="support_url">support.html</string>
     <string name="privacy_url">privacyupdated.html</string>
-
     <!-- Empty List String -->
     <string name="empty_list_title">Нет заметок</string>
     <string name="empty_list_description">Начните записывать свои мысли и голосовые заметки. Нажмите на значок \"+\" в правом нижнем углу, чтобы создать свою первую заметку.</string>
     <string name="empty_list_description_tablet">Начните записывать свои мысли и голосовые заметки.\nНажмите на значок \"+\" в правом нижнем углу, чтобы создать свою первую заметку.</string>
-
     <!-- Share Dialog -->
     <string name="share_options">Параметры общего доступа</string>
     <string name="share_text">Поделиться текстом</string>
     <string name="share_audio_recording">Поделиться аудиозаписью</string>
-
     <!-- Download Dialog -->
     <string name="download_required">Требуется загрузка</string>
+    <string name="download_required_for_hindi">Требуется загрузка для хинди</string>
     <string name="for_accurate_transcription">Для точной транскрипции нам необходимо загрузить модель ИИ.</string>
     <string name="take_few_minutes">Это может занять несколько минут и требует стабильного интернет-соединения.</string>
-    <string name="file_size_approx">Размер файла: приблизительно 142МБ</string>
+    <string name="file_size_approx">Размер файла: приблизительно %1$s</string>
+    <string name="file_model_english">Многоязычная модель (поддерживает более 50 языков)</string>
+    <string name="file_model_hindi">Модель, оптимизированная для хинди</string>
     <string name="download">Загрузить</string>
-
     <!-- Settings Screen -->
     <string name="settings">Настройки</string>
-    <string name="customize_your_experience">Настройте свой опыт</string>
+    <string name="customize_your_experience">Прокрутите вниз, чтобы увидеть все настройки</string>
     <string name="language_and_region">Язык и регион</string>
     <string name="transcription_language">Язык транскрипции</string>
     <string name="language_used_for_voice_transcription">Язык, используемый для транскрипции голоса</string>
@@ -149,7 +133,6 @@
     <string name="body_text_preferred_text">Установите предпочитаемый размер основного текста для редактора заметок, чтобы улучшить ваш опыт написания.</string>
     <string name="body_text_default">По умолчанию</string>
     <string name="body_text_pt">%1$d пт</string>
-
     <!-- Onboarding Screen -->
     <string name="onboarding_get_started">Начать</string>
     <string name="onboarding_next">Далее</string>
@@ -162,7 +145,6 @@
     <string name="onboarding_screen_three_desc">Преобразуйте голосовые заметки в текст и\nрезюме без интернета</string>
     <string name="onboarding_screen_four_title">Поддерживает\nболее 50 языков</string>
     <string name="onboarding_screen_four_desc">Создавайте и транскрибируйте заметки на\nвашем предпочитаемом языке</string>
-
     <!-- Setting Bottom Sheet -->
     <string name="settings_light_theme">Светлая тема</string>
     <string name="settings_dark_theme">Темная тема</string>
@@ -172,17 +154,57 @@
     <string name="settings_transcription_language">Язык транскрипции</string>
     <string name="settings_themes">Темы</string>
     <string name="settings_title">Настройки</string>
-
     <!-- Language Selection -->
     <string name="language_selection_no_languages_found">Языки не найдены</string>
     <string name="language_selection_supported_languages">ПОДДЕРЖИВАЕМЫЕ ЯЗЫКИ</string>
     <string name="language_selection_search">Поиск</string>
     <string name="language_selection_select_language">Выберите язык</string>
-
     <!-- Accessibility -->
     <string name="accessibility_example">Пример %1$d пт</string>
     <string name="accessibility_desc">Используйте ползунок для установки предпочитаемого размера основного текста для редактора заметок, настройте свой опыт.</string>
     <string name="accessibility_a">А</string>
     <string name="accessibility_default">По умолчанию 14 пт</string>
-
+    <!-- Batch Export feature -->
+    <string name="batch_export_ok">ОК</string>
+    <string name="batch_export_failed">Экспорт не удался</string>
+    <string name="batch_export_options">Параметры экспорта</string>
+    <string name="batch_export_select_formats">Выберите форматы для экспорта:</string>
+    <string name="batch_export_audio_files">Экспортировать аудиофайлы</string>
+    <string name="batch_export_txt_files">Экспортировать текст как файлы TXT</string>
+    <string name="batch_export_select_at_least_one_option">Пожалуйста, выберите хотя бы один вариант</string>
+    <string name="batch_export_title">Экспорт</string>
+    <string name="batch_export_no_selection_made">Выбор не сделан, пожалуйста, выберите элемент для экспорта</string>
+    <string name="batch_export_settings_title">Экспорт нескольких заметок</string>
+    <string name="batch_export_settings_description">ДОЛГО НАЖМИТЕ на любую карточку заметки, чтобы показать параметры экспорта в списке заметок</string>
+    <string name="batch_export_settings_how_to">Как экспортировать несколько заметок</string>
+    <string name="batch_export_settings_how_to_description_1">ДОЛГО НАЖМИТЕ на любую карточку заметки для входа в режим выбора, затем экспортируйте несколько заметок одновременно</string>
+    <string name="batch_export_settings_how_to_description_2">Долго нажмите на заметку</string>
+    <string name="batch_export_settings_how_to_description_3">Выберите заметки для экспорта</string>
+    <string name="batch_export_settings_how_to_description_4">Нажмите кнопку экспорта внизу</string>
+    <string name="batch_export_settings_how_to_1">1.</string>
+    <string name="batch_export_settings_how_to_2">2.</string>
+    <string name="batch_export_settings_how_to_3">3.</string>
+    <string name="batch_export_settings_error_occurred">произошла ошибка при экспорте</string>
+    <string name="batch_export_settings_no_folder_selected">Выбор папки отменен</string>
+    <!-- Import -->
+    <string name="import_failed_title">Импорт не удался</string>
+    <string name="top_bar_import_video">Импорт видео</string>
+    <string name="select_deselect_all">Выбрать все / Снять выбор</string>
+    <string name="copy">Копировать</string>
+    <string name="copied">Скопировано!</string>
+    <string name="question_mark">вопросительный знак</string>
+    <string name="ai_model_title">Что такое модель ИИ?</string>
+    <string name="ai_model_description">Модель ИИ подобна цифровому мозгу, который был обучен понимать речь и преобразовывать её в письменный текст. Разные модели имеют разные сильные стороны - некоторые быстрее, некоторые точнее. Выберите ту, которая соответствует вашим потребностям.</string>
+    <string name="standard_model_title">Стандартная модель (многоязычная)</string>
+    <string name="standard_model_description">Это более быстрый, лёгкий вариант, который хорошо работает для повседневного использования. Он быстро преобразует вашу речь в текст и не занимает много места на вашем телефоне. Идеально, если вам нужны быстрые результаты и вы используете несколько языков. Думайте о нём как о компактном автомобиле - эффективный и выполняет работу.</string>
+    <string name="optimized_model_title">Оптимизированная модель (многоязычная)</string>
+    <string name="optimized_model_description">Это более мощный вариант, который даёт вам максимально точные транскрипции. Он занимает немного больше времени и использует больше памяти, но правильно распознаёт больше слов, особенно с акцентами или фоновым шумом. Как роскошный автомобиль - больше и медленнее, но обеспечивает премиальное качество. Примечание: не поддерживает хинди/гуджарати.</string>
+    <!-- settings -->
+    <string name="standard_model_setting_desc">Более быстрая работа и меньший размер файла\nПоддерживает все языки</string>
+    <string name="optimized_model_setting_desc">Максимальная доступная точность\nБольший размер файла, более медленная работа\nПоддерживает все языки, кроме хинди/гуджарати</string>
+    <string name="standard_model_setting_size">142 МБ</string>
+    <string name="optimized_model_setting_size">465 МБ</string>
+    <string name="settings_model_selection">Выбор модели</string>
+    <string name="settings_model_selection_text">Модель ИИ</string>
+    <string name="settings_model_selection_description">Выберите модель, которая лучше всего соответствует вашим потребностям</string>
 </resources>

@@ -21,7 +21,8 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun FilterTabBar(
     onFilterTabItemClicked: (Int) -> Unit,
-    selectedTabIndex: Int
+    selectedTabIndex: Int,
+    allSizeStr: String
 ) {
     val tabResources = listOf(
         Res.string.date_tab_bar_all,
@@ -29,7 +30,12 @@ fun FilterTabBar(
         Res.string.date_tab_bar_voices,
         Res.string.date_tab_bar_recent
     )
-    val titles = tabResources.map { stringResource(it) }
+    val titles = tabResources.map {
+        when(it) {
+            Res.string.date_tab_bar_all -> stringResource(it, allSizeStr)
+            else -> stringResource(it)
+        }
+    }
 
     val selectedTitle = titles[selectedTabIndex].ifEmpty {
         titles[0]

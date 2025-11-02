@@ -1,6 +1,5 @@
 package com.module.notelycompose.transcription.textAnalysis
 
-
 class HindiTextSegmenter: TextSegmenter {
 
     // 1. Sentence ending patterns (verb forms that typically end sentences)

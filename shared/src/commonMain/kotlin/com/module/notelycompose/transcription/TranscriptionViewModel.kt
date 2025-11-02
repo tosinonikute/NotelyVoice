@@ -7,7 +7,6 @@ import com.module.notelycompose.modelDownloader.ModelSelection
 import com.module.notelycompose.onboarding.data.PreferencesRepository
 import com.module.notelycompose.platform.Transcriber
 import com.module.notelycompose.summary.Text2Summary
-import com.module.notelycompose.transcription.textAnalysis.HindiTextSegmenter
 import com.module.notelycompose.transcription.textAnalysis.getSegmenter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -63,7 +62,9 @@ class TranscriptionViewModel(
                         val delimiter = if(_uiState.value.originalText.endsWith(".")) "\n\n" else SPACE_STR
                         debugPrintln{"\n text ========================= $text"}
                         _uiState.update { current ->
+                            // TODO: Verify this change
                             current.copy(
+                                // originalText = "${_uiState.value.originalText}$delimiter${text.trim()}".trim(),
                                 originalText = segmenter.segmentText("${_uiState.value.originalText.trim()}$delimiter${text.trim()}".trim()).joinToString("\n\n"),
                                 partialText = text
                             )
