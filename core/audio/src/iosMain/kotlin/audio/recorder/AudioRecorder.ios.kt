@@ -33,7 +33,7 @@ import platform.Foundation.NSURL
 import platform.darwin.NSObjectProtocol
 import kotlin.coroutines.resume
 
-actual class AudioRecorder {
+actual class AudioRecorder{
 
     private var audioRecorder: AVAudioRecorder? = null
     private var recordingSession: AVAudioSession = AVAudioSession.sharedInstance()
@@ -118,7 +118,7 @@ actual class AudioRecorder {
         } as?  platform.AVFAudio.AVAudioSessionPortDescription
         if (builtIn != null) {
             recordingSession.setPreferredInput(builtIn, null)
-            Napier.d { "Fell back to built-in mic" }
+            Napier.d { "Fell back to built-in mic ${builtIn.portName}" }
         }
     }
 
@@ -145,15 +145,22 @@ actual class AudioRecorder {
     }
 
     @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
-    actual fun startRecording() {
+    actual fun startRecording(
+        useBluetoothMic: Boolean
+    ) {
         // 1. Request permissions early
         if (!hasRecordingPermission()) {
             Napier.d { "Recording permission not granted" }
             return
         }
-        // Try selecting Bluetooth first
-        val usingBluetooth = selectBluetoothIfAvailable()
-        if (!usingBluetooth) {
+
+        if(useBluetoothMic) {
+            // Try selecting Bluetooth first
+            val usingBluetooth = selectBluetoothIfAvailable()
+            if (!usingBluetooth) {
+                selectBuiltInMic()
+            }
+        }else{
             selectBuiltInMic()
         }
 

@@ -26,7 +26,7 @@ actual class AudioRecorder(
     private var permissionContinuation: ((Boolean) -> Unit)? = null
     private var currentRecordingPath: String? = null
 
-    actual  fun startRecording() {
+    actual  fun startRecording(useBluetoothMic: Boolean) {
         val file = context.generateWavFile()
         currentRecordingPath = file.absolutePath
 

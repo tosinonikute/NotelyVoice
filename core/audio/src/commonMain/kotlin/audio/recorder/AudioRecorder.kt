@@ -3,7 +3,7 @@ package audio.recorder
 expect class AudioRecorder {
     suspend fun setup()
     suspend fun teardown()
-    fun startRecording()
+    fun startRecording(useBluetoothMic: Boolean = false)
     fun stopRecording()
     fun pauseRecording()
     fun resumeRecording()
