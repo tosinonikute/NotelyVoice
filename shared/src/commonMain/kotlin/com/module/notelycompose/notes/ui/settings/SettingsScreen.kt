@@ -250,7 +250,6 @@ private fun BluetoothSection(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable { onUseBluetoothWhenEnabledChange(!useBluetoothWhenEnabled) }
                 .border(
                     2.dp,
                     LocalCustomColors.current.bodyContentColor,
@@ -277,7 +276,7 @@ private fun BluetoothSection(
             Switch(
                 useBluetoothWhenEnabled,
                 onCheckedChange = {
-
+                    onUseBluetoothWhenEnabledChange(!useBluetoothWhenEnabled)
                 }
             )
         }
