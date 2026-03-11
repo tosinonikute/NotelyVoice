@@ -1,0 +1,5 @@
+- F-droid compatible build
+- Update to Android latest version, Android 16 (API level 36)
+- Set App to Portrait Only mode to avoid break in transcription on rotation
+- Add czech and slovak in language transcription
+- Hide Note Editor Float Action Buttons option to dropdown menu
