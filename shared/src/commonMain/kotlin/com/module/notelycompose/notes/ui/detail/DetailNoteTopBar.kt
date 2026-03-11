@@ -58,7 +58,9 @@ fun DetailNoteTopBar(
     onImportVideoClick: () -> Unit = {},
     onExportTextAsTxt: () -> Unit,
     onExportTextAsPDF: () -> Unit,
-    isRecordingExist: Boolean
+    isRecordingExist: Boolean,
+    areButtonsHidden: Boolean = false,
+    onToggleButtons: () -> Unit = {}
 ) {
     var showExistingRecordConfirmDialog by remember { mutableStateOf(false) }
     var showExistingVideoRecordConfirmDialog by remember { mutableStateOf(false) }
@@ -84,7 +86,9 @@ fun DetailNoteTopBar(
                 }
             },
             onExportTextAsTxt = onExportTextAsTxt,
-            onExportTextAsPDF = onExportTextAsPDF
+            onExportTextAsPDF = onExportTextAsPDF,
+            areButtonsHidden = areButtonsHidden,
+            onToggleButtons = onToggleButtons
         )
     } else {
         DetailIOSNoteTopBar(
@@ -106,7 +110,9 @@ fun DetailNoteTopBar(
                 }
             },
             onExportTextAsTxt = onExportTextAsTxt,
-            onExportTextAsPDF = onExportTextAsPDF
+            onExportTextAsPDF = onExportTextAsPDF,
+            areButtonsHidden = areButtonsHidden,
+            onToggleButtons = onToggleButtons
         )
     }
 
@@ -144,6 +150,8 @@ fun DetailAndroidNoteTopBar(
     onImportVideoClick: () -> Unit,
     onExportTextAsTxt: () -> Unit,
     onExportTextAsPDF: () -> Unit,
+    areButtonsHidden: Boolean = false,
+    onToggleButtons: () -> Unit = {},
     elevation: Dp = AppBarDefaults.TopAppBarElevation
 ) {
     TopAppBar(
@@ -177,7 +185,9 @@ fun DetailAndroidNoteTopBar(
                 onImportClick = onImportClick,
                 onImportVideoClick = onImportVideoClick,
                 onExportTextAsTxt = onExportTextAsTxt,
-                onExportTextAsPDF = onExportTextAsPDF
+                onExportTextAsPDF = onExportTextAsPDF,
+                areButtonsHidden = areButtonsHidden,
+                onToggleButtons = onToggleButtons
             )
         },
         backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
@@ -194,7 +204,9 @@ fun DetailIOSNoteTopBar(
     onImportVideoClick: () -> Unit,
     onExportTextAsTxt: () -> Unit,
     onExportTextAsPDF: () -> Unit,
-    onShare: () -> Unit
+    onShare: () -> Unit,
+    areButtonsHidden: Boolean = false,
+    onToggleButtons: () -> Unit = {}
 ) {
     TopAppBar(
         title = {
@@ -229,7 +241,9 @@ fun DetailIOSNoteTopBar(
                 onImportClick = onImportClick,
                 onImportVideoClick = onImportVideoClick,
                 onExportTextAsTxt = onExportTextAsTxt,
-                onExportTextAsPDF = onExportTextAsPDF
+                onExportTextAsPDF = onExportTextAsPDF,
+                areButtonsHidden = areButtonsHidden,
+                onToggleButtons = onToggleButtons
             )
         },
         contentColor = LocalCustomColors.current.iOSBackButtonColor,
@@ -245,7 +259,9 @@ fun DetailDropDownMenu(
     onImportClick: () -> Unit = {},
     onImportVideoClick: () -> Unit = {},
     onExportTextAsTxt: () -> Unit,
-    onExportTextAsPDF: () -> Unit
+    onExportTextAsPDF: () -> Unit,
+    areButtonsHidden: Boolean = false,
+    onToggleButtons: () -> Unit = {}
 ) {
     var dropdownExpanded by remember { mutableStateOf(false) }
     Box {
@@ -304,6 +320,15 @@ fun DetailDropDownMenu(
                 }
             ) {
                 Text(stringResource(Res.string.top_bar_export_as_pdf))
+            }
+
+            DropdownMenuItem(
+                onClick = {
+                    dropdownExpanded = false
+                    onToggleButtons()
+                }
+            ) {
+                Text(if (areButtonsHidden) "Show Buttons" else "Hide Buttons")
             }
         }
     }
