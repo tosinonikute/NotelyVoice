@@ -209,4 +209,5 @@
     <string name="settings_model_selection">Model Selection</string>
     <string name="settings_model_selection_text">AI Model</string>
     <string name="settings_model_selection_description">Choose the model that best fits your needs</string>
+    <string name="copied">Copied!</string>
 </resources>
