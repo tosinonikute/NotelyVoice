@@ -120,8 +120,6 @@ fun NoteDetailScreen(
         .let { audioPlayerViewModel.onGetUiState(it) }
     val platformState by platformViewModel.state.collectAsStateWithLifecycle()
 
-    val platformState by platformViewModel.state.collectAsStateWithLifecycle()
-
     var showFormatBar by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
     var showLoadingDialog by remember { mutableStateOf(false) }
