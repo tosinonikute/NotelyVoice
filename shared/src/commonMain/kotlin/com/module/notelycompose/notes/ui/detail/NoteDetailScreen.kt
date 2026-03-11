@@ -1,5 +1,10 @@
 package com.module.notelycompose.notes.ui.detail
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -25,7 +30,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.FloatingActionButtonDefaults.elevation
-import androidx.compose.material.FloatingActionButtonElevation
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.SwipeToDismiss
@@ -40,6 +44,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -125,6 +130,7 @@ fun NoteDetailScreen(
     var showDownloadQuestionDialog by remember { mutableStateOf(false) }
     var showExistingRecordConfirmDialog by remember { mutableStateOf(false) }
     var showCopiedTooltip by remember { mutableStateOf(false) }
+    var isFabVisible by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
         if (noteId.toLong() > 0L) {
@@ -195,6 +201,35 @@ fun NoteDetailScreen(
         floatingActionButton = {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 if (editorState.recording.isRecordingExist) {
+                    AnimatedVisibility(
+                        visible = isFabVisible,
+                        enter = fadeIn() + slideInVertically(initialOffsetY = { it }),
+                        exit = fadeOut() + slideOutVertically(targetOffsetY = { it })
+                    ) {
+                        FloatingActionButton(
+                            modifier = Modifier.border(
+                                width = 1.dp,
+                                color = LocalCustomColors.current.floatActionButtonBorderColor,
+                                shape = CircleShape
+                            ),
+                            backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
+                            onClick = { downloaderViewModel.checkTranscriptionAvailability() },
+                            elevation = elevation(defaultElevation = 2.dp)
+                        ) {
+                            Icon(
+                                painter = painterResource(Res.drawable.ic_transcription),
+                                contentDescription = stringResource(Res.string.transcription_icon),
+                                tint = LocalCustomColors.current.bodyContentColor
+                            )
+                        }
+                    }
+                }
+
+                AnimatedVisibility(
+                    visible = isFabVisible,
+                    enter = fadeIn() + slideInVertically(initialOffsetY = { it }),
+                    exit = fadeOut() + slideOutVertically(targetOffsetY = { it })
+                ) {
                     FloatingActionButton(
                         modifier = Modifier.border(
                             width = 1.dp,
@@ -202,39 +237,23 @@ fun NoteDetailScreen(
                             shape = CircleShape
                         ),
                         backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
-                        onClick = { downloaderViewModel.checkTranscriptionAvailability() },
+                        onClick = {
+                            if (!editorState.recording.isRecordingExist) {
+                                navigateToRecorder("$currentNoteId")
+                            } else {
+                                showExistingRecordConfirmDialog = true
+                            }
+                        },
                         elevation = elevation(defaultElevation = 2.dp)
                     ) {
                         Icon(
-                            painter = painterResource(Res.drawable.ic_transcription),
-                            contentDescription = stringResource(Res.string.transcription_icon),
+                            imageVector = Images.Icons.IcRecorder,
+                            contentDescription = stringResource(Res.string.note_detail_recorder),
                             tint = LocalCustomColors.current.bodyContentColor
                         )
                     }
                 }
 
-                FloatingActionButton(
-                    modifier = Modifier.border(
-                        width = 1.dp,
-                        color = LocalCustomColors.current.floatActionButtonBorderColor,
-                        shape = CircleShape
-                    ),
-                    backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
-                    onClick = {
-                        if (!editorState.recording.isRecordingExist) {
-                            navigateToRecorder("$currentNoteId")
-                        } else {
-                            showExistingRecordConfirmDialog = true
-                        }
-                    },
-                    elevation = elevation(defaultElevation = 2.dp)
-                ) {
-                    Icon(
-                        imageVector = Images.Icons.IcRecorder,
-                        contentDescription = stringResource(Res.string.note_detail_recorder),
-                        tint = LocalCustomColors.current.bodyContentColor
-                    )
-                }
             }
         },
         floatingActionButtonPosition = FabPosition.End,
@@ -265,6 +284,7 @@ fun NoteDetailScreen(
             onFocusChange = {
                 isTextFieldFocused = it
             },
+            onFabVisibility = { isFabVisible = it }
         )
     }
 
@@ -371,7 +391,8 @@ private fun NoteContent(
     onFocusChange: (Boolean) -> Unit,
     audioPlayerUiState: AudioPlayerUiState,
     textEditorViewModel: TextEditorViewModel,
-    audioPlayerViewModel: AudioPlayerViewModel
+    audioPlayerViewModel: AudioPlayerViewModel,
+    onFabVisibility: (Boolean) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     var showDeleteRecordingDialog by remember { mutableStateOf(false) }
@@ -444,7 +465,8 @@ private fun NoteContent(
                 showFormatBar = showFormatBar,
                 focusRequester = focusRequester,
                 onFocusChange = onFocusChange,
-                textEditorViewModel = textEditorViewModel
+                textEditorViewModel = textEditorViewModel,
+                onFabVisibility = onFabVisibility
             )
         }
     }
@@ -480,8 +502,22 @@ private fun NoteEditor(
     showFormatBar: Boolean,
     focusRequester: FocusRequester,
     onFocusChange: (Boolean) -> Unit,
-    textEditorViewModel: TextEditorViewModel
+    textEditorViewModel: TextEditorViewModel,
+    onFabVisibility: (Boolean) -> Unit
 ) {
+
+    val scrollState = rememberScrollState()
+    var previousScrollValue by remember { mutableStateOf(0) }
+
+    LaunchedEffect(scrollState) {
+        snapshotFlow { scrollState.value }
+            .collect { currentScroll ->
+                val scrollingUp = currentScroll < previousScrollValue
+                val result = scrollingUp || currentScroll == 0
+                previousScrollValue = currentScroll
+                onFabVisibility(result)
+            }
+    }
 
     val transformation = VisualTransformation { text ->
         TransformedText(
@@ -512,6 +548,7 @@ private fun NoteEditor(
             modifier
                 .focusRequester(focusRequester)
                 .padding(horizontal = 16.dp)
+                .verticalScroll(scrollState)
                 .onFocusChanged {
                     onFocusChange(it.isFocused)
                 },
