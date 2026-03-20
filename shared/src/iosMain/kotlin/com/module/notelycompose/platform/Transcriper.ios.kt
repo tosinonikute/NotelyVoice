@@ -35,7 +35,7 @@ actual class Transcriber{
     }
 
 
-    actual suspend fun initialize() {
+    actual suspend fun initialize(modelFileName: String) {
         debugPrintln{"speech: initialize model"}
         if(!isModelLoaded)
             loadBaseModel()
@@ -57,11 +57,11 @@ actual class Transcriber{
         }
     }
 
-    actual fun doesModelExists() : Boolean{
+    actual fun doesModelExists(modelFileName: String) : Boolean{
         return NSFileManager.defaultManager.fileExistsAtPath(getModelPath())
     }
 
-    actual fun isValidModel() : Boolean{
+    actual fun isValidModel(modelFileName: String) : Boolean{
         try {
             if(!isModelLoaded)
                 loadBaseModel()
@@ -69,6 +69,18 @@ actual class Transcriber{
             return false
         }
         return true
+    }
+
+    actual suspend fun moveModelToProtectedStorage(modelFileName: String): Result<String> {
+        return Result.failure(Exception("Not supported on iOS"))
+    }
+
+    actual fun doesModelExistInExternalStorage(modelFileName: String): Boolean {
+        return false
+    }
+
+    actual fun doesModelExistInInternalStorage(modelFileName: String): Boolean {
+        return false
     }
 
     actual suspend fun stop() {

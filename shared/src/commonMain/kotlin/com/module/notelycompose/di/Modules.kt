@@ -7,6 +7,7 @@ import com.module.notelycompose.audio.presentation.mappers.AudioPlayerPresentati
 import com.module.notelycompose.audio.presentation.mappers.AudioRecorderPresentationToUiMapper
 import com.module.notelycompose.database.NoteDatabase
 import com.module.notelycompose.modelDownloader.ModelDownloaderViewModel
+import com.module.notelycompose.modelDownloader.MoveModelViewModel
 import com.module.notelycompose.notes.data.NoteSqlDelightDataSource
 import com.module.notelycompose.notes.domain.DeleteNoteById
 import com.module.notelycompose.notes.domain.GetAllNotesUseCase
@@ -78,6 +79,7 @@ val viewModelModule = module {
     viewModelOf(::TextEditorViewModel)
     viewModelOf(::NoteDetailScreenViewModel)
     viewModelOf(::ModelDownloaderViewModel)
+    viewModelOf(::MoveModelViewModel)
     viewModelOf(::AudioRecorderViewModel)
     viewModelOf(::AudioPlayerViewModel)
     viewModelOf(::AudioImportViewModel)

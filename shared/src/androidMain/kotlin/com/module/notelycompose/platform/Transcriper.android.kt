@@ -7,18 +7,22 @@ import android.os.Environment
 import androidx.core.content.ContextCompat
 import audio.utils.LauncherHolder
 import com.module.notelycompose.core.debugPrintln
+import com.module.notelycompose.onboarding.data.PreferencesRepository
 import com.module.notelycompose.utils.StreamingAudioChunker
 import com.module.notelycompose.utils.StreamingAudioChunk
 import com.module.notelycompose.utils.ChunkTranscriptionResult
 import com.whispercpp.whisper.WhisperCallback
 import com.whispercpp.whisper.WhisperContext
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.io.File
 import kotlin.coroutines.resume
 
 actual class Transcriber(
     private val context: Context,
-    private val launcherHolder: LauncherHolder
+    private val launcherHolder: LauncherHolder,
+    private val preferencesRepository: PreferencesRepository
 ) {
     private var canTranscribe: Boolean = false
     private var isTranscribing = false
@@ -67,8 +71,13 @@ actual class Transcriber(
     private fun loadBaseModel(modelFileName: String) {
         try {
             debugPrintln{"Loading model: $modelFileName\n"}
-            val modelFile = File(modelsPath, modelFileName)
-            whisperContext = WhisperContext.createContextFromFile(modelFile.absolutePath)
+            val internalFile = File(context.filesDir, modelFileName)
+            val modelPath = if (internalFile.exists()) {
+                internalFile.absolutePath
+            } else {
+                File(modelsPath, modelFileName).absolutePath
+            }
+            whisperContext = WhisperContext.createContextFromFile(modelPath)
             canTranscribe = true
         } catch (e: OutOfMemoryError) {
             e.printStackTrace()
@@ -78,8 +87,13 @@ actual class Transcriber(
     }
 
     actual fun doesModelExists(modelFileName: String) : Boolean{
-        val modelFile = File(modelsPath, modelFileName)
-        return modelFile.exists()
+        val internalFile = File(context.filesDir, modelFileName)
+        if (internalFile.exists()) {
+            return true
+        }
+
+        val externalFile = File(modelsPath, modelFileName)
+        return externalFile.exists()
     }
 
     actual fun isValidModel(modelFileName: String) : Boolean{
@@ -89,6 +103,51 @@ actual class Transcriber(
             return false
         }
         return true
+    }
+
+    actual suspend fun moveModelToProtectedStorage(modelFileName: String): Result<String> {
+        return kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+            try {
+                val externalFile = File(modelsPath, modelFileName)
+                if (!externalFile.exists()) {
+                    return@withContext Result.failure(Exception("Model file not found in external storage"))
+                }
+
+                val internalFile = File(context.filesDir, modelFileName)
+
+                externalFile.inputStream().use { input ->
+                    internalFile.outputStream().use { output ->
+                        input.copyTo(output)
+                    }
+                }
+
+                if (internalFile.exists()) {
+                    preferencesRepository.setModelFilePath(internalFile.absolutePath)
+                    debugPrintln {"Model moved to internal storage: ${internalFile.absolutePath}"}
+
+                    externalFile.delete()
+                    debugPrintln {"External model file deleted"}
+
+                    Result.success(internalFile.absolutePath)
+                } else {
+                    Result.failure(Exception("Failed to copy model to internal storage"))
+                }
+            } catch (e: Exception) {
+                debugPrintln {"Failed to move model: ${e.message}"}
+                e.printStackTrace()
+                Result.failure(e)
+            }
+        }
+    }
+
+    actual fun doesModelExistInExternalStorage(modelFileName: String): Boolean {
+        val externalFile = File(modelsPath, modelFileName)
+        return externalFile.exists()
+    }
+
+    actual fun doesModelExistInInternalStorage(modelFileName: String): Boolean {
+        val internalFile = File(context.filesDir, modelFileName)
+        return internalFile.exists()
     }
 
     actual suspend fun stop() {

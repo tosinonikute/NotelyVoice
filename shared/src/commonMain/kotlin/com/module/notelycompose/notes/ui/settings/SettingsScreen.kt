@@ -79,6 +79,12 @@ import com.module.notelycompose.resources.ic_export_selections
 import com.module.notelycompose.resources.navigate
 import org.jetbrains.compose.resources.painterResource
 import com.module.notelycompose.resources.transcription_model_selection
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import com.module.notelycompose.platform.Transcriber
+import com.module.notelycompose.modelDownloader.ModelSelection
+import androidx.compose.runtime.LaunchedEffect
 
 @Composable
 fun SettingsScreen(
@@ -86,6 +92,7 @@ fun SettingsScreen(
     navigateToLanguages: () -> Unit,
     navigateToSettingsText: () -> Unit,
     navigateToModelSelection: () -> Unit,
+    navigateToMoveModel: () -> Unit,
     preferencesRepository: PreferencesRepository = koinInject()
 ) {
     val language by preferencesRepository.getDefaultTranscriptionLanguage()
@@ -96,6 +103,7 @@ fun SettingsScreen(
     val modelSavedSelection = preferencesRepository.getModelSelection().collectAsState(
         NO_MODEL_SELECTION
     ).value
+    val modelFilePath by preferencesRepository.getModelFilePath().collectAsState(null)
 
     Column(
         modifier = Modifier
@@ -134,6 +142,15 @@ fun SettingsScreen(
                 LanguageModelSelectionSection(
                     navigateToModelSelection = navigateToModelSelection,
                     modelSavedSelection = modelSavedSelection
+                )
+            }
+
+            item {
+                ModelStorageSection(
+                    modelFilePath = modelFilePath,
+                    modelSelection = modelSavedSelection,
+                    preferencesRepository = preferencesRepository,
+                    navigateToMoveModel = navigateToMoveModel
                 )
             }
 
@@ -874,6 +891,105 @@ fun SettingsModelOptionCard(
                     fontSize = 14.sp,
                     color = LocalCustomColors.current.modelSelectionDescColor
                 )
+            }
+        }
+    }
+}
+
+@Composable
+fun ModelStorageSection(
+    modelFilePath: String?,
+    modelSelection: Int,
+    preferencesRepository: PreferencesRepository,
+    navigateToMoveModel: () -> Unit,
+    transcriber: Transcriber = koinInject(),
+    modelSelectionHelper: ModelSelection = koinInject()
+) {
+    var modelFileName by remember { mutableStateOf<String?>(null) }
+
+    LaunchedEffect(modelSelection) {
+        val selectedModel = modelSelectionHelper.getSelectedModel()
+        modelFileName = selectedModel.name
+    }
+
+    val isInExternalStorage = modelFileName != null && transcriber.doesModelExistInExternalStorage(modelFileName!!)
+    val isInInternalStorage = modelFileName != null && transcriber.doesModelExistInInternalStorage(modelFileName!!)
+
+    if (modelFileName != null && (isInExternalStorage || isInInternalStorage)) {
+        Column {
+            Text(
+                text = "Storage",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = LocalCustomColors.current.bodyContentColor,
+                modifier = Modifier.padding(bottom = 12.dp)
+            )
+
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(enabled = isInExternalStorage) { navigateToMoveModel() },
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = LocalCustomColors.current.bodyBackgroundColor
+                ),
+                border = androidx.compose.foundation.BorderStroke(
+                    1.dp,
+                    LocalCustomColors.current.settingsBodyBorderColor
+                )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        if (isInInternalStorage) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                Text(
+                                    text = "✓",
+                                    fontSize = 20.sp,
+                                    color = Color(0xFF10B981)
+                                )
+                                Text(
+                                    text = "Model in protected storage",
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Medium,
+                                    color = LocalCustomColors.current.bodyContentColor
+                                )
+                            }
+                        } else {
+                            Text(
+                                text = "Move model to protected storage",
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Medium,
+                                color = LocalCustomColors.current.bodyContentColor
+                            )
+
+                            Spacer(modifier = Modifier.height(4.dp))
+
+                            Text(
+                                text = "Recommended for GrapheneOS and MIUI users",
+                                fontSize = 14.sp,
+                                color = LocalCustomColors.current.settingsBodyTextColor,
+                                lineHeight = 20.sp
+                            )
+                        }
+                    }
+
+                    if (isInExternalStorage) {
+                        Icon(
+                            imageVector = Icons.Default.KeyboardArrowRight,
+                            contentDescription = "Move model",
+                            tint = Color.Gray,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                }
             }
         }
     }

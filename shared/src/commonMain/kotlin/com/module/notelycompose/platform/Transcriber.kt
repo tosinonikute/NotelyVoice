@@ -15,4 +15,7 @@ expect class Transcriber {
     fun hasRecordingPermission(): Boolean
     suspend fun requestRecordingPermission():Boolean
     fun isValidModel(modelFileName: String): Boolean
+    suspend fun moveModelToProtectedStorage(modelFileName: String): Result<String>
+    fun doesModelExistInExternalStorage(modelFileName: String): Boolean
+    fun doesModelExistInInternalStorage(modelFileName: String): Boolean
 }

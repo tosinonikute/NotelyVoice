@@ -54,4 +54,7 @@ sealed interface Routes {
 
     @Serializable
     data object LanguageModelExplanation : Routes
+
+    @Serializable
+    data object MoveModel : Routes
 }

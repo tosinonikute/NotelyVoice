@@ -29,6 +29,7 @@ class PreferencesRepository(
         private val KEY_MODEL_DOWNLOAD_ID = longPreferencesKey("model_download_id")
         private val KEY_BODY_TEXT_SIZE = floatPreferencesKey("body_text_size")
         private val KEY_MODEL_SELECTION = intPreferencesKey("model_selection")
+        private val KEY_MODEL_FILE_PATH = stringPreferencesKey("model_file_path")
     }
 
     suspend fun hasCompletedOnboarding(): Boolean {
@@ -90,6 +91,16 @@ class PreferencesRepository(
     suspend fun setModelSelection(modelSelection: Int) {
         dataStore.edit { prefs ->
             prefs[KEY_MODEL_SELECTION] = modelSelection
+        }
+    }
+
+    fun getModelFilePath(): Flow<String?> = dataStore.data.map { prefs ->
+        prefs[KEY_MODEL_FILE_PATH]
+    }
+
+    suspend fun setModelFilePath(filePath: String) {
+        dataStore.edit { prefs ->
+            prefs[KEY_MODEL_FILE_PATH] = filePath
         }
     }
 }

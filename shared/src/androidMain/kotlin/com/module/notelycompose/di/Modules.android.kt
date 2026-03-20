@@ -52,7 +52,7 @@ actual val platformModule = module {
 
     single { Downloader(get(), get()) }
 
-    single { Transcriber(get(), get()) }
+    single { Transcriber(get(), get(), get()) }
 
     // domain
     single<AudioRecorderInteractor> { AudioRecorderInteractorImpl(get(), get(), get()) }
