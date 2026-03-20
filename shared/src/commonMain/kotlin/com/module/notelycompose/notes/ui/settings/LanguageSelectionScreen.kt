@@ -66,6 +66,7 @@ val languageCodeMap = mapOf(
     "de" to "German",
     "gu" to "Gujarati",
     "hi" to "Hindi",
+    "hu" to "Hungarian",
     "id" to "Indonesian",
     "it" to "Italian",
     "ja" to "Japanese",
