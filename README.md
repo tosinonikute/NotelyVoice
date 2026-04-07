@@ -8,6 +8,13 @@ A completely free, modern, cross-platform, 100% private AI voice transcription &
 
 Perfect for students capturing lectures, professionals documenting meetings, doctors recording patient notes, researchers transcribing interviews, and anyone needing accessible hands-free note-taking across all their devices.
 
+## New Update - F-Droid
+This repository contains the open source version of NotelyVoice, distributed freely via F-Droid. It is actively maintained and will continue to receive updates.
+
+## Google Play
+A separate, fully rebuilt version of NotelyVoice is available on Google Play. That version has a new codebase, redesigned UI, and a subscription model. Revenue from it directly funds the ongoing development of both versions.
+If you value open source software and want to support this project, consider trying the Play Store version or starring this repo.
+
 ## Download the app
 <div style="display:flex;" >
 <a href="https://f-droid.org/en/packages/com.module.notelycompose.android">
