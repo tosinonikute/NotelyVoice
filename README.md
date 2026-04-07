@@ -15,6 +15,16 @@ This repository contains the open source version of NotelyVoice, distributed fre
 A separate, fully rebuilt version of NotelyVoice is available on Google Play. That version has a new codebase, redesigned UI, and a subscription model. Revenue from it directly funds the ongoing development of both versions.
 If you value open source software and want to support this project, consider trying the Play Store version or starring this repo.
 
+## Two versions of NotelyVoice
+
+| | F-Droid (this repo) | Google Play |
+|---|---|---|
+| Price | Free | Subscription |
+| Source | Open source (GPL-3.0) | Proprietary |
+| Codebase | This repository | Separate, rebuilt from scratch |
+| UI | Original | Fully redesigned |
+| Updates | Actively maintained | Actively maintained |
+
 ## Download the app
 <div style="display:flex;" >
 <a href="https://f-droid.org/en/packages/com.module.notelycompose.android">
