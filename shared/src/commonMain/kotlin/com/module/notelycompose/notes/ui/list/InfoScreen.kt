@@ -1,6 +1,7 @@
 package com.module.notelycompose.notes.ui.list
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -45,6 +46,7 @@ import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.qualifier.named
 import androidx.compose.runtime.DisposableEffect
 import androidx.lifecycle.Lifecycle
+import com.module.notelycompose.resources.more_info_url
 
 /**
  * A settings bottom sheet that displays a list of options and can navigate to web content
@@ -72,6 +74,7 @@ fun InfoScreen(
     val aboutUrl  = infoBaseUrl + stringResource(Res.string.about_url)
     val supportUrl  = infoBaseUrl + stringResource(Res.string.support_url)
     val privacyUrl  = infoBaseUrl + stringResource(Res.string.privacy_url)
+    val moreInfoUrl  = infoBaseUrl + stringResource(Res.string.more_info_url)
     val appVersionStr = "Version $appVersion"
 
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -180,6 +183,43 @@ fun InfoScreen(
             )
 
             Spacer(modifier = Modifier.weight(1f))
+
+            // Informational section about web version
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 24.dp, horizontal = 40.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "This is the free, open-source version. A web version with additional features is also available.",
+                    fontSize = 16.sp,
+                    color = LocalCustomColors.current.bodyContentColor.copy(alpha = 0.75f),
+                    modifier = Modifier.padding(bottom = 16.dp),
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                    lineHeight = 22.sp
+                )
+
+                OutlinedButton(
+                    onClick = {
+                        browserLauncher.openUrl(moreInfoUrl)
+                    },
+                    modifier = Modifier.height(48.dp),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = LocalCustomColors.current.bodyContentColor
+                    ),
+                    border = androidx.compose.foundation.BorderStroke(
+                        1.dp,
+                        LocalCustomColors.current.bodyContentColor.copy(alpha = 0.3f)
+                    )
+                ) {
+                    Text(
+                        text = "Visit website",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Normal
+                    )
+                }
+            }
 
             // App Version at the bottom
             Text(

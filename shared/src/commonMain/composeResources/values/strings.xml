@@ -96,15 +96,16 @@
     <!-- Download Dialog -->
     <string name="download_dialog_error">Error while downloading</string>
     <!-- Information UI -->
-    <string name="information_base_url">https://tosinonikute.com/notely/</string>
+    <string name="information_base_url">https://notelyvoice.ai/</string>
     <string name="faq">FAQ</string>
     <string name="about">About Us</string>
     <string name="support">Support</string>
     <string name="privacy">Privacy Policy</string>
-    <string name="faq_url">faq.html</string>
-    <string name="about_url">about.html</string>
-    <string name="support_url">support.html</string>
-    <string name="privacy_url">privacyupdated.html</string>
+    <string name="faq_url">faq</string>
+    <string name="about_url">about</string>
+    <string name="support_url">contact</string>
+    <string name="privacy_url">privacy</string>
+    <string name="more_info_url">moreinfo</string>
     <!-- Empty List String -->
     <string name="empty_list_title">No Notes Yet</string>
     <string name="empty_list_description">Start capturing your thoughts and voice recordings. Tap the plus + icon at the bottom right corner to create your first note.</string>
