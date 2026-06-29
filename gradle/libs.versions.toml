@@ -37,9 +37,9 @@ core-ktx = "1.16.0"
 androidx-lifecycle = "2.9.1"
 
 # Android SDK
-android-compileSdk = "36"
+android-compileSdk = "37"
 android-minSdk = "26"
-android-targetSdk = "36"
+android-targetSdk = "37"
 
 documentfile = "1.1.0"
 
