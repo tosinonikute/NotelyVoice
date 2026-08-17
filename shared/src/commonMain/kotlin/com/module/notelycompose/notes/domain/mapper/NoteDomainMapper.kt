@@ -1,8 +1,10 @@
 package com.module.notelycompose.notes.domain.mapper
 
 import com.module.notelycompose.notes.data.model.NoteDataModel
+import com.module.notelycompose.notes.data.model.RecordingDataModel
 import com.module.notelycompose.notes.data.model.TextAlignDataModel
 import com.module.notelycompose.notes.domain.model.NoteDomainModel
+import com.module.notelycompose.notes.domain.model.RecordingDomainModel
 import com.module.notelycompose.notes.domain.model.TextAlignDomainModel
 
 class NoteDomainMapper(
@@ -17,6 +19,7 @@ class NoteDomainMapper(
             formatting = dataModel.formatting.map { textFormatMapper.mapToDomainModel(it) },
             textAlign = mapTextAlignToDomainModel(dataModel.textAlign),
             recordingPath = dataModel.recordingPath,
+            recordings = dataModel.recordings.map { mapRecordingToDomainModel(it) },
             createdAt = dataModel.createdAt
         )
     }
@@ -30,6 +33,31 @@ class NoteDomainMapper(
             formatting = domainModel.formatting.map { textFormatMapper.mapToDataModel(it) },
             textAlign = mapTextAlignToDataModel(domainModel.textAlign),
             recordingPath = domainModel.recordingPath,
+            recordings = domainModel.recordings.map { mapRecordingToDataModel(it) },
+            createdAt = domainModel.createdAt
+        )
+    }
+
+    fun mapRecordingToDomainModel(dataModel: RecordingDataModel): RecordingDomainModel {
+        return RecordingDomainModel(
+            id = dataModel.id,
+            noteId = dataModel.noteId,
+            filePath = dataModel.filePath,
+            transcription = dataModel.transcription,
+            durationMs = dataModel.durationMs,
+            position = dataModel.position,
+            createdAt = dataModel.createdAt
+        )
+    }
+
+    fun mapRecordingToDataModel(domainModel: RecordingDomainModel): RecordingDataModel {
+        return RecordingDataModel(
+            id = domainModel.id,
+            noteId = domainModel.noteId,
+            filePath = domainModel.filePath,
+            transcription = domainModel.transcription,
+            durationMs = domainModel.durationMs,
+            position = domainModel.position,
             createdAt = domainModel.createdAt
         )
     }
