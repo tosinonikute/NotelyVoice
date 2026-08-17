@@ -9,13 +9,17 @@ import com.module.notelycompose.database.NoteDatabase
 import com.module.notelycompose.modelDownloader.ModelDownloaderViewModel
 import com.module.notelycompose.notes.data.NoteSqlDelightDataSource
 import com.module.notelycompose.notes.domain.DeleteNoteById
+import com.module.notelycompose.notes.domain.DeleteRecordingByIdUseCase
 import com.module.notelycompose.notes.domain.GetAllNotesUseCase
 import com.module.notelycompose.notes.domain.GetLastNote
 import com.module.notelycompose.notes.domain.GetNoteById
+import com.module.notelycompose.notes.domain.GetRecordingsByNoteId
 import com.module.notelycompose.notes.domain.InsertNoteUseCase
+import com.module.notelycompose.notes.domain.InsertRecordingUseCase
 import com.module.notelycompose.notes.domain.NoteDataSource
 import com.module.notelycompose.notes.domain.SearchNotesUseCase
 import com.module.notelycompose.notes.domain.UpdateNoteUseCase
+import com.module.notelycompose.notes.domain.UpdateRecordingTranscriptionUseCase
 import com.module.notelycompose.notes.domain.mapper.NoteDomainMapper
 import com.module.notelycompose.notes.domain.mapper.TextFormatMapper
 import com.module.notelycompose.audio.presentation.AudioImportViewModel
@@ -92,4 +96,8 @@ val useCaseModule = module {
     factory { InsertNoteUseCase(get(), get(), get()) }
     factory { SearchNotesUseCase(get(), get()) }
     factory { UpdateNoteUseCase(get(), get(), get()) }
+    factory { GetRecordingsByNoteId(get(), get()) }
+    factory { InsertRecordingUseCase(get()) }
+    factory { DeleteRecordingByIdUseCase(get()) }
+    factory { UpdateRecordingTranscriptionUseCase(get()) }
 }
