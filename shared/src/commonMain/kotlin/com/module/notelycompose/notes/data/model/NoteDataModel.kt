@@ -14,5 +14,6 @@ data class NoteDataModel(
     val textAlign: TextAlignDataModel,
     val recordingPath: String,
     val recordings: List<RecordingDataModel> = emptyList(),
+    val photos: List<PhotoDataModel> = emptyList(),
     val createdAt: LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 )

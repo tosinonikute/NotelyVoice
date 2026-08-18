@@ -11,5 +11,6 @@ data class NoteDomainModel(
     val textAlign: TextAlignDomainModel,
     val recordingPath: String,
     val recordings: List<RecordingDomainModel> = emptyList(),
+    val photos: List<PhotoDomainModel> = emptyList(),
     val createdAt: LocalDateTime
 )
