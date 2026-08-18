@@ -13,6 +13,7 @@ data class EditorUiState(
     val textAlign: TextAlign = TextAlign.Left,
     val selectionSize: TextFormatUiOption = TextUiFormats.Body,
     val recording: RecordingPathUiModel,
+    val recordings: List<RecordingUiModel> = emptyList(),
     val isStarred: Boolean,
     val createdAt: String,
     val bodyTextSize: Float
@@ -41,4 +42,11 @@ object TextUiFormats {
 data class RecordingPathUiModel(
     val recordingPath: String,
     val isRecordingExist: Boolean
+)
+
+data class RecordingUiModel(
+    val id: Long,
+    val filePath: String,
+    val transcription: String,
+    val durationMs: Long
 )

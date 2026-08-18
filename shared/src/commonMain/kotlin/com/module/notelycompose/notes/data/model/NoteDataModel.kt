@@ -13,5 +13,6 @@ data class NoteDataModel(
     val formatting: List<TextFormatDataModel>,
     val textAlign: TextAlignDataModel,
     val recordingPath: String,
+    val recordings: List<RecordingDataModel> = emptyList(),
     val createdAt: LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 )
