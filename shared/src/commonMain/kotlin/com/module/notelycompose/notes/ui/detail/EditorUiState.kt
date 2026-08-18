@@ -14,6 +14,7 @@ data class EditorUiState(
     val selectionSize: TextFormatUiOption = TextUiFormats.Body,
     val recording: RecordingPathUiModel,
     val recordings: List<RecordingUiModel> = emptyList(),
+    val photos: List<PhotoUiModel> = emptyList(),
     val isStarred: Boolean,
     val createdAt: String,
     val bodyTextSize: Float
@@ -49,4 +50,9 @@ data class RecordingUiModel(
     val filePath: String,
     val transcription: String,
     val durationMs: Long
+)
+
+data class PhotoUiModel(
+    val id: Long,
+    val filePath: String
 )
