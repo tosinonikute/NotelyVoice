@@ -2,6 +2,7 @@ package com.module.notelycompose.notes.domain
 
 import com.module.notelycompose.core.CommonFlow
 import com.module.notelycompose.notes.data.model.NoteDataModel
+import com.module.notelycompose.notes.data.model.PhotoDataModel
 import com.module.notelycompose.notes.data.model.RecordingDataModel
 import com.module.notelycompose.notes.data.model.TextAlignDataModel
 import com.module.notelycompose.notes.data.model.TextFormatDataModel
@@ -51,4 +52,15 @@ interface NoteDataSource {
     suspend fun deleteRecordingById(id: Long)
     suspend fun deleteRecordingsByNoteId(noteId: Long)
     fun getRecordingsByNoteId(noteId: Long): List<RecordingDataModel>
+
+    // Multiple photos per note
+    suspend fun insertPhoto(
+        noteId: Long,
+        filePath: String,
+        position: Long
+    ): Long?
+
+    suspend fun deletePhotoById(id: Long)
+    suspend fun deletePhotosByNoteId(noteId: Long)
+    fun getPhotosByNoteId(noteId: Long): List<PhotoDataModel>
 }

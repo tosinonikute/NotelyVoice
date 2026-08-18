@@ -5,6 +5,7 @@ import com.module.notelycompose.core.DateTimeUtil
 import com.module.notelycompose.core.toCommonFlow
 import com.module.notelycompose.database.NoteDatabase
 import com.module.notelycompose.notes.data.model.NoteDataModel
+import com.module.notelycompose.notes.data.model.PhotoDataModel
 import com.module.notelycompose.notes.data.model.RecordingDataModel
 import com.module.notelycompose.notes.data.model.TextAlignDataModel
 import com.module.notelycompose.notes.data.model.TextFormatDataModel
@@ -119,7 +120,11 @@ class NoteSqlDelightDataSource(
         return queries
             .getNoteById(id)
             .executeAsOneOrNull()
-            ?.toNoteDataModel(json, recordings = getRecordingsByNoteId(id))
+            ?.toNoteDataModel(
+                json,
+                recordings = getRecordingsByNoteId(id),
+                photos = getPhotosByNoteId(id)
+            )
     }
 
     override fun getLastNote(): NoteDataModel? {
@@ -136,6 +141,7 @@ class NoteSqlDelightDataSource(
 
     override suspend fun deleteNoteById(id: Long) {
         queries.deleteRecordingsByNoteId(id)
+        queries.deletePhotosByNoteId(id)
         queries.deleteNoteById(id)
     }
 
@@ -178,6 +184,35 @@ class NoteSqlDelightDataSource(
             .getRecordingsByNoteId(noteId)
             .executeAsList()
             .map { it.toRecordingDataModel() }
+    }
+
+    override suspend fun insertPhoto(
+        noteId: Long,
+        filePath: String,
+        position: Long
+    ): Long? {
+        queries.insertPhoto(
+            noteId = noteId,
+            filePath = filePath,
+            position = position,
+            createdAt = DateTimeUtil.toEpochMilli(DateTimeUtil.now())
+        )
+        return queries.getLastPhotoId().executeAsOneOrNull()
+    }
+
+    override suspend fun deletePhotoById(id: Long) {
+        queries.deletePhotoById(id)
+    }
+
+    override suspend fun deletePhotosByNoteId(noteId: Long) {
+        queries.deletePhotosByNoteId(noteId)
+    }
+
+    override fun getPhotosByNoteId(noteId: Long): List<PhotoDataModel> {
+        return queries
+            .getPhotosByNoteId(noteId)
+            .executeAsList()
+            .map { it.toPhotoDataModel() }
     }
 }
 
