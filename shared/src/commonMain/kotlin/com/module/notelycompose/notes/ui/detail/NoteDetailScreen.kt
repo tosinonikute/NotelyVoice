@@ -31,6 +31,7 @@ import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.FloatingActionButtonDefaults.elevation
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.SwipeToDismiss
 import androidx.compose.material.Text
@@ -40,6 +41,7 @@ import androidx.compose.material.rememberDismissState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -120,6 +122,9 @@ fun NoteDetailScreen(
         .let { audioPlayerViewModel.onGetUiState(it) }
     val platformState by platformViewModel.state.collectAsStateWithLifecycle()
 
+    val hasAnyRecording = editorState.recordings.isNotEmpty() ||
+            editorState.recording.isRecordingExist
+
     var showFormatBar by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
     var showLoadingDialog by remember { mutableStateOf(false) }
@@ -128,7 +133,6 @@ fun NoteDetailScreen(
     var showErrorDialog by remember { mutableStateOf(false) }
     var isTextFieldFocused by remember { mutableStateOf(false) }
     var showDownloadQuestionDialog by remember { mutableStateOf(false) }
-    var showExistingRecordConfirmDialog by remember { mutableStateOf(false) }
     var showCopiedTooltip by remember { mutableStateOf(false) }
     var isFabVisible by remember { mutableStateOf(true) }
 
@@ -189,7 +193,7 @@ fun NoteDetailScreen(
                     audioPlayerViewModel.releasePlayer()
                     audioImportViewModel.importVideo()
                 },
-                isRecordingExist = editorState.recording.isRecordingExist,
+                isRecordingExist = hasAnyRecording,
                 onExportTextAsTxt = {
                     platformViewModel.onExportTextAsTxt(editorState.content.text)
                 },
@@ -200,7 +204,7 @@ fun NoteDetailScreen(
         },
         floatingActionButton = {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                if (editorState.recording.isRecordingExist) {
+                if (hasAnyRecording) {
                     AnimatedVisibility(
                         visible = isFabVisible,
                         enter = fadeIn() + slideInVertically(initialOffsetY = { it }),
@@ -238,11 +242,8 @@ fun NoteDetailScreen(
                         ),
                         backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
                         onClick = {
-                            if (!editorState.recording.isRecordingExist) {
-                                navigateToRecorder("$currentNoteId")
-                            } else {
-                                showExistingRecordConfirmDialog = true
-                            }
+                            // A note can hold several recordings: always add a new one
+                            navigateToRecorder("$currentNoteId")
                         },
                         elevation = elevation(defaultElevation = 2.dp)
                     ) {
@@ -332,16 +333,6 @@ fun NoteDetailScreen(
     if (showLoadingDialog) {
         PreparingLoadingDialog()
     }
-    ReplaceRecordingConfirmationDialog(
-        showDialog = showExistingRecordConfirmDialog,
-        onDismiss = {
-            showExistingRecordConfirmDialog = false
-        },
-        onConfirm = {
-            navigateToRecorder("$currentNoteId")
-        },
-        option = RecordingConfirmationUiModel.Record
-    )
 
     if (showShareDialog) {
         ShareDialog(
@@ -366,7 +357,7 @@ fun NoteDetailScreen(
             showCopiedTooltip = true
         }
     }
-    3
+
     CopiedNotification(
         visible = showCopiedTooltip,
         onDismiss = {
@@ -395,9 +386,9 @@ private fun NoteContent(
     onFabVisibility: (Boolean) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
-    var showDeleteRecordingDialog by remember { mutableStateOf(false) }
+    var recordingToDelete by remember { mutableStateOf<RecordingUiModel?>(null) }
+    var showDeleteLegacyRecordingDialog by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
-    val dismissState = rememberDismissState()
     LaunchedEffect(editorState.content) {
         scrollState.animateScrollTo(scrollState.maxValue)
     }
@@ -417,11 +408,23 @@ private fun NoteContent(
         ) {
             DateHeader(newNoteDateString)
 
-            if (editorState.recording.isRecordingExist) {
-
+            if (editorState.recordings.isNotEmpty()) {
+                editorState.recordings.forEach { recording ->
+                    key(recording.id) {
+                        RecordingItem(
+                            recording = recording,
+                            audioPlayerUiState = audioPlayerUiState,
+                            audioPlayerViewModel = audioPlayerViewModel,
+                            onDeleteRequest = { recordingToDelete = recording }
+                        )
+                    }
+                }
+            } else if (editorState.recording.isRecordingExist) {
+                // Legacy note with a single recording that has not been migrated yet
+                val dismissState = rememberDismissState()
                 if (dismissState.isDismissed(DismissDirection.EndToStart)) {
                     LaunchedEffect(Unit) {
-                        showDeleteRecordingDialog = true
+                        showDeleteLegacyRecordingDialog = true
                     }
                 }
 
@@ -429,7 +432,6 @@ private fun NoteContent(
                     state = dismissState,
                     directions = setOf(DismissDirection.EndToStart),
                     background = {
-                        // Background that appears when swiping
                         Box(
                             modifier = Modifier
                                 .width(800.dp)
@@ -457,6 +459,21 @@ private fun NoteContent(
                         )
                     }
                 )
+
+                if (showDeleteLegacyRecordingDialog) {
+                    DeleteRecordingConfirmationDialog(
+                        showDialog = true,
+                        onDismiss = {
+                            showDeleteLegacyRecordingDialog = false
+                            coroutineScope.launch {
+                                dismissState.reset()
+                            }
+                        },
+                        onConfirm = {
+                            textEditorViewModel.onDeleteRecord()
+                        }
+                    )
+                }
             }
 
             NoteEditor(
@@ -470,20 +487,68 @@ private fun NoteContent(
             )
         }
     }
-    DeleteRecordingConfirmationDialog(
-        showDialog = showDeleteRecordingDialog,
-        onDismiss = {
-            showDeleteRecordingDialog = false
-            coroutineScope.launch {
-                dismissState.reset()
+
+    recordingToDelete?.let { recording ->
+        DeleteRecordingConfirmationDialog(
+            showDialog = true,
+            onDismiss = {
+                recordingToDelete = null
+            },
+            onConfirm = {
+                textEditorViewModel.onDeleteRecording(recording.id)
+                recordingToDelete = null
             }
-        },
-        onConfirm = {
-            textEditorViewModel.onDeleteRecord()
-        }
-    )
+        )
+    }
 }
 
+@Composable
+private fun RecordingItem(
+    recording: RecordingUiModel,
+    audioPlayerUiState: AudioPlayerUiState,
+    audioPlayerViewModel: AudioPlayerViewModel,
+    onDeleteRequest: () -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
+        Box(modifier = Modifier.fillMaxWidth()) {
+            PlatformAudioPlayerUi(
+                filePath = recording.filePath,
+                uiState = audioPlayerUiState,
+                onLoadAudio = audioPlayerViewModel::onLoadAudio,
+                onClear = audioPlayerViewModel::onClear,
+                onSeekTo = audioPlayerViewModel::onSeekTo,
+                onTogglePlayPause = audioPlayerViewModel::onTogglePlayPause
+            )
+            IconButton(
+                onClick = onDeleteRequest,
+                modifier = Modifier.align(Alignment.TopEnd)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "Delete",
+                    tint = Color.Red
+                )
+            }
+        }
+
+        if (recording.transcription.isNotBlank()) {
+            Text(
+                text = recording.transcription,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(LocalCustomColors.current.bodyBackgroundColor)
+                    .padding(12.dp),
+                fontSize = 14.sp,
+                color = LocalCustomColors.current.bodyContentColor
+            )
+        }
+    }
+}
 
 @Composable
 private fun DateHeader(dateString: String) {
