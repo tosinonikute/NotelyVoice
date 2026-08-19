@@ -193,7 +193,9 @@ class TextEditorViewModel(
                 val updatedRecordings = state.recordings.filterNot { it.id == recordingId }
                 state.copy(
                     recordings = updatedRecordings,
-                    recording = recordingPath(updatedRecordings.firstOrNull()?.filePath ?: "")
+                    recording = recordingPath(updatedRecordings.firstOrNull()?.filePath ?: ""),
+                    transcriptionRecordingId = state.transcriptionRecordingId
+                        .takeIf { it != recordingId }
                 )
             }
         }
@@ -214,6 +216,34 @@ class TextEditorViewModel(
                 )
             }
         }
+    }
+
+    /**
+     * Marks which recording the transcription screen should work with.
+     * Pass null to fall back to the legacy primary recording.
+     */
+    fun onSelectRecordingForTranscription(recordingId: Long?) {
+        _editorPresentationState.update { it.copy(transcriptionRecordingId = recordingId) }
+    }
+
+    /**
+     * File path of the recording selected for transcription, or the legacy primary
+     * recording path when nothing specific was selected.
+     */
+    fun getRecordingPathForTranscription(): String {
+        val state = _editorPresentationState.value
+        val selected = state.transcriptionRecordingId?.let { selectedId ->
+            state.recordings.firstOrNull { it.id == selectedId }
+        }
+        return selected?.filePath ?: state.recording.recordingPath
+    }
+
+    /**
+     * Id of the recording selected for transcription, or null when the legacy
+     * primary recording flow is used.
+     */
+    fun getSelectedRecordingIdForTranscription(): Long? {
+        return _editorPresentationState.value.transcriptionRecordingId
     }
 
     /**
