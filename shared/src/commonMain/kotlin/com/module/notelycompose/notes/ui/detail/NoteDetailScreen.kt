@@ -7,6 +7,7 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,7 +17,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,15 +35,19 @@ import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.FloatingActionButtonDefaults.elevation
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.SwipeToDismiss
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.rememberDismissState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -53,6 +61,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -67,7 +76,10 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import coil3.compose.AsyncImage
 import com.module.notelycompose.audio.presentation.AudioPlayerViewModel
 import com.module.notelycompose.audio.ui.player.PlatformAudioPlayerUi
 import com.module.notelycompose.audio.ui.player.model.AudioPlayerUiState
@@ -77,6 +89,8 @@ import com.module.notelycompose.modelDownloader.ModelDownloaderViewModel
 import com.module.notelycompose.audio.presentation.AudioImportViewModel
 import com.module.notelycompose.audio.ui.importing.ImportingAudioStateHost
 import com.module.notelycompose.modelDownloader.ModelSelection
+import com.module.notelycompose.notes.presentation.detail.ImportingPhotosState
+import com.module.notelycompose.notes.presentation.detail.PhotoImportViewModel
 import com.module.notelycompose.notes.presentation.detail.TextEditorViewModel
 import com.module.notelycompose.notes.ui.share.ShareDialog
 import com.module.notelycompose.notes.ui.theme.LocalCustomColors
@@ -107,11 +121,13 @@ fun NoteDetailScreen(
     downloaderViewModel: ModelDownloaderViewModel = koinViewModel(),
     platformViewModel: PlatformViewModel = koinViewModel(),
     audioImportViewModel: AudioImportViewModel = koinViewModel(),
+    photoImportViewModel: PhotoImportViewModel = koinViewModel(),
     editorViewModel: TextEditorViewModel,
     modelSelection: ModelSelection = koinInject()
 ) {
     val currentNoteId by editorViewModel.currentNoteId.collectAsStateWithLifecycle()
     val importingState by audioImportViewModel.importingAudioState.collectAsStateWithLifecycle()
+    val importingPhotosState by photoImportViewModel.importingPhotosState.collectAsStateWithLifecycle()
     val downloaderUiState by downloaderViewModel.uiState.collectAsStateWithLifecycle()
     val editorState = editorViewModel.editorPresentationState.collectAsStateWithLifecycle().value
         .let { editorViewModel.onGetUiState(it) }
@@ -119,6 +135,9 @@ fun NoteDetailScreen(
     val audioPlayerUiState = audioPlayerViewModel.uiState.collectAsStateWithLifecycle().value
         .let { audioPlayerViewModel.onGetUiState(it) }
     val platformState by platformViewModel.state.collectAsStateWithLifecycle()
+
+    val hasAnyRecording = editorState.recordings.isNotEmpty() ||
+            editorState.recording.isRecordingExist
 
     var showFormatBar by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
@@ -128,9 +147,18 @@ fun NoteDetailScreen(
     var showErrorDialog by remember { mutableStateOf(false) }
     var isTextFieldFocused by remember { mutableStateOf(false) }
     var showDownloadQuestionDialog by remember { mutableStateOf(false) }
-    var showExistingRecordConfirmDialog by remember { mutableStateOf(false) }
     var showCopiedTooltip by remember { mutableStateOf(false) }
     var isFabVisible by remember { mutableStateOf(true) }
+
+    LaunchedEffect(importingPhotosState) {
+        when (val state = importingPhotosState) {
+            is ImportingPhotosState.Success -> {
+                editorViewModel.onAddPhotos(state.paths)
+                photoImportViewModel.releaseState()
+            }
+            else -> Unit
+        }
+    }
 
     LaunchedEffect(Unit) {
         if (noteId.toLong() > 0L) {
@@ -189,7 +217,7 @@ fun NoteDetailScreen(
                     audioPlayerViewModel.releasePlayer()
                     audioImportViewModel.importVideo()
                 },
-                isRecordingExist = editorState.recording.isRecordingExist,
+                isRecordingExist = hasAnyRecording,
                 onExportTextAsTxt = {
                     platformViewModel.onExportTextAsTxt(editorState.content.text)
                 },
@@ -200,7 +228,7 @@ fun NoteDetailScreen(
         },
         floatingActionButton = {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                if (editorState.recording.isRecordingExist) {
+                if (hasAnyRecording) {
                     AnimatedVisibility(
                         visible = isFabVisible,
                         enter = fadeIn() + slideInVertically(initialOffsetY = { it }),
@@ -213,7 +241,11 @@ fun NoteDetailScreen(
                                 shape = CircleShape
                             ),
                             backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
-                            onClick = { downloaderViewModel.checkTranscriptionAvailability() },
+                            onClick = {
+                                // Transcribe the primary recording (legacy behaviour)
+                                editorViewModel.onSelectRecordingForTranscription(null)
+                                downloaderViewModel.checkTranscriptionAvailability()
+                            },
                             elevation = elevation(defaultElevation = 2.dp)
                         ) {
                             Icon(
@@ -238,11 +270,34 @@ fun NoteDetailScreen(
                         ),
                         backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
                         onClick = {
-                            if (!editorState.recording.isRecordingExist) {
-                                navigateToRecorder("$currentNoteId")
-                            } else {
-                                showExistingRecordConfirmDialog = true
-                            }
+                            // A note can hold several photos: pick one or more images
+                            photoImportViewModel.importPhotos()
+                        },
+                        elevation = elevation(defaultElevation = 2.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = "Add photos",
+                            tint = LocalCustomColors.current.bodyContentColor
+                        )
+                    }
+                }
+
+                AnimatedVisibility(
+                    visible = isFabVisible,
+                    enter = fadeIn() + slideInVertically(initialOffsetY = { it }),
+                    exit = fadeOut() + slideOutVertically(targetOffsetY = { it })
+                ) {
+                    FloatingActionButton(
+                        modifier = Modifier.border(
+                            width = 1.dp,
+                            color = LocalCustomColors.current.floatActionButtonBorderColor,
+                            shape = CircleShape
+                        ),
+                        backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
+                        onClick = {
+                            // A note can hold several recordings: always add a new one
+                            navigateToRecorder("$currentNoteId")
                         },
                         elevation = elevation(defaultElevation = 2.dp)
                     ) {
@@ -281,6 +336,10 @@ fun NoteDetailScreen(
             audioPlayerUiState = audioPlayerUiState,
             textEditorViewModel = editorViewModel,
             audioPlayerViewModel = audioPlayerViewModel,
+            onTranscribeRecording = { recording ->
+                editorViewModel.onSelectRecordingForTranscription(recording.id)
+                downloaderViewModel.checkTranscriptionAvailability()
+            },
             onFocusChange = {
                 isTextFieldFocused = it
             },
@@ -332,16 +391,6 @@ fun NoteDetailScreen(
     if (showLoadingDialog) {
         PreparingLoadingDialog()
     }
-    ReplaceRecordingConfirmationDialog(
-        showDialog = showExistingRecordConfirmDialog,
-        onDismiss = {
-            showExistingRecordConfirmDialog = false
-        },
-        onConfirm = {
-            navigateToRecorder("$currentNoteId")
-        },
-        option = RecordingConfirmationUiModel.Record
-    )
 
     if (showShareDialog) {
         ShareDialog(
@@ -366,7 +415,7 @@ fun NoteDetailScreen(
             showCopiedTooltip = true
         }
     }
-    3
+
     CopiedNotification(
         visible = showCopiedTooltip,
         onDismiss = {
@@ -392,12 +441,15 @@ private fun NoteContent(
     audioPlayerUiState: AudioPlayerUiState,
     textEditorViewModel: TextEditorViewModel,
     audioPlayerViewModel: AudioPlayerViewModel,
+    onTranscribeRecording: (RecordingUiModel) -> Unit,
     onFabVisibility: (Boolean) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
-    var showDeleteRecordingDialog by remember { mutableStateOf(false) }
+    var recordingToDelete by remember { mutableStateOf<RecordingUiModel?>(null) }
+    var photoToDelete by remember { mutableStateOf<PhotoUiModel?>(null) }
+    var fullscreenPhoto by remember { mutableStateOf<PhotoUiModel?>(null) }
+    var showDeleteLegacyRecordingDialog by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
-    val dismissState = rememberDismissState()
     LaunchedEffect(editorState.content) {
         scrollState.animateScrollTo(scrollState.maxValue)
     }
@@ -417,11 +469,32 @@ private fun NoteContent(
         ) {
             DateHeader(newNoteDateString)
 
-            if (editorState.recording.isRecordingExist) {
+            if (editorState.photos.isNotEmpty()) {
+                PhotosRow(
+                    photos = editorState.photos,
+                    onPhotoClick = { fullscreenPhoto = it },
+                    onDeleteRequest = { photoToDelete = it }
+                )
+            }
 
+            if (editorState.recordings.isNotEmpty()) {
+                editorState.recordings.forEach { recording ->
+                    key(recording.id) {
+                        RecordingItem(
+                            recording = recording,
+                            audioPlayerUiState = audioPlayerUiState,
+                            audioPlayerViewModel = audioPlayerViewModel,
+                            onTranscribeRequest = { onTranscribeRecording(recording) },
+                            onDeleteRequest = { recordingToDelete = recording }
+                        )
+                    }
+                }
+            } else if (editorState.recording.isRecordingExist) {
+                // Legacy note with a single recording that has not been migrated yet
+                val dismissState = rememberDismissState()
                 if (dismissState.isDismissed(DismissDirection.EndToStart)) {
                     LaunchedEffect(Unit) {
-                        showDeleteRecordingDialog = true
+                        showDeleteLegacyRecordingDialog = true
                     }
                 }
 
@@ -429,7 +502,6 @@ private fun NoteContent(
                     state = dismissState,
                     directions = setOf(DismissDirection.EndToStart),
                     background = {
-                        // Background that appears when swiping
                         Box(
                             modifier = Modifier
                                 .width(800.dp)
@@ -457,6 +529,21 @@ private fun NoteContent(
                         )
                     }
                 )
+
+                if (showDeleteLegacyRecordingDialog) {
+                    DeleteRecordingConfirmationDialog(
+                        showDialog = true,
+                        onDismiss = {
+                            showDeleteLegacyRecordingDialog = false
+                            coroutineScope.launch {
+                                dismissState.reset()
+                            }
+                        },
+                        onConfirm = {
+                            textEditorViewModel.onDeleteRecord()
+                        }
+                    )
+                }
             }
 
             NoteEditor(
@@ -470,20 +557,177 @@ private fun NoteContent(
             )
         }
     }
-    DeleteRecordingConfirmationDialog(
-        showDialog = showDeleteRecordingDialog,
-        onDismiss = {
-            showDeleteRecordingDialog = false
-            coroutineScope.launch {
-                dismissState.reset()
+
+    recordingToDelete?.let { recording ->
+        DeleteRecordingConfirmationDialog(
+            showDialog = true,
+            onDismiss = {
+                recordingToDelete = null
+            },
+            onConfirm = {
+                textEditorViewModel.onDeleteRecording(recording.id)
+                recordingToDelete = null
             }
-        },
-        onConfirm = {
-            textEditorViewModel.onDeleteRecord()
-        }
-    )
+        )
+    }
+
+    photoToDelete?.let { photo ->
+        DeleteRecordingConfirmationDialog(
+            showDialog = true,
+            onDismiss = {
+                photoToDelete = null
+            },
+            onConfirm = {
+                textEditorViewModel.onDeletePhoto(photo.id)
+                photoToDelete = null
+            }
+        )
+    }
+
+    fullscreenPhoto?.let { photo ->
+        FullscreenPhotoViewer(
+            photo = photo,
+            onClose = { fullscreenPhoto = null }
+        )
+    }
 }
 
+@Composable
+private fun FullscreenPhotoViewer(
+    photo: PhotoUiModel,
+    onClose: () -> Unit
+) {
+    Dialog(
+        onDismissRequest = onClose,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black)
+        ) {
+            AsyncImage(
+                model = photo.filePath,
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable(onClick = onClose),
+                contentScale = ContentScale.Fit
+            )
+            IconButton(
+                onClick = onClose,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(16.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Close,
+                    contentDescription = "Close",
+                    tint = Color.White
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun PhotosRow(
+    photos: List<PhotoUiModel>,
+    onPhotoClick: (PhotoUiModel) -> Unit,
+    onDeleteRequest: (PhotoUiModel) -> Unit
+) {
+    LazyRow(
+        modifier = Modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        items(photos, key = { it.id }) { photo ->
+            Box {
+                AsyncImage(
+                    model = photo.filePath,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(120.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .clickable { onPhotoClick(photo) },
+                    contentScale = ContentScale.Crop
+                )
+                IconButton(
+                    onClick = { onDeleteRequest(photo) },
+                    modifier = Modifier.align(Alignment.TopEnd)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete photo",
+                        tint = Color.Red
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun RecordingItem(
+    recording: RecordingUiModel,
+    audioPlayerUiState: AudioPlayerUiState,
+    audioPlayerViewModel: AudioPlayerViewModel,
+    onTranscribeRequest: () -> Unit,
+    onDeleteRequest: () -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
+        Box(modifier = Modifier.fillMaxWidth()) {
+            PlatformAudioPlayerUi(
+                filePath = recording.filePath,
+                uiState = audioPlayerUiState,
+                onLoadAudio = audioPlayerViewModel::onLoadAudio,
+                onClear = audioPlayerViewModel::onClear,
+                onSeekTo = audioPlayerViewModel::onSeekTo,
+                onTogglePlayPause = audioPlayerViewModel::onTogglePlayPause
+            )
+            IconButton(
+                onClick = onDeleteRequest,
+                modifier = Modifier.align(Alignment.TopEnd)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "Delete",
+                    tint = Color.Red
+                )
+            }
+        }
+
+        IconButton(
+            onClick = onTranscribeRequest,
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .align(Alignment.End)
+        ) {
+            Icon(
+                painter = painterResource(Res.drawable.ic_transcription),
+                contentDescription = stringResource(Res.string.transcription_icon),
+                tint = LocalCustomColors.current.bodyContentColor
+            )
+        }
+
+        if (recording.transcription.isNotBlank()) {
+            Text(
+                text = recording.transcription,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(LocalCustomColors.current.bodyBackgroundColor)
+                    .padding(12.dp),
+                fontSize = 14.sp,
+                color = LocalCustomColors.current.bodyContentColor
+            )
+        }
+    }
+}
 
 @Composable
 private fun DateHeader(dateString: String) {
