@@ -7,6 +7,7 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,6 +41,7 @@ import androidx.compose.material.SwipeToDismiss
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.rememberDismissState
 import androidx.compose.runtime.Composable
@@ -74,6 +76,8 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import com.module.notelycompose.audio.presentation.AudioPlayerViewModel
@@ -237,7 +241,11 @@ fun NoteDetailScreen(
                                 shape = CircleShape
                             ),
                             backgroundColor = LocalCustomColors.current.bodyBackgroundColor,
-                            onClick = { downloaderViewModel.checkTranscriptionAvailability() },
+                            onClick = {
+                                // Transcribe the primary recording (legacy behaviour)
+                                editorViewModel.onSelectRecordingForTranscription(null)
+                                downloaderViewModel.checkTranscriptionAvailability()
+                            },
                             elevation = elevation(defaultElevation = 2.dp)
                         ) {
                             Icon(
@@ -328,6 +336,10 @@ fun NoteDetailScreen(
             audioPlayerUiState = audioPlayerUiState,
             textEditorViewModel = editorViewModel,
             audioPlayerViewModel = audioPlayerViewModel,
+            onTranscribeRecording = { recording ->
+                editorViewModel.onSelectRecordingForTranscription(recording.id)
+                downloaderViewModel.checkTranscriptionAvailability()
+            },
             onFocusChange = {
                 isTextFieldFocused = it
             },
@@ -429,11 +441,13 @@ private fun NoteContent(
     audioPlayerUiState: AudioPlayerUiState,
     textEditorViewModel: TextEditorViewModel,
     audioPlayerViewModel: AudioPlayerViewModel,
+    onTranscribeRecording: (RecordingUiModel) -> Unit,
     onFabVisibility: (Boolean) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     var recordingToDelete by remember { mutableStateOf<RecordingUiModel?>(null) }
     var photoToDelete by remember { mutableStateOf<PhotoUiModel?>(null) }
+    var fullscreenPhoto by remember { mutableStateOf<PhotoUiModel?>(null) }
     var showDeleteLegacyRecordingDialog by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
     LaunchedEffect(editorState.content) {
@@ -458,6 +472,7 @@ private fun NoteContent(
             if (editorState.photos.isNotEmpty()) {
                 PhotosRow(
                     photos = editorState.photos,
+                    onPhotoClick = { fullscreenPhoto = it },
                     onDeleteRequest = { photoToDelete = it }
                 )
             }
@@ -469,6 +484,7 @@ private fun NoteContent(
                             recording = recording,
                             audioPlayerUiState = audioPlayerUiState,
                             audioPlayerViewModel = audioPlayerViewModel,
+                            onTranscribeRequest = { onTranscribeRecording(recording) },
                             onDeleteRequest = { recordingToDelete = recording }
                         )
                     }
@@ -567,11 +583,57 @@ private fun NoteContent(
             }
         )
     }
+
+    fullscreenPhoto?.let { photo ->
+        FullscreenPhotoViewer(
+            photo = photo,
+            onClose = { fullscreenPhoto = null }
+        )
+    }
+}
+
+@Composable
+private fun FullscreenPhotoViewer(
+    photo: PhotoUiModel,
+    onClose: () -> Unit
+) {
+    Dialog(
+        onDismissRequest = onClose,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black)
+        ) {
+            AsyncImage(
+                model = photo.filePath,
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable(onClick = onClose),
+                contentScale = ContentScale.Fit
+            )
+            IconButton(
+                onClick = onClose,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(16.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Close,
+                    contentDescription = "Close",
+                    tint = Color.White
+                )
+            }
+        }
+    }
 }
 
 @Composable
 private fun PhotosRow(
     photos: List<PhotoUiModel>,
+    onPhotoClick: (PhotoUiModel) -> Unit,
     onDeleteRequest: (PhotoUiModel) -> Unit
 ) {
     LazyRow(
@@ -586,7 +648,8 @@ private fun PhotosRow(
                     contentDescription = null,
                     modifier = Modifier
                         .size(120.dp)
-                        .clip(RoundedCornerShape(8.dp)),
+                        .clip(RoundedCornerShape(8.dp))
+                        .clickable { onPhotoClick(photo) },
                     contentScale = ContentScale.Crop
                 )
                 IconButton(
@@ -609,6 +672,7 @@ private fun RecordingItem(
     recording: RecordingUiModel,
     audioPlayerUiState: AudioPlayerUiState,
     audioPlayerViewModel: AudioPlayerViewModel,
+    onTranscribeRequest: () -> Unit,
     onDeleteRequest: () -> Unit
 ) {
     Column(
@@ -634,6 +698,19 @@ private fun RecordingItem(
                     tint = Color.Red
                 )
             }
+        }
+
+        IconButton(
+            onClick = onTranscribeRequest,
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .align(Alignment.End)
+        ) {
+            Icon(
+                painter = painterResource(Res.drawable.ic_transcription),
+                contentDescription = stringResource(Res.string.transcription_icon),
+                tint = LocalCustomColors.current.bodyContentColor
+            )
         }
 
         if (recording.transcription.isNotBlank()) {
