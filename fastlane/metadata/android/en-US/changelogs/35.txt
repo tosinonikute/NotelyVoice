@@ -1,4 +1,0 @@
-- Android 17 update
-- Add Hungarian in language transcription
-- Prevent OS from automatically clearing your downloaded model
-- Fix all broken in-app external links
